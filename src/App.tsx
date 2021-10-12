@@ -8,10 +8,10 @@ function App(): JSX.Element {
             <header className="App-header">
                 <img src={logo} className="App-logo" alt="logo" />
                 UD CIS Scheduler!
-                <p>Megan Englert!</p>
-                <p> Julianna Dorsch!
+                <p>Megan Englert!!!</p>
+                <p> Julianna Dorsch!!!
                 </p>
-                <p>Whitney To!</p>
+                <p>Whitney To!!!</p>
                 <p>
                     Edit <code>src/App.tsx</code> and save to reload.
                 </p>
