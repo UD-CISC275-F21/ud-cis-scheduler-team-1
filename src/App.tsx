@@ -10,6 +10,7 @@ function App(): JSX.Element {
                 UD CIS Scheduler!
                 <p> Julianna Dorsch
                 </p>
+                <p>Whitney To</p>
                 <p>
                     Edit <code>src/App.tsx</code> and save to reload.
                 </p>
