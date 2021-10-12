@@ -8,6 +8,7 @@ function App(): JSX.Element {
             <header className="App-header">
                 <img src={logo} className="App-logo" alt="logo" />
                 UD CIS Scheduler!
+                <p>Megan Englert!</p>
                 <p> Julianna Dorsch!
                 </p>
                 <p>Whitney To!</p>
