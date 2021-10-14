@@ -28,7 +28,7 @@ Person 5:
 * What's your main goal?: I want to minor in computer science.
 * What's your main barrier to achieving this goal?: I am struggling with figuring out what computer science classes I can take, as many are restricted for majors only.
 
-Person 5:
+Person 6:
 
 * Who are you?: Computer Science Major, Trying to Figure out Concentration
 * What's your main goal?: I want to figure out what my concentration is by taking a variety of different computer science classes.
