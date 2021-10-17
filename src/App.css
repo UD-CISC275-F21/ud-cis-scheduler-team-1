@@ -40,3 +40,12 @@
 td {
   word-break: break-word;
 }
+
+#title{
+  margin-top: 1cm;
+  margin-bottom: 1.5cm;
+}
+
+.subtitle{
+  margin-bottom: 1cm;
+}
