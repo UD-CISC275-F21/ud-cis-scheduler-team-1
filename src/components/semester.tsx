@@ -2,15 +2,11 @@ import React, {useState} from "react";
 import {Button, Col, Row, Table, ButtonGroup} from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../App.css";
-import {classTable, iNumTable} from "../interfaces/classTable";
+import {indSemes, iNumTable} from "../interfaces/classTable";
 
 /* Getting a table to render based on a list is from https://stackoverflow.com/questions/54659039/remove-table-row-using-hooks */
 /* Removing from a list is from https://www.robinwieruch.de/react-remove-item-from-list */
 
-interface indSemes {
-    classes: Array<classTable>;
-    setClasses: (classes: Array<classTable>) => void;
-}
 const initialTable: Array<iNumTable> = [{year: 1}];
 export function Semester({classes, setClasses}: indSemes): JSX.Element {
     function removeRow(name: string): void {
@@ -94,31 +90,25 @@ export function Semester({classes, setClasses}: indSemes): JSX.Element {
                             </tbody>
                         </Table>
                     </Col>
-                    {
-                        <ButtonGroup>
-                            <Button
-                                onClick={() => {
-                                    console.log("add:" + item.year);
-                                    addT(numTable.length + 1);
-                                    console.log("add:" + item.year);
-                                }}>
-                                + Add School Year
-                            </Button>
-                            <Button
-                                variant="danger"
-                                onClick={() => {
-                                    console.log(item.year);
-                                    if (item.year > 0) {
-                                        removeTab(item.year);
-                                    }
-                                    console.log(item.year);
-                                }}>
-                                - Delete School Year
-                            </Button>
-                        </ButtonGroup>
-                    }
                 </Row>
             )}
+            <ButtonGroup>
+                <Button
+                    onClick={() => {
+                        addT(numTable.length + 1);
+                    }}>
+                    + Add School Year
+                </Button>
+                <Button
+                    variant="danger"
+                    onClick={() => {
+                        if (numTable.length > 0) {
+                            removeTab(numTable.length);
+                        }
+                    }}>
+                    - Delete School Year
+                </Button>
+            </ButtonGroup>
         </Col>
     );
 }

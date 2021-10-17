@@ -5,3 +5,7 @@ export interface classTable {
 export interface iNumTable {
     year: number;
 }
+export interface indSemes {
+    classes: Array<classTable>;
+    setClasses: (classes: Array<classTable>) => void;
+}
