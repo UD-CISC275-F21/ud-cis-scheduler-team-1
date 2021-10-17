@@ -108,6 +108,13 @@ export function Semester({classes, setClasses}: indSemes): JSX.Element {
                     }}>
                     - Delete School Year
                 </Button>
+                <Button
+                    variant="secondary"
+                    onClick={() => {
+                        setNumTable(initialTable);
+                    }}>
+                    Reset Plan
+                </Button>
             </ButtonGroup>
         </Col>
     );
