@@ -1,33 +1,46 @@
 import React from "react";
+import { Button, Col, Table } from "react-bootstrap";
 import "../App.css";
+import { classTable } from "../interfaces/classTable";
 
-export function Semester(): JSX.Element {
+/* Getting a table to render based on a list is from https://stackoverflow.com/questions/54659039/remove-table-row-using-hooks */
+/* Removing from a list is from https://www.robinwieruch.de/react-remove-item-from-list */
 
-    return <table className="semester">
-        <caption>Fall 2021</caption>
-        <tr>
-            <th>Course</th>
-            <th>Credits</th>
-        </tr>
-        <tr>
-            <td>EGGG101 Introduction to Engineering</td>
-            <td>2</td>
-        </tr>
-        <tr>
-            <td>CISC108 Introduction to Computer Science I</td>
-            <td>3</td>
-        </tr>
-        <tr>
-            <td>MATH241 Analytic Geometry and Calculus A</td>
-            <td>4</td>
-        </tr>
-        <tr>
-            <td>ENGL110 Seminar in Composition</td>
-            <td>3</td>
-        </tr>
-        <tr>
-            <td>ARTH237 Art in Tibet</td>
-            <td>3</td>
-        </tr>
-    </table>;
+interface indSemes{
+    classes: Array<classTable>
+    setClasses: (classes:Array<classTable>) => void
+}
+
+export function Semester({classes, setClasses}: indSemes): JSX.Element {
+    function removeRow(name:string):void {
+        const newList = classes.filter((item) => item.name != name);
+        setClasses(newList);              
+    } 
+
+    return <Col>
+        <h2 className = "subtitle">Four Year Plan</h2>
+        <Table striped bordered hover className="semester">
+            <thead>
+                <tr>
+                    <th>{"Fall 2021"}</th>
+                    <th>{""}</th>
+                    <th>{""}</th>
+                </tr>
+                <tr>
+                    <th>Course</th>
+                    <th>Credits</th>
+                    <th>{""}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {classes.map((item, index) =>
+                    <tr key ={index}>
+                        <td>{item.name}</td>
+                        <td>{item.credits}</td>
+                        <td><Button color ="red" onClick={() =>removeRow(item.name)}> X </Button></td>
+                    </tr>
+                )}
+            </tbody>
+        </Table>
+    </Col>;
 }
