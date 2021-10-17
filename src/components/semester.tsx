@@ -14,23 +14,23 @@ interface indSemes {
 const initialTable: Array<iNumTable> = [{year: 1}];
 export function Semester({classes, setClasses}: indSemes): JSX.Element {
     function removeRow(name: string): void {
-        const newList = classes.filter((item) => item.name != name);
+        const newList = classes.filter(item => item.name != name);
         setClasses(newList);
         console.log(classes);
     }
     function addT(year: number): void {
         const newT: iNumTable = {year: year};
-        setNumTable((numTable) => [...numTable, newT]);
+        setNumTable(numTable => [...numTable, newT]);
     }
     function removeTab(year: number): void {
-        const newT = numTable.filter((item) => item.year != year);
+        const newT = numTable.filter(item => item.year != year);
         setNumTable(newT);
     }
     const [numTable, setNumTable] = useState<Array<iNumTable>>(initialTable);
     return (
         <Col md={8}>
             <h2 className="subtitle">Four Year Plan</h2>
-            {numTable.map((item, index) => (
+            {numTable.map((item, index) => 
                 <Row key={index}>
                     <Col>
                         <Table striped bordered hover className="semester">
@@ -45,7 +45,7 @@ export function Semester({classes, setClasses}: indSemes): JSX.Element {
                                 </tr>
                             </thead>
                             <tbody>
-                                {classes.map((item, index) => (
+                                {classes.map((item, index) => 
                                     <tr key={index}>
                                         <td>{item.name}</td>
                                         <td>{item.credits}</td>
@@ -58,7 +58,7 @@ export function Semester({classes, setClasses}: indSemes): JSX.Element {
                                             </Button>
                                         </td>
                                     </tr>
-                                ))}
+                                )}
                             </tbody>
                         </Table>
                     </Col>
@@ -75,7 +75,7 @@ export function Semester({classes, setClasses}: indSemes): JSX.Element {
                                 </tr>
                             </thead>
                             <tbody>
-                                {classes.map((item, index) => (
+                                {classes.map((item, index) => 
                                     <tr key={index}>
                                         <td>{item.name}</td>
                                         <td>{item.credits}</td>
@@ -90,7 +90,7 @@ export function Semester({classes, setClasses}: indSemes): JSX.Element {
                                             </Button>
                                         </td>
                                     </tr>
-                                ))}
+                                )}
                             </tbody>
                         </Table>
                     </Col>
@@ -99,7 +99,7 @@ export function Semester({classes, setClasses}: indSemes): JSX.Element {
                             <Button
                                 onClick={() => {
                                     console.log("add:" + item.year);
-                                    addT(item.year + 1);
+                                    addT(numTable.length + 1);
                                     console.log("add:" + item.year);
                                 }}>
                                 + Add School Year
@@ -118,7 +118,7 @@ export function Semester({classes, setClasses}: indSemes): JSX.Element {
                         </ButtonGroup>
                     }
                 </Row>
-            ))}
+            )}
         </Col>
     );
 }
