@@ -3,7 +3,7 @@ import React from "react";
 import { Button, Col, Table} from "react-bootstrap";
 import { Semester } from "../interfaces/semester";
 
-export function SingleSemesterViewer({ semester }: { semester: Semester }): JSX.Element {
+export function SemesterTable({ semester }: { semester: Semester }): JSX.Element {
 
     // Removes a course from a semester based on its name
     function removeCourse(name: string): void {

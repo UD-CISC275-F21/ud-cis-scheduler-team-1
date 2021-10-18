@@ -3,7 +3,7 @@ import { Button, Col, Row, Table, ButtonGroup } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../App.css";
 import { Semester } from "../interfaces/semester";
-import { SingleSemesterViewer } from "./singleSemesterViewer";
+import { SemesterTable } from "./SemesterTable";
 
 /* Getting a table to render based on a list is from https://stackoverflow.com/questions/54659039/remove-table-row-using-hooks */
 /* Removing from a list is from https://www.robinwieruch.de/react-remove-item-from-list */
@@ -30,7 +30,7 @@ export function FourYearPlan({ semesters, setSemesters }:
         <h2 className="subtitle">Four Year Plan</h2>
         <Row xs={1} md={2} className="g-4">
             {semesters.map((semester) => (<div key={semester.title}>
-                <SingleSemesterViewer semester={semester}></SingleSemesterViewer>
+                <SemesterTable semester={semester}></SemesterTable>
             </div>))}
         </Row>
     </div>;
