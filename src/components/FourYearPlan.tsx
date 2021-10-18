@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Button, Col, Row, Table, ButtonGroup } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../App.css";
@@ -12,10 +12,12 @@ import { SemesterTable } from "./SemesterTable";
 export function FourYearPlan({ semesters, setSemesters, defaultSemesters }:
     { semesters: Semester[], setSemesters: (s: Semester[]) => void, defaultSemesters: Semester[] }): JSX.Element {
 
+    /*
     // Removes a semester based on its name (ex. "Fall 2021")
     function removeSemester(title: string): void {
         setSemesters(semesters.filter(semester => semester.title != title));
     }
+    */
 
     // Removes the most recently added semester in the list, does nothing if no semesters left
     function removeLastSemester(): void {

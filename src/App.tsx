@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import {Container, Row} from "react-bootstrap";
+import {Col, Container, Row} from "react-bootstrap";
 import {FourYearPlan} from "./components/FourYearPlan";
 import {Requirements} from "./components/Requirements";
 import {CoursePool} from "./components/CoursePool";
@@ -31,9 +31,9 @@ function App(): JSX.Element {
             <h1 id="title">UD CIS Scheduler</h1>
 
             <Row>
-                <CoursePool></CoursePool>
-                <FourYearPlan semesters={semesters} setSemesters={setSemesters} defaultSemesters={defaultSemesters}></FourYearPlan>
-                <Requirements></Requirements>
+                <Col><CoursePool></CoursePool></Col>
+                <Col xs={6}><FourYearPlan semesters={semesters} setSemesters={setSemesters} defaultSemesters={defaultSemesters}></FourYearPlan></Col>
+                <Col><Requirements></Requirements></Col>
             </Row>
         </Container>
     );
