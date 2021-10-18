@@ -1,9 +1,9 @@
 
 import React from "react";
-import { Button, Col, Row, Table, ButtonGroup } from "react-bootstrap";
+import { Button, Col, Table} from "react-bootstrap";
 import { Semester } from "../interfaces/semester";
 
-export function singleSemesterViewer({ semester }: { semester: Semester }): JSX.Element {
+export function SingleSemesterViewer({ semester }: { semester: Semester }): JSX.Element {
 
     // Removes a course from a semester based on its name
     function removeCourse(name: string): void {
@@ -23,8 +23,8 @@ export function singleSemesterViewer({ semester }: { semester: Semester }): JSX.
                 </tr>
             </thead>
             <tbody>
-                {semester.courses.map((course) => (
-                    <tr>
+                {semester.courses.map((course) =>
+                    <tr key={course.name}>
                         <td>{course.name}</td>
                         <td>{course.credits}</td>
                         <td>
@@ -35,7 +35,7 @@ export function singleSemesterViewer({ semester }: { semester: Semester }): JSX.
                             </Button>
                         </td>
                     </tr>
-                ))}
+                )}
             </tbody>
         </Table>
     </Col>;
