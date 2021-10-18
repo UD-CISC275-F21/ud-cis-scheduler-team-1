@@ -15,6 +15,11 @@ export function SemesterViewer({ semesters, setSemesters }:
         setSemesters(semesters.filter(semester => semester.title != title));
     }
 
+    // Removes the most recently added semester in the list
+    function removeLastSemester(): void {
+        setSemesters([...semesters.splice(-1)]);
+    }
+
     // Adds a new semester with the given title (ex. "Fall 2021") and no courses
     function addSemester(title: string): void {
         setSemesters([...semesters,
@@ -24,11 +29,7 @@ export function SemesterViewer({ semesters, setSemesters }:
             }
         ]);
     }
-    
-    function removeTab(year: number): void {
-        const newT = numTable.filter(item => item.year != year);
-        setNumTable(newT);
-    }
+
     const [numTable, setNumTable] = useState<Array<iNumTable>>(initialTable);
     return (
         <Col md={8}>
