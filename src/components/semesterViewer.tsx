@@ -1,23 +1,30 @@
-import React, {useState} from "react";
-import {Button, Col, Row, Table, ButtonGroup} from "react-bootstrap";
+import React, { useState } from "react";
+import { Button, Col, Row, Table, ButtonGroup } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../App.css";
-import {indSemes, iNumTable} from "../interfaces/classTable";
+import { Semester } from "../interfaces/semester";
 
 /* Getting a table to render based on a list is from https://stackoverflow.com/questions/54659039/remove-table-row-using-hooks */
 /* Removing from a list is from https://www.robinwieruch.de/react-remove-item-from-list */
 
-const initialTable: Array<iNumTable> = [{year: 1}];
-export function Semester({classes, setClasses}: indSemes): JSX.Element {
-    function removeRow(name: string): void {
-        const newList = classes.filter(item => item.name != name);
-        setClasses(newList);
-        console.log(classes);
+export function SemesterViewer({ semesters, setSemesters }:
+    { semesters: Semester[], setSemesters: (s: Semester[]) => void }): JSX.Element {
+
+    // Removes a semester based on its name (ex. "Fall 2021")
+    function removeSemester(title: string): void {
+        setSemesters(semesters.filter(semester => semester.title != title));
     }
-    function addT(year: number): void {
-        const newT: iNumTable = {year: year};
-        setNumTable(numTable => [...numTable, newT]);
+
+    // Adds a new semester with the given title (ex. "Fall 2021") and no courses
+    function addSemester(title: string): void {
+        setSemesters([...semesters,
+            {
+                title: title,
+                courses: []
+            }
+        ]);
     }
+    
     function removeTab(year: number): void {
         const newT = numTable.filter(item => item.year != year);
         setNumTable(newT);
@@ -26,7 +33,7 @@ export function Semester({classes, setClasses}: indSemes): JSX.Element {
     return (
         <Col md={8}>
             <h2 className="subtitle">Four Year Plan</h2>
-            {numTable.map((item, index) => 
+            {numTable.map((item, index) =>
                 <Row key={index}>
                     <Col>
                         <Table striped bordered hover className="semester">
@@ -41,7 +48,7 @@ export function Semester({classes, setClasses}: indSemes): JSX.Element {
                                 </tr>
                             </thead>
                             <tbody>
-                                {classes.map((item, index) => 
+                                {classes.map((item, index) =>
                                     <tr key={index}>
                                         <td>{item.name}</td>
                                         <td>{item.credits}</td>
@@ -71,7 +78,7 @@ export function Semester({classes, setClasses}: indSemes): JSX.Element {
                                 </tr>
                             </thead>
                             <tbody>
-                                {classes.map((item, index) => 
+                                {classes.map((item, index) =>
                                     <tr key={index}>
                                         <td>{item.name}</td>
                                         <td>{item.credits}</td>
