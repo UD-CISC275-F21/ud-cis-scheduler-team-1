@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {Container, Row} from "react-bootstrap";
-import {SemesterViewer} from "./components/semesterViewer";
+import {FourYearPlan} from "./components/FourYearPlan";
 import {Requirements} from "./components/Requirements";
 import {CoursePool} from "./components/CoursePool";
 import {Course} from "./interfaces/course";
@@ -32,7 +32,7 @@ function App(): JSX.Element {
 
             <Row>
                 <CoursePool></CoursePool>
-                <SemesterViewer semesters={semesters} setSemesters={setSemesters}></SemesterViewer>
+                <FourYearPlan semesters={semesters} setSemesters={setSemesters}></FourYearPlan>
                 <Requirements></Requirements>
             </Row>
         </Container>

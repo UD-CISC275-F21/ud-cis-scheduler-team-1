@@ -8,7 +8,7 @@ import { SingleSemesterViewer } from "./singleSemesterViewer";
 /* Getting a table to render based on a list is from https://stackoverflow.com/questions/54659039/remove-table-row-using-hooks */
 /* Removing from a list is from https://www.robinwieruch.de/react-remove-item-from-list */
 
-export function SemesterViewer({ semesters, setSemesters }:
+export function FourYearPlan({ semesters, setSemesters }:
     { semesters: Semester[], setSemesters: (s: Semester[]) => void }): JSX.Element {
 
     // Removes a semester based on its name (ex. "Fall 2021")
