@@ -32,7 +32,7 @@ function App(): JSX.Element {
 
             <Row>
                 <CoursePool></CoursePool>
-                <FourYearPlan semesters={semesters} setSemesters={setSemesters}></FourYearPlan>
+                <FourYearPlan semesters={semesters} setSemesters={setSemesters} defaultSemesters={defaultSemesters}></FourYearPlan>
                 <Requirements></Requirements>
             </Row>
         </Container>
