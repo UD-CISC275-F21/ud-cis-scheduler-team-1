@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Col, Row, Table, ButtonGroup } from "react-bootstrap";
+import { Button, Row, ButtonGroup } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../App.css";
 import { Semester } from "../interfaces/semester";
@@ -35,9 +35,9 @@ export function FourYearPlan({ semesters, setSemesters, defaultSemesters }:
     return <div id="plan">
         <h2 className="subtitle">Four Year Plan</h2>
         <Row xs={1} md={2} className="g-4">
-            {semesters.map((semester) => (<div key={semester.title}>
+            {semesters.map((semester) => <div key={semester.title}>
                 <SemesterTable semester={semester}></SemesterTable>
-            </div>))}
+            </div>)}
         </Row>
         <Row>
             <ButtonGroup>
