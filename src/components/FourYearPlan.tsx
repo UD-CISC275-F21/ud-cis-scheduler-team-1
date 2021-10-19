@@ -4,13 +4,14 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../App.css";
 import { Semester } from "../interfaces/semester";
 import { SemesterTable } from "./SemesterTable";
+// import { Course } from "../interfaces/course";
 
 /* Getting a table to render based on a list is from https://stackoverflow.com/questions/54659039/remove-table-row-using-hooks */
 /* Removing from a list is from https://www.robinwieruch.de/react-remove-item-from-list */
 
 
-export function FourYearPlan({ semesters, setSemesters, defaultSemesters }:
-    { semesters: Semester[], setSemesters: (s: Semester[]) => void, defaultSemesters: Semester[] }): JSX.Element {
+export function FourYearPlan({ semesters, setSemesters, }:
+    { semesters: Semester[], setSemesters: (s: Semester[]) => void }): JSX.Element {
 
     /*
     // Removes a semester based on its name (ex. "Fall 2021")
@@ -31,7 +32,13 @@ export function FourYearPlan({ semesters, setSemesters, defaultSemesters }:
     function addSemester(title: string): void {
         setSemesters([...semesters, { title: title, courses: [] }]);
     }
-
+    /*
+        // Removes a course from a semester based on its name
+        function removeCourse(semesterName: string, courseName: string): void {
+            setSemesters([...courses.filter(course => course.name !== name)]);
+            semester.courses = courses;
+        }
+    */
     return <div id="plan">
         <h2 className="subtitle">Four Year Plan</h2>
         <Row xs={1} md={2} className="g-4">
@@ -54,13 +61,15 @@ export function FourYearPlan({ semesters, setSemesters, defaultSemesters }:
                     }}>
                     - Delete Semester
                 </Button>
+                {/*
                 <Button
                     variant="secondary"
                     onClick={() => {
-                        setSemesters(defaultSemesters);
+                        setSemesters([...defaultSemesters]);
                     }}>
                     Reset Plan
                 </Button>
+                */}
             </ButtonGroup>;
         </Row>
     </div>;

@@ -1,13 +1,17 @@
 
-import React from "react";
-import { Button, Col, Table} from "react-bootstrap";
+import React, { useState } from "react";
+import { Button, Col, Table } from "react-bootstrap";
+import { Course } from "../interfaces/course";
 import { Semester } from "../interfaces/semester";
 
 export function SemesterTable({ semester }: { semester: Semester }): JSX.Element {
 
+    const [courses, setCourses] = useState<Course[]>(semester.courses);
+
     // Removes a course from a semester based on its name
     function removeCourse(name: string): void {
-        semester.courses = [...semester.courses.filter(course => course.name != name)];
+        setCourses([...courses.filter(course => course.name !== name)]);
+        semester.courses = courses;
     }
 
     return <Col>
@@ -23,7 +27,7 @@ export function SemesterTable({ semester }: { semester: Semester }): JSX.Element
                 </tr>
             </thead>
             <tbody>
-                {semester.courses.map((course) =>
+                {courses.map((course) =>
                     <tr key={course.name}>
                         <td>{course.name}</td>
                         <td>{course.credits}</td>
