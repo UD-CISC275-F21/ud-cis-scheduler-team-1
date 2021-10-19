@@ -9,9 +9,14 @@ import { SemesterTable } from "./SemesterTable";
 /* Getting a table to render based on a list is from https://stackoverflow.com/questions/54659039/remove-table-row-using-hooks */
 /* Removing from a list is from https://www.robinwieruch.de/react-remove-item-from-list */
 
+interface fyp{
+    semesters: Semester[],
+    setSemesters: (s: Semester[]) => void
 
-export function FourYearPlan({ semesters, setSemesters, }:
-    { semesters: Semester[], setSemesters: (s: Semester[]) => void }): JSX.Element {
+}
+
+
+export function FourYearPlan({semesters, setSemesters }:fyp): JSX.Element {
 
     /*
     // Removes a semester based on its name (ex. "Fall 2021")
@@ -43,7 +48,7 @@ export function FourYearPlan({ semesters, setSemesters, }:
         <h2 className="subtitle">Four Year Plan</h2>
         <Row xs={1} md={2} className="g-4">
             {semesters.map((semester) => <div key={semester.title}>
-                <SemesterTable semester={semester}></SemesterTable>
+                <SemesterTable semester={semester} setSemester={setSemesters} semesters={semesters}></SemesterTable>
             </div>)}
         </Row>
         <Row>
@@ -70,7 +75,7 @@ export function FourYearPlan({ semesters, setSemesters, }:
                     Reset Plan
                 </Button>
                 */}
-            </ButtonGroup>;
+            </ButtonGroup>
         </Row>
     </div>;
 }

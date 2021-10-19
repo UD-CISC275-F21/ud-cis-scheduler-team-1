@@ -9,11 +9,11 @@ import {Course} from "./interfaces/course";
 import { Semester } from "./interfaces/semester";
 
 const testCourses: Course[] = [
-    {name: "EGGG101 Introduction to Engineering", credits: 2},
-    {name: "CISC108 Introduction to Computer Science I", credits: 3},
-    {name: "MATH241 Analytic Geometry and Calculus A", credits: 3},
-    {name: "ENGL110 Seminar in Composition", credits: 3},
-    {name: "ARTH237 Art in Tibet", credits: 3},
+    {name: "EGGG101 Introduction to Engineering", credits: 2, grade: "F"},
+    {name: "CISC108 Introduction to Computer Science I", credits: 3, grade: "F"},
+    {name: "MATH241 Analytic Geometry and Calculus A", credits: 3, grade: "F"},
+    {name: "ENGL110 Seminar in Composition", credits: 3, grade: "F"},
+    {name: "ARTH237 Art in Tibet", credits: 3, grade: "F"},
 ];
 
 const defaultSemesters: Semester[] = [
