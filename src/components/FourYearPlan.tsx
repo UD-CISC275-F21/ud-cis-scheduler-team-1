@@ -9,21 +9,14 @@ import { SemesterTable } from "./SemesterTable";
 /* Getting a table to render based on a list is from https://stackoverflow.com/questions/54659039/remove-table-row-using-hooks */
 /* Removing from a list is from https://www.robinwieruch.de/react-remove-item-from-list */
 
-interface fyp{
+interface fyp {
     semesters: Semester[],
     setSemesters: (s: Semester[]) => void
 
 }
 
 
-export function FourYearPlan({semesters, setSemesters }:fyp): JSX.Element {
-
-    /*
-    // Removes a semester based on its name (ex. "Fall 2021")
-    function removeSemester(title: string): void {
-        setSemesters(semesters.filter(semester => semester.title != title));
-    }
-    */
+export function FourYearPlan({ semesters, setSemesters }: fyp): JSX.Element {
 
     // Removes the most recently added semester in the list, does nothing if no semesters left
     function removeLastSemester(): void {
@@ -37,13 +30,7 @@ export function FourYearPlan({semesters, setSemesters }:fyp): JSX.Element {
     function addSemester(title: string): void {
         setSemesters([...semesters, { title: title, courses: [] }]);
     }
-    /*
-        // Removes a course from a semester based on its name
-        function removeCourse(semesterName: string, courseName: string): void {
-            setSemesters([...courses.filter(course => course.name !== name)]);
-            semester.courses = courses;
-        }
-    */
+
     return <div id="plan">
         <h2 className="subtitle">Four Year Plan</h2>
         <Row xs={1} md={2} className="g-4">
@@ -66,15 +53,13 @@ export function FourYearPlan({semesters, setSemesters }:fyp): JSX.Element {
                     }}>
                     - Delete Semester
                 </Button>
-                {/*
                 <Button
                     variant="secondary"
                     onClick={() => {
-                        setSemesters([...defaultSemesters]);
+                        window.location.reload();
                     }}>
                     Reset Plan
                 </Button>
-                */}
             </ButtonGroup>
         </Row>
     </div>;
