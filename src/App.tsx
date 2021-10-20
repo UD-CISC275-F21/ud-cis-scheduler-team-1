@@ -21,10 +21,13 @@ const defaultSemesters: Semester[] = [
     {title: "Spring 2022", courses: []}
 ];
 
+
+
 function App(): JSX.Element {
     // All courses in our database
     // const [courses, setCourses] = useState<Course[]>(testCourses);
-    const [semesters, setSemesters] = useState<Semester[]>([...defaultSemesters] as Semester[]);
+
+    const [semesters, setSemesters] = useState<Semester[]>(defaultSemesters);
 
     return (
         <Container className="App">
@@ -32,7 +35,7 @@ function App(): JSX.Element {
 
             <Row>
                 <Col><CoursePool></CoursePool></Col>
-                <Col xs={6}><FourYearPlan semesters={semesters} setSemesters={setSemesters}></FourYearPlan></Col>
+                <Col xs={6}><FourYearPlan semesters={semesters} setSemesters={setSemesters} ></FourYearPlan></Col>
                 <Col><Requirements></Requirements></Col>
             </Row>
         </Container>
