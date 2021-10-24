@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Row, ButtonGroup } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../App.css";
-import { Semester } from "../interfaces/semester";
+import { season, Semester } from "../interfaces/semester";
 import { SemesterTable } from "./SemesterTable";
 // import { Course } from "../interfaces/course";
 
@@ -27,14 +27,14 @@ export function FourYearPlan({ semesters, setSemesters }: fyp): JSX.Element {
     }
 
     // Adds a new semester with the given title (ex. "Fall 2021") and no courses
-    function addSemester(title: string): void {
-        setSemesters([...semesters, { title: title, courses: [] }]);
+    function addSemester(season: season, year: number): void {
+        setSemesters([...semesters, { season: season, year: year, courses: [] }]);
     }
 
     return <div id="plan">
         <h2 className="subtitle">Four Year Plan</h2>
         <Row xs={1} md={2} className="g-4">
-            {semesters.map((semester) => <div key={semester.title}>
+            {semesters.map((semester) => <div key={semester.season + semester.year}>
                 <SemesterTable semester={semester} setSemester={setSemesters} semesters={semesters}></SemesterTable>
             </div>)}
         </Row>
@@ -42,7 +42,7 @@ export function FourYearPlan({ semesters, setSemesters }: fyp): JSX.Element {
             <ButtonGroup>
                 <Button
                     onClick={() => {
-                        addSemester("test semester");
+                        addSemester(season.summer, 2022);
                     }}>
                     + Add Semester
                 </Button>

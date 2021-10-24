@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {Button, Col, Table} from "react-bootstrap";
 import {Course} from "../interfaces/course";
-import {Semester} from "../interfaces/semester";
+import {season, Semester} from "../interfaces/semester";
 
 /* Getting a table to render based on a list is from https://stackoverflow.com/questions/54659039/remove-table-row-using-hooks */
 /* Removing from a list is from https://www.robinwieruch.de/react-remove-item-from-list */
@@ -21,8 +21,8 @@ export function SemesterTable({semester, setSemester, semesters}: semesterTable)
         semester.courses = courses;
     }
 
-    function removeSemester(name: string): void {
-        setSemester([...semesters.filter(semester => semester.title !== name)]);
+    function removeSemester(season: season, year: number): void {
+        setSemester([...semesters.filter(semester => (semester.season !== season) && (semester.year !== year))]);
         semester.courses = courses;
     }
 
@@ -31,9 +31,9 @@ export function SemesterTable({semester, setSemester, semesters}: semesterTable)
             <Table striped bordered hover className="semester">
                 <thead>
                     <tr>
-                        <th colSpan={3}>{semester.title}</th>
+                        <th colSpan={3}>{semester.season} {semester.year}</th>
                         <th>
-                            <Button color="red" onClick={() => removeSemester(semester.title)}>
+                            <Button color="red" onClick={() => removeSemester(semester.season, semester.year)}>
                                 {" "}
                                 X{" "}
                             </Button>

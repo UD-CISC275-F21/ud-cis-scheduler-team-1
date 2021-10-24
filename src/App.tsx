@@ -6,7 +6,7 @@ import {FourYearPlan} from "./components/FourYearPlan";
 import {Requirements} from "./components/Requirements";
 import {CoursePool} from "./components/CoursePool";
 import {Course} from "./interfaces/course";
-import { Semester } from "./interfaces/semester";
+import { season, Semester } from "./interfaces/semester";
 
 const testCourses: Course[] = [
     {name: "EGGG101 Introduction to Engineering", credits: 2, grade: "F"},
@@ -17,8 +17,8 @@ const testCourses: Course[] = [
 ];
 
 const defaultSemesters: Semester[] = [
-    {title: "Fall 2021", courses: testCourses},
-    {title: "Spring 2022", courses: []}
+    {season: season.fall, year: 2021, courses: testCourses},
+    {season: season.spring, year: 2022, courses: []}
 ];
 
 
