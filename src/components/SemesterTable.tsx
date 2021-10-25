@@ -60,15 +60,15 @@ export function SemesterTable({semester, setSemester, semesters}: semesterTable)
                             </td>
                         </tr>
                     )}
-                    <Button
-                        variant="secondary"
-                        onClick={() => {
-                            setCourses([]);
-                        }}>
-                        Delete All Courses
-                    </Button>
                 </tbody>
             </Table>
+            <Button
+                variant="secondary"
+                onClick={() => {
+                    setCourses([]);
+                }}>
+                Delete All Courses
+            </Button>
         </Col>
     );
 }
