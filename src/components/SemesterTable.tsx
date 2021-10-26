@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import {Button, Col, Table} from "react-bootstrap";
 import {Course} from "../interfaces/course";
 import {season, Semester} from "../interfaces/semester";
+import {SemesterTitleEdit} from "./SemesterTitleEdit";
 
 /* Getting a table to render based on a list is from https://stackoverflow.com/questions/54659039/remove-table-row-using-hooks */
 /* Removing from a list is from https://www.robinwieruch.de/react-remove-item-from-list */
@@ -31,7 +32,7 @@ export function SemesterTable({semester, setSemester, semesters}: semesterTable)
             <Table striped bordered hover className="semester">
                 <thead>
                     <tr>
-                        <th colSpan={3}>{semester.season} {semester.year}</th>
+                        <th colSpan={3}><SemesterTitleEdit></SemesterTitleEdit></th>
                         <th>
                             <Button color="red" onClick={() => removeSemester(semester.season, semester.year)}>
                                 {" "}
