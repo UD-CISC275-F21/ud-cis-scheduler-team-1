@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  margin-bottom: 1cm;
 }
 
 td {
@@ -9,6 +10,10 @@ td {
 #title{
   margin-top: 1cm;
   margin-bottom: 1.5cm;
+}
+
+#buttonGroup{
+  margin-top: 1cm;
 }
 
 .subtitle{

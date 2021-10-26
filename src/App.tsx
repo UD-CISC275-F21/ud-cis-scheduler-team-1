@@ -5,10 +5,10 @@ import {Col, Container, Row} from "react-bootstrap";
 import {FourYearPlan} from "./components/FourYearPlan";
 import {Requirements} from "./components/Requirements";
 import {CoursePool} from "./components/CoursePool";
-import {Course} from "./interfaces/course";
+import {CourseTable} from "./interfaces/course";
 import { Semester } from "./interfaces/semester";
 
-const testCourses: Course[] = [
+const testCourses: CourseTable[] = [
     {name: "EGGG101 Introduction to Engineering", credits: 2, grade: "F"},
     {name: "CISC108 Introduction to Computer Science I", credits: 3, grade: "F"},
     {name: "MATH241 Analytic Geometry and Calculus A", credits: 3, grade: "F"},
