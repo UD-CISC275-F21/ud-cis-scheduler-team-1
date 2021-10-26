@@ -9,14 +9,14 @@ import { Semester, season } from "../interfaces/semester";
 }*/
 
 export function SemesterTitleEdit(): JSX.Element {
-  return <div>
-    <Form>
-      <Form.Select aria-label="Select season">
-        <option>Fall</option>
-        <option>Winter</option>
-        <option>Spring</option>
-        <option>Summer</option>
-      </Form.Select>
-    </Form>
-  </div>;
+    return <div>
+        <Form>
+            <Form.Select aria-label="Select season">
+                <option>Fall</option>
+                <option>Winter</option>
+                <option>Spring</option>
+                <option>Summer</option>
+            </Form.Select>
+        </Form>
+    </div>;
 }
