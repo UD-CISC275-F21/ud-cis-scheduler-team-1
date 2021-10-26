@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {Button, Col, Table} from "react-bootstrap";
-import {Course} from "../interfaces/course";
+import {CourseTable} from "../interfaces/course";
 import {Semester} from "../interfaces/semester";
 
 /* Getting a table to render based on a list is from https://stackoverflow.com/questions/54659039/remove-table-row-using-hooks */
@@ -13,7 +13,7 @@ interface semesterTable {
 }
 
 export function SemesterTable({semester, setSemester, semesters}: semesterTable): JSX.Element {
-    const [courses, setCourses] = useState<Course[]>(semester.courses);
+    const [courses, setCourses] = useState<CourseTable[]>(semester.courses);
 
     // Removes a course from a semester based on its name
     function removeCourse(name: string): void {
