@@ -8,10 +8,23 @@ export function CoursePool(): JSX.Element {
     const [inpu, setInpu] = useState<string>("");
     const [courses, setCourses] = useState<Course[]>([]);
 
+    function courseExists(code:string):boolean{
+        return courses.some(function(el:Course) {
+            return el.code === code;
+        });         
+    }
+
     function addCourse(name: string): void {
-        console.log(name);
-        const course:Course = findCourse(name);
-        setCourses([...courses, course]);
+        try{
+            const course:Course = findCourse(name);
+            if(courseExists(name)){
+                alert("Course is Already in Pool");
+            } else{
+                setCourses([...courses, course]);
+            }
+        }catch{
+            alert("Course Does not Exist");
+        }
     }
 
     return<Col>
