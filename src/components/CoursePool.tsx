@@ -15,15 +15,16 @@ export function CoursePool(): JSX.Element {
     }
 
     function addCourse(name: string): void {
-        try{
-            const course:Course = findCourse(name);
+        const course:Course = findCourse(name);
+        console.log(course);
+        if(course.name === ""){
+            alert("Course Does not Exist");
+        }else{
             if(courseExists(name)){
                 alert("Course is Already in Pool");
             } else{
                 setCourses([...courses, course]);
             }
-        }catch{
-            alert("Course Does not Exist");
         }
     }
 
