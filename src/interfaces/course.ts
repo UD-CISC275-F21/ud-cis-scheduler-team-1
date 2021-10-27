@@ -14,3 +14,8 @@ export interface Course{
     breadth: string,
     typ: string,
 }
+
+export interface CourseDisplay{
+    info: Course,
+    grade: string,
+}

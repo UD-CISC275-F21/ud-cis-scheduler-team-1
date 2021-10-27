@@ -1,6 +1,6 @@
-import { CourseTable } from "./course";
+import { CourseDisplay, CourseTable } from "./course";
 
 export interface Semester {
-    title: string
-    courses: CourseTable[]
+    title: string,
+    courses: CourseDisplay[]
 }
