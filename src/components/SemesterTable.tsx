@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {Button, Col, Table} from "react-bootstrap";
-import {CourseTable} from "../interfaces/course";
+import {CourseDisplay} from "../interfaces/course";
 import {Semester} from "../interfaces/semester";
 
 /* Getting a table to render based on a list is from https://stackoverflow.com/questions/54659039/remove-table-row-using-hooks */
@@ -13,11 +13,11 @@ interface semesterTable {
 }
 
 export function SemesterTable({semester, setSemester, semesters}: semesterTable): JSX.Element {
-    const [courses, setCourses] = useState<CourseTable[]>(semester.courses);
+    const [courses, setCourses] = useState<CourseDisplay[]>(semester.courses);
 
     // Removes a course from a semester based on its name
     function removeCourse(name: string): void {
-        setCourses([...courses.filter(course => course.name !== name)]);
+        setCourses([...courses.filter(course => course.info.name !== name)]);
         semester.courses = courses;
     }
 
@@ -48,12 +48,12 @@ export function SemesterTable({semester, setSemester, semesters}: semesterTable)
                 </thead>
                 <tbody>
                     {courses.map(course => 
-                        <tr key={course.name}>
-                            <td>{course.name}</td>
-                            <td>{course.credits}</td>
+                        <tr key={course.info.name}>
+                            <td>{course.info.code}{"-"}{course.info.name}</td>
+                            <td>{course.info.credits}</td>
                             <td>{course.grade}</td>
                             <td>
-                                <Button color="red" onClick={() => removeCourse(course.name)}>
+                                <Button color="red" onClick={() => removeCourse(course.info.name)}>
                                     {" "}
                                     X{" "}
                                 </Button>

@@ -7,7 +7,6 @@ export function findCourse(name:string): Course{
     let course:Course;
     try{
         course = CATALOG_DATA[code][name];
-        console.log(course);
     }catch{
         console.log("catch");
         course = {
@@ -33,6 +32,5 @@ export function findCourse(name:string): Course{
             typ: "",
         };
     }
-    console.log(course);
     return course;
 }
