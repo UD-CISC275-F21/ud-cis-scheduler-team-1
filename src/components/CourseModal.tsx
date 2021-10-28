@@ -1,6 +1,5 @@
 import React from "react";
-import {Button, Col, Row} from "react-bootstrap";
-import Modal from "react-bootstrap/esm/Modal";
+import {Button, Col, Row, Modal} from "react-bootstrap";
 import {EditText, EditTextarea} from "react-edit-text";
 import {CourseDisplay} from "../interfaces/course";
 import "react-edit-text/dist/index.css";
