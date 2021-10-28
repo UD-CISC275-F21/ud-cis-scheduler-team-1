@@ -35,7 +35,7 @@ export function FourYearPlan({ semesters, setSemesters }: fyp): JSX.Element {
         <h2 className="subtitle">Four Year Plan</h2>
         <Row xs={1} md={2} className="g-4">
             {semesters.map((semester) => <div key={semester.season + semester.year}>
-                <SemesterTable semester={semester} setSemester={setSemesters} semesters={semesters}></SemesterTable>
+                <SemesterTable sem={semester} setSemesters={setSemesters} semesters={semesters}></SemesterTable>
             </div>)}
         </Row>
         <Row>

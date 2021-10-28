@@ -8,23 +8,20 @@ import {SemesterTitleEdit} from "./SemesterTitleEdit";
 /* Removing from a list is from https://www.robinwieruch.de/react-remove-item-from-list */
 
 interface semesterTable {
-    semester: Semester;
-    setSemester: (s: Semester[]) => void;
+    sem: Semester;
+    setSemesters: (s: Semester[]) => void;
     semesters: Semester[];
 }
 
-export function SemesterTable({semester, setSemester, semesters}: semesterTable): JSX.Element {
-    const [courses, setCourses] = useState<Course[]>(semester.courses);
-
+export function SemesterTable({sem, setSemesters, semesters}: semesterTable): JSX.Element {
+    const [semester, setSemester] = useState<Semester>(sem);
     // Removes a course from a semester based on its name
     function removeCourse(name: string): void {
-        setCourses([...courses.filter(course => course.name !== name)]);
-        semester.courses = courses;
+        setSemester({...semester, courses: semester.courses.filter(course => course.name !== name)});
     }
 
     function removeSemester(season: season, year: number): void {
-        setSemester([...semesters.filter(semester => (semester.season !== season) && (semester.year !== year))]);
-        semester.courses = courses;
+        setSemesters([...semesters.filter(semester => (semester.season !== season) && (semester.year !== year))]);
     }
 
     return (
@@ -32,7 +29,7 @@ export function SemesterTable({semester, setSemester, semesters}: semesterTable)
             <Table striped bordered hover className="semester">
                 <thead>
                     <tr>
-                        <th colSpan={3}><SemesterTitleEdit></SemesterTitleEdit></th>
+                        <th colSpan={3}><SemesterTitleEdit semester={semester} setSemester={setSemester}></SemesterTitleEdit></th>
                         <th>
                             <Button color="red" onClick={() => removeSemester(semester.season, semester.year)}>
                                 {" "}
@@ -48,7 +45,7 @@ export function SemesterTable({semester, setSemester, semesters}: semesterTable)
                     </tr>
                 </thead>
                 <tbody>
-                    {courses.map(course => 
+                    {semester.courses.map(course => 
                         <tr key={course.name}>
                             <td>{course.name}</td>
                             <td>{course.credits}</td>
@@ -64,7 +61,7 @@ export function SemesterTable({semester, setSemester, semesters}: semesterTable)
                     <Button
                         variant="secondary"
                         onClick={() => {
-                            setCourses([]);
+                            setSemester({...semester, courses: []});
                         }}>
                         Delete All Courses
                     </Button>
