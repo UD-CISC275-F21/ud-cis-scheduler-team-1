@@ -5,8 +5,9 @@ import {Col, Container, Row} from "react-bootstrap";
 import {FourYearPlan} from "./components/FourYearPlan";
 import {Requirements} from "./components/Requirements";
 import {CoursePool} from "./components/CoursePool";
+
+import { season, Semester } from "./interfaces/semester";
 import {CourseDisplay } from "./interfaces/course";
-import { Semester } from "./interfaces/semester";
 import { findCourse } from "./utilities/findCourse";
 
 const testCourses: CourseDisplay[] = [
@@ -18,8 +19,8 @@ const testCourses: CourseDisplay[] = [
 ];
 
 const defaultSemesters: Semester[] = [
-    {title: "Fall 2021", courses: testCourses},
-    {title: "Spring 2022", courses: []}
+    {season: season.fall, year: 2021, courses: testCourses},
+    {season: season.spring, year: 2022, courses: []}
 ];
 
 

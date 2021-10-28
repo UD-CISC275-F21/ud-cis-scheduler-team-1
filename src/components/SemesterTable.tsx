@@ -1,7 +1,8 @@
 import React, {useState} from "react";
 import {Button, Col, Table, Row, Modal} from "react-bootstrap";
+import {season, Semester} from "../interfaces/semester";
+import {SemesterTitleEdit} from "./SemesterTitleEdit";
 import {CourseDisplay} from "../interfaces/course";
-import {Semester} from "../interfaces/semester";
 import { EditText, EditTextarea } from "react-edit-text";
 import "react-edit-text/dist/index.css";
 import "../App.css";
@@ -10,25 +11,23 @@ import "../App.css";
 /* Removing from a list is from https://www.robinwieruch.de/react-remove-item-from-list */
 
 interface semesterTable {
-    semester: Semester;
-    setSemester: (s: Semester[]) => void;
+    sem: Semester;
+    setSemesters: (s: Semester[]) => void;
     semesters: Semester[];
 }
 
-export function SemesterTable({semester, setSemester, semesters}: semesterTable): JSX.Element {
-    const [courses, setCourses] = useState<CourseDisplay[]>(semester.courses);
+export function SemesterTable({sem, setSemesters, semesters}: semesterTable): JSX.Element {
+    const [semester, setSemester] = useState<Semester>(sem);    
     const [show, setShow] = useState<boolean>(false); //To show Modal when Course is clicked
     const [mod, setMod] = useState<CourseDisplay>(courses[0]); // staging the changed info before save
-
     // Removes a course from a semester based on its name
     function removeCourse(name: string): void {
-        setCourses([...courses.filter(course => course.info.name !== name)]);
-        semester.courses = courses;
+        setSemester({...semester, courses: semester.courses.filter(course => course.name !== name)});
+        sem = semester;
     }
 
-    function removeSemester(name: string): void {
-        setSemester([...semesters.filter(semester => semester.title !== name)]);
-        semester.courses = courses;
+    function removeSemester(season: season, year: number): void {
+        setSemesters([...semesters.filter(semester => (semester.season !== season) && (semester.year !== year))]);
     }
 
     //handle staging chnaged info 
@@ -81,7 +80,7 @@ export function SemesterTable({semester, setSemester, semesters}: semesterTable)
     function handleSaveChanges(): void {
         const newCourses: CourseDisplay[] = [...courses];
         newCourses[courses.findIndex(c => c.info.code == mod.info.code)] = mod;
-        setCourses(newCourses);
+        setSemester({...semester, courses: newCourses});
     }
 
     return (
@@ -89,9 +88,9 @@ export function SemesterTable({semester, setSemester, semesters}: semesterTable)
             <Table striped bordered hover className="semester">
                 <thead>
                     <tr>
-                        <th colSpan={3}>{semester.title}</th>
+                        <th colSpan={3}><SemesterTitleEdit semester={semester} setSemester={setSemester}></SemesterTitleEdit></th>
                         <th>
-                            <Button variant="outline-dark" onClick={() => removeSemester(semester.title)}>
+                            <Button variant="outline-dark" onClick={() => removeSemester(semester.season, semester.year)}>
                                 X
                             </Button>
                         </th>
@@ -104,7 +103,7 @@ export function SemesterTable({semester, setSemester, semesters}: semesterTable)
                     </tr>
                 </thead>
                 <tbody>
-                    {courses.map(course => 
+                    {semester.courses.map(course => 
                         <tr key={course.info.name}>
                             <td>
                                 <a
@@ -224,6 +223,7 @@ export function SemesterTable({semester, setSemester, semesters}: semesterTable)
                     <Button
                         variant="secondary"
                         onClick={() => {
+                            setSemester({...semester, courses: []});
                             setShow(false);
                         }}>
                         Close
