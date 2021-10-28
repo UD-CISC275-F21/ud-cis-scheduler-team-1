@@ -14,8 +14,6 @@ interface fyp {
     setSemesters: (s: Semester[]) => void
 
 }
-
-
 export function FourYearPlan({ semesters, setSemesters }: fyp): JSX.Element {
 
     // Removes the most recently added semester in the list, does nothing if no semesters left

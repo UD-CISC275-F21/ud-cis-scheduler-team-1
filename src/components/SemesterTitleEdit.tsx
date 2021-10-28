@@ -1,6 +1,5 @@
 import React from "react";
 import { Row, Col, Form } from "react-bootstrap";
-import { setFlagsFromString } from "v8";
 import { Semester, season } from "../interfaces/semester";
 
 interface semesterTitleEdit {

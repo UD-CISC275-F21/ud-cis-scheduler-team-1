@@ -19,10 +19,10 @@ interface semesterTable {
 export function SemesterTable({sem, setSemesters, semesters}: semesterTable): JSX.Element {
     const [semester, setSemester] = useState<Semester>(sem);    
     const [show, setShow] = useState<boolean>(false); //To show Modal when Course is clicked
-    const [mod, setMod] = useState<CourseDisplay>(courses[0]); // staging the changed info before save
+    const [mod, setMod] = useState<CourseDisplay>(semester.courses[0]); // staging the changed info before save
     // Removes a course from a semester based on its name
     function removeCourse(name: string): void {
-        setSemester({...semester, courses: semester.courses.filter(course => course.name !== name)});
+        setSemester({...semester, courses: semester.courses.filter(course => course.info.name !== name)});
         sem = semester;
     }
 
@@ -78,8 +78,8 @@ export function SemesterTable({sem, setSemesters, semesters}: semesterTable): JS
 
     //handle reset courses info after modifying in modal
     function handleSaveChanges(): void {
-        const newCourses: CourseDisplay[] = [...courses];
-        newCourses[courses.findIndex(c => c.info.code == mod.info.code)] = mod;
+        const newCourses: CourseDisplay[] = [...semester.courses];
+        newCourses[semester.courses.findIndex(c => c.info.code == mod.info.code)] = mod;
         setSemester({...semester, courses: newCourses});
     }
 
@@ -131,7 +131,7 @@ export function SemesterTable({sem, setSemesters, semesters}: semesterTable): JS
             <Button
                 variant="secondary"
                 onClick={() => {
-                    setCourses([]);
+                    setSemester({...semester, courses: []});
                 }}>
                 Delete All Courses
             </Button>
