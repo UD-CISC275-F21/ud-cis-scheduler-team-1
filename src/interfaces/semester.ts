@@ -1,4 +1,5 @@
-import { Course } from "./course";
+import { CourseDisplay } from "./course";
+
 export enum season {
     fall = "Fall",
     winter = "Winter",
@@ -7,6 +8,6 @@ export enum season {
 }
 export interface Semester {
     season: season
-    year: number    
-    courses: Course[]
+    year: number
+    courses: CourseDisplay[]
 }
