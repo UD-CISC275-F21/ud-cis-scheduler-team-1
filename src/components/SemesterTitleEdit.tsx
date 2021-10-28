@@ -16,7 +16,11 @@ export function SemesterTitleEdit({ semester, setSemester }: semesterTitleEdit):
         <Row className="g-2">
             <Col>
                 <Form.Select aria-label="Select season" defaultValue={season.fall}
-                    onChange={(ev: React.ChangeEvent<HTMLSelectElement>) => setSemester({ ...semester, season: ev.target.value as season })}>
+                    onChange={(ev: React.ChangeEvent<HTMLSelectElement>) => {
+                        const newSemester = {...semester, season: ev.target.value as season};
+                        setSemester(newSemester);
+                        semester=newSemester;
+                    }}>
                     <option value={season.fall}>Fall</option>
                     <option value={season.winter}>Winter</option>
                     <option value={season.spring}>Spring</option>
@@ -25,7 +29,11 @@ export function SemesterTitleEdit({ semester, setSemester }: semesterTitleEdit):
             </Col>
             <Col>
                 <Form.Select aria-Label="Select year" defaultValue={2021}
-                    onChange={(ev: React.ChangeEvent<HTMLSelectElement>) => setSemester({ ...semester, year: +ev.target.value})}>
+                    onChange={(ev: React.ChangeEvent<HTMLSelectElement>) => {
+                        const newSemester = {...semester, year: +ev.target.value};
+                        setSemester(newSemester);
+                        semester=newSemester;
+                    }}>
                     <option>Select Year</option>
                     {years.map((year) => <option key={year}>{year}</option>)}
                 </Form.Select>
