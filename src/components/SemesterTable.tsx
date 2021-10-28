@@ -4,6 +4,7 @@ import {CourseDisplay} from "../interfaces/course";
 import {Semester} from "../interfaces/semester";
 import { EditText, EditTextarea } from "react-edit-text";
 import "react-edit-text/dist/index.css";
+import "../App.css";
 
 /* Getting a table to render based on a list is from https://stackoverflow.com/questions/54659039/remove-table-row-using-hooks */
 /* Removing from a list is from https://www.robinwieruch.de/react-remove-item-from-list */
@@ -90,9 +91,8 @@ export function SemesterTable({semester, setSemester, semesters}: semesterTable)
                     <tr>
                         <th colSpan={3}>{semester.title}</th>
                         <th>
-                            <Button color="red" onClick={() => removeSemester(semester.title)}>
-                                {" "}
-                                X{" "}
+                            <Button variant="outline-dark" onClick={() => removeSemester(semester.title)}>
+                                X
                             </Button>
                         </th>
                     </tr>
@@ -120,7 +120,7 @@ export function SemesterTable({semester, setSemester, semesters}: semesterTable)
                             <td>{course.info.credits}</td>
                             <td>{course.grade}</td>
                             <td>
-                                <Button variant="danger" onClick={() => removeCourse(course.info.name)}>
+                                <Button variant="outline-dark" onClick={() => removeCourse(course.info.name)}>
                                     {" "}
                                     X{" "}
                                 </Button>
