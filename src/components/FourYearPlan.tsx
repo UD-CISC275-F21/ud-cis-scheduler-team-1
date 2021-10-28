@@ -39,7 +39,7 @@ export function FourYearPlan({ semesters, setSemesters }: fyp): JSX.Element {
             </div>)}
         </Row>
         <Row>
-            <ButtonGroup>
+            <ButtonGroup id = "buttonGroup">
                 <Button
                     onClick={() => {
                         addSemester(season.summer, 2022);

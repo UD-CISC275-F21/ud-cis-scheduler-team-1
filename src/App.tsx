@@ -5,15 +5,17 @@ import {Col, Container, Row} from "react-bootstrap";
 import {FourYearPlan} from "./components/FourYearPlan";
 import {Requirements} from "./components/Requirements";
 import {CoursePool} from "./components/CoursePool";
-import {Course} from "./interfaces/course";
-import { season, Semester } from "./interfaces/semester";
 
-const testCourses: Course[] = [
-    {name: "EGGG101 Introduction to Engineering", credits: 2, grade: "F"},
-    {name: "CISC108 Introduction to Computer Science I", credits: 3, grade: "F"},
-    {name: "MATH241 Analytic Geometry and Calculus A", credits: 3, grade: "F"},
-    {name: "ENGL110 Seminar in Composition", credits: 3, grade: "F"},
-    {name: "ARTH237 Art in Tibet", credits: 3, grade: "F"},
+import { season, Semester } from "./interfaces/semester";
+import {CourseDisplay } from "./interfaces/course";
+import { findCourse } from "./utilities/findCourse";
+
+const testCourses: CourseDisplay[] = [
+    {info: findCourse("EGGG 101"), grade: "F"},
+    {info: findCourse("CISC 108"), grade: "F"},
+    {info: findCourse("MATH 241"), grade: "F"},
+    {info: findCourse("ENGL 110"), grade: "F"},
+    {info: findCourse("ARTH 237"), grade: "F"},
 ];
 
 const defaultSemesters: Semester[] = [
@@ -35,7 +37,7 @@ function App(): JSX.Element {
 
             <Row>
                 <Col><CoursePool></CoursePool></Col>
-                <Col xs={6}><FourYearPlan semesters={semesters} setSemesters={setSemesters} ></FourYearPlan></Col>
+                <Col xs={7}><FourYearPlan semesters={semesters} setSemesters={setSemesters} ></FourYearPlan></Col>
                 <Col><Requirements></Requirements></Col>
             </Row>
         </Container>
