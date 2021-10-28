@@ -6,7 +6,6 @@ export enum season {
     spring = "Spring",
     summer = "Summer"
 }
-
 export interface Semester {
     season: season
     year: number
