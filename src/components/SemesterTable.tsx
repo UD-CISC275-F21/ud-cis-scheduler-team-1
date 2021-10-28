@@ -1,6 +1,7 @@
 import React, {useState} from "react";
-import {Button, Col, Table} from "react-bootstrap";
-import {CourseTable} from "../interfaces/course";
+import {Button, Col, Modal, Row, Table} from "react-bootstrap";
+import {EditText, EditTextarea} from "react-edit-text";
+import {Course} from "../interfaces/course";
 import {Semester} from "../interfaces/semester";
 
 /* Getting a table to render based on a list is from https://stackoverflow.com/questions/54659039/remove-table-row-using-hooks */
@@ -13,7 +14,9 @@ interface semesterTable {
 }
 
 export function SemesterTable({semester, setSemester, semesters}: semesterTable): JSX.Element {
-    const [courses, setCourses] = useState<CourseTable[]>(semester.courses);
+    const [courses, setCourses] = useState<Course[]>(semester.courses);
+    const [show, setShow] = useState<boolean>(false); //To show Modal when Course is clicked
+    const [mod, setMod] = useState<Course>(courses[0]); // staging the changed info before save
 
     // Removes a course from a semester based on its name
     function removeCourse(name: string): void {
@@ -26,6 +29,53 @@ export function SemesterTable({semester, setSemester, semesters}: semesterTable)
         semester.courses = courses;
     }
 
+    //handle staging chnaged info 
+    const handleSave = ({
+        name,
+        value,
+        previousValue,
+    }: {
+        name: string;
+        value: string;
+        previousValue: string;
+    }) => {
+        const newMod: Course = mod;
+        switch (name) {
+        case "descr": {
+            newMod.descr = value;
+            break;
+        }
+        case "credits": {
+            newMod.credits = value;
+            break;
+        }
+        case "preRed": {
+            newMod.preReq = value;
+            break;
+        }
+        case "restrict": {
+            newMod.restrict = value;
+            break;
+        }
+        case "breadth": {
+            newMod.breadth = value;
+            break;
+        }
+        case "typ": {
+            newMod.typ = value;
+            break;
+        }
+        }
+        setMod(newMod);
+        console.log(semester.courses[0].descr);
+    };
+
+    //handle reset courses info after modifying in modal
+    function handleSaveChanges(): void {
+        const newCourses: Course[] = [...courses];
+        newCourses[courses.findIndex(c => c.name == mod.name)] = mod;
+        setCourses(newCourses);
+    }
     return (
         <Col>
             <Table striped bordered hover className="semester">
@@ -47,11 +97,19 @@ export function SemesterTable({semester, setSemester, semesters}: semesterTable)
                     </tr>
                 </thead>
                 <tbody>
-                    {courses.map(course => 
+                    {courses.map(course => (
                         <tr key={course.name}>
-                            <td>{course.name}</td>
+                            <td>
+                                <a
+                                    onClick={() => {
+                                        setShow(true);
+                                        setMod(JSON.parse(JSON.stringify(course)));
+                                    }}>
+                                    {course.code} {course.name}
+                                </a>
+                            </td>
                             <td>{course.credits}</td>
-                            <td>{course.grade}</td>
+                            <td>A</td>
                             <td>
                                 <Button color="red" onClick={() => removeCourse(course.name)}>
                                     {" "}
@@ -59,7 +117,7 @@ export function SemesterTable({semester, setSemester, semesters}: semesterTable)
                                 </Button>
                             </td>
                         </tr>
-                    )}
+                    ))}
                 </tbody>
             </Table>
             <Button
@@ -69,6 +127,102 @@ export function SemesterTable({semester, setSemester, semesters}: semesterTable)
                 }}>
                 Delete All Courses
             </Button>
+            <Modal
+                show={show}
+                size="lg"
+                onHide={() => {
+                    setShow(false);
+                }}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Modal title</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Row>
+                        <Col md="2">
+                            <strong>Description:</strong>
+                        </Col>
+                        <Col>
+                            <EditTextarea
+                                rows={4}
+                                name="descr"
+                                defaultValue={mod?.descr}
+                                onSave={handleSave}></EditTextarea>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col md="2">
+                            <strong>Credits:</strong>
+                        </Col>
+                        <Col>
+                            <EditText
+                                name="credits"
+                                defaultValue={mod?.credits}
+                                onSave={handleSave}></EditText>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col md="2">
+                            <strong>Pre-Reqs:</strong>
+                        </Col>
+                        <Col>
+                            <EditText
+                                name="preReq"
+                                defaultValue={mod?.preReq}
+                                onSave={handleSave}></EditText>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col md="2">
+                            <strong>Restriction:</strong>
+                        </Col>
+                        <Col>
+                            <EditText
+                                name="restrict"
+                                defaultValue={mod?.restrict}
+                                onSave={handleSave}></EditText>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col md="2">
+                            <strong>Breadth:</strong>
+                        </Col>
+                        <Col>
+                            <EditText
+                                name="breadth"
+                                defaultValue={mod?.breadth}
+                                onSave={handleSave}></EditText>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col md="2">
+                            <strong>Avalability:</strong>
+                        </Col>
+                        <Col>
+                            <EditText
+                                name="typ"
+                                defaultValue={mod?.typ}
+                                onSave={handleSave}></EditText>
+                        </Col>
+                    </Row>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button
+                        variant="secondary"
+                        onClick={() => {
+                            setShow(false);
+                        }}>
+                        Close
+                    </Button>
+                    <Button
+                        variant="primary"
+                        onClick={() => {
+                            handleSaveChanges();
+                            setShow(false);
+                        }}>
+                        Save Changes
+                    </Button>
+                </Modal.Footer>
+            </Modal>
         </Col>
     );
 }
