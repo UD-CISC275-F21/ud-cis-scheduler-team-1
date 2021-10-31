@@ -27,7 +27,7 @@ export function SemesterTitleEdit({ semester, setSemester }: semesterTitleEdit):
                 </Form.Select>
             </Col>
             <Col>
-                <Form.Select aria-Label="Select year" defaultValue={2021}
+                <Form.Select aria-label="Select year" defaultValue={2021}
                     onChange={(ev: React.ChangeEvent<HTMLSelectElement>) => {
                         const newSemester = {...semester, year: +ev.target.value};
                         setSemester(newSemester);
