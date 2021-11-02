@@ -5,6 +5,8 @@ import {Col, Container, Row} from "react-bootstrap";
 import {FourYearPlan} from "./components/FourYearPlan";
 import {Requirements} from "./components/Requirements";
 import {CoursePool} from "./components/CoursePool";
+import { DndProvider } from "react-dnd";
+import {HTML5Backend} from "react-dnd-html5-backend";
 
 import { season, Semester } from "./interfaces/semester";
 import {CourseDisplay } from "./interfaces/course";
