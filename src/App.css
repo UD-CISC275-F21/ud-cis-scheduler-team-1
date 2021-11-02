@@ -13,9 +13,16 @@ td {
 }
 
 #buttonGroup{
-  margin-top: 1cm;
+  margin-top: 0.5cm;
 }
 
+#big-scope-button{
+  margin: 0.2em;
+}
+#csvlink{
+  color: black;
+  text-decoration: none;
+}
 .subtitle{
   margin-bottom: 1cm;
 }
