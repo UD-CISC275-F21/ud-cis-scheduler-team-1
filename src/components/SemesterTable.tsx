@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Button, Col, Table} from "react-bootstrap";
+import {Button, Col, Table, Form} from "react-bootstrap";
 import {season, Semester} from "../interfaces/semester";
 import {SemesterTitleEdit} from "./SemesterTitleEdit";
 import {CourseDisplay} from "../interfaces/course";

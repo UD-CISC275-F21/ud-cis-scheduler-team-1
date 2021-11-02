@@ -37,7 +37,7 @@ function App(): JSX.Element {
 
             <Row>
                 <Col><CoursePool></CoursePool></Col>
-                <Col xs={7}><FourYearPlan semesters={semesters} setSemesters={setSemesters} ></FourYearPlan></Col>
+                <Col md="auto"><FourYearPlan semesters={semesters} setSemesters={setSemesters} ></FourYearPlan></Col>
                 <Col><Requirements></Requirements></Col>
             </Row>
         </Container>
