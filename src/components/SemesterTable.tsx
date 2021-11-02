@@ -5,7 +5,7 @@ import {SemesterTitleEdit} from "./SemesterTitleEdit";
 import {CourseDisplay} from "../interfaces/course";
 import {CourseModal} from "./CourseModal";
 import "../App.css";
-import { useDrop } from "react-dnd";
+//import { useDrop } from "react-dnd";
 
 /* Getting a table to render based on a list is from https://stackoverflow.com/questions/54659039/remove-table-row-using-hooks */
 /* Removing from a list is from https://www.robinwieruch.de/react-remove-item-from-list */
@@ -19,7 +19,7 @@ interface semesterTable {
 
 export function SemesterTable({sem, setSemesters, semesters}: semesterTable): JSX.Element {
     const [semester, setSemester] = useState<Semester>(sem);
-    const [semesterCourses, setSemesterCourses] = useState<CourseDisplay[]>();    
+    //const [semesterCourses, setSemesterCourses] = useState<CourseDisplay[]>();    
     const [show, setShow] = useState<boolean>(false); //To show Modal when Course is clicked
     const [mod, setMod] = useState<CourseDisplay>(semester.courses[0]); // staging the changed info before save
     // Removes a course from a semester based on its name

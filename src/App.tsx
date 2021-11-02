@@ -9,16 +9,16 @@ import { DndProvider } from "react-dnd";
 import {HTML5Backend} from "react-dnd-html5-backend";
 
 import { season, Semester } from "./interfaces/semester";
-import {CourseDisplay } from "./interfaces/course";
-import { findCourse } from "./utilities/findCourse";
+//import {CourseDisplay } from "./interfaces/course";
+//import { findCourse } from "./utilities/findCourse";
 
-const testCourses: CourseDisplay[] = [
+/*const testCourses: CourseDisplay[] = [
     {info: findCourse("EGGG 101"), grade: "F"},
     {info: findCourse("CISC 108"), grade: "F"},
     {info: findCourse("MATH 241"), grade: "F"},
     {info: findCourse("ENGL 110"), grade: "F"},
     {info: findCourse("ARTH 237"), grade: "F"},
-];
+];*/
 
 const defaultSemesters: Semester[] = [
     {season: season.fall, year: 2021, courses: []},
