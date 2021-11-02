@@ -3,6 +3,7 @@ import { Button, Col, Form } from "react-bootstrap";
 import "../App.css";
 import { Course, CourseDisplay } from "../interfaces/course";
 import { findCourse } from "../utilities/findCourse";
+import {DraggableCourse} from "./DraggableCourse";
 import "../App.css";
 
 export function CoursePool(): JSX.Element {
@@ -31,7 +32,10 @@ export function CoursePool(): JSX.Element {
 
     return<Col>
         <h2 className = "subtitle">Course Pool</h2>
-        <Form>
+        <Form onSubmit={(event)=>{
+            addCourse(inpu);
+            event.preventDefault();
+        }}>
             <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label>Enter desired course like so: ACCT 207</Form.Label>
                 <Form.Control value = {inpu} type="text" placeholder="Coure Code" onChange={e=>setInpu(e.target.value)} />
@@ -44,7 +48,7 @@ export function CoursePool(): JSX.Element {
         </Form>
         {courses.map(course => 
             <div key = {course.info.code}>
-                {course.info.code} {course.info.name}
+                <DraggableCourse course = {course}></DraggableCourse>
             </div>
         )}
     </Col>;
