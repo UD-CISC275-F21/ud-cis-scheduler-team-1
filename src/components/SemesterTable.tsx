@@ -36,16 +36,16 @@ export function SemesterTable({ sem, setSemesters, semesters }: semesterTable): 
                     <tr>
                         <th colSpan={3}><SemesterTitleEdit semester={semester} setSemester={setSemester}></SemesterTitleEdit></th>
                         <th>
-                            <Button variant="outline-dark" onClick={() => removeSemester(semester.season, semester.year)}>
+                            <Button size="sm" variant="outline-dark" onClick={() => removeSemester(semester.season, semester.year)}>
                                 X
                             </Button>
                         </th>
                     </tr>
                     <tr>
                         <th>Course</th>
-                        <th>Credits</th>
+                        <th>Cr</th>
                         <th>Grade</th>
-                        <th>Delete</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -64,7 +64,7 @@ export function SemesterTable({ sem, setSemesters, semesters }: semesterTable): 
                             </td>
                             <td>{course.info.credits}</td>
                             <td><Form>
-                                <Form.Select aria-label="Select grade" defaultValue="-"
+                                <Form.Select size="sm" aria-label="Select grade" defaultValue="-"
                                     onChange={(ev: React.ChangeEvent<HTMLSelectElement>) => {
                                         course = {...course, grade: ev.target.value as string};
                                         const newSem = {...semester, courses: semester.courses.map(c => c.info.name === course.info.name ? course : c)};
@@ -87,7 +87,7 @@ export function SemesterTable({ sem, setSemesters, semesters }: semesterTable): 
                                 </Form.Select>
                             </Form></td>
                             <td>
-                                <Button variant="outline-dark" onClick={() => removeCourse(course.info.name)}>
+                                <Button size="sm" variant="outline-dark" onClick={() => removeCourse(course.info.name)}>
                                     {" "}
                                     X{" "}
                                 </Button>
