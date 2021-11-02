@@ -124,11 +124,20 @@ export function SemesterTable({ sem, setSemesters, semesters }: semesterTable): 
                                         const newSem = {...semester, courses: semester.courses.map(c => c.info.name === course.info.name ? course : c)};
                                         setSemester(newSem);
                                     }}>
+                                    <option value={"N/A"}>N/A</option>
                                     <option value={"A"}>A</option>
                                     <option value={"A-"}>A-</option>
                                     <option value={"B+"}>B+</option>
                                     <option value={"B"}>B</option>
                                     <option value={"B-"}>B-</option>
+                                    <option value={"C+"}>C+</option>
+                                    <option value={"C"}>C</option>
+                                    <option value={"C-"}>C-</option>
+                                    <option value={"D+"}>D+</option>
+                                    <option value={"D"}>D</option>
+                                    <option value={"D-"}>D-</option>
+                                    <option value={"F"}>F</option>
+                                    <option value={"Pass"}>Pass</option>
                                 </Form.Select>
                             </Form></td>
                             <td>
