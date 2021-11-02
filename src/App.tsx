@@ -34,15 +34,16 @@ function App(): JSX.Element {
     const [semesters, setSemesters] = useState<Semester[]>(defaultSemesters);
 
     return (
-        <Container className="App">
-            <h1 id="title">UD CIS Scheduler</h1>
-
-            <Row>
-                <Col><CoursePool></CoursePool></Col>
-                <Col xs={7}><FourYearPlan semesters={semesters} setSemesters={setSemesters} ></FourYearPlan></Col>
-                <Col><Requirements></Requirements></Col>
-            </Row>
-        </Container>
+        <DndProvider backend={HTML5Backend}>
+            <Container className="App">
+                <h1 id="title">UD CIS Scheduler</h1>
+                <Row>
+                    <Col><CoursePool></CoursePool></Col>
+                    <Col xs={7}><FourYearPlan semesters={semesters} setSemesters={setSemesters} ></FourYearPlan></Col>
+                    <Col><Requirements></Requirements></Col>
+                </Row>
+            </Container>
+        </DndProvider>
     );
 }
     

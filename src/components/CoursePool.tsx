@@ -3,6 +3,7 @@ import { Button, Col, Form } from "react-bootstrap";
 import "../App.css";
 import { Course, CourseDisplay } from "../interfaces/course";
 import { findCourse } from "../utilities/findCourse";
+import {DraggableCourse} from "./DraggableCourse";
 
 export function CoursePool(): JSX.Element {
     const [inpu, setInpu] = useState<string>("");
@@ -46,7 +47,7 @@ export function CoursePool(): JSX.Element {
         </Form>
         {courses.map(course => 
             <div key = {course.info.code}>
-                {course.info.code} {course.info.name}
+                <DraggableCourse course = {course}></DraggableCourse>
             </div>
         )}
     </Col>;
