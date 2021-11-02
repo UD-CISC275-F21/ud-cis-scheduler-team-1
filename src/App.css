@@ -13,9 +13,12 @@ td {
 }
 
 #buttonGroup{
-  margin-top: 1cm;
+  margin-top: 0.5cm;
 }
 
+#big-scope-button{
+  margin: 0.2em;
+}
 .subtitle{
   margin-bottom: 1cm;
 }
