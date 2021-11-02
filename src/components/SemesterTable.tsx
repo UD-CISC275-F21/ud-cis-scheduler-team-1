@@ -15,13 +15,13 @@ interface semesterTable {
     semesters: Semester[];
 }
 
-export function SemesterTable({sem, setSemesters, semesters}: semesterTable): JSX.Element {
-    const [semester, setSemester] = useState<Semester>(sem);    
+export function SemesterTable({ sem, setSemesters, semesters }: semesterTable): JSX.Element {
+    const [semester, setSemester] = useState<Semester>(sem);
     const [show, setShow] = useState<boolean>(false); //To show Modal when Course is clicked
     const [mod, setMod] = useState<CourseDisplay>(semester.courses[0]); // staging the changed info before save
     // Removes a course from a semester based on its name
     function removeCourse(name: string): void {
-        setSemester({...semester, courses: semester.courses.filter(course => course.info.name !== name)});
+        setSemester({ ...semester, courses: semester.courses.filter(course => course.info.name !== name) });
         sem = semester;
     }
 
@@ -49,13 +49,13 @@ export function SemesterTable({sem, setSemesters, semesters}: semesterTable): JS
                     </tr>
                 </thead>
                 <tbody>
-                    {semester.courses.map(course => 
+                    {semester.courses.map(course =>
                         <tr key={course.info.name}>
                             <td>
                                 <a
                                     onClick={() => {
                                         setShow(true);
-                                        setMod(JSON.parse(JSON.stringify(course)));
+                                        setMod({...course});
                                     }}>
                                     {course.info.code}
                                     <br></br>
@@ -63,7 +63,29 @@ export function SemesterTable({sem, setSemesters, semesters}: semesterTable): JS
                                 </a>
                             </td>
                             <td>{course.info.credits}</td>
-                            <td>{course.grade}</td>
+                            <td><Form>
+                                <Form.Select aria-label="Select grade" defaultValue="-"
+                                    onChange={(ev: React.ChangeEvent<HTMLSelectElement>) => {
+                                        course = {...course, grade: ev.target.value as string};
+                                        const newSem = {...semester, courses: semester.courses.map(c => c.info.name === course.info.name ? course : c)};
+                                        setSemester(newSem);
+                                    }}>
+                                    <option value={"N/A"}>N/A</option>
+                                    <option value={"A"}>A</option>
+                                    <option value={"A-"}>A-</option>
+                                    <option value={"B+"}>B+</option>
+                                    <option value={"B"}>B</option>
+                                    <option value={"B-"}>B-</option>
+                                    <option value={"C+"}>C+</option>
+                                    <option value={"C"}>C</option>
+                                    <option value={"C-"}>C-</option>
+                                    <option value={"D+"}>D+</option>
+                                    <option value={"D"}>D</option>
+                                    <option value={"D-"}>D-</option>
+                                    <option value={"F"}>F</option>
+                                    <option value={"Pass"}>Pass</option>
+                                </Form.Select>
+                            </Form></td>
                             <td>
                                 <Button variant="outline-dark" onClick={() => removeCourse(course.info.name)}>
                                     {" "}
@@ -77,10 +99,11 @@ export function SemesterTable({sem, setSemesters, semesters}: semesterTable): JS
             <Button
                 variant="secondary"
                 onClick={() => {
-                    setSemester({...semester, courses: []});
+                    setSemester({ ...semester, courses: [] });
                 }}>
                 Delete All Courses
             </Button>
+
             {show && <CourseModal
                 show ={show}
                 setShow={setShow}
