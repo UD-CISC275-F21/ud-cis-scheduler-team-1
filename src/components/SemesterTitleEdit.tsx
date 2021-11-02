@@ -1,6 +1,7 @@
 import React from "react";
 import { Row, Col, Form } from "react-bootstrap";
 import { Semester, season } from "../interfaces/semester";
+import "../App.css";
 
 interface semesterTitleEdit {
     semester: Semester;
