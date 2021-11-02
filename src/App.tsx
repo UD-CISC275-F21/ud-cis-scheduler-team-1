@@ -21,7 +21,7 @@ const testCourses: CourseDisplay[] = [
 ];
 
 const defaultSemesters: Semester[] = [
-    {season: season.fall, year: 2021, courses: testCourses},
+    {season: season.fall, year: 2021, courses: []},
     {season: season.spring, year: 2022, courses: []}
 ];
 
