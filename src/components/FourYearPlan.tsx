@@ -5,6 +5,7 @@ import "../App.css";
 import {season, Semester} from "../interfaces/semester";
 import {SemesterTable} from "./SemesterTable";
 import {CSVLink} from "react-csv";
+import "../App.css";
 
 // import { Course } from "../interfaces/course";
 

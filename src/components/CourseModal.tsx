@@ -4,6 +4,7 @@ import {EditText, EditTextarea} from "react-edit-text";
 import {CourseDisplay} from "../interfaces/course";
 import "react-edit-text/dist/index.css";
 import { Semester } from "../interfaces/semester";
+import "../App.css";
 
 
 interface courseModal {

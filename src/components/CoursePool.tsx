@@ -4,6 +4,7 @@ import "../App.css";
 import { Course, CourseDisplay } from "../interfaces/course";
 import { findCourse } from "../utilities/findCourse";
 import {DraggableCourse} from "./DraggableCourse";
+import "../App.css";
 
 export function CoursePool(): JSX.Element {
     const [inpu, setInpu] = useState<string>("");

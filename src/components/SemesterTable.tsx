@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Button, Col, Table} from "react-bootstrap";
+import {Button, Col, Table, Form} from "react-bootstrap";
 import {season, Semester} from "../interfaces/semester";
 import {SemesterTitleEdit} from "./SemesterTitleEdit";
 import {CourseDisplay} from "../interfaces/course";
@@ -24,7 +24,7 @@ export function SemesterTable({sem, setSemesters, semesters}: semesterTable): JS
     const [mod, setMod] = useState<CourseDisplay>(semester.courses[0]); // staging the changed info before save
     // Removes a course from a semester based on its name
     function removeCourse(name: string): void {
-        setSemester({...semester, courses: semester.courses.filter(course => course.info.name !== name)});
+        setSemester({ ...semester, courses: semester.courses.filter(course => course.info.name !== name) });
         sem = semester;
     }
 
@@ -48,26 +48,26 @@ export function SemesterTable({sem, setSemesters, semesters}: semesterTable): JS
                     <tr>
                         <th colSpan={3}><SemesterTitleEdit semester={semester} setSemester={setSemester}></SemesterTitleEdit></th>
                         <th>
-                            <Button variant="outline-dark" onClick={() => removeSemester(semester.season, semester.year)}>
+                            <Button size="sm" variant="outline-danger" onClick={() => removeSemester(semester.season, semester.year)}>
                                 X
                             </Button>
                         </th>
                     </tr>
                     <tr>
                         <th>Course</th>
-                        <th>Credits</th>
+                        <th>Cr</th>
                         <th>Grade</th>
-                        <th>Delete</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    {semester.courses.map(course => 
+                    {semester.courses.map(course =>
                         <tr key={course.info.name}>
                             <td>
                                 <a
                                     onClick={() => {
                                         setShow(true);
-                                        setMod(JSON.parse(JSON.stringify(course)));
+                                        setMod({...course});
                                     }}>
                                     {course.info.code}
                                     <br></br>
@@ -75,9 +75,31 @@ export function SemesterTable({sem, setSemesters, semesters}: semesterTable): JS
                                 </a>
                             </td>
                             <td>{course.info.credits}</td>
-                            <td>{course.grade}</td>
+                            <td><Form>
+                                <Form.Select size="sm" aria-label="Select grade" defaultValue="-"
+                                    onChange={(ev: React.ChangeEvent<HTMLSelectElement>) => {
+                                        course = {...course, grade: ev.target.value as string};
+                                        const newSem = {...semester, courses: semester.courses.map(c => c.info.name === course.info.name ? course : c)};
+                                        setSemester(newSem);
+                                    }}>
+                                    <option value={"-"}>-</option>
+                                    <option value={"A"}>A</option>
+                                    <option value={"A-"}>A-</option>
+                                    <option value={"B+"}>B+</option>
+                                    <option value={"B"}>B</option>
+                                    <option value={"B-"}>B-</option>
+                                    <option value={"C+"}>C+</option>
+                                    <option value={"C"}>C</option>
+                                    <option value={"C-"}>C-</option>
+                                    <option value={"D+"}>D+</option>
+                                    <option value={"D"}>D</option>
+                                    <option value={"D-"}>D-</option>
+                                    <option value={"F"}>F</option>
+                                    <option value={"P"}>P</option>
+                                </Form.Select>
+                            </Form></td>
                             <td>
-                                <Button variant="outline-dark" onClick={() => removeCourse(course.info.name)}>
+                                <Button size="sm" variant="outline-danger" onClick={() => removeCourse(course.info.name)}>
                                     {" "}
                                     X{" "}
                                 </Button>
@@ -89,10 +111,11 @@ export function SemesterTable({sem, setSemesters, semesters}: semesterTable): JS
             <Button
                 variant="secondary"
                 onClick={() => {
-                    setSemester({...semester, courses: []});
+                    setSemester({ ...semester, courses: [] });
                 }}>
                 Delete All Courses
             </Button>
+
             {show && <CourseModal
                 show ={show}
                 setShow={setShow}
