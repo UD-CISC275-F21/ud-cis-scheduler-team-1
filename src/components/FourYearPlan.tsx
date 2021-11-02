@@ -117,7 +117,7 @@ export function FourYearPlan({semesters, setSemesters}: fyp): JSX.Element {
                 <ButtonGroup id="buttonGroup">
                     <Button id="big-scope-button" variant="info">
                         <CSVLink id="csvlink" data={CSVdata} headers={CSVheaders} separator={","}>
-                            Download as .JSON
+                            Download as .CSV
                         </CSVLink>
                     </Button>
                     <Button id="big-scope-button" variant="info" onClick={downloadJSON}>
