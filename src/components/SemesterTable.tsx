@@ -111,14 +111,10 @@ export function SemesterTable({sem, setSemesters, semesters}: semesterTable): JS
                                 <Form.Select size="sm" aria-label="Select grade" defaultValue="-"
                                     onChange={(ev: React.ChangeEvent<HTMLSelectElement>) => {
                                         course = {...course, grade: ev.target.value as string};
-                                        console.log(course);
                                         const newSem = semester;
                                         newSem.courses = updateGrades(newSem, course);
-                                        console.log(newSem);
                                         setSemester(newSem);
-                                        console.log(semester);
                                         updateSemesters();
-                                        console.log(semesters);
                                     }}>
                                     <option value={"-"}>-</option>
                                     <option value={"A"}>A</option>
