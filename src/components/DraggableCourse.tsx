@@ -11,7 +11,7 @@ interface dragClass{
 export function DraggableCourse({course}: dragClass): JSX.Element {
     const [{ isDragging }, dragRef] = useDrag({
         type: "course",
-        item: { course },
+        item: course,
         collect: (monitor) => ({
             isDragging: monitor.isDragging()
         })

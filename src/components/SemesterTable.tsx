@@ -34,8 +34,21 @@ export function SemesterTable({sem, setSemesters, semesters}: semesterTable): JS
 
     const [{ isOver }, dropRef] = useDrop({
         accept: "course",
-        drop: (item:CourseDisplay) => setSemester((semester) => 
-            !semester.courses.includes(item) ? {...semester, courses: [...semester.courses, item]} : semester),
+        drop: (item:CourseDisplay) => {
+            console.log(item);
+            console.log("Dropped");
+            console.log(semester.courses);
+            if(!semester.courses.includes(item)){
+                const tmp = semester.courses.concat(item);
+                console.log(JSON.stringify(tmp));
+                setSemester({season:semester.season, year:semester.year, courses: tmp});
+                //setSemester({...semester, courses: semester.courses.concat(item)});
+                console.log(semester);
+            }else{
+                setSemester(semester);
+            }
+            //!semester.courses.includes(item) ? {...semester, courses: [...semester.courses, item]} : semester);
+        },
         collect: (monitor) => ({
             isOver: monitor.isOver()
         })
