@@ -24,14 +24,14 @@ export function CoursePool(): JSX.Element {
             if(courseExists(name)){
                 alert("Course is Already in Pool");
             } else{
-                setCourses([...courses, {info:course, grade:"A"}]);
+                setCourses([...courses, {info:course, grade:"-"}]);
             }
         }
     }
 
     return<Col>
         <h2 className = "subtitle">Course Pool</h2>
-        <Form onSubmit={(event)=>{
+        <Form id= "searchBar" onSubmit={(event)=>{
             addCourse(inpu);
             event.preventDefault();
         }}>

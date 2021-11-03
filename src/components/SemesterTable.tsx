@@ -41,7 +41,6 @@ export function SemesterTable({sem, setSemesters, semesters}: semesterTable): JS
                 tmp = [...tmp, semesters[i]];
             }
         }
-        console.log(tmp);
         setSemesters(tmp);
     }
 
@@ -62,6 +61,18 @@ export function SemesterTable({sem, setSemesters, semesters}: semesterTable): JS
         })
     });
 
+    function updateGrades(sem:Semester, course:CourseDisplay):CourseDisplay[]{
+        let tmp:CourseDisplay[] = [];
+        for(let i = 0; i < sem.courses.length; i++){
+            if(sem.courses[i].info.code === course.info.code){
+                tmp = [...tmp, course];
+            }else{
+                tmp = [...tmp, sem.courses[i]];
+            }
+        }
+        return tmp;        
+    }
+
     return (
         <Col ref = {dropRef}>
             <Table striped bordered hover className="semester">
@@ -76,7 +87,7 @@ export function SemesterTable({sem, setSemesters, semesters}: semesterTable): JS
                     </tr>
                     <tr>
                         <th>Course</th>
-                        <th>Cr</th>
+                        <th>Credits</th>
                         <th>Grade</th>
                         <th></th>
                     </tr>
@@ -100,8 +111,10 @@ export function SemesterTable({sem, setSemesters, semesters}: semesterTable): JS
                                 <Form.Select size="sm" aria-label="Select grade" defaultValue="-"
                                     onChange={(ev: React.ChangeEvent<HTMLSelectElement>) => {
                                         course = {...course, grade: ev.target.value as string};
-                                        const newSem = {...semester, courses: semester.courses.map(c => c.info.name === course.info.name ? course : c)};
+                                        const newSem = semester;
+                                        newSem.courses = updateGrades(newSem, course);
                                         setSemester(newSem);
+                                        updateSemesters();
                                     }}>
                                     <option value={"-"}>-</option>
                                     <option value={"A"}>A</option>
