@@ -5,7 +5,7 @@ import {SemesterTitleEdit} from "./SemesterTitleEdit";
 import {CourseDisplay} from "../interfaces/course";
 import {CourseModal} from "./CourseModal";
 import "../App.css";
-//import { useDrop } from "react-dnd";
+import { useDrop } from "react-dnd";
 
 /* Getting a table to render based on a list is from https://stackoverflow.com/questions/54659039/remove-table-row-using-hooks */
 /* Removing from a list is from https://www.robinwieruch.de/react-remove-item-from-list */
@@ -32,17 +32,38 @@ export function SemesterTable({sem, setSemesters, semesters}: semesterTable): JS
         setSemesters([...semesters.filter(semester => (semester.season !== season) && (semester.year !== year))]);
     }
 
-    /*const [{ isOver }, dropRef] = useDrop({
+    function updateSemesters():void{
+        let tmp:Semester[] = [];
+        for(let i = 0; i < semesters.length; i++){
+            if((semesters[i].year === semester.year) && (semesters[i].season === semester.season)){
+                tmp = [...tmp, semester];
+            }else{
+                tmp = [...tmp, semesters[i]];
+            }
+        }
+        console.log(tmp);
+        setSemesters(tmp);
+    }
+
+    const [{ isOver }, dropRef] = useDrop({
         accept: "course",
-        drop: (item:CourseDisplay) => setSemesterCourses((semesterCourses) => 
-            !semesterCourses.includes(item) ? [...semesterCourses, item] : semesterCourses),
+        drop: (item:CourseDisplay) => {
+            if(!semester.courses.includes(item)){
+                const newSem : Semester = semester;
+                newSem.courses = [...semester.courses, item];
+                setSemester(newSem);
+                updateSemesters();
+            }else{
+                alert("Course is Already in Semester");
+            }
+        },
         collect: (monitor) => ({
             isOver: monitor.isOver()
         })
-    });*/
+    });
 
     return (
-        <Col>
+        <Col ref = {dropRef}>
             <Table striped bordered hover className="semester">
                 <thead>
                     <tr>
@@ -106,6 +127,7 @@ export function SemesterTable({sem, setSemesters, semesters}: semesterTable): JS
                             </td>
                         </tr>
                     )}
+                    {isOver}
                 </tbody>
             </Table>
             <Button
