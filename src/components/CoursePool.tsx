@@ -37,7 +37,7 @@ export function CoursePool(): JSX.Element {
         }}>
             <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label>Enter desired course like so: ACCT 207</Form.Label>
-                <Form.Control value = {inpu} type="text" placeholder="Coure Code" onChange={e=>setInpu(e.target.value)} />
+                <Form.Control value = {inpu} type="text" placeholder="Coure Code" onChange={e=>setInpu(e.target.value.toUpperCase())} />
             </Form.Group>
             <Button onClick={() => {
                 addCourse(inpu);
