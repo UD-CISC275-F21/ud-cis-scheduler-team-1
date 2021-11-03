@@ -41,7 +41,6 @@ export function SemesterTable({sem, setSemesters, semesters}: semesterTable): JS
                 tmp = [...tmp, semesters[i]];
             }
         }
-        console.log(tmp);
         setSemesters(tmp);
     }
 
@@ -61,6 +60,18 @@ export function SemesterTable({sem, setSemesters, semesters}: semesterTable): JS
             isOver: monitor.isOver()
         })
     });
+
+    function updateGrades(sem:Semester, course:CourseDisplay):CourseDisplay[]{
+        let tmp:CourseDisplay[] = [];
+        for(let i = 0; i < sem.courses.length; i++){
+            if(sem.courses[i].info.code === course.info.code){
+                tmp = [...tmp, course];
+            }else{
+                tmp = [...tmp, sem.courses[i]];
+            }
+        }
+        return tmp;        
+    }
 
     return (
         <Col ref = {dropRef}>
@@ -100,8 +111,14 @@ export function SemesterTable({sem, setSemesters, semesters}: semesterTable): JS
                                 <Form.Select size="sm" aria-label="Select grade" defaultValue="-"
                                     onChange={(ev: React.ChangeEvent<HTMLSelectElement>) => {
                                         course = {...course, grade: ev.target.value as string};
-                                        const newSem = {...semester, courses: semester.courses.map(c => c.info.name === course.info.name ? course : c)};
+                                        console.log(course);
+                                        const newSem = semester;
+                                        newSem.courses = updateGrades(newSem, course);
+                                        console.log(newSem);
                                         setSemester(newSem);
+                                        console.log(semester);
+                                        updateSemesters();
+                                        console.log(semesters);
                                     }}>
                                     <option value={"-"}>-</option>
                                     <option value={"A"}>A</option>

@@ -24,7 +24,7 @@ export function CoursePool(): JSX.Element {
             if(courseExists(name)){
                 alert("Course is Already in Pool");
             } else{
-                setCourses([...courses, {info:course, grade:"A"}]);
+                setCourses([...courses, {info:course, grade:"-"}]);
             }
         }
     }
