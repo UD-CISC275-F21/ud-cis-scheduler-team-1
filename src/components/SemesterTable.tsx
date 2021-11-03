@@ -76,7 +76,7 @@ export function SemesterTable({sem, setSemesters, semesters}: semesterTable): JS
                     </tr>
                     <tr>
                         <th>Course</th>
-                        <th>Cr</th>
+                        <th>Credits</th>
                         <th>Grade</th>
                         <th></th>
                     </tr>

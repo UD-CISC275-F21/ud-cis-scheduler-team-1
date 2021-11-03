@@ -31,7 +31,7 @@ export function CoursePool(): JSX.Element {
 
     return<Col>
         <h2 className = "subtitle">Course Pool</h2>
-        <Form onSubmit={(event)=>{
+        <Form id= "searchBar" onSubmit={(event)=>{
             addCourse(inpu);
             event.preventDefault();
         }}>

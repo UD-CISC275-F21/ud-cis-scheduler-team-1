@@ -17,7 +17,7 @@ export function DraggableCourse({course}: dragClass): JSX.Element {
         })
     });
     return (
-        <div ref={dragRef}>
+        <div className = "dragCourse" ref={dragRef}>
             {course.info.code} {course.info.name}
             {isDragging}
         </div>

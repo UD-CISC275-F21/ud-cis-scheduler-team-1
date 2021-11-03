@@ -27,3 +27,16 @@ td {
 .subtitle{
   margin-bottom: 1cm;
 }
+
+.dragCourse{
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: lightskyblue;
+  outline: 2px solid black;
+  border-radius: 8px;
+}
+
+#searchBar{
+  margin-bottom: 1cm;
+}
