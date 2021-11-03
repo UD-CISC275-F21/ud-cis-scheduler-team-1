@@ -53,12 +53,27 @@ export function FourYearPlan({semesters, setSemesters}: fyp): JSX.Element {
 
     //Download CSV file trial
     const CSVheaders = [
-        {label: "Course", key: "courseName"},
-        {label: "Credits", key: "creditShown"},
-        {label: "Grade", key: "gradeShown"},
+        {label: "", key: "courseName"},
+        {label: "My Schedule", key: "creditShown"},
+        {label: "", key: "gradeShown"},
     ];
     const CSVdata: iCSVdata[] = [];
     semesters.forEach(item => {
+        CSVdata.push({
+            courseName: "",
+            creditShown: "",
+            gradeShown: "",
+        });
+        CSVdata.push({
+            courseName: item.season,
+            creditShown: item.year.toString(),
+            gradeShown: "",
+        });
+        CSVdata.push({
+            courseName: "Courses",
+            creditShown: "Credits",
+            gradeShown: "Grades",
+        });
         CSVdata.push({
             courseName: item.courses[0]?.info.code,
             creditShown: item.courses[0]?.info.credits,
@@ -117,7 +132,7 @@ export function FourYearPlan({semesters, setSemesters}: fyp): JSX.Element {
             <Row>
                 <ButtonGroup id="buttonGroup">
                     <Button id="big-scope-button" variant="info">
-                        <CSVLink id="csvlink" data={CSVdata} headers={CSVheaders} separator={","}>
+                        <CSVLink id="csvlink" data={CSVdata} headers={CSVheaders} filename={"My-Schedule.csv"}>
                             Download as .CSV
                         </CSVLink>
                     </Button>
