@@ -18,7 +18,6 @@ export function CoursePool(): JSX.Element {
 
     function addCourse(name: string): void {
         const course:Course = findCourse(name);
-        console.log(course);
         if(course.name === ""){
             alert("Course Does not Exist");
         }else{

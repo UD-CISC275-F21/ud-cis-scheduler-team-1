@@ -32,22 +32,30 @@ export function SemesterTable({sem, setSemesters, semesters}: semesterTable): JS
         setSemesters([...semesters.filter(semester => (semester.season !== season) && (semester.year !== year))]);
     }
 
+    function updateSemesters():void{
+        let tmp:Semester[] = [];
+        for(let i = 0; i < semesters.length; i++){
+            if((semesters[i].year === semester.year) && (semesters[i].season === semester.season)){
+                tmp = [...tmp, semester];
+            }else{
+                tmp = [...tmp, semesters[i]];
+            }
+        }
+        console.log(tmp);
+        setSemesters(tmp);
+    }
+
     const [{ isOver }, dropRef] = useDrop({
         accept: "course",
         drop: (item:CourseDisplay) => {
-            console.log(item);
-            console.log("Dropped");
-            console.log(semester.courses);
             if(!semester.courses.includes(item)){
-                const tmp = semester.courses.concat(item);
-                console.log(JSON.stringify(tmp));
-                setSemester({season:semester.season, year:semester.year, courses: tmp});
-                //setSemester({...semester, courses: semester.courses.concat(item)});
-                console.log(semester);
+                const newSem : Semester = semester;
+                newSem.courses = [...semester.courses, item];
+                setSemester(newSem);
+                updateSemesters();
             }else{
-                setSemester(semester);
+                alert("Course is Already in Semester");
             }
-            //!semester.courses.includes(item) ? {...semester, courses: [...semester.courses, item]} : semester);
         },
         collect: (monitor) => ({
             isOver: monitor.isOver()
