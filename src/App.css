@@ -35,6 +35,8 @@ td {
   background-color: lightskyblue;
   outline: 2px solid black;
   border-radius: 8px;
+  padding: 10px;
+  cursor: grabbing;
 }
 
 #searchBar{
