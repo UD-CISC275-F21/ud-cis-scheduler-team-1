@@ -5,7 +5,7 @@ import {SemesterTitleEdit} from "./SemesterTitleEdit";
 import {CourseDisplay} from "../interfaces/course";
 import {CourseModal} from "./CourseModal";
 import "../App.css";
-//import { useDrop } from "react-dnd";
+import { useDrop } from "react-dnd";
 
 /* Getting a table to render based on a list is from https://stackoverflow.com/questions/54659039/remove-table-row-using-hooks */
 /* Removing from a list is from https://www.robinwieruch.de/react-remove-item-from-list */
@@ -32,17 +32,17 @@ export function SemesterTable({sem, setSemesters, semesters}: semesterTable): JS
         setSemesters([...semesters.filter(semester => (semester.season !== season) && (semester.year !== year))]);
     }
 
-    /*const [{ isOver }, dropRef] = useDrop({
+    const [{ isOver }, dropRef] = useDrop({
         accept: "course",
-        drop: (item:CourseDisplay) => setSemesterCourses((semesterCourses) => 
-            !semesterCourses.includes(item) ? [...semesterCourses, item] : semesterCourses),
+        drop: (item:CourseDisplay) => setSemester((semester) => 
+            !semester.courses.includes(item) ? {...semester, courses: [...semester.courses, item]} : semester),
         collect: (monitor) => ({
             isOver: monitor.isOver()
         })
-    });*/
+    });
 
     return (
-        <Col>
+        <Col ref = {dropRef}>
             <Table striped bordered hover className="semester">
                 <thead>
                     <tr>
@@ -106,6 +106,7 @@ export function SemesterTable({sem, setSemesters, semesters}: semesterTable): JS
                             </td>
                         </tr>
                     )}
+                    {isOver}
                 </tbody>
             </Table>
             <Button
