@@ -19,9 +19,10 @@ export function SemesterTitleEdit({ semester, setSemester, semesters, setSemeste
         } else if (semester1.year > semester2.year) {
             return 1;
         } else {
-            if (semester1.season < semester2.season) {
+            const seasonsOrder = Object.values(season);
+            if (seasonsOrder.indexOf(semester1.season) < seasonsOrder.indexOf(semester2.season)) {
                 return -1;
-            } else if (semester1.season > semester2.season) {
+            } else if (seasonsOrder.indexOf(semester1.season) > seasonsOrder.indexOf(semester2.season)) {
                 return 1;
             }
         }
