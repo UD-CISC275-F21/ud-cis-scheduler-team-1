@@ -1,7 +1,6 @@
 import React, {useState} from "react";
 import {Button, Col, Table, Form} from "react-bootstrap";
 import {season, Semester} from "../interfaces/semester";
-import {SemesterTitleEdit} from "./SemesterTitleEdit";
 import {CourseDisplay} from "../interfaces/course";
 import {CourseModal} from "./CourseModal";
 import "../App.css";
@@ -78,7 +77,7 @@ export function SemesterTable({sem, setSemesters, semesters}: semesterTable): JS
             <Table striped bordered hover className="semester">
                 <thead>
                     <tr>
-                        <th colSpan={3}><SemesterTitleEdit semester={semester} setSemester={setSemester} semesters ={semesters} setSemesters ={setSemesters}></SemesterTitleEdit></th>
+                        <th colSpan={3}>{sem.season}{" "}{sem.year}</th>
                         <th>
                             <Button size="sm" variant="outline-danger" onClick={() => removeSemester(semester.season, semester.year)}>
                                 X
@@ -150,7 +149,6 @@ export function SemesterTable({sem, setSemesters, semesters}: semesterTable): JS
                 }}>
                 Delete All Courses
             </Button>
-
             {show && <CourseModal
                 show ={show}
                 setShow={setShow}
