@@ -46,17 +46,13 @@ export function SemesterTable({sem, setSemesters, semesters}: semesterTable): JS
 
     function compareSemesters(semester1: Semester, semester2: Semester): number {
         if (semester1.year < semester2.year) {
-            console.log("something is happening");
             return -1;
         } else if (semester1.year > semester2.year) {
-            console.log("something is happening");
             return 1;
         } else {
             if (semester1.season < semester2.season) {
-                console.log("something is happening");
                 return -1;
             } else if (semester1.season > semester2.season) {
-                console.log("something is happening");
                 return 1;
             }
         }
@@ -64,6 +60,7 @@ export function SemesterTable({sem, setSemesters, semesters}: semesterTable): JS
     }
 
     function updateSemesterDates(changedSemester: Semester):void {
+        setSemester({...changedSemester});
         let tmp:Semester[] = [];
         for(let i = 0; i < semesters.length; i++){
             if((semesters[i].year === changedSemester.year) || (semesters[i].season === changedSemester.season) 
@@ -75,7 +72,7 @@ export function SemesterTable({sem, setSemesters, semesters}: semesterTable): JS
         }
         tmp.sort(compareSemesters);
         console.log(tmp);
-        setSemesters(tmp);
+        setSemesters([...tmp]);
     }
 
     const [{ isOver }, dropRef] = useDrop({
