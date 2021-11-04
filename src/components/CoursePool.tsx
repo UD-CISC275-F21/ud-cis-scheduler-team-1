@@ -5,6 +5,7 @@ import { Course, CourseDisplay } from "../interfaces/course";
 import { findCourse } from "../utilities/findCourse";
 import {DraggableCourse} from "./DraggableCourse";
 import "../App.css";
+import { Autocomplete, TextField } from "@mui/material";
 
 export function CoursePool(): JSX.Element {
     const [inpu, setInpu] = useState<string>("");
@@ -37,7 +38,7 @@ export function CoursePool(): JSX.Element {
         }}>
             <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label>Enter desired course like so: ACCT 207</Form.Label>
-                <Form.Control value = {inpu} type="text" placeholder="Coure Code" onChange={e=>setInpu(e.target.value.toUpperCase())} />
+                <Autocomplete onChange={(event, value) => setInpu(value as string)} disablePortal id="combo-box-demo" options = {["ACCT 207", "ACCT 208"]} sx = {{width:300}} renderInput= {(params) => <TextField {...params} label = "Course Code"/>}/>
             </Form.Group>
             <Button onClick={() => {
                 addCourse(inpu);
