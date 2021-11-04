@@ -1,11 +1,12 @@
-import React from "react";
+import React, {useState} from "react";
 import {Button, Row, ButtonGroup} from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../App.css";
-import {season, Semester} from "../interfaces/semester";
+import { Semester} from "../interfaces/semester";
 import {SemesterTable} from "./SemesterTable";
 import {CSVLink} from "react-csv";
 import "../App.css";
+import {AddSemesterModal} from "./AddSemesterModal";
 
 // import { Course } from "../interfaces/course";
 
@@ -23,18 +24,8 @@ interface iCSVdata {
     gradeShown: string;
 }
 export function FourYearPlan({semesters, setSemesters}: fyp): JSX.Element {
-    // Removes the most recently added semester in the list, does nothing if no semesters left
-    function removeLastSemester(): void {
-        if (semesters.length) {
-            semesters.splice(-1);
-            setSemesters([...semesters]);
-        }
-    }
-
-    // Adds a new semester with the given title (ex. "Fall 2021") and no courses
-    function addSemester(season: season, year: number): void {
-        setSemesters([...semesters, {season: season, year: year, courses: []}]);
-    }
+    // Show the modal when adding new semester
+    const [show, setShow] = useState(false);
 
     //Download JSON file trial
     const downloadJSON = async () => {
@@ -106,18 +97,9 @@ export function FourYearPlan({semesters, setSemesters}: fyp): JSX.Element {
                     <Button
                         id="big-scope-button"
                         onClick={() => {
-                            addSemester(season.summer, 2022);
-                            console.log(CSVdata);
+                            setShow(true);
                         }}>
                         + Add Semester
-                    </Button>
-                    <Button
-                        id="big-scope-button"
-                        variant="danger"
-                        onClick={() => {
-                            removeLastSemester();
-                        }}>
-                        - Delete Semester
                     </Button>
                     <Button
                         id="big-scope-button"
@@ -132,7 +114,11 @@ export function FourYearPlan({semesters, setSemesters}: fyp): JSX.Element {
             <Row>
                 <ButtonGroup id="buttonGroup">
                     <Button id="big-scope-button" variant="info">
-                        <CSVLink id="csvlink" data={CSVdata} headers={CSVheaders} filename={"My-Schedule.csv"}>
+                        <CSVLink
+                            id="csvlink"
+                            data={CSVdata}
+                            headers={CSVheaders}
+                            filename={"My-Schedule.csv"}>
                             Download as .CSV
                         </CSVLink>
                     </Button>
@@ -141,6 +127,13 @@ export function FourYearPlan({semesters, setSemesters}: fyp): JSX.Element {
                     </Button>
                 </ButtonGroup>
             </Row>
+            {show && 
+                <AddSemesterModal
+                    show={show}
+                    setShow={setShow}
+                    semesters={semesters}
+                    setSemesters={setSemesters}></AddSemesterModal>
+            }
         </div>
     );
 }
