@@ -11,7 +11,7 @@ interface semesterTitleEdit {
 }
 
 export function SemesterTitleEdit({ semester, setSemester, semesters, setSemesters }: semesterTitleEdit): JSX.Element {
-    const years = Array.from(Array(30).keys()).map(x => x + 1995);
+    const years = Array.from(Array(30).keys()).map(x => x + 2012);
 
     function updateSemesters():void{
         let tmp:Semester[] = [];
@@ -33,11 +33,8 @@ export function SemesterTitleEdit({ semester, setSemester, semesters, setSemeste
                         const newSem: Semester = semester;
                         newSem.season = ev.target.value as season;
                         //const newSemester:Semester = {...semester, season: ev.target.value as season};
-                        console.log(newSem);
                         setSemester(newSem);
-                        console.log(semester);
                         updateSemesters();
-                        console.log(semesters);
                     }}>
                     <option value={season.fall}>Fall</option>
                     <option value={season.winter}>Winter</option>
@@ -52,9 +49,7 @@ export function SemesterTitleEdit({ semester, setSemester, semesters, setSemeste
                         newSem.year = +ev.target.value;
                         //const newSemester = {...semester, year: +ev.target.value};
                         setSemester(newSem);
-                        console.log(semester);
                         updateSemesters();
-                        console.log(semesters);
                     }}>
                     <option>Select Year</option>
                     {years.map((year) => <option key={year}>{year}</option>)}
