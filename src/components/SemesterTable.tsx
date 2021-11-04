@@ -11,20 +11,20 @@ import { useDrop } from "react-dnd";
 /* Drag and Drop came from https://medium.com/nmc-techblog/easy-drag-and-drop-in-react-22778b30ba37 */
 
 interface semesterTable {
-    sem: Semester;
+    semester: Semester;
+    setSemester: (s: Semester) => void;
     setSemesters: (s: Semester[]) => void;
     semesters: Semester[];
 }
 
-export function SemesterTable({sem, setSemesters, semesters}: semesterTable): JSX.Element {
-    const [semester, setSemester] = useState<Semester>(sem);
+export function SemesterTable({semester, setSemester, setSemesters, semesters}: semesterTable): JSX.Element {
+    //const [semester, setSemester] = useState<Semester>(sem);
     //const [semesterCourses, setSemesterCourses] = useState<CourseDisplay[]>();    
     const [show, setShow] = useState<boolean>(false); //To show Modal when Course is clicked
     const [mod, setMod] = useState<CourseDisplay>(semester.courses[0]); // staging the changed info before save
     // Removes a course from a semester based on its name
     function removeCourse(name: string): void {
         setSemester({ ...semester, courses: semester.courses.filter(course => course.info.name !== name) });
-        sem = semester;
     }
 
     function removeSemester(season: season, year: number): void {
@@ -77,7 +77,7 @@ export function SemesterTable({sem, setSemesters, semesters}: semesterTable): JS
             <Table striped bordered hover className="semester">
                 <thead>
                     <tr>
-                        <th colSpan={3}>{sem.season}{" "}{sem.year}</th>
+                        <th colSpan={3}>{semester.season}{" "}{semester.year}</th>
                         <th>
                             <Button size="sm" variant="outline-danger" onClick={() => removeSemester(semester.season, semester.year)}>
                                 X
