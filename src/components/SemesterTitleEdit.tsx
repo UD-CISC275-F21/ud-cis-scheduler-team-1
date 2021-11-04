@@ -6,20 +6,35 @@ import "../App.css";
 interface semesterTitleEdit {
     semester: Semester;
     setSemester: (s: Semester) => void;
-    //semesters: Semester[];
+    semesters: Semester[];
+    setSemesters: (sems: Semester[]) =>void
 }
 
-export function SemesterTitleEdit({ semester, setSemester }: semesterTitleEdit): JSX.Element {
-    const years = Array.from(Array(30).keys()).map(x => x + 1995);
+export function SemesterTitleEdit({ semester, setSemester, semesters, setSemesters }: semesterTitleEdit): JSX.Element {
+    const years = Array.from(Array(30).keys()).map(x => x + 2012);
+
+    function updateSemesters():void{
+        let tmp:Semester[] = [];
+        for(let i = 0; i < semesters.length; i++){
+            if((semesters[i].year === semester.year) && (semesters[i].season === semester.season)){
+                tmp = [...tmp, semester];
+            }else{
+                tmp = [...tmp, semesters[i]];
+            }
+        }
+        setSemesters(tmp);
+    }
 
     return <Form>
         <Row className="g-2">
             <Col>
-                <Form.Select aria-label="Select season" defaultValue={season.fall}
+                <Form.Select aria-label="Select season" defaultValue={semester.season}
                     onChange={(ev: React.ChangeEvent<HTMLSelectElement>) => {
-                        const newSemester = {...semester, season: ev.target.value as season};
-                        setSemester(newSemester);
-                        semester=newSemester;
+                        const newSem: Semester = semester;
+                        newSem.season = ev.target.value as season;
+                        //const newSemester:Semester = {...semester, season: ev.target.value as season};
+                        setSemester(newSem);
+                        updateSemesters();
                     }}>
                     <option value={season.fall}>Fall</option>
                     <option value={season.winter}>Winter</option>
@@ -28,11 +43,13 @@ export function SemesterTitleEdit({ semester, setSemester }: semesterTitleEdit):
                 </Form.Select>
             </Col>
             <Col>
-                <Form.Select aria-label="Select year" defaultValue={2021}
+                <Form.Select aria-label="Select year" defaultValue={semester.year}
                     onChange={(ev: React.ChangeEvent<HTMLSelectElement>) => {
-                        const newSemester = {...semester, year: +ev.target.value};
-                        setSemester(newSemester);
-                        semester=newSemester;
+                        const newSem: Semester = semester;
+                        newSem.year = +ev.target.value;
+                        //const newSemester = {...semester, year: +ev.target.value};
+                        setSemester(newSem);
+                        updateSemesters();
                     }}>
                     <option>Select Year</option>
                     {years.map((year) => <option key={year}>{year}</option>)}

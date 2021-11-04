@@ -78,7 +78,7 @@ export function SemesterTable({sem, setSemesters, semesters}: semesterTable): JS
             <Table striped bordered hover className="semester">
                 <thead>
                     <tr>
-                        <th colSpan={3}><SemesterTitleEdit semester={semester} setSemester={setSemester}></SemesterTitleEdit></th>
+                        <th colSpan={3}><SemesterTitleEdit semester={semester} setSemester={setSemester} semesters ={semesters} setSemesters ={setSemesters}></SemesterTitleEdit></th>
                         <th>
                             <Button size="sm" variant="outline-danger" onClick={() => removeSemester(semester.season, semester.year)}>
                                 X
