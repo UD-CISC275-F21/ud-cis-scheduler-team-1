@@ -12,6 +12,21 @@ interface semesterTitleEdit {
 
 export function SemesterTitleEdit({ semester, setSemester, semesters, setSemesters }: semesterTitleEdit): JSX.Element {
     const years = Array.from(Array(30).keys()).map(x => x + 2012);
+    function compareSemesters(semester1: Semester, semester2: Semester): number {
+        if (semester1.year < semester2.year) {
+            return -1;
+        } else if (semester1.year > semester2.year) {
+            return 1;
+        } else {
+            const seasonsOrder = Object.values(season);
+            if (seasonsOrder.indexOf(semester1.season) < seasonsOrder.indexOf(semester2.season)) {
+                return -1;
+            } else if (seasonsOrder.indexOf(semester1.season) > seasonsOrder.indexOf(semester2.season)) {
+                return 1;
+            }
+        }
+        return 0;
+    }
 
     function updateSemesters():void{
         let tmp:Semester[] = [];
@@ -22,6 +37,7 @@ export function SemesterTitleEdit({ semester, setSemester, semesters, setSemeste
                 tmp = [...tmp, semesters[i]];
             }
         }
+        tmp.sort(compareSemesters);
         setSemesters(tmp);
     }
 
