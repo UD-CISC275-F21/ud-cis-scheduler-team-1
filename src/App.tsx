@@ -35,11 +35,11 @@ function App(): JSX.Element {
 
     return (
         <DndProvider backend={HTML5Backend}>
-            <Container className="App">
+            <Container fluid className="App">
                 <h1 id="title">UD CIS Scheduler</h1>
                 <Row>
                     <Col><CoursePool></CoursePool></Col>
-                    <Col md="auto"><FourYearPlan semesters={semesters} setSemesters={setSemesters} ></FourYearPlan></Col>
+                    <Col md={8}><FourYearPlan semesters={semesters} setSemesters={setSemesters} ></FourYearPlan></Col>
                     <Col><Requirements></Requirements></Col>
                 </Row>
             </Container>

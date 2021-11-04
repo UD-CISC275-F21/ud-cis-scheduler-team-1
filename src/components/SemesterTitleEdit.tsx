@@ -12,7 +12,6 @@ interface semesterTitleEdit {
 
 export function SemesterTitleEdit({ semester, setSemester, semesters, setSemesters }: semesterTitleEdit): JSX.Element {
     const years = Array.from(Array(30).keys()).map(x => x + 2012);
-
     function compareSemesters(semester1: Semester, semester2: Semester): number {
         if (semester1.year < semester2.year) {
             return -1;
