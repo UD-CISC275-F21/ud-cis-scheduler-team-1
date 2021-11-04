@@ -37,6 +37,7 @@ export function SemesterTitleEdit({ semester, setSemester, semesters, setSemeste
                 tmp = [...tmp, semesters[i]];
             }
         }
+        tmp.sort(compareSemesters);
         setSemesters(tmp);
     }
 
