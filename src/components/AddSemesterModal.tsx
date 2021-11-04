@@ -6,12 +6,14 @@ import "../App.css";
 
 interface addSemModal {
     show: boolean;
+    semester: Semester;
     setShow: (s: boolean) => void;
     semesters: Semester[];
     setSemesters: (setC: Semester[]) => void;
 }
 export function AddSemesterModal({
     show,
+    semester,
     setShow,
     semesters,
     setSemesters,
@@ -20,6 +22,34 @@ export function AddSemesterModal({
     const [inputYear, setInputYear] = useState<number>(2021);
     const years = Array.from(Array(30).keys()).map(x => x + 2012);
 
+    function updateSemesters():void{
+        let tmp:Semester[] = [];
+        for(let i = 0; i < semesters.length; i++){
+            if((semesters[i].year === semester.year) && (semesters[i].season === semester.season)){
+                tmp = [...tmp, semester];
+            }else{
+                tmp = [...tmp, semesters[i]];
+            }
+        }
+        tmp.sort(compareSemesters);
+        setSemesters(tmp);
+    }
+    function compareSemesters(semester1: Semester, semester2: Semester): number {
+        if (semester1.year < semester2.year) {
+            return -1;
+        } else if (semester1.year > semester2.year) {
+            return 1;
+        } else {
+            const seasonsOrder = Object.values(season);
+            if (seasonsOrder.indexOf(semester1.season) < seasonsOrder.indexOf(semester2.season)) {
+                return -1;
+            } else if (seasonsOrder.indexOf(semester1.season) > seasonsOrder.indexOf(semester2.season)) {
+                return 1;
+            }
+        }
+        return 0;
+    }
+    
     return (
         <Modal
             size="sm"
@@ -96,6 +126,7 @@ export function AddSemesterModal({
                         const newSem : Semester[] = semesters;
                         newSem.push({season : inputSeason, year : inputYear, courses : []});
                         setSemesters(semesters);
+                        updateSemesters();
                         setShow(false);
                     }}>
                     Add Semester

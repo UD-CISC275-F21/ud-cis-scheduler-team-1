@@ -8,8 +8,6 @@ import {CSVLink} from "react-csv";
 import "../App.css";
 import {AddSemesterModal} from "./AddSemesterModal";
 
-// import { Course } from "../interfaces/course";
-
 /* Getting a table to render based on a list is from https://stackoverflow.com/questions/54659039/remove-table-row-using-hooks */
 /* Removing from a list is from https://www.robinwieruch.de/react-remove-item-from-list */
 /* Downloading CSV file code helper from https://stackoverflow.com/a/65794124/17305181*/
@@ -24,6 +22,7 @@ interface iCSVdata {
     gradeShown: string;
 }
 export function FourYearPlan({semesters, setSemesters}: fyp): JSX.Element {
+    const [semester, setSemester] = useState<Semester>(semesters[0]);
     // Show the modal when adding new semester
     const [show, setShow] = useState(false);
 
@@ -86,7 +85,8 @@ export function FourYearPlan({semesters, setSemesters}: fyp): JSX.Element {
                 {semesters.map(semester => 
                     <div key={semester.season + semester.year}>
                         <SemesterTable
-                            sem={semester}
+                            semester={semester}
+                            setSemester={setSemester}
                             setSemesters={setSemesters}
                             semesters={semesters}></SemesterTable>
                     </div>
@@ -130,6 +130,7 @@ export function FourYearPlan({semesters, setSemesters}: fyp): JSX.Element {
             {show && 
                 <AddSemesterModal
                     show={show}
+                    semester={semester}
                     setShow={setShow}
                     semesters={semesters}
                     setSemesters={setSemesters}></AddSemesterModal>
