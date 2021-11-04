@@ -5,11 +5,10 @@ import "../App.css";
 
 interface semesterTitleEdit {
     semester: Semester;
-    setSemester: (s: Semester) => void;
-    sortSemesters: () => void;
+    updateSemester: (s: Semester) => void;
 }
 
-export function SemesterTitleEdit({ semester, setSemester, sortSemesters }: semesterTitleEdit): JSX.Element {
+export function SemesterTitleEdit({ semester, updateSemester}: semesterTitleEdit): JSX.Element {
     const years = Array.from(Array(30).keys()).map(x => x + 1995);
 
     return <Form>
@@ -18,7 +17,7 @@ export function SemesterTitleEdit({ semester, setSemester, sortSemesters }: seme
                 <Form.Select aria-label="Select season" defaultValue={season.fall}
                     onChange={(ev: React.ChangeEvent<HTMLSelectElement>) => {
                         const newSemester = {...semester, season: ev.target.value as season};
-                        setSemester(newSemester);
+                        updateSemester(newSemester);
                         semester=newSemester;
                     }}>
                     <option value={season.fall}>Fall</option>
@@ -31,7 +30,9 @@ export function SemesterTitleEdit({ semester, setSemester, sortSemesters }: seme
                 <Form.Select aria-label="Select year" defaultValue={2021}
                     onChange={(ev: React.ChangeEvent<HTMLSelectElement>) => {
                         const newSemester = {...semester, year: +ev.target.value};
-                        setSemester(newSemester);
+                        console.log("New semester:");
+                        console.log(newSemester);
+                        updateSemester(newSemester);
                         semester=newSemester;
                     }}>
                     <option>Select Year</option>
