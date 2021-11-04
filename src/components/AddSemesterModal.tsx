@@ -70,14 +70,14 @@ export function AddSemesterModal({
                             {inputYear}
                         </Dropdown.Toggle>
                         <Dropdown.Menu>
-                            {years.map(year => (
+                            {years.map(year => 
                                 <Dropdown.Item key={year}
                                     onClick={() => {
                                         setInputYear(year);
                                     }}>
                                     {year}
                                 </Dropdown.Item>
-                            ))}
+                            )}
                         </Dropdown.Menu>
                     </Dropdown>
                 </Row>
