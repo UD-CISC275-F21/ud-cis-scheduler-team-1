@@ -37,6 +37,7 @@ td {
   border-radius: 8px;
   padding: 10px;
   cursor: grabbing;
+  margin-bottom: 0.5cm;
 }
 
 #searchBar{

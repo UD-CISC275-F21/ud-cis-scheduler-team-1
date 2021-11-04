@@ -2,9 +2,12 @@ import React, { useState } from "react";
 import { Button, Col, Form } from "react-bootstrap";
 import "../App.css";
 import { Course, CourseDisplay } from "../interfaces/course";
-import { findCourse } from "../utilities/findCourse";
+import { findCourse, getAllCourses } from "../utilities/findCourse";
 import {DraggableCourse} from "./DraggableCourse";
 import "../App.css";
+import { Autocomplete, TextField } from "@mui/material";
+
+//Autocomplete came from https://mui.com/components/autocomplete/#useautocomplete
 
 export function CoursePool(): JSX.Element {
     const [inpu, setInpu] = useState<string>("");
@@ -36,8 +39,10 @@ export function CoursePool(): JSX.Element {
             event.preventDefault();
         }}>
             <Form.Group className="mb-3" controlId="formBasicPassword">
-                <Form.Label>Enter desired course like so: ACCT 207</Form.Label>
-                <Form.Control value = {inpu} type="text" placeholder="Coure Code" onChange={e=>setInpu(e.target.value.toUpperCase())} />
+                <Form.Label>Enter the desired course code:</Form.Label>
+                <Autocomplete onChange={(event, value) => {
+                    setInpu(value as string); event.preventDefault();
+                }} disablePortal id="combo-box-demo" options = {getAllCourses()} renderInput= {(params) => <TextField {...params} label = "Course Code"/>}/>
             </Form.Group>
             <Button onClick={() => {
                 addCourse(inpu);

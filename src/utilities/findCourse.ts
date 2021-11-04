@@ -34,3 +34,13 @@ export function findCourse(name:string): Course{
     }
     return course;
 }
+
+export function getAllCourses(): string[]{
+    const departments: string[] = Object.keys(Catalog);
+    const CATALOG_DATA: Record<string, Record<string, Course>> = Catalog;
+    let allCourses: string[] = [];
+    for(let i = 0; i < departments.length; i++){
+        allCourses = allCourses.concat(Object.keys(CATALOG_DATA[departments[i]]));
+    } 
+    return allCourses;
+}
