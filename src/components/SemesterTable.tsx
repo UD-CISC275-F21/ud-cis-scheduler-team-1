@@ -11,14 +11,13 @@ import { useDrop } from "react-dnd";
 /* Drag and Drop came from https://medium.com/nmc-techblog/easy-drag-and-drop-in-react-22778b30ba37 */
 
 interface semesterTable {
-    semester: Semester;
-    setSemester: (s: Semester) => void;
+    sem : Semester;
     setSemesters: (s: Semester[]) => void;
     semesters: Semester[];
 }
 
-export function SemesterTable({semester, setSemester, setSemesters, semesters}: semesterTable): JSX.Element {
-    //const [semester, setSemester] = useState<Semester>(sem);
+export function SemesterTable({sem, setSemesters, semesters}: semesterTable): JSX.Element {
+    const [semester, setSemester] = useState<Semester>(sem);
     //const [semesterCourses, setSemesterCourses] = useState<CourseDisplay[]>();    
     const [show, setShow] = useState<boolean>(false); //To show Modal when Course is clicked
     const [mod, setMod] = useState<CourseDisplay>(semester.courses[0]); // staging the changed info before save
