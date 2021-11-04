@@ -99,7 +99,7 @@ export function SemesterTable({sem, setSemesters, semesters}: semesterTable): JS
                                 <a
                                     onClick={() => {
                                         setShow(true);
-                                        setMod({...course});
+                                        setMod(JSON.parse(JSON.stringify(course)));
                                     }}>
                                     {course.info.code}
                                     <br></br>
