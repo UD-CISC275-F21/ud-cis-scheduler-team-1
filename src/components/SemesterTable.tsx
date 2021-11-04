@@ -44,6 +44,26 @@ export function SemesterTable({sem, setSemesters, semesters}: semesterTable): JS
         setSemesters(tmp);
     }
 
+    function compareSemesters(semester1: Semester, semester2: Semester): number {
+        if (semester1.year < semester2.year) {
+            return -1;
+        } else if (semester1.year > semester2.year) {
+            return 1;
+        } else {
+            if (semester1.season < semester2.season) {
+                return -1;
+            } else if (semester1.season > semester2.season) {
+                return 1;
+            }
+        }
+        return 0;
+    }
+
+    function sortSemesters():void {
+        const sorted = [...semesters].sort(compareSemesters);
+
+    }
+
     const [{ isOver }, dropRef] = useDrop({
         accept: "course",
         drop: (item:CourseDisplay) => {
@@ -78,7 +98,7 @@ export function SemesterTable({sem, setSemesters, semesters}: semesterTable): JS
             <Table striped bordered hover className="semester">
                 <thead>
                     <tr>
-                        <th colSpan={3}><SemesterTitleEdit semester={semester} setSemester={setSemester}></SemesterTitleEdit></th>
+                        <th colSpan={3}><SemesterTitleEdit semester={semester} setSemester={setSemester} sortSemesters={sortSemesters}></SemesterTitleEdit></th>
                         <th>
                             <Button size="sm" variant="outline-danger" onClick={() => removeSemester(semester.season, semester.year)}>
                                 X

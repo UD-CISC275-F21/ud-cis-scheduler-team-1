@@ -6,10 +6,10 @@ import "../App.css";
 interface semesterTitleEdit {
     semester: Semester;
     setSemester: (s: Semester) => void;
-    //semesters: Semester[];
+    sortSemesters: () => void;
 }
 
-export function SemesterTitleEdit({ semester, setSemester }: semesterTitleEdit): JSX.Element {
+export function SemesterTitleEdit({ semester, setSemester, sortSemesters }: semesterTitleEdit): JSX.Element {
     const years = Array.from(Array(30).keys()).map(x => x + 1995);
 
     return <Form>

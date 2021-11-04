@@ -1,10 +1,10 @@
 import { CourseDisplay } from "./course";
 
 export enum season {
-    fall = "Fall",
     winter = "Winter",
     spring = "Spring",
-    summer = "Summer"
+    summer = "Summer", 
+    fall = "Fall"
 }
 export interface Semester {
     season: season
