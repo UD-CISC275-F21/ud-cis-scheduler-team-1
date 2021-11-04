@@ -44,37 +44,6 @@ export function SemesterTable({sem, setSemesters, semesters}: semesterTable): JS
         setSemesters(tmp);
     }
 
-    function compareSemesters(semester1: Semester, semester2: Semester): number {
-        if (semester1.year < semester2.year) {
-            return -1;
-        } else if (semester1.year > semester2.year) {
-            return 1;
-        } else {
-            if (semester1.season < semester2.season) {
-                return -1;
-            } else if (semester1.season > semester2.season) {
-                return 1;
-            }
-        }
-        return 0;
-    }
-
-    function updateSemesterDates(changedSemester: Semester):void {
-        setSemester({...changedSemester});
-        let tmp:Semester[] = [];
-        for(let i = 0; i < semesters.length; i++){
-            if((semesters[i].year === changedSemester.year) || (semesters[i].season === changedSemester.season) 
-            && (semesters[i].courses === changedSemester.courses)){
-                tmp = [...tmp, changedSemester];
-            }else{
-                tmp = [...tmp, semesters[i]];
-            }
-        }
-        tmp.sort(compareSemesters);
-        console.log(tmp);
-        setSemesters([...tmp]);
-    }
-
     const [{ isOver }, dropRef] = useDrop({
         accept: "course",
         drop: (item:CourseDisplay) => {
@@ -109,7 +78,7 @@ export function SemesterTable({sem, setSemesters, semesters}: semesterTable): JS
             <Table striped bordered hover className="semester">
                 <thead>
                     <tr>
-                        <th colSpan={3}><SemesterTitleEdit semester={semester} updateSemester={updateSemesterDates}></SemesterTitleEdit></th>
+                        <th colSpan={3}><SemesterTitleEdit semester={semester} setSemester={setSemester} semesters={semesters} setSemesters={setSemesters}></SemesterTitleEdit></th>
                         <th>
                             <Button size="sm" variant="outline-danger" onClick={() => removeSemester(semester.season, semester.year)}>
                                 X
