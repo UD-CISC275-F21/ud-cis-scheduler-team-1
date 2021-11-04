@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, Col, Form } from "react-bootstrap";
 import "../App.css";
 import { Course, CourseDisplay } from "../interfaces/course";
-import { findCourse } from "../utilities/findCourse";
+import { findCourse, getAllCourses } from "../utilities/findCourse";
 import {DraggableCourse} from "./DraggableCourse";
 import "../App.css";
 import { Autocomplete, TextField } from "@mui/material";
@@ -37,8 +37,8 @@ export function CoursePool(): JSX.Element {
             event.preventDefault();
         }}>
             <Form.Group className="mb-3" controlId="formBasicPassword">
-                <Form.Label>Enter desired course like so: ACCT 207</Form.Label>
-                <Autocomplete onChange={(event, value) => setInpu(value as string)} disablePortal id="combo-box-demo" options = {["ACCT 207", "ACCT 208"]} sx = {{width:300}} renderInput= {(params) => <TextField {...params} label = "Course Code"/>}/>
+                <Form.Label>Enter the desired course code:</Form.Label>
+                <Autocomplete onChange={(event, value) => setInpu(value as string)} disablePortal id="combo-box-demo" options = {getAllCourses()} renderInput= {(params) => <TextField {...params} label = "Course Code"/>}/>
             </Form.Group>
             <Button onClick={() => {
                 addCourse(inpu);
