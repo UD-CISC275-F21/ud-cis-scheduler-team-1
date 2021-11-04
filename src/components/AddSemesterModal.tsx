@@ -20,8 +20,24 @@ export function AddSemesterModal({
 }: addSemModal): JSX.Element {
     const [inputSeason, setInputSeason] = useState<season>(season.fall);
     const [inputYear, setInputYear] = useState<number>(2021);
+    const [alert,setAlert] = useState<string>("");
     const years = Array.from(Array(30).keys()).map(x => x + 2012);
 
+
+    //handle save new semester if its not in the plan yet 
+    function handleSaveSem(): void {
+        const newSem: Semester[] = semesters;
+        if (semesters.filter(s => s.season === inputSeason && s.year === inputYear).length > 0) {
+            setAlert("Semester already in your plan!");
+        } else {
+            newSem.push({season: inputSeason, year: inputYear, courses: []});
+            setSemesters(semesters);
+            updateSemesters();
+            setAlert("");
+            setShow(false);
+        }
+    }
+    //update semester -- sure how this work --
     function updateSemesters():void{
         let tmp:Semester[] = [];
         for(let i = 0; i < semesters.length; i++){
@@ -34,6 +50,7 @@ export function AddSemesterModal({
         tmp.sort(compareSemesters);
         setSemesters(tmp);
     }
+    //compare semesters
     function compareSemesters(semester1: Semester, semester2: Semester): number {
         if (semester1.year < semester2.year) {
             return -1;
@@ -49,7 +66,6 @@ export function AddSemesterModal({
         }
         return 0;
     }
-    
     return (
         <Modal
             size="sm"
@@ -71,24 +87,28 @@ export function AddSemesterModal({
                             <Dropdown.Item
                                 onClick={() => {
                                     setInputSeason(season.fall);
+                                    setAlert("");
                                 }}>
                                 Fall
                             </Dropdown.Item>
                             <Dropdown.Item
                                 onClick={() => {
                                     setInputSeason(season.winter);
+                                    setAlert("");
                                 }}>
                                 Winter
                             </Dropdown.Item>
                             <Dropdown.Item
                                 onClick={() => {
                                     setInputSeason(season.spring);
+                                    setAlert("");
                                 }}>
                                 Spring
                             </Dropdown.Item>
                             <Dropdown.Item
                                 onClick={() => {
                                     setInputSeason(season.summer);
+                                    setAlert("");
                                 }}>
                                 Summer
                             </Dropdown.Item>
@@ -111,6 +131,7 @@ export function AddSemesterModal({
                         </Dropdown.Menu>
                     </Dropdown>
                 </Row>
+                <p>{alert}</p>
             </Modal.Body>
             <Modal.Footer>
                 <Button
@@ -123,11 +144,7 @@ export function AddSemesterModal({
                 <Button
                     variant="primary"
                     onClick={() => {
-                        const newSem : Semester[] = semesters;
-                        newSem.push({season : inputSeason, year : inputYear, courses : []});
-                        setSemesters(semesters);
-                        updateSemesters();
-                        setShow(false);
+                        handleSaveSem();
                     }}>
                     Add Semester
                 </Button>
