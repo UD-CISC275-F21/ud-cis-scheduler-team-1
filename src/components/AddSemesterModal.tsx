@@ -25,8 +25,17 @@ export function AddSemesterModal({
 
 
     //handle save new semester if its not in the plan yet 
-    function handleSaveSem() : void {
-        return;
+    function handleSaveSem(): void {
+        const newSem: Semester[] = semesters;
+        if (semesters.filter(s => s.season === inputSeason && s.year === inputYear).length > 0) {
+            setAlert("Semester already in your plan!");
+        } else {
+            newSem.push({season: inputSeason, year: inputYear, courses: []});
+            setSemesters(semesters);
+            updateSemesters();
+            setAlert("");
+            setShow(false);
+        }
     }
     //update semester -- sure how this work --
     function updateSemesters():void{
@@ -78,24 +87,28 @@ export function AddSemesterModal({
                             <Dropdown.Item
                                 onClick={() => {
                                     setInputSeason(season.fall);
+                                    setAlert("");
                                 }}>
                                 Fall
                             </Dropdown.Item>
                             <Dropdown.Item
                                 onClick={() => {
                                     setInputSeason(season.winter);
+                                    setAlert("");
                                 }}>
                                 Winter
                             </Dropdown.Item>
                             <Dropdown.Item
                                 onClick={() => {
                                     setInputSeason(season.spring);
+                                    setAlert("");
                                 }}>
                                 Spring
                             </Dropdown.Item>
                             <Dropdown.Item
                                 onClick={() => {
                                     setInputSeason(season.summer);
+                                    setAlert("");
                                 }}>
                                 Summer
                             </Dropdown.Item>
@@ -130,11 +143,7 @@ export function AddSemesterModal({
                 <Button
                     variant="primary"
                     onClick={() => {
-                        const newSem : Semester[] = semesters;
-                        newSem.push({season : inputSeason, year : inputYear, courses : []});
-                        setSemesters(semesters);
-                        updateSemesters();
-                        setShow(false);
+                        handleSaveSem();
                     }}>
                     Add Semester
                 </Button>
