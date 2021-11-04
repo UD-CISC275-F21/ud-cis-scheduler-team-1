@@ -20,8 +20,15 @@ export function AddSemesterModal({
 }: addSemModal): JSX.Element {
     const [inputSeason, setInputSeason] = useState<season>(season.fall);
     const [inputYear, setInputYear] = useState<number>(2021);
+    const [alert,setAlert] = useState<string>("");
     const years = Array.from(Array(30).keys()).map(x => x + 2012);
 
+
+    //handle save new semester if its not in the plan yet 
+    function handleSaveSem() : void {
+        return;
+    }
+    //update semester -- sure how this work --
     function updateSemesters():void{
         let tmp:Semester[] = [];
         for(let i = 0; i < semesters.length; i++){
@@ -34,6 +41,7 @@ export function AddSemesterModal({
         tmp.sort(compareSemesters);
         setSemesters(tmp);
     }
+    //compare semesters
     function compareSemesters(semester1: Semester, semester2: Semester): number {
         if (semester1.year < semester2.year) {
             return -1;
@@ -49,7 +57,6 @@ export function AddSemesterModal({
         }
         return 0;
     }
-    
     return (
         <Modal
             size="sm"
