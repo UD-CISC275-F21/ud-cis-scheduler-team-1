@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {Button, Col, Table, Form} from "react-bootstrap";
-import {season, Semester} from "../interfaces/semester";
+import {Semester} from "../interfaces/semester";
 import {CourseDisplay} from "../interfaces/course";
 import {CourseModal} from "./CourseModal";
 import "../App.css";
@@ -11,24 +11,23 @@ import { useDrop } from "react-dnd";
 /* Drag and Drop came from https://medium.com/nmc-techblog/easy-drag-and-drop-in-react-22778b30ba37 */
 
 interface semesterTable {
-    semester: Semester;
-    setSemester: (s: Semester) => void;
+    sem : Semester;
     setSemesters: (s: Semester[]) => void;
     semesters: Semester[];
 }
 
-export function SemesterTable({semester, setSemester, setSemesters, semesters}: semesterTable): JSX.Element {
-    //const [semester, setSemester] = useState<Semester>(sem);
-    //const [semesterCourses, setSemesterCourses] = useState<CourseDisplay[]>();    
+export function SemesterTable({sem, setSemesters, semesters}: semesterTable): JSX.Element {
+    const [semester, setSemester] = useState<Semester>(sem);
     const [show, setShow] = useState<boolean>(false); //To show Modal when Course is clicked
     const [mod, setMod] = useState<CourseDisplay>(semester.courses[0]); // staging the changed info before save
+    
     // Removes a course from a semester based on its name
     function removeCourse(name: string): void {
         setSemester({ ...semester, courses: semester.courses.filter(course => course.info.name !== name) });
     }
 
-    function removeSemester(season: season, year: number): void {
-        setSemesters([...semesters.filter(semester => (semester.season !== season) && (semester.year !== year))]);
+    function removeSemester(sem : Semester): void {
+        setSemesters([...semesters.filter(semester => semester.season+semester.year !== sem.season+sem.year)]);
     }
 
     function updateSemesters():void{
@@ -79,7 +78,7 @@ export function SemesterTable({semester, setSemester, setSemesters, semesters}: 
                     <tr>
                         <th colSpan={3}>{semester.season}{" "}{semester.year}</th>
                         <th>
-                            <Button size="sm" variant="outline-danger" onClick={() => removeSemester(semester.season, semester.year)}>
+                            <Button size="sm" variant="outline-danger" onClick={() => removeSemester(semester)}>
                                 X
                             </Button>
                         </th>
@@ -133,8 +132,7 @@ export function SemesterTable({semester, setSemester, setSemesters, semesters}: 
                             </Form></td>
                             <td>
                                 <Button size="sm" variant="outline-danger" onClick={() => removeCourse(course.info.name)}>
-                                    {" "}
-                                    X{" "}
+                                    X
                                 </Button>
                             </td>
                         </tr>

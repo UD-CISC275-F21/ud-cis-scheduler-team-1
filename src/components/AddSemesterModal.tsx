@@ -6,14 +6,12 @@ import "../App.css";
 
 interface addSemModal {
     show: boolean;
-    semester: Semester;
     setShow: (s: boolean) => void;
     semesters: Semester[];
     setSemesters: (setC: Semester[]) => void;
 }
 export function AddSemesterModal({
     show,
-    semester,
     setShow,
     semesters,
     setSemesters,
@@ -31,24 +29,11 @@ export function AddSemesterModal({
             setAlert("Semester already in your plan!");
         } else {
             newSem.push({season: inputSeason, year: inputYear, courses: []});
+            newSem.sort(compareSemesters);
             setSemesters(semesters);
-            updateSemesters();
             setAlert("");
             setShow(false);
         }
-    }
-    //update semester -- sure how this work --
-    function updateSemesters():void{
-        let tmp:Semester[] = [];
-        for(let i = 0; i < semesters.length; i++){
-            if((semesters[i].year === semester.year) && (semesters[i].season === semester.season)){
-                tmp = [...tmp, semester];
-            }else{
-                tmp = [...tmp, semesters[i]];
-            }
-        }
-        tmp.sort(compareSemesters);
-        setSemesters(tmp);
     }
     //compare semesters
     function compareSemesters(semester1: Semester, semester2: Semester): number {
