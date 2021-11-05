@@ -82,13 +82,13 @@ export function FourYearPlan(): JSX.Element {
         <div id="plan">
             <h2 className="subtitle">Four Year Plan</h2>
             <Row xs={1} md={2} className="g-4">
-                {semesters.map(sem => (
+                {semesters.map(sem => 
                     <SemesterTable
                         key={sem.season + sem.year}
                         sem={sem}
                         setSemesters={setSemesters}
                         semesters={semesters}></SemesterTable>
-                ))}
+                )}
             </Row>
             <Row>
                 <ButtonGroup id="buttonGroup">
@@ -125,13 +125,13 @@ export function FourYearPlan(): JSX.Element {
                     </Button>
                 </ButtonGroup>
             </Row>
-            {show && (
+            {show && 
                 <AddSemesterModal
                     show={show}
                     setShow={setShow}
                     semesters={semesters}
                     setSemesters={setSemesters}></AddSemesterModal>
-            )}
+            }
         </div>
     );
 }

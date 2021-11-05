@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {Button, Col, Table, Form} from "react-bootstrap";
-import {season, Semester} from "../interfaces/semester";
+import {Semester} from "../interfaces/semester";
 import {CourseDisplay} from "../interfaces/course";
 import {CourseModal} from "./CourseModal";
 import "../App.css";
@@ -27,7 +27,7 @@ export function SemesterTable({sem, setSemesters, semesters}: semesterTable): JS
     }
 
     function removeSemester(sem : Semester): void {
-        setSemesters([...semesters.filter(semester => (semester.season+semester.year !== sem.season+sem.year))]);
+        setSemesters([...semesters.filter(semester => semester.season+semester.year !== sem.season+sem.year)]);
     }
 
     function updateSemesters():void{
