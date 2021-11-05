@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {Button, Row, ButtonGroup} from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../App.css";
-import { Semester} from "../interfaces/semester";
+import {season, Semester} from "../interfaces/semester";
 import {SemesterTable} from "./SemesterTable";
 import {CSVLink} from "react-csv";
 import "../App.css";
@@ -12,17 +12,17 @@ import {AddSemesterModal} from "./AddSemesterModal";
 /* Removing from a list is from https://www.robinwieruch.de/react-remove-item-from-list */
 /* Downloading CSV file code helper from https://stackoverflow.com/a/65794124/17305181*/
 
-interface fyp {
-    semesters: Semester[];
-    setSemesters: (s: Semester[]) => void;
-}
 interface iCSVdata {
     courseName: string;
     creditShown: string;
     gradeShown: string;
 }
-export function FourYearPlan({semesters, setSemesters}: fyp): JSX.Element {
-    const [semester, setSemester] = useState<Semester>(semesters[0]);
+const defaultSemesters: Semester[] = [
+    {season: season.fall, year: 2021, courses: []},
+    {season: season.spring, year: 2022, courses: []},
+];
+export function FourYearPlan(): JSX.Element {
+    const [semesters, setSemesters] = useState<Semester[]>(defaultSemesters);
     // Show the modal when adding new semester
     const [show, setShow] = useState(false);
 
@@ -82,14 +82,13 @@ export function FourYearPlan({semesters, setSemesters}: fyp): JSX.Element {
         <div id="plan">
             <h2 className="subtitle">Four Year Plan</h2>
             <Row xs={1} md={2} className="g-4">
-                {semesters.map(sem => 
-                    <div key={sem.season + sem.year}>
-                        <SemesterTable
-                            sem={sem}
-                            setSemesters={setSemesters}
-                            semesters={semesters}></SemesterTable>
-                    </div>
-                )}
+                {semesters.map(sem => (
+                    <SemesterTable
+                        key={sem.season + sem.year}
+                        sem={sem}
+                        setSemesters={setSemesters}
+                        semesters={semesters}></SemesterTable>
+                ))}
             </Row>
             <Row>
                 <ButtonGroup id="buttonGroup">
@@ -126,14 +125,13 @@ export function FourYearPlan({semesters, setSemesters}: fyp): JSX.Element {
                     </Button>
                 </ButtonGroup>
             </Row>
-            {show && 
+            {show && (
                 <AddSemesterModal
                     show={show}
-                    semester={semester}
                     setShow={setShow}
                     semesters={semesters}
                     setSemesters={setSemesters}></AddSemesterModal>
-            }
+            )}
         </div>
     );
 }
