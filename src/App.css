@@ -43,3 +43,8 @@ td {
 #searchBar{
   margin-bottom: 1cm;
 }
+
+#alert{
+  color:red;
+  font-style: italic;
+}
