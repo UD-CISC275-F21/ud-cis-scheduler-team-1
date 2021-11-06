@@ -116,7 +116,7 @@ export function AddSemesterModal({
                         </Dropdown.Menu>
                     </Dropdown>
                 </Row>
-                <p color="red">{alert}</p>
+                <p id="alert">{alert}</p>
             </Modal.Body>
             <Modal.Footer>
                 <Button
