@@ -1,4 +1,6 @@
-import { univReqs, noTech } from "./univReqs";
+import { Semester } from "../interfaces/semester";
+import { findCourse } from "../utilities/findCourse";
+import { univReqs, noTech, accumulateCourses, dle, firstYearExp, multiCult, groupA, groupB, groupC, groupD, findCommonCourses, engineerBreadth, engineerProfess } from "./univReqs";
 
 export interface CSBS {
     "univ": univReqs,
@@ -37,4 +39,271 @@ export interface CSBS {
     // ENGL 312, ENGL 410 AND CISC 355 count for Engineer Breadth
     
     "124": boolean          //124 Credits needed to graduate
+}
+
+export function updateCSBA(semesters: Semester[]): CSBS {
+    let totalCreds = 0;
+    for (let i = 0; i < semesters.length; i++){
+        for (let j = 0; j < semesters[i].courses.length; j++){
+            totalCreds = totalCreds + +semesters[i].courses[j].info.credits;
+        }
+    }
+    const cours = accumulateCourses(semesters);
+    let courseNames = Array.from(cours.keys());
+
+    let e110 = false;
+    let fys = false;
+    let dles = false;
+    let multi = false;
+    let groupa = false;
+    let groupb = false;
+    let groupc = false;
+    let groupd = false;
+    let caps = false;
+
+    let extra9 = false;
+
+    let c108 = false;
+    let c181 = false;
+    let c210 = false;
+    let c220 = false;
+    let c260 = false;
+    let c275 = false;
+    let c303 = false;
+    let c320 = false;
+    let c361 = false;
+    let c372 = false;
+    let m210 = false;
+    let m241 = false;
+    let m242 = false;
+    let sixat300 = false;
+    let extra12 = false;
+    let stats = false;
+    let majCaps = false;
+    let science = false;
+    let m300 = false;
+    let writing = false;
+    let c355 = false;
+    let total124 = false;
+
+    if(totalCreds >= 124){
+        total124 = true;
+    }
+    if(courseNames.includes("ENGL 110")){
+        e110 = true;
+        courseNames = courseNames.filter(key => key != "ENGL 110");
+    }
+    if(courseNames.includes("CISC 108")){
+        c108 = true;
+        courseNames = courseNames.filter(key => key != "CISC 108");
+    }
+    if(courseNames.includes("CISC 181")){
+        c181 = true;
+        courseNames = courseNames.filter(key => key != "CISC 181");
+    }
+    if(courseNames.includes("CISC 210")){
+        c210 = true;
+        courseNames = courseNames.filter(key => key != "CISC 210");
+    }
+    if(courseNames.includes("CISC 220")){
+        c220 = true;
+        courseNames = courseNames.filter(key => key != "CISC 220");
+    }
+    if(courseNames.includes("CISC 260")){
+        c260 = true;
+        courseNames = courseNames.filter(key => key != "CISC 260");
+    }
+    if(courseNames.includes("CISC 275")){
+        c275 = true;
+        courseNames = courseNames.filter(key => key != "CISC 275");
+    }
+    if(courseNames.includes("MATH 210")){
+        m210 = true;
+        courseNames = courseNames.filter(key => key != "MATH 210");
+    }
+    if(courseNames.includes("MATH 241")){
+        m241 = true;
+        courseNames = courseNames.filter(key => key != "MATH 241");
+    }
+    if(courseNames.includes("CISC 303")){
+        c303 = true;
+        courseNames = courseNames.filter(key => key != "CISC 303");
+    }
+    if(courseNames.includes("CISC 320")){
+        c320 = true;
+        courseNames = courseNames.filter(key => key != "CISC 320");
+    }
+    if(courseNames.includes("CISC 361")){
+        c361 = true;
+        courseNames = courseNames.filter(key => key != "CISC 361");
+    }
+    if(courseNames.includes("CISC 372")){
+        c372 = true;
+        courseNames = courseNames.filter(key => key != "CISC 372");
+    }
+    if(courseNames.includes("MATH 242")){
+        m242 = true;
+        courseNames = courseNames.filter(key => key != "MATH 242");
+    }
+    if(courseNames.includes("CISC 355")){
+        c355 = true;
+    }
+    if(courseNames.includes("CISC 304")){
+        m300 = true;
+        courseNames = courseNames.filter(key => key != "CISC 304");
+    } else if(courseNames.includes("MATH 349")){
+        m300 = true;
+        courseNames = courseNames.filter(key => key != "MATH 349");
+    }
+    if(courseNames.includes("MATH 205")){
+        stats = true;
+        courseNames = courseNames.filter(key => key != "MATH 205");
+    } else if(courseNames.includes("MATH 350")){
+        stats = true;
+        courseNames = courseNames.filter(key => key != "MATH 350");
+    }
+    if(courseNames.includes("ENGL 312")){
+        writing = true;
+    } else if(courseNames.includes("ENGL 410")){
+        writing = true;
+    }
+    if(courseNames.includes("CISC 498") && courseNames.includes("CISC 499")){
+        caps = true;
+        majCaps = true;
+        courseNames = courseNames.filter(key => key != "CISC 498");
+        courseNames = courseNames.filter(key => key != "CISC 499");
+    } else if(courseNames.includes("UNIV 401") && courseNames.includes("UNIV 402")){
+        caps = true;
+        majCaps = true;
+        courseNames = courseNames.filter(key => key != "UNIV 401");
+        courseNames = courseNames.filter(key => key != "UNIV 402");
+    }
+    if(courseNames.includes("PHYS 207") && courseNames.includes("PHYS 227") && courseNames.includes("PHYS 208") && courseNames.includes("PHYS 228")){
+        science = true;
+        courseNames = courseNames.filter(key => key != "PHYS 207");
+        courseNames = courseNames.filter(key => key != "PHYS 227");
+        courseNames = courseNames.filter(key => key != "PHYS 208");
+        courseNames = courseNames.filter(key => key != "PHYS 228");
+    } else if(courseNames.includes("CHEM 103") && courseNames.includes("CHEM 133") && courseNames.includes("CHEM 104") && courseNames.includes("CHEM 134")){
+        science = true;
+        courseNames = courseNames.filter(key => key != "CHEM 103");
+        courseNames = courseNames.filter(key => key != "CHEM 133");
+        courseNames = courseNames.filter(key => key != "CHEM 104");
+        courseNames = courseNames.filter(key => key != "CHEM 134");
+    }else if(courseNames.includes("BISC 207") && courseNames.includes("BISC 208")){
+        science = true;
+        courseNames = courseNames.filter(key => key != "BISC 207");
+        courseNames = courseNames.filter(key => key != "BISC 208");
+    } else if(courseNames.includes("GEOL 105") && courseNames.includes("GEOL 107") && courseNames.includes("GEOL 115")){
+        science = true;
+        courseNames = courseNames.filter(key => key != "GEOL 105");
+        courseNames = courseNames.filter(key => key != "GEOL 107");
+        courseNames = courseNames.filter(key => key != "GEOL 115");
+    } else if(courseNames.includes("GEOL 107") && courseNames.includes("GEOL 110")){
+        science = true;
+        courseNames = courseNames.filter(key => key != "GEOL 107");
+        courseNames = courseNames.filter(key => key != "GEOL 110");
+    }
+    let six = 0;
+    for(let i = 0; i < courseNames.length; i++){
+        if(courseNames[i].substr(0, 4) === "CISC" && (+courseNames[i][4] >= 3) && !noTech.includes(courseNames[i])){
+            six = six + +findCourse(courseNames[i]).credits;
+            courseNames = courseNames.filter(key => key != courseNames[i]); 
+            i = i - 1;
+        }
+        if(six >= 6){
+            sixat300 = true;
+            break;
+        }
+    }
+    let twelve = 0;
+    for(let i = 0; i < courseNames.length; i++){
+        if(courseNames[i].substr(0, 4) === "CISC" && (+courseNames[i][4] >= 3) && !noTech.includes(courseNames[i])){
+            twelve = twelve + +findCourse(courseNames[i]).credits;
+            courseNames = courseNames.filter(key => key != courseNames[i]); 
+            i = i - 1;
+        }
+        if(six >= 6){
+            extra12 = true;
+            break;
+        }
+    }
+    const discov = findCommonCourses(courseNames, dle);
+    if(discov.length > 0){
+        dles = true;
+    }
+    const first = findCommonCourses(courseNames, firstYearExp);
+    if(first.length > 0){
+        fys = true;
+    }
+    const cultural = findCommonCourses(courseNames, multiCult);
+    if(cultural.length > 0){
+        multi = true;
+    }
+    const a = findCommonCourses(courseNames, groupA);
+    if(a.length >= 1){
+        groupa = true;
+        courseNames = courseNames.filter(key => key != a[0]); 
+    }
+    const b = findCommonCourses(courseNames, groupB);
+    if(b.length >= 1){
+        groupb = true;
+        courseNames = courseNames.filter(key => key != b[0]); 
+    }
+    const c = findCommonCourses(courseNames, groupC);
+    if(c.length >= 1){
+        groupc = true;
+        courseNames = courseNames.filter(key => key != c[0]); 
+    }
+    const d = findCommonCourses(courseNames, groupD);
+    if(d.length >= 1){
+        groupd = true;
+        courseNames = courseNames.filter(key => key != d[0]); 
+    }
+    const extraBreadth = findCommonCourses(courseNames, groupA.concat(groupB).concat(groupC).concat(engineerBreadth).concat(engineerProfess));
+    if(extraBreadth.length >= 3){
+        extra9 = true;
+    }
+
+    const univ:univReqs =  {
+        "ENGL 110": e110,  
+        "FYS": fys,       
+        "DLE": dles,       
+        "Multi": multi,     
+        "groupA": groupa,    
+        "groupB": groupb,    
+        "groupC": groupc,    
+        "groupD": groupd,    
+        "capstone": caps,
+    };
+
+    return {
+        "univ": univ,
+        "9 extra": extra9,
+        "108": c108,
+        "181": c181,
+        "210": c210,
+        "220": c220,
+        "260": c260,
+        "275": c275,
+        "303": c303,
+        "320": c320,
+        "361": c361,
+        "372": c372,
+        "6Extra301": sixat300, 
+        "12Extra": extra12,
+        "Prob/Stat": stats, 
+        "MATH 210": m210,
+        "MATH 241": m241,
+        "MATH 242": m242,
+        "caps": majCaps,
+        "science": science,
+    
+        "math300": m300, //usually CISC 304 OR MATH 349, or another 300 math course approved
+        "writing": writing, //ENGL 312 OR ENGL 410
+        "355": c355, //ETHICS
+        // ENGL 312, ENGL 410 AND CISC 355 count for Engineer Breadth
+        
+        "124": total124          //124 Credits needed to graduate
+    };
 }

@@ -1,3 +1,5 @@
+import { Semester } from "../interfaces/semester";
+
 export const multiCult = ["AFRA 110", "AFRA 193", "AFRA 205", "AFRA 206", "AFRA 220", "AFRA 221", "AFRA 222", "AFRA 223", "AFRA 225", 
     "AFRA 250", "AFRA 251", "AFRA 304", "AFRA 305", "AFRA 306", "AFRA 314", "AFRA 315", "AFRA 318", "AFRA 320", "AFRA 321", "AFRA 325", 
     "AFRA 329", "AFRA 334", "AFRA 362", "AFRA 370", "AFRA 371", "AFRA 372", "AFRA 373", "AFRA 381", "AFRA 398", "AFRA 434", "AFRA 440", 
@@ -247,3 +249,23 @@ export const engineerProfess = ["ACCT 352", "AFSC 310", "AFSC 311", "BUAD 100", 
     "UAPP 406", "UAPP 411", "UAPP 421"];
 
 export const noTech = ["CISC 355", "CISC 356", "CISC 357", "CISC 366", "CISC 465", "CISC 466"];
+
+export function accumulateCourses(semesters: Semester[]):Map<string, boolean>{
+    let cours = new Map<string, boolean>();
+    for (let i = 0; i < semesters.length; i++){
+        for (let j = 0; j < semesters[i].courses.length; j++){
+            cours = cours.set(semesters[i].courses[j].info.code, false);
+        }
+    }
+    return cours;
+}
+
+export function findCommonCourses(subCourse: string[], potentialCourses: string[]): string[]{
+    let courses: string[] = [];
+    for (let i = 0; i < subCourse.length; i++){
+        if(potentialCourses.includes(subCourse[i])){
+            courses = [...courses, subCourse[i]];
+        }
+    }
+    return courses;
+}
