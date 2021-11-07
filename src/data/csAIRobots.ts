@@ -222,7 +222,7 @@ export function updateCSAIRobots(semesters: Semester[]): CSAIRobots {
         courseNames = courseNames.filter(key => key != "MATH 350");
     }
 
-    const sys = findCommonCourses(courseNames, ["CISC361", "CISC 372"]);
+    const sys = findCommonCourses(courseNames, ["CISC 361", "CISC 372"]);
     if(sys.length > 0){
         systems = true;
         courseNames = courseNames.filter(key => key != sys[0]);
