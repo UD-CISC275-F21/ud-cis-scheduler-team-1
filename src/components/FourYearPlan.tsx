@@ -7,6 +7,7 @@ import {SemesterTable} from "./SemesterTable";
 import {CSVLink} from "react-csv";
 import "../App.css";
 import {AddSemesterModal} from "./AddSemesterModal";
+import { Concentration } from "./Concentrations";
 
 /* Getting a table to render based on a list is from https://stackoverflow.com/questions/54659039/remove-table-row-using-hooks */
 /* Removing from a list is from https://www.robinwieruch.de/react-remove-item-from-list */
@@ -23,8 +24,7 @@ const defaultSemesters: Semester[] = [
 ];
 export function FourYearPlan(): JSX.Element {
     const [semesters, setSemesters] = useState<Semester[]>(defaultSemesters);
-    // Show the modal when adding new semester
-    const [show, setShow] = useState(false);
+    const [show, setShow] = useState(false);// Show the modal when adding new semester
 
     //Download JSON file trial
     const downloadJSON = async () => {
@@ -80,7 +80,7 @@ export function FourYearPlan(): JSX.Element {
     });
     return (
         <div id="plan">
-            <h2 className="subtitle">Four Year Plan</h2>
+            <Concentration></Concentration>
             <Row xs={1} md={2} className="g-4">
                 {semesters.map(sem => 
                     <SemesterTable
