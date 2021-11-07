@@ -46,7 +46,7 @@ export interface CSCyber {
     "124": boolean          //124 Credits needed to graduate
 }
 
-export function updateCSAIRobots(semesters: Semester[]): CSCyber {
+export function updateCSCyber(semesters: Semester[]): CSCyber {
     let totalCreds = 0;
     for (let i = 0; i < semesters.length; i++){
         for (let j = 0; j < semesters[i].courses.length; j++){
