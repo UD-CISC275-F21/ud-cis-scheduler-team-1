@@ -41,7 +41,7 @@ export interface CSBS {
     "124": boolean          //124 Credits needed to graduate
 }
 
-export function updateCSBA(semesters: Semester[]): CSBS {
+export function updateCSBS(semesters: Semester[]): CSBS {
     let totalCreds = 0;
     for (let i = 0; i < semesters.length; i++){
         for (let j = 0; j < semesters[i].courses.length; j++){
@@ -307,3 +307,4 @@ export function updateCSBA(semesters: Semester[]): CSBS {
         "124": total124          //124 Credits needed to graduate
     };
 }
+
