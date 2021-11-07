@@ -203,3 +203,15 @@ export const secondWrite = ["AFRA 250", "AFRA 304", "AFRA 305", "AFRA 306", "AFR
     "PSYC 445", "PSYC 492", "SOCI 305", "SOCI 407", "SOCI 415", "SOCI 418", "SOCI 425", "SOCI 428", "SOCI 433", "SOCI 444", "SOCI 449", 
     "SOCI 450", "SOCI 470", "THEA 340", "ENEP 425", "UAPP 230", "UAPP 401", "UNIV 402", "UNIV 490", "UNIV 491", "UNIV 495", "WOMS 308", 
     "WOMS 313"];
+
+export interface univReqs{
+    "ENGL 110": boolean,  //E 110 req 3 cr
+    "FYS": boolean,       //First year experience 0-4 cr
+    "DLE": boolean,       //Discovery Learning Experience 3 cr
+    "Multi": boolean,     //Multicultural 3 cr  ***Can count also towards groups A-D***
+    "groupA": boolean,    //Creative Arts and Humanities 3 cr
+    "groupB": boolean,    //History and Cultural change 3 cr
+    "groupC": boolean,    // Social and Behavioral Sciences 3cr
+    "groupD": boolean,    // Math, Natural Science, Tech 3 cr
+    "capstone": boolean,  //Capstone
+}
