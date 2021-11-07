@@ -5,7 +5,6 @@ import {CourseDisplay} from "../interfaces/course";
 import {CourseModal} from "./CourseModal";
 import "../App.css";
 import { useDrop } from "react-dnd";
-import { updateCSBA } from "../data/csBA";
 
 /* Getting a table to render based on a list is from https://stackoverflow.com/questions/54659039/remove-table-row-using-hooks */
 /* Removing from a list is from https://www.robinwieruch.de/react-remove-item-from-list */
