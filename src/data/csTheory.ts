@@ -1,6 +1,9 @@
 import { univReqs, noTech } from "./univReqs";
 
-export interface CSHighPerf {
+const restrict = ["CISC 372", "CISC 404", "CISC 410", "CISC 414", "CISC 471", "CISC 481", "ELEG 387", "ELEG 487", "MATH 243", "MATH 245", 
+    "MATH 302", "MATH 315", "MATH 350", "MATH 428", "MATH 450", "MATH 451"];
+
+export interface CSTheory {
     "univ": univReqs,
     "9 extra": boolean, //can be from Group A, B, C or engineer breadth (No math/science/tech)
     //6 must be at 300 level, or foreign lang at 107 or higher
@@ -28,33 +31,33 @@ export interface CSHighPerf {
     "355": boolean, //ETHICS
     // ENGL 312, ENGL 410 AND CISC 355 count for Engineer Breadth
     
-    "360": boolean,
-    "361": boolean,
-    "372": boolean,
-    "450": boolean,
-    "471": boolean,
+    "304": boolean,
+    "401": boolean,
     "MATH 242": boolean,
-    "MATH 243": boolean,
-    "apMathTrack": apMath,
-    "dataTrack": data, 
-    "track": boolean, //true if one of apMathTrack or Data Track is complete
+    "MATH 349": boolean,
+    "Prob/Stat": boolean, //MATH 205 or MATH 350
 
+    "discreteTrack": discrete,
+    "contTrack": continuous, 
+    "track": boolean, //true if one of discrete or continuous is complete
+    "6Restrict": boolean, //6 from list called restrict
+    "cisc3-4Elect": boolean, //3-4 credits of CISC AT 300 level or higher
+    
     "124": boolean          //124 Credits needed to graduate
 }
 
-interface apMath{
+interface discrete{
     "complete": boolean, //true if all sub categories in this are true
-    "MATH 351": boolean,
-    "MATH 428": boolean,
-    "Prob/Stat": boolean, //MATH 205 or MATH 350
-    "elec": boolean // 5 credits from CISC 300 level +, MATH 205, MATH 350
+    "404": boolean,
+    "MATH 245": boolean,
+    "MATH 315": boolean,
+    "MATH 451": boolean, //MATH 205 OR MATH 350
 }
 
-interface data{
+interface continuous{
     "complete": boolean, //true if all sub categories in this are true
-    "437": boolean,
-    "MATH 350": boolean,
-    "MATH 450": boolean,
-    "ml": boolean, //CISC 483 OR CISC 484
-    "elec": boolean // 5 credits from CISC 300 level +, MATH 302, MATH 349, MATH 351, MATH 535
+    "MATH 243": boolean,
+    "MATH 302": boolean,
+    "MATH 535": boolean,
+    "MATH 426": boolean
 }
