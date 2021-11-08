@@ -16,12 +16,12 @@ export function Concentration(): JSX.Element {
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
                         <Dropdown.Item onClick={() => {
-                            setMajor("Minor"); setConc("Traditional Program");
+                            setMajor("Minor"); setConc("Traditional Program"); setBSBA("BS");
                         }}>Minor</Dropdown.Item>
                         <Dropdown.Item onClick={() => setMajor("Major")}>Major</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
-                <Dropdown>
+                {major === "Major" && <Dropdown>
                     <Dropdown.Toggle variant="outline-dark" id="dropdown-basic">
                         {bsba}
                     </Dropdown.Toggle>
@@ -31,10 +31,10 @@ export function Concentration(): JSX.Element {
                             setBSBA("BA"); setConc("Traditional Program");
                         }}>BA</Dropdown.Item>
                     </Dropdown.Menu>
-                </Dropdown>
+                </Dropdown>}
             </div>
             {major === "Major" && bsba === "BS" && <div id="concentration-dropdown">
-                <strong>Concentration :</strong>
+                <strong>Concentration : </strong>
                 <Dropdown>
                     <Dropdown.Toggle variant="outline-dark" id="dropdown-basic">
                         {conc}
