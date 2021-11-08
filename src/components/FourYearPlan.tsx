@@ -2,12 +2,10 @@ import React, {useState} from "react";
 import {Button, Row, ButtonGroup} from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../App.css";
-import {season, Semester} from "../interfaces/semester";
+import { Semester} from "../interfaces/semester";
 import {SemesterTable} from "./SemesterTable";
 import {CSVLink} from "react-csv";
-import "../App.css";
 import {AddSemesterModal} from "./AddSemesterModal";
-import { Concentration } from "./Concentrations";
 
 /* Getting a table to render based on a list is from https://stackoverflow.com/questions/54659039/remove-table-row-using-hooks */
 /* Removing from a list is from https://www.robinwieruch.de/react-remove-item-from-list */
@@ -18,12 +16,11 @@ interface iCSVdata {
     creditShown: string;
     gradeShown: string;
 }
-const defaultSemesters: Semester[] = [
-    {season: season.fall, year: 2021, courses: []},
-    {season: season.spring, year: 2022, courses: []},
-];
-export function FourYearPlan(): JSX.Element {
-    const [semesters, setSemesters] = useState<Semester[]>(defaultSemesters);
+interface fyl{
+    semesters : Semester[];
+    setSemesters : (s : Semester[])=>void;
+}
+export function FourYearPlan({semesters,setSemesters}:fyl): JSX.Element {
     const [show, setShow] = useState(false);// Show the modal when adding new semester
 
     //Download JSON file trial
@@ -80,7 +77,6 @@ export function FourYearPlan(): JSX.Element {
     });
     return (
         <div id="plan">
-            <Concentration></Concentration>
             <Row xs={1} md={2} className="g-4">
                 {semesters.map(sem => 
                     <SemesterTable
