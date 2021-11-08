@@ -14,15 +14,15 @@ import { Semester } from "../interfaces/semester";
 
 interface iReq {
     semesters: Semester[];
-    setSemesters: (s: Semester[]) => void;
     bsba: string;
     major: string;
     conc: string;
 }
-function isNum(val: string) {
-    return !isNaN(+val);
-}
-export function Requirements({ semesters, setSemesters, bsba, major, conc }: iReq): JSX.Element {
+//Planning to use this to check for ### => return CISC ###
+//function isNum(val: string) {
+//   return !isNaN(+val);
+//}
+export function Requirements({ semesters, bsba, major, conc }: iReq): JSX.Element {
     const [remainCourses,setRemainCourses] = useState<string[]>([]);
     //const remainCourses : string[] = [];
     function getConc() {
@@ -93,7 +93,7 @@ export function Requirements({ semesters, setSemesters, bsba, major, conc }: iRe
             if (reqObj1[i][1]===false){
                 tmp.push(reqObj1[i][0]);
                 setRemainCourses(tmp);
-            } else if (typeof(reqObj1[i][1]) !== "boolean"){
+            } else if (typeof reqObj1[i][1] !== "boolean"){
                 const reqObj2 = Object.entries(reqObj1[i][1]);
                 for (let j = 0; j < reqObj2.length ; j++){
                     if (reqObj2[j][1]===false){

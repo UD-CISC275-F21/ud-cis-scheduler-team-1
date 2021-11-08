@@ -30,7 +30,7 @@ function App(): JSX.Element {
                         <Row>
                             <FourYearPlan semesters={semesters} setSemesters={setSemesters}></FourYearPlan></Row>
                     </Col>
-                    <Col><Requirements semesters={semesters} setSemesters={setSemesters} bsba={bsba} major={major} conc={conc} ></Requirements></Col>
+                    <Col><Requirements semesters={semesters} bsba={bsba} major={major} conc={conc} ></Requirements></Col>
                 </Row>
             </Container>
         </DndProvider>
