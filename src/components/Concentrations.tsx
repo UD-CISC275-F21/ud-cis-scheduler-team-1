@@ -1,11 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import { Container, Dropdown } from "react-bootstrap";
 import "../App.css";
 
-export function Concentration(): JSX.Element {
-    const [bsba, setBSBA] = useState<string>("BS");
-    const [major, setMajor] = useState<string>("Major");
-    const [conc, setConc] = useState<string>("Traditional Program");
+interface iConc{
+    bsba : string;
+    setBSBA : (sb : string) =>void
+    major: string;
+    setMajor: (sm: string) => void
+    conc: string;
+    setConc: (sc: string) => void
+}
+export function Concentration({bsba,setBSBA,major,setMajor,conc,setConc}:iConc): JSX.Element {
     return (
         <Container id="concentration-container">
             <div id="major-minor-row">
@@ -41,13 +46,13 @@ export function Concentration(): JSX.Element {
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
                         <Dropdown.Item onClick={() => setConc("Traditional Program")}>Traditional Program</Dropdown.Item>
-                        <Dropdown.Item onClick={() => setConc("Artificial Intelligence and Robotics Concentration")}>Artificial Intelligence and Robotics Concentration</Dropdown.Item>
-                        <Dropdown.Item onClick={() => setConc("Bioinformatics Concentration")}>Bioinformatics Concentration</Dropdown.Item>
-                        <Dropdown.Item onClick={() => setConc("Cybersecurity Concentration")}>Cybersecurity Concentration</Dropdown.Item>
-                        <Dropdown.Item onClick={() => setConc("Data Science Concentration")}>Data Science Concentration</Dropdown.Item>
-                        <Dropdown.Item onClick={() => setConc("High Performance Computing Concentration")}>High Performance Computing Concentration</Dropdown.Item>
-                        <Dropdown.Item onClick={() => setConc("Systems and Networks Concentration")}>Systems and Networks Concentration</Dropdown.Item>
-                        <Dropdown.Item onClick={() => setConc("Theory and Computation Concentration")}>Theory and Computation Concentration</Dropdown.Item>
+                        <Dropdown.Item onClick={() => setConc("Artificial Intelligence and Robotics")}>Artificial Intelligence and Robotics</Dropdown.Item>
+                        <Dropdown.Item onClick={() => setConc("Bioinformatics")}>Bioinformatics</Dropdown.Item>
+                        <Dropdown.Item onClick={() => setConc("Cybersecurity")}>Cybersecurity</Dropdown.Item>
+                        <Dropdown.Item onClick={() => setConc("Data Science")}>Data Science </Dropdown.Item>
+                        <Dropdown.Item onClick={() => setConc("High Performance Computing")}>High Performance Computing</Dropdown.Item>
+                        <Dropdown.Item onClick={() => setConc("Systems and Networks")}>Systems and Networks Concentration</Dropdown.Item>
+                        <Dropdown.Item onClick={() => setConc("Theory and Computation")}>Theory and Computation</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
             </div>}
