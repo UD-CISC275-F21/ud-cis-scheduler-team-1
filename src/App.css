@@ -10,7 +10,7 @@ td {
 
 #title{
   margin-top: 1cm;
-  margin-bottom: 1.5cm;
+  margin-bottom: 1cm;
 }
 
 #buttonGroup{
@@ -47,4 +47,18 @@ td {
 #alert{
   color:red;
   font-style: italic;
+}
+
+#major-minor-row{
+  display: flex;
+  justify-content: center;
+  font-size: 2em;
+  margin-bottom: 0.5em;
+}
+
+#concentration-dropdown{
+  display: flex;
+  justify-content: center;
+  font-size: 1.5em;
+  margin-bottom: 1em;
 }

@@ -30,7 +30,7 @@ export function AddSemesterModal({
         } else {
             newSem.push({season: inputSeason, year: inputYear, courses: []});
             newSem.sort(compareSemesters);
-            setSemesters(semesters);
+            setSemesters(newSem);
             setAlert("");
             setShow(false);
         }
