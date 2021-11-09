@@ -18,8 +18,8 @@ export function ReqCourseText({courseKeys, fulfilled}: reqCourseText): JSX.Eleme
     }
 
     if (fulfilled) {
-        return <div>{courseKeys.map(key => <p key={key}><del>{getTitle(key)}</del></p>)}</div>;
+        return <div>{courseKeys.map(key => <li key={key}><del>{getTitle(key)}</del></li>)}</div>;
     } else {
-        return <div>{courseKeys.map(key => <p key={key}>{getTitle(key)}</p>)}</div>;
+        return <div>{courseKeys.map(key => <li key={key}>{getTitle(key)}</li>)}</div>;
     }
 }
