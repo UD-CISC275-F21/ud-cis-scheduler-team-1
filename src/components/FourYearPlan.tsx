@@ -6,6 +6,7 @@ import { Semester} from "../interfaces/semester";
 import {SemesterTable} from "./SemesterTable";
 import {CSVLink} from "react-csv";
 import {AddSemesterModal} from "./AddSemesterModal";
+import { CourseDisplay } from "../interfaces/course";
 
 /* Getting a table to render based on a list is from https://stackoverflow.com/questions/54659039/remove-table-row-using-hooks */
 /* Removing from a list is from https://www.robinwieruch.de/react-remove-item-from-list */
@@ -19,8 +20,10 @@ interface iCSVdata {
 interface fyl{
     semesters : Semester[];
     setSemesters : (s : Semester[])=>void;
+    coursesPool: CourseDisplay[],
+    setCoursesPool: (cs: CourseDisplay[]) => void;
 }
-export function FourYearPlan({semesters,setSemesters}:fyl): JSX.Element {
+export function FourYearPlan({semesters,setSemesters, coursesPool, setCoursesPool}:fyl): JSX.Element {
     const [show, setShow] = useState(false);// Show the modal when adding new semester
 
     //Download JSON file trial
@@ -83,7 +86,9 @@ export function FourYearPlan({semesters,setSemesters}:fyl): JSX.Element {
                         key={sem.season + sem.year}
                         sem={sem}
                         setSemesters={setSemesters}
-                        semesters={semesters}></SemesterTable>
+                        semesters={semesters}
+                        coursesPool = {coursesPool}
+                        setCoursesPool = {setCoursesPool}></SemesterTable>
                 )}
             </Row>
             <Row>
