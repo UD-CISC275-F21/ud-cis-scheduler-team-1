@@ -104,7 +104,7 @@ export function AddSemesterModal({
                         <Dropdown.Toggle size="sm" variant="outline-dark" id="dropdown-basic">
                             {inputYear}
                         </Dropdown.Toggle>
-                        <Dropdown.Menu>
+                        <Dropdown.Menu id="scrolling">
                             {years.map(year => 
                                 <Dropdown.Item key={year}
                                     onClick={() => {
