@@ -14,9 +14,11 @@ interface semesterTable {
     sem : Semester;
     setSemesters: (s: Semester[]) => void;
     semesters: Semester[];
+    coursesPool: CourseDisplay[],
+    setCoursesPool: (cs: CourseDisplay[]) => void;
 }
 
-export function SemesterTable({sem, setSemesters, semesters}: semesterTable): JSX.Element {
+export function SemesterTable({sem, setSemesters, semesters, coursesPool, setCoursesPool}: semesterTable): JSX.Element {
     const [semester, setSemester] = useState<Semester>(sem);
     const [show, setShow] = useState<boolean>(false); //To show Modal when Course is clicked
     const [mod, setMod] = useState<CourseDisplay>(semester.courses[0]); // staging the changed info before save
@@ -43,14 +45,28 @@ export function SemesterTable({sem, setSemesters, semesters}: semesterTable): JS
         setSemesters(tmp);
     }
 
+    function semesterHasCourse(courses:CourseDisplay[], item: CourseDisplay): boolean{
+        for(let i = 0; i < courses.length; i++){
+            if(courses[i].info.code === item.info.code){
+                return true;
+            }
+        }
+        return false;
+    }
+
     const [{ isOver }, dropRef] = useDrop({
         accept: "course",
         drop: (item:CourseDisplay) => {
-            if(!semester.courses.includes(item)){
+            if(!semesterHasCourse(semester.courses, item)){
                 const newSem : Semester = semester;
                 newSem.courses = [...semester.courses, item];
                 setSemester(newSem);
                 updateSemesters();
+                const newCP = coursesPool.filter(course => course.info.code !== item.info.code);
+                coursesPool = newCP;
+                setCoursesPool(newCP);
+                console.log(coursesPool);
+                alert("This course has the following prerequisites: " + item.info.preReq);
             }else{
                 alert("Course is Already in Semester");
             }
