@@ -1,15 +1,25 @@
 import React from "react";
-
+import Titles from "../data/keyToTitle.json";
 interface reqCourseText {
-    courseKey : string;
+    courseKeys : string[];
     fulfilled : boolean;
 }
 
-export function ReqCourseText({courseKey, fulfilled}: reqCourseText): JSX.Element {
+const TITLES: Record<string,Record<string,string>> = Titles;
+console.log(Object.keys(TITLES));
+
+export function ReqCourseText({courseKeys, fulfilled}: reqCourseText): JSX.Element {
+    
+    function getTitle(key: string) {
+        if (Object.keys(TITLES).includes(key)) {
+            return TITLES[key]["title"];
+        }
+        return key;
+    }
 
     if (fulfilled) {
-        return <p>{courseKey}</p>;
+        return <div>{courseKeys.map(key => <p key={key}><del>{getTitle(key)}</del></p>)}</div>;
     } else {
-        return <p><del>{courseKey}</del></p>;
+        return <div>{courseKeys.map(key => <p key={key}>{getTitle(key)}</p>)}</div>;
     }
 }

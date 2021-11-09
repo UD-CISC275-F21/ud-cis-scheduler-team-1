@@ -1,0 +1,29 @@
+{
+    "ENGL 110": {
+      "title": "ENGL 110"
+    },
+    "FYS": {
+      "title": "First Year Seminar"
+    },
+    "DLE": {
+      "title": "Discovery Learning Experience"
+    },
+    "Multi": {
+      "title": "Multicultural Breadth"
+    },
+    "groupA": {
+      "title": "Group A Breadth (3 cr.)"
+    },
+    "groupB": {
+      "title": "Group B Breadth (3 cr.)"
+    },
+    "groupC": {
+      "title": "Group C Breadth (3 cr.)"
+    },
+    "capstone": {
+      "title": "Capstone Course"
+    },
+    "groupD": {
+      "title": "Group D Breadth (3 cr.)"
+    }
+  }
