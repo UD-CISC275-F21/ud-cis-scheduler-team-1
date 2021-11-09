@@ -101,7 +101,6 @@ export function Requirements({ semesters, bsba, major, conc }: iReq): JSX.Elemen
                         setRemainCourses(tmp);
                     }
                 }
-                console.log(remainCourses);
             }
         }
     }, [semesters,bsba,major,conc] );
