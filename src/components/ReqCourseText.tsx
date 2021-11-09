@@ -1,6 +1,7 @@
 import React from "react";
 import Titles from "../data/keyToTitle.json";
-interface reqCourseText {
+import "../App.css"
+;interface reqCourseText {
     courseKeys : string[];
     fulfilled : boolean;
 }
