@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Button, Col, Form } from "react-bootstrap";
-import "../App.css";
 import { Course, CourseDisplay } from "../interfaces/course";
 import { findCourse, getAllCourses } from "../utilities/findCourse";
 import {DraggableCourse} from "./DraggableCourse";
