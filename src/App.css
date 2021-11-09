@@ -63,6 +63,12 @@ td {
   margin-bottom: 1em;
 }
 
+#add-sems-dropdown{
+  font-size: 1.2em;
+}
+#add-sems-col{
+  text-align: center;
+}
 #scrolling {
   height: 1000%;
   resize: both;
