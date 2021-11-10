@@ -35,7 +35,7 @@ export function CoursePool({coursesPool, setCoursesPool}: coursePl): JSX.Element
         }
     }
 
-    return<Col>
+    return<Col id="move-when-scroll" >
         <h2 className = "subtitle">Course Pool</h2>
         <Form id= "searchBar" onSubmit={(event)=>{
             addCourse(inpu);

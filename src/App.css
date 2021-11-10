@@ -50,6 +50,8 @@ li {
 }
 
 #alert{
+  margin-top: 1em;
+  text-align: center;
   color:red;
   font-style: italic;
 }
@@ -80,3 +82,8 @@ li {
   overflow-y: scroll;
 }
 
+#move-when-scroll{
+    width: auto;
+    top : 0;
+    position: sticky;
+}
