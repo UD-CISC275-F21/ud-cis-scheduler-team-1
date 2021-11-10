@@ -25,7 +25,6 @@ function App(): JSX.Element {
         <DndProvider backend={HTML5Backend}>
             <Container fluid className="App">
                 <h1 id="title">UD CIS Scheduler</h1>
-                <h3>Click on a course to edit its information!</h3>
                 <Row>
                     <Col><CoursePool coursesPool = {coursesPool} setCoursesPool={setCoursesPool}></CoursePool></Col>
                     <Col md={8}>
