@@ -117,7 +117,6 @@ export function Requirements({ semesters, bsba, major, conc }: iReq): JSX.Elemen
     }, [semesters,bsba,major,conc] );
     return <Col>
         <h2 className="subtitle">Degree Requirements</h2>
-        <p>Below are the list of degree requirements that remain unsatisfied!</p>
         <ul>
             <ReqCourseText courseKeys={remainingCourses} fulfilled={false}></ReqCourseText>
             <ReqCourseText courseKeys={fulfilledCourses} fulfilled={true}></ReqCourseText>
