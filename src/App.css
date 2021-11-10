@@ -1,16 +1,22 @@
+@import url("https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed&display=swap");
+
 .App {
   text-align: center;
   margin-bottom: 1cm;
+  font-family: 'Azeret Mono', monospace;
 }
 
 td {
   word-break: break-word;
   vertical-align: middle;
+  font-family: 'Fira Sans Condensed', sans-serif;
 }
 
 li {
   text-align: left;
-  font-size: 0.95em;
+  font-family: 'Fira Sans Condensed', sans-serif;
+  font-size: 1.15em;
 }
 
 #title{

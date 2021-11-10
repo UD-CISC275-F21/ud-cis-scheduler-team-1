@@ -108,10 +108,6 @@ export function FourYearPlan({semesters,setSemesters, coursesPool, setCoursesPoo
                         }}>
                         Reset Plan
                     </Button>
-                </ButtonGroup>
-            </Row>
-            <Row>
-                <ButtonGroup id="buttonGroup">
                     <Button id="big-scope-button" variant="info">
                         <CSVLink
                             id="csvlink"
