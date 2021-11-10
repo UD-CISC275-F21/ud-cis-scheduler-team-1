@@ -1,7 +1,7 @@
-import React, {useState} from "react";
-import {Button, Row, Modal, Dropdown} from "react-bootstrap";
+import React, { useState } from "react";
+import { Button, Row, Modal, Dropdown, Col } from "react-bootstrap";
 import "react-edit-text/dist/index.css";
-import {season, Semester} from "../interfaces/semester";
+import { season, Semester } from "../interfaces/semester";
 import "../App.css";
 
 interface addSemModal {
@@ -18,7 +18,7 @@ export function AddSemesterModal({
 }: addSemModal): JSX.Element {
     const [inputSeason, setInputSeason] = useState<season>(season.fall);
     const [inputYear, setInputYear] = useState<number>(2021);
-    const [alert,setAlert] = useState<string>("");
+    const [alert, setAlert] = useState<string>("");
     const years = Array.from(Array(30).keys()).map(x => x + 2012);
 
 
@@ -28,7 +28,7 @@ export function AddSemesterModal({
         if (semesters.filter(s => s.season === inputSeason && s.year === inputYear).length > 0) {
             setAlert("Semester already in your plan!");
         } else {
-            newSem.push({season: inputSeason, year: inputYear, courses: []});
+            newSem.push({ season: inputSeason, year: inputYear, courses: [] });
             newSem.sort(compareSemesters);
             setSemesters(newSem);
             setAlert("");
@@ -53,68 +53,71 @@ export function AddSemesterModal({
     }
     return (
         <Modal
-            size="sm"
             show={show}
             onHide={() => {
                 setShow(false);
             }}>
             <Modal.Header closeButton>
-                <Modal.Title>Adding New Semester</Modal.Title>
+                <Modal.Title><strong>Adding New Semester</strong></Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <Row>
-                    <Dropdown>
-                        <strong>Season : </strong>
-                        <Dropdown.Toggle size="sm" variant="outline-dark" id="dropdown-basic">
-                            {inputSeason}
-                        </Dropdown.Toggle>
-                        <Dropdown.Menu>
-                            <Dropdown.Item
-                                onClick={() => {
-                                    setInputSeason(season.fall);
-                                    setAlert("");
-                                }}>
-                                Fall
-                            </Dropdown.Item>
-                            <Dropdown.Item
-                                onClick={() => {
-                                    setInputSeason(season.winter);
-                                    setAlert("");
-                                }}>
-                                Winter
-                            </Dropdown.Item>
-                            <Dropdown.Item
-                                onClick={() => {
-                                    setInputSeason(season.spring);
-                                    setAlert("");
-                                }}>
-                                Spring
-                            </Dropdown.Item>
-                            <Dropdown.Item
-                                onClick={() => {
-                                    setInputSeason(season.summer);
-                                    setAlert("");
-                                }}>
-                                Summer
-                            </Dropdown.Item>
-                        </Dropdown.Menu>
-                    </Dropdown>
-                    <Dropdown>
-                        <strong>Year : </strong>
-                        <Dropdown.Toggle size="sm" variant="outline-dark" id="dropdown-basic">
-                            {inputYear}
-                        </Dropdown.Toggle>
-                        <Dropdown.Menu>
-                            {years.map(year => 
-                                <Dropdown.Item key={year}
+                <Row id="add-sems-dropdown">
+                    <Col id="add-sems-col">
+                        <Dropdown>
+                            <strong>Season : </strong>
+                            <Dropdown.Toggle size="sm" variant="outline-dark" id="dropdown-basic">
+                                {inputSeason}
+                            </Dropdown.Toggle>
+                            <Dropdown.Menu>
+                                <Dropdown.Item
                                     onClick={() => {
-                                        setInputYear(year);
+                                        setInputSeason(season.fall);
+                                        setAlert("");
                                     }}>
-                                    {year}
+                                    Fall
                                 </Dropdown.Item>
-                            )}
-                        </Dropdown.Menu>
-                    </Dropdown>
+                                <Dropdown.Item
+                                    onClick={() => {
+                                        setInputSeason(season.winter);
+                                        setAlert("");
+                                    }}>
+                                    Winter
+                                </Dropdown.Item>
+                                <Dropdown.Item
+                                    onClick={() => {
+                                        setInputSeason(season.spring);
+                                        setAlert("");
+                                    }}>
+                                    Spring
+                                </Dropdown.Item>
+                                <Dropdown.Item
+                                    onClick={() => {
+                                        setInputSeason(season.summer);
+                                        setAlert("");
+                                    }}>
+                                    Summer
+                                </Dropdown.Item>
+                            </Dropdown.Menu>
+                        </Dropdown>
+                    </Col>
+                    <Col>
+                        <Dropdown>
+                            <strong>Year : </strong>
+                            <Dropdown.Toggle size="sm" variant="outline-dark" id="dropdown-basic">
+                                {inputYear}
+                            </Dropdown.Toggle>
+                            <Dropdown.Menu id="scrolling">
+                                {years.map(year =>
+                                    <Dropdown.Item key={year}
+                                        onClick={() => {
+                                            setInputYear(year);
+                                        }}>
+                                        {year}
+                                    </Dropdown.Item>
+                                )}
+                            </Dropdown.Menu>
+                        </Dropdown>
+                    </Col>
                 </Row>
                 <p id="alert">{alert}</p>
             </Modal.Body>
