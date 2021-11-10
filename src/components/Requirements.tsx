@@ -96,13 +96,23 @@ export function Requirements({ semesters, bsba, major, conc }: iReq): JSX.Elemen
         // requirements into a fulfilled list and a remaining list
         for (const [key, value] of requirements) {
             if (key === "univ") {
-                for (const [univKey, univValue] of Object.entries(value)) {
-                    if (univValue) {
-                        newFulCourses.push(univKey);
+                for (const [univKey, univValue] of Object.entries(value)) { 
+                    univValue && newFulCourses.push(univKey);
+                    !univValue && newRemCourses.push(univKey);
+                }
+            } else if (["apMathTrack", "dataTrack", "discreteTrack", "contTrack"].includes(key)) {
+                let trackComplete = false;
+                let trackCount = 0;
+                for (const [univKey, univValue] of Object.entries(value)) { 
+                    if (univKey === "complete") {
+                        trackComplete = trackComplete || univValue as boolean;
+                        trackCount++;
                     } else {
-                        newRemCourses.push(univKey);
+                        univValue ? newFulCourses.push(univKey) : newRemCourses.push(univKey);
                     }
                 }
+                trackCount == 2 && trackComplete && newFulCourses.push("complete");
+                trackCount == 2 && !trackComplete && newRemCourses.push("complete");
             } else {
                 if (value) {
                     newFulCourses.push(key);
