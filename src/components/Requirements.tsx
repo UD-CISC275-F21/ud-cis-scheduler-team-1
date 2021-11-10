@@ -108,7 +108,8 @@ export function Requirements({ semesters, bsba, major, conc }: iReq): JSX.Elemen
                         trackComplete = trackComplete || univValue as boolean;
                         trackCount++;
                     } else {
-                        univValue ? newFulCourses.push(univKey) : newRemCourses.push(univKey);
+                        univValue && !newFulCourses.includes(univKey) && newFulCourses.push(univKey);
+                        !univValue && !newRemCourses.includes(univKey) && newRemCourses.push(univKey);
                     }
                 }
                 trackCount == 2 && trackComplete && newFulCourses.push("complete");
