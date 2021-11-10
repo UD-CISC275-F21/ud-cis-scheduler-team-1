@@ -25,7 +25,9 @@ export function SemesterTable({sem, setSemesters, semesters, coursesPool, setCou
     
     // Removes a course from a semester based on its name
     function removeCourse(name: string): void {
-        setSemester({ ...semester, courses: semester.courses.filter(course => course.info.name !== name) });
+        const newSem:  Semester = semester;
+        newSem.courses = [...semester.courses.filter(course => course.info.name !== name)];
+        setSemester(newSem);
         updateSemesters();
     }
 

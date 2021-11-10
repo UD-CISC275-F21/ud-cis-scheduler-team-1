@@ -11,6 +11,7 @@ import { CSSystems, updateCSSystems } from "../data/csSystems";
 import { CSTheory, updateCSTheory } from "../data/csTheory";
 import { CSMinor, CSMinorUpdate } from "../data/minor";
 import { Semester } from "../interfaces/semester";
+import { ReqCourseText } from "./ReqCourseText";
 
 interface iReq {
     semesters: Semester[];
@@ -22,8 +23,10 @@ interface iReq {
 //function isNum(val: string) {
 //   return !isNaN(+val);
 //}
+
 export function Requirements({ semesters, bsba, major, conc }: iReq): JSX.Element {
-    const [remainCourses,setRemainCourses] = useState<string[]>([]);
+    const [remainingCourses,setRemainingCourses] = useState<string[]>([]);
+    const [fulfilledCourses, setFulfilledCourses] = useState<string[]>([]);
     //const remainCourses : string[] = [];
     function getConc() {
         if (major === "Minor") {
@@ -84,32 +87,50 @@ export function Requirements({ semesters, bsba, major, conc }: iReq): JSX.Elemen
             }
         }
     }
-    //Somewhat functioning
     useEffect(() => {
-        setRemainCourses([]);
-        const reqObj1 = Object.entries(getConc());
-        const tmp : string[] = [];
-        for (let i = 0 ; i < reqObj1.length ; i++){
-            if (reqObj1[i][1]===false){
-                tmp.push(reqObj1[i][0]);
-                setRemainCourses(tmp);
-            } else if (typeof reqObj1[i][1] !== "boolean"){
-                const reqObj2 = Object.entries(reqObj1[i][1]);
-                for (let j = 0; j < reqObj2.length ; j++){
-                    if (reqObj2[j][1]===false){
-                        tmp.push(reqObj2[j][0]);
-                        setRemainCourses(tmp);
+        const newRemCourses : string[] = [];
+        const newFulCourses : string[] = [];
+        const requirements = Object.entries(getConc());
+
+        // Loops through all elements in the updated degree plan to split all
+        // requirements into a fulfilled list and a remaining list
+        for (const [key, value] of requirements) {
+            if (key === "univ") {
+                for (const [univKey, univValue] of Object.entries(value)) { 
+                    univValue && newFulCourses.push(univKey);
+                    !univValue && newRemCourses.push(univKey);
+                }
+            } else if (["apMathTrack", "dataTrack", "discreteTrack", "contTrack"].includes(key)) {
+                let trackComplete = false;
+                let trackCount = 0;
+                for (const [univKey, univValue] of Object.entries(value)) { 
+                    if (univKey === "complete") {
+                        trackComplete = trackComplete || univValue as boolean;
+                        trackCount++;
+                    } else {
+                        univValue && !newFulCourses.includes(univKey) && newFulCourses.push(univKey);
+                        !univValue && !newRemCourses.includes(univKey) && newRemCourses.push(univKey);
                     }
+                }
+                trackCount == 2 && trackComplete && newFulCourses.push("complete");
+                trackCount == 2 && !trackComplete && newRemCourses.push("complete");
+            } else {
+                if (value) {
+                    newFulCourses.push(key);
+                } else {
+                    newRemCourses.push(key);
                 }
             }
         }
+        setFulfilledCourses(newFulCourses);
+        setRemainingCourses(newRemCourses);
+
     }, [semesters,bsba,major,conc] );
     return <Col>
         <h2 className="subtitle">Degree Requirements</h2>
-        <p>Below are the list of degree requirements that remain unsatisfied!</p>
-        {remainCourses.map(c =>
-            <div key={c}>{c}</div> 
-        )}
-        
+        <ul>
+            <ReqCourseText courseKeys={remainingCourses} fulfilled={false}></ReqCourseText>
+            <ReqCourseText courseKeys={fulfilledCourses} fulfilled={true}></ReqCourseText>
+        </ul>
     </Col>;
 }

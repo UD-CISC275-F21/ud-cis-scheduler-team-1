@@ -8,6 +8,11 @@ td {
   vertical-align: middle;
 }
 
+li {
+  text-align: left;
+  font-size: 0.95em;
+}
+
 #title{
   margin-top: 1cm;
   margin-bottom: 1cm;

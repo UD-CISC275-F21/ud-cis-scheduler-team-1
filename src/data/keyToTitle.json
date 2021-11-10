@@ -1,0 +1,206 @@
+{
+    "108": {
+      "title": "CISC 108"
+    },
+    "124": {
+      "title": "124+ Credits Total"
+    },
+    "181": {
+      "title": "CISC 181"
+    },
+    "210": {
+      "title": "CISC 210"
+    },
+    "220": {
+      "title": "CISC 220"
+    },
+    "260": {
+      "title": "CISC 260"
+    },
+    "275": {
+      "title": "CISC 275"
+    },
+    "303": {
+      "title": "CISC 303"
+    },
+    "304": {
+      "title": "CISC 304"
+    },
+    "320": {
+      "title": "CISC 320"
+    },
+    "355": {
+      "title": "CISC 355"
+    },
+    "360": {
+      "title": "CISC 360"
+    },
+    "361": {
+      "title": "CISC 361"
+    },
+    "372": {
+      "title": "CISC 372"
+    },
+    "401": {
+      "title": "CISC 401"
+    },
+    "404": {
+      "title": "CISC 404"
+    },
+    "436": {
+      "title": "CISC 436"
+    },
+    "437": {
+      "title": "CISC 437"
+    },
+    "442": {
+      "title": "CISC 442"
+    },
+    "450": {
+      "title": "CISC 450"
+    },
+    "464": {
+      "title": "CISC 464"
+    },
+    "471": {
+      "title": "CISC 471"
+    },
+    "481": {
+      "title": "CISC 481"
+    },
+    "483": {
+      "title": "CISC 483"
+    },
+    "484": {
+      "title": "CISC 484"
+    },
+    "12Extra": {
+      "title": "Additional CISC Electives (12 cr.)"
+    },
+    "12Restrict": {
+      "title": "Additional Restricted Electives (12 cr.)*"
+    },
+    "3Restrict": {
+      "title": "Additional Restricted Elective (3 cr.)*"
+    },
+    "6 Extra": {
+      "title": "200+ Level CISC Electives (6 cr.)*"
+    },
+    "6Extra301": {
+      "title": "300+ Level CISC Electives (6 cr.)"
+    },
+    "6Restrict": {
+      "title": "Additional Restricted Electives (6 cr.)*"
+    },
+    "9 extra": {
+      "title": "Additional A, B, C Breadths (9 cr.)"
+    },
+    "advanced": {
+      "title": "Advanced Cybersecurity Electives (6 cr.)*"
+    },
+    "advDS": {
+      "title": "CISC 483 or CISC 484"
+    },
+    "advMath": {
+      "title": "MATH 302, MATH 350, or MATH 426"
+    },
+    "advSys": {
+      "title": "Advanced Systems Courses (6 cr.)*"
+    },
+    "aExtra": {
+      "title": "Additional Group A Elective (3 cr.)"
+    },
+    "bExtra": {
+      "title": "Additional Group B Elective (3 cr.)"
+    },
+    "cExtra": {
+      "title": "Additional Group C Elective (3 cr.)"
+    },
+    "dExtra": {
+      "title": "Additional Group D Elective (3 cr.)"
+    },
+    "caps": {
+      "title": "Senior Design or Thesis (6 cr.)*"
+    },
+    "capstone": {
+      "title": "Capstone Course"
+    },
+    "cisc3-4Elect": {
+      "title": "300+ Level CISC Elective (3-4 cr.)"
+    },
+    "complete": {
+      "title": "Track Requirement Complete*"
+    },
+    "data": {
+      "title": "CISC 483 or CISC 484"
+    },
+    "DLE": {
+      "title": "Discovery Learning Experience"
+    },
+    "elec": {
+      "title": "Additional Track Electives (5 cr.)*"
+    },
+    "ENGL 110": {
+      "title": "ENGL 110"
+    },
+    "extra9": {
+      "title": "Additional A, B, C Breadths (9 cr.)"
+    },
+    "fifteenAt301": {
+      "title": "300+ Level CISC Electives (15 cr.)"
+    },
+    "FYS": {
+      "title": "First Year Seminar"
+    },
+    "groupA": {
+      "title": "Group A Breadth (3 cr.)"
+    },
+    "groupB": {
+      "title": "Group B Breadth (3 cr.)"
+    },
+    "groupC": {
+      "title": "Group C Breadth (3 cr.)"
+    },
+    "groupD": {
+      "title": "Group D Breadth (3 cr.)"
+    },
+    "key": {
+      "title": "title"
+    },
+    "lang": {
+      "title": "Foreign Language 107 Level"
+    },
+    "math300": {
+      "title": "300+ Level Approved Math Elective (3 cr.)*"
+    },
+    "ml": {
+      "title": "CISC 483 or CISC 484"
+    },
+    "Multi": {
+      "title": "Multicultural Breadth"
+    },
+    "orgo": {
+      "title": "Organic Chemestry Sequence (8 cr.)*"
+    },
+    "Prob/Stat": {
+      "title": "MATH 205 or MATH 350"
+    },
+    "science": {
+      "title": "Lab Science Sequence (8 cr.)*"
+    },
+    "secondWrite": {
+      "title": "A&S Second Writing Requirement*"
+    },
+    "security": {
+      "title": "Security Course (3 cr.)*"
+    },
+    "systems": {
+      "title": "CISC 361 or CISC 372"
+    },
+    "track": {
+      "title": "Track Requirement Complete*"
+    },
+    "writing": {
+      "title": "ENGL 312 or ENGL 410"
+    }
+  }
