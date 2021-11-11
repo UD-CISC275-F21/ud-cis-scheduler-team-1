@@ -68,7 +68,9 @@ export function SemesterTable({ sem, setSemesters, semesters, coursesPool, setCo
                 coursesPool = newCP;
                 setCoursesPool(newCP);
                 console.log(coursesPool);
-                alert("This course has the following prerequisites: " + item.info.preReq);
+                if(item.info.preReq !== ""){
+                    alert("This course has the following prerequisites: " + item.info.preReq);
+                }
             } else {
                 alert("Course is Already in Semester");
             }

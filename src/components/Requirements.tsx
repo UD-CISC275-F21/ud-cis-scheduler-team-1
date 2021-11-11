@@ -4,6 +4,7 @@ import "../App.css";
 import { CSAIRobots, updateCSAIRobots } from "../data/csAIRobots";
 import { CSBA, updateCSBA } from "../data/csBA";
 import { CSBio, updateCSBio } from "../data/csBio";
+import { CSBS, updateCSBS } from "../data/csBS";
 import { CSCyber, updateCSCyber } from "../data/csCyber";
 import { CSData, updateCSData } from "../data/csData";
 import { CSHighPerf, updateCSHighPerf } from "../data/csHighPerf";
@@ -40,7 +41,7 @@ export function Requirements({ semesters, bsba, major, conc }: iReq): JSX.Elemen
                 switch (conc) {
                 case "Traditional Program":
                 {
-                    const req: CSBA = updateCSBA(semesters);
+                    const req: CSBS = updateCSBS(semesters);
                     return req;
                 }
                 case "Artificial Intelligence and Robotics":
