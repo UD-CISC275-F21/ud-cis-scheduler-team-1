@@ -67,10 +67,6 @@ export function SemesterTable({ sem, setSemesters, semesters, coursesPool, setCo
                 const newCP = coursesPool.filter(course => course.info.code !== item.info.code);
                 coursesPool = newCP;
                 setCoursesPool(newCP);
-                console.log(coursesPool);
-                if(item.info.preReq !== ""){
-                    alert("This course has the following prerequisites: " + item.info.preReq);
-                }
             } else {
                 alert("Course is Already in Semester");
             }
@@ -120,10 +116,9 @@ export function SemesterTable({ sem, setSemesters, semesters, coursesPool, setCo
                                         onClick={() => {
                                             setShow(true);
                                             setMod(JSON.parse(JSON.stringify(course)));
-                                        }}>
-                                        {course.info.code}
-                                        <br></br>
-                                        {course.info.name}
+                                        }}><div>{course.info.code}{" - "}
+                                            {course.info.name}</div>
+                                        {course.info.preReq !=="" && <div className = "courseTableReq">{"*Check Prerequisites*"}</div>}
                                     </a>
                                 </td>
                             </OverlayTrigger>
