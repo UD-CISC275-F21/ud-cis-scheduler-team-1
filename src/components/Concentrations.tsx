@@ -13,7 +13,7 @@ interface iConc{
 export function Concentration({bsba,setBSBA,major,setMajor,conc,setConc}:iConc): JSX.Element {
     return (
         <Container>
-            <div id="major-minor-row">
+            <div id="major-minor-row" data-testid="degree-select">
                 <Dropdown>
                     <strong>Computer Science : </strong>
                     <Dropdown.Toggle variant="outline-dark" id="dropdown-basic">

@@ -19,7 +19,10 @@ describe("App", () => {
     });
 
     describe("Concentrations", () => {
-        console.log("yay");
+        it("has the degree type dropdown when the app loads", () => {
+            const element = screen.queryByTestId("degree-select");
+            expect(element).toBeInTheDocument();
+        });
     });
 
     describe("FourYearPlan", () => {
