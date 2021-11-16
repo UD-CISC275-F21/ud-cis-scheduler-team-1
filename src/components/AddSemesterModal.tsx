@@ -22,7 +22,7 @@ export function AddSemesterModal({
     const years = Array.from(Array(30).keys()).map(x => x + 2012);
 
 
-    //handle save new semester if its not in the plan yet 
+    //handle save new semester if its not in the plan yet.
     function handleSaveSem(): void {
         const newSem: Semester[] = semesters;
         if (semesters.filter(s => s.season === inputSeason && s.year === inputYear).length > 0) {
