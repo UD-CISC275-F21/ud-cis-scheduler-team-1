@@ -30,7 +30,7 @@ export function CourseModal({
     setMod,
 }: courseModal): JSX.Element {
 
-    //handle staging chnaged info
+    //handle staging change info into mod but not update the actual semester yet
     const handleSave = ({
         name,
         value,
@@ -72,7 +72,7 @@ export function CourseModal({
         console.log("New info: " + value);
     };
 
-    //handle reset courses info after modifying in modal
+    //actual semester updated after save button is clicked 
     function handleSaveChanges(): void {
         const newSem : Semester = semester;
         newSem.courses[semester.courses.findIndex(c => c.info.code == mod.info.code)] = mod;
