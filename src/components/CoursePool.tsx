@@ -16,12 +16,14 @@ interface coursePl{
 export function CoursePool({coursesPool, setCoursesPool}: coursePl): JSX.Element {
     const [inpu, setInpu] = useState<string>("");
 
+    //check if course already in course pool
     function courseExists(code:string):boolean{
         return coursesPool.some(function(el:CourseDisplay) {
             return el.info.code === code;
         });         
     }
 
+    //check course existence then add course in course pool
     function addCourse(name: string): void {
         const course:Course = findCourse(name);
         if(course.name === ""){

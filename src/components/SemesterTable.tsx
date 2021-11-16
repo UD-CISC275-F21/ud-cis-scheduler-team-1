@@ -31,10 +31,12 @@ export function SemesterTable({ sem, setSemesters, semesters, coursesPool, setCo
         updateSemesters();
     }
 
+    //remove semester when button is clicked
     function removeSemester(sem: Semester): void {
         setSemesters([...semesters.filter(semester => semester.season + semester.year !== sem.season + sem.year)]);
     }
 
+    //update semester when called
     function updateSemesters(): void {
         let tmp: Semester[] = [];
         for (let i = 0; i < semesters.length; i++) {
@@ -47,6 +49,7 @@ export function SemesterTable({ sem, setSemesters, semesters, coursesPool, setCo
         setSemesters(tmp);
     }
 
+    //check if semester already has a course
     function semesterHasCourse(courses: CourseDisplay[], item: CourseDisplay): boolean {
         for (let i = 0; i < courses.length; i++) {
             if (courses[i].info.code === item.info.code) {
@@ -76,6 +79,7 @@ export function SemesterTable({ sem, setSemesters, semesters, coursesPool, setCo
         })
     });
 
+    //update grade on change
     function updateGrades(sem: Semester, course: CourseDisplay): CourseDisplay[] {
         let tmp: CourseDisplay[] = [];
         for (let i = 0; i < sem.courses.length; i++) {
