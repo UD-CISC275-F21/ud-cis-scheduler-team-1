@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Col } from "react-bootstrap";
 import "../App.css";
 import { CSAIRobots, updateCSAIRobots } from "../data/csAIRobots";
-import { CSBS, updateCSBS } from "../data/csBS";
 import { CSBA, updateCSBA } from "../data/csBA";
 import { CSBio, updateCSBio } from "../data/csBio";
 import { CSCyber, updateCSCyber } from "../data/csCyber";
