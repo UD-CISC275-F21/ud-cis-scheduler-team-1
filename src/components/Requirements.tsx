@@ -20,15 +20,11 @@ interface iReq {
     major: string;
     conc: string;
 }
-//Planning to use this to check for ### => return CISC ###
-//function isNum(val: string) {
-//   return !isNaN(+val);
-//}
 
 export function Requirements({ semesters, bsba, major, conc }: iReq): JSX.Element {
     const [remainingCourses,setRemainingCourses] = useState<string[]>([]);
     const [fulfilledCourses, setFulfilledCourses] = useState<string[]>([]);
-    //const remainCourses : string[] = [];
+
     function getConc() {
         if (major === "Minor") {
             const req: CSMinor = CSMinorUpdate(semesters);

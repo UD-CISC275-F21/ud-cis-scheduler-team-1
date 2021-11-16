@@ -26,7 +26,7 @@ interface fyl{
 export function FourYearPlan({semesters,setSemesters, coursesPool, setCoursesPool}:fyl): JSX.Element {
     const [show, setShow] = useState(false);// Show the modal when adding new semester
 
-    //Download JSON file trial
+    //Download JSON file 
     const downloadJSON = async () => {
         const downloadData: Semester[] = semesters;
         const fileName = "My-Schedule";
@@ -41,8 +41,8 @@ export function FourYearPlan({semesters,setSemesters, coursesPool, setCoursesPoo
         document.body.removeChild(link);
     };
 
-    //Download CSV file trial
-    const CSVheaders = [
+    //Download CSV file 
+    const CSVheaders = [ 
         {label: "", key: "courseName"},
         {label: "My Schedule", key: "creditShown"},
         {label: "", key: "gradeShown"},
