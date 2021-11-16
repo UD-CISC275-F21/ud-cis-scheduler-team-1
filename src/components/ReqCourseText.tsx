@@ -7,7 +7,7 @@ import "../App.css"
 }
 
 const TITLES: Record<string,Record<string,string>> = Titles;
-console.log(Object.keys(TITLES));
+//console.log(Object.keys(TITLES));
 
 export function ReqCourseText({courseKeys, fulfilled}: reqCourseText): JSX.Element {
     
