@@ -1,42 +1,4 @@
-Skip to content
-Search or jump to…
-Pull requests
-Issues
-Marketplace
-Explore
- 
-@Whitneyto 
-UD-CISC275-F21
-/
-ud-cis-scheduler-team-1
-Public
-generated from UD-CISC275-F21/final-project-starter
-1
-2
-0
-Code
-Issues
-26
-Pull requests
-2
-Discussions
-Actions
-Projects
-1
-Wiki
-Security
-Insights
-Settings
-ud-cis-scheduler-team-1/package.json
-@meganenglert
-meganenglert deleting a course now affects requirements list
-Latest commit cdd43a9 7 days ago
- History
- 4 contributors
-@meganenglert@judorsch@Whitneyto@github-classroom
-68 lines (68 sloc)  1.81 KB
-   
-{
+ {
   "name": "final-project-starter",
   "homepage": "SET_DURING_BUILD",
   "version": "0.1.0",
