@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Col } from "react-bootstrap";
 import "../App.css";
+import { CSBS, updateCSBS } from "../data/csBS";
 import { CSAIRobots, updateCSAIRobots } from "../data/csAIRobots";
 import { CSBA, updateCSBA } from "../data/csBA";
 import { CSBio, updateCSBio } from "../data/csBio";
@@ -40,7 +41,7 @@ export function Requirements({ semesters, bsba, major, conc }: iReq): JSX.Elemen
                 switch (conc) {
                 case "Traditional Program":
                 {
-                    const req: CSBA = updateCSBA(semesters);
+                    const req: CSBS = updateCSBS(semesters);
                     return req;
                 }
                 case "Artificial Intelligence and Robotics":

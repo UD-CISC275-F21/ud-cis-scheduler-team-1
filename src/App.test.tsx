@@ -7,3 +7,27 @@ test("renders UD CIS Scheduler text", () => {
     const linkElement = screen.getByText(/UD CIS Scheduler/i);
     expect(linkElement).toBeInTheDocument();
 });
+
+describe("App", () => {
+
+    beforeEach(() => {
+        render(<App />);
+    });
+
+    describe("CoursePool", () => {
+        console.log("yay");
+    });
+
+    describe("Concentrations", () => {
+        console.log("yay");
+    });
+
+    describe("FourYearPlan", () => {
+        console.log("yay");
+    });
+
+    describe("Requirements", () => {
+        console.log("yay");
+    });
+
+});
