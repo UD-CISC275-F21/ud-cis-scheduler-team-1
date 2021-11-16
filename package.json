@@ -1,3 +1,41 @@
+Skip to content
+Search or jump to…
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@Whitneyto 
+UD-CISC275-F21
+/
+ud-cis-scheduler-team-1
+Public
+generated from UD-CISC275-F21/final-project-starter
+1
+2
+0
+Code
+Issues
+26
+Pull requests
+2
+Discussions
+Actions
+Projects
+1
+Wiki
+Security
+Insights
+Settings
+ud-cis-scheduler-team-1/package.json
+@meganenglert
+meganenglert deleting a course now affects requirements list
+Latest commit cdd43a9 7 days ago
+ History
+ 4 contributors
+@meganenglert@judorsch@Whitneyto@github-classroom
+68 lines (68 sloc)  1.81 KB
+   
 {
   "name": "final-project-starter",
   "homepage": "SET_DURING_BUILD",
@@ -8,6 +46,7 @@
     "@emotion/styled": "^11.3.0",
     "@mui/material": "^5.1.0",
     "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
     "@types/jest": "^26.0.24",
     "@types/node": "^12.20.27",
@@ -56,14 +95,12 @@
     ]
   },
   "devDependencies": {
-    "@testing-library/react": "^11.2.7",
     "@types/react-csv": "^1.1.2",
     "@types/react-edit-text": "^4.0.1",
     "@typescript-eslint/eslint-plugin": "^4.32.0",
     "@typescript-eslint/parser": "^4.32.0",
     "eslint": "^7.32.0",
     "eslint-plugin-react": "^7.26.1",
-    "gh-pages": "^3.2.3",
-    "jest": "^27.3.1"
+    "gh-pages": "^3.2.3"
   }
 }
