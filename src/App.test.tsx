@@ -57,7 +57,7 @@ describe("App", () => {
             expect(screen.queryByText("Adding New Semester")).toBeInTheDocument();
         });
     });
-/*
+    /*
     describe("Requirements", () => {
         console.log("yay");
     });*/
