@@ -101,6 +101,7 @@ export function updateCSSystems(semesters: Semester[]): CSSystems {
     if(totalCreds >= 124){
         total124 = true;
     }
+    //testing for specific courses
     if(courseNames.includes("ENGL 110")){
         e110 = true;
         courseNames = courseNames.filter(key => key != "ENGL 110");
@@ -146,6 +147,7 @@ export function updateCSSystems(semesters: Semester[]): CSSystems {
         courseNames = courseNames.filter(key => key != "MATH 241");
     }
 
+    //capstone
     if(courseNames.includes("CISC 498") && courseNames.includes("CISC 499")){
         caps = true;
         majCaps = true;
@@ -158,6 +160,7 @@ export function updateCSSystems(semesters: Semester[]): CSSystems {
         courseNames = courseNames.filter(key => key != "UNIV 402");
     }
 
+    //lab science
     if(courseNames.includes("PHYS 207") && courseNames.includes("PHYS 227") && courseNames.includes("PHYS 208") && courseNames.includes("PHYS 228")){
         science = true;
         courseNames = courseNames.filter(key => key != "PHYS 207");
@@ -185,6 +188,7 @@ export function updateCSSystems(semesters: Semester[]): CSSystems {
         courseNames = courseNames.filter(key => key != "GEOL 110");
     }
 
+    //writnig reqs
     if(courseNames.includes("CISC 355")){
         c355 = true;
     }
@@ -194,6 +198,7 @@ export function updateCSSystems(semesters: Semester[]): CSSystems {
         writing = true;
     }
 
+    //specific courses check
     if(courseNames.includes("CISC 360")){
         c360 = true;
         courseNames = courseNames.filter(key => key != "CISC 360");
@@ -215,6 +220,7 @@ export function updateCSSystems(semesters: Semester[]): CSSystems {
         courseNames = courseNames.filter(key => key != "CISC 471");
     }  
 
+    //stat check
     if(courseNames.includes("MATH 205")){
         stats = true;
         courseNames = courseNames.filter(key => key != "MATH 205");
@@ -223,12 +229,14 @@ export function updateCSSystems(semesters: Semester[]): CSSystems {
         courseNames = courseNames.filter(key => key != "MATH 350");
     }
 
+    //security req
     const sec = findCommonCourses(courseNames, ["CISC 464", "CPEG 465", "CPEG 470", "CPEG 476", "CPEG 473", "CPEG 475", "CPEG 497"]);
     if(sec.length > 0){
         security = true;
         courseNames = courseNames.filter(key => key != sec[0]);
     }
 
+    //advanced system req
     const sys = findCommonCourses(courseNames, ["CISC 437", "CISC 453", "CISC 459", "CISC 464", "CISC 474", "CISC 475", "CISC 479", "CPEG 473", "CPEG 497"]);
     if(sys.length >= 2){
         advSys = true;
@@ -236,6 +244,7 @@ export function updateCSSystems(semesters: Semester[]): CSSystems {
         courseNames = courseNames.filter(key => key != sys[1]);
     }
 
+    //extra cisc courses
     const e6 = findCommonCourses(courseNames, restrict);
     if(e6.length >= 2){
         extra6 = true;
@@ -250,6 +259,7 @@ export function updateCSSystems(semesters: Semester[]): CSSystems {
         }
     }
     
+    //breadth check
     const discov = findCommonCourses(courseNames, dle);
     if(discov.length > 0){
         dles = true;
