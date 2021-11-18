@@ -7,10 +7,10 @@ import "../App.css"
 }
 
 const TITLES: Record<string,Record<string,string>> = Titles;
-//console.log(Object.keys(TITLES));
 
 export function ReqCourseText({courseKeys, fulfilled}: reqCourseText): JSX.Element {
     
+    // Retrieves the title for a given key
     function getTitle(key: string) {
         if (Object.keys(TITLES).includes(key)) {
             return TITLES[key]["title"];
@@ -18,6 +18,7 @@ export function ReqCourseText({courseKeys, fulfilled}: reqCourseText): JSX.Eleme
         return key;
     }
 
+    // Returns either crossed out or not crossed out list
     if (fulfilled) {
         return <div>{courseKeys.map(key => <li key={key}><del>{getTitle(key)}</del></li>)}</div>;
     } else {

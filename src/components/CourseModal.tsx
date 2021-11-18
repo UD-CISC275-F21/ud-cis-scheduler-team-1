@@ -72,7 +72,7 @@ export function CourseModal({
         console.log("New info: " + value);
     };
 
-    //actual semester updated after save button is clicked 
+    //actual semester updated with new course info after save button is clicked 
     function handleSaveChanges(): void {
         const newSem : Semester = semester;
         newSem.courses[semester.courses.findIndex(c => c.info.code == mod.info.code)] = mod;

@@ -36,11 +36,11 @@ describe("App", () => {
 
             // https://jacobwicks.github.io/2020/05/16/testing-semantic-ui-react-dropdown.html
             it("enables and disables BA/BS and concentration correctly", () => {
-                const dropdown = screen.getByTestId("major-minor");
-                fireEvent.click(dropdown);
-                const options = screen.getAllByTestId("option-majorminor");
-                fireEvent.click(options[1]);
-                expect(options[1].textContent).toBeInTheDocument();
+                act(async () => {
+                    userEvent.click(screen.getByText("Major"));
+                    userEvent.click(screen.getByText("Minor"));
+                });
+                expect(screen.getByText("Minor")).toBeInTheDocument();
             });
         });*/
     });
