@@ -22,7 +22,7 @@ export function DraggableCourse({course}: dragClass): JSX.Element {
 
     //makes card looking object that can be dragged
     return (
-        <div className = "dragCourse" ref={dragRef}>
+        <div className = "dragCourse" ref={dragRef} role = "drag">
             {course.info.code} {course.info.name}
             {isDragging}
         </div>
