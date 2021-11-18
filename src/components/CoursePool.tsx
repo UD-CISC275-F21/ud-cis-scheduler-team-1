@@ -8,15 +8,17 @@ import { Autocomplete, TextField } from "@mui/material";
 
 //Autocomplete came from https://mui.com/components/autocomplete/#useautocomplete
 
+//interface for things getting passed to component
 interface coursePl{
-    coursesPool: CourseDisplay[],
-    setCoursesPool: (cs: CourseDisplay[]) => void;
+    coursesPool: CourseDisplay[],  //array that has courses in poool
+    setCoursesPool: (cs: CourseDisplay[]) => void;  //setter to update this array
 }
 
+//actual componenet
 export function CoursePool({coursesPool, setCoursesPool}: coursePl): JSX.Element {
-    const [inpu, setInpu] = useState<string>("");
+    const [inpu, setInpu] = useState<string>(""); //string value for input for class
 
-    //check if course already in course pool
+    //check if course already in course pool, returns true if it is, false if not
     function courseExists(code:string):boolean{
         return coursesPool.some(function(el:CourseDisplay) {
             return el.info.code === code;
@@ -25,7 +27,7 @@ export function CoursePool({coursesPool, setCoursesPool}: coursePl): JSX.Element
 
     //check course existence then add course in course pool
     function addCourse(name: string): void {
-        const course:Course = findCourse(name);
+        const course:Course = findCourse(name); //will see if inputed course is in catalog
         if(course.name === ""){
             alert("Course Does not Exist");
         }else{
@@ -37,6 +39,7 @@ export function CoursePool({coursesPool, setCoursesPool}: coursePl): JSX.Element
         }
     }
 
+    //form came from react bootstrap
     return<Col id="move-when-scroll" >
         <h2 className = "subtitle">Course Pool</h2>
         <Form id= "searchBar" onSubmit={(event)=>{
