@@ -1,10 +1,7 @@
 import React from "react";
 //import { fireEvent, render, screen } from "@testing-library/react";
-import { fireEvent, getByText, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import App from "./App";
-import userEvent from "@testing-library/user-event";
-import { FourYearPlan } from "./components/FourYearPlan";
-import { Dropdown } from "react-bootstrap";
 
 describe("App", () => {
 
