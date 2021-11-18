@@ -52,7 +52,7 @@ export function CoursePool({coursesPool, setCoursesPool}: coursePl): JSX.Element
                     setInpu(value as string); event.preventDefault();
                 }} disablePortal id="combo-box-demo" options = {getAllCourses()} renderInput= {(params) => <TextField {...params} label = "Course Code"/>}/>
             </Form.Group>
-            <Button onClick={() => {
+            <Button data-testid="add-Course-button" onClick={() => {
                 addCourse(inpu);
             }}>
             Add Course  
