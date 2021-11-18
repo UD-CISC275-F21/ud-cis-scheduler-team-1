@@ -13,6 +13,7 @@ interface coursePl{
     setCoursesPool: (cs: CourseDisplay[]) => void;
 }
 
+// the left column of the app, holds the course select and drag and drop buttons
 export function CoursePool({coursesPool, setCoursesPool}: coursePl): JSX.Element {
     const [inpu, setInpu] = useState<string>("");
 

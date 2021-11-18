@@ -35,7 +35,7 @@ export function AddSemesterModal({
             setShow(false);
         }
     }
-    //compare semesters
+    //compares semesters by year and season in order to sort them
     function compareSemesters(semester1: Semester, semester2: Semester): number {
         if (semester1.year < semester2.year) {
             return -1;
