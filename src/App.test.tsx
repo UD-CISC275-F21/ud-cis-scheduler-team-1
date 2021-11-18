@@ -9,7 +9,8 @@ test("renders UD CIS Scheduler text", () => {
     expect(linkElement).toBeInTheDocument();
 });
 
-describe("App", () => {
+
+/*describe("App", () => {
 
     beforeEach(() => {
         render(<App />);
@@ -19,7 +20,7 @@ describe("App", () => {
         console.log("yay");
     });
 
-    /*describe("Concentrations", () => {
+    describe("Concentrations", () => {
 
         describe("Elements render correctly on app load", () => {
 
@@ -49,7 +50,7 @@ describe("App", () => {
                 expect(options[1].textContent).toBeInTheDocument();
             });
         });
-    });*/
+    });
 
     describe("FourYearPlan", () => {
         console.log("yay");
@@ -59,4 +60,4 @@ describe("App", () => {
         console.log("yay");
     });
 
-});
+});*/
