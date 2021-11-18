@@ -53,7 +53,7 @@ describe("App", () => {
     describe("FourYearPlan", () => {
         it("Simulates Add Semester click and checks if modal pops up", () => {
             expect(screen.queryByText("Add Semester")).toBeInTheDocument();
-            fireEvent.click(screen.getByText(/Add Semester/i))
+            fireEvent.click(screen.getByText(/Add Semester/i));
             expect(screen.queryByText("Adding New Semester")).toBeInTheDocument();
         });
     });
