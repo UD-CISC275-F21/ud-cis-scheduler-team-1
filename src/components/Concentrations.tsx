@@ -14,25 +14,25 @@ export function Concentration({bsba,setBSBA,major,setMajor,conc,setConc}:iConc):
     return (
         <Container>
             <div id="major-minor-row" data-testid="degree-select">
-                <Dropdown>
-                    <strong>Computer Science : </strong>
+                <Dropdown data-testid="major-minor">
+                    <strong>Computer Science: </strong>
                     <Dropdown.Toggle variant="outline-dark" id="dropdown-basic">
                         {major}
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
-                        <Dropdown.Item onClick={() => {
+                        <Dropdown.Item data-testid="option-majorminor" onClick={() => {
                             setMajor("Minor"); setConc("Traditional Program"); setBSBA("BS");
                         }}>Minor</Dropdown.Item>
-                        <Dropdown.Item onClick={() => setMajor("Major")}>Major</Dropdown.Item>
+                        <Dropdown.Item data-testid="option-majorminor" onClick={() => setMajor("Major")}>Major</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
-                {major === "Major" && <Dropdown>
+                {major === "Major" && <Dropdown data-testid="concentration-row">
                     <Dropdown.Toggle variant="outline-dark" id="dropdown-basic">
                         {bsba}
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
-                        <Dropdown.Item onClick={() => setBSBA("BS")}>BS</Dropdown.Item>
-                        <Dropdown.Item onClick={() => {
+                        <Dropdown.Item data-testid="option" onClick={() => setBSBA("BS")}>BS</Dropdown.Item>
+                        <Dropdown.Item data-testid="option" onClick={() => {
                             setBSBA("BA"); setConc("Traditional Program");
                         }}>BA</Dropdown.Item>
                     </Dropdown.Menu>
@@ -45,14 +45,14 @@ export function Concentration({bsba,setBSBA,major,setMajor,conc,setConc}:iConc):
                         {conc}
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
-                        <Dropdown.Item onClick={() => setConc("Traditional Program")}>Traditional Program</Dropdown.Item>
-                        <Dropdown.Item onClick={() => setConc("Artificial Intelligence and Robotics")}>Artificial Intelligence and Robotics</Dropdown.Item>
-                        <Dropdown.Item onClick={() => setConc("Bioinformatics")}>Bioinformatics</Dropdown.Item>
-                        <Dropdown.Item onClick={() => setConc("Cybersecurity")}>Cybersecurity</Dropdown.Item>
-                        <Dropdown.Item onClick={() => setConc("Data Science")}>Data Science </Dropdown.Item>
-                        <Dropdown.Item onClick={() => setConc("High Performance Computing")}>High Performance Computing</Dropdown.Item>
-                        <Dropdown.Item onClick={() => setConc("Systems and Networks")}>Systems and Networks Concentration</Dropdown.Item>
-                        <Dropdown.Item onClick={() => setConc("Theory and Computation")}>Theory and Computation</Dropdown.Item>
+                        <Dropdown.Item data-testid="option" onClick={() => setConc("Traditional Program")}>Traditional Program</Dropdown.Item>
+                        <Dropdown.Item data-testid="option" onClick={() => setConc("Artificial Intelligence and Robotics")}>Artificial Intelligence and Robotics</Dropdown.Item>
+                        <Dropdown.Item data-testid="option" onClick={() => setConc("Bioinformatics")}>Bioinformatics</Dropdown.Item>
+                        <Dropdown.Item data-testid="option" onClick={() => setConc("Cybersecurity")}>Cybersecurity</Dropdown.Item>
+                        <Dropdown.Item data-testid="option" onClick={() => setConc("Data Science")}>Data Science </Dropdown.Item>
+                        <Dropdown.Item data-testid="option" onClick={() => setConc("High Performance Computing")}>High Performance Computing</Dropdown.Item>
+                        <Dropdown.Item data-testid="option" onClick={() => setConc("Systems and Networks")}>Systems and Networks Concentration</Dropdown.Item>
+                        <Dropdown.Item data-testid="option" onClick={() => setConc("Theory and Computation")}>Theory and Computation</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
             </div>}
