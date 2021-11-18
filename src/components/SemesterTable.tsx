@@ -36,7 +36,7 @@ export function SemesterTable({ sem, setSemesters, semesters, coursesPool, setCo
         setSemesters([...semesters.filter(semester => semester.season + semester.year !== sem.season + sem.year)]);
     }
 
-    //update semester when called
+    //update semester when called, will find semester that is current semester being altered and replace it
     function updateSemesters(): void {
         let tmp: Semester[] = [];
         for (let i = 0; i < semesters.length; i++) {
@@ -50,6 +50,7 @@ export function SemesterTable({ sem, setSemesters, semesters, coursesPool, setCo
     }
 
     //check if semester already has a course
+    //helps to prohibit courses from being dropped in semester if course in semester
     function semesterHasCourse(courses: CourseDisplay[], item: CourseDisplay): boolean {
         for (let i = 0; i < courses.length; i++) {
             if (courses[i].info.code === item.info.code) {
@@ -59,17 +60,18 @@ export function SemesterTable({ sem, setSemesters, semesters, coursesPool, setCo
         return false;
     }
 
+    //drop hook, from website with some adjustments
     const [{ isOver }, dropRef] = useDrop({
         accept: "course",
         drop: (item: CourseDisplay) => {
             if (!semesterHasCourse(semester.courses, item)) {
                 const newSem: Semester = semester;
                 newSem.courses = [...semester.courses, item];
-                setSemester(newSem);
-                updateSemesters();
+                setSemester(newSem); //updating semester
+                updateSemesters(); //updating list of semesters
                 const newCP = coursesPool.filter(course => course.info.code !== item.info.code);
                 coursesPool = newCP;
-                setCoursesPool(newCP);
+                setCoursesPool(newCP);  //updating courses pool, so card is gone after dropped
             } else {
                 alert("Course is Already in Semester");
             }
@@ -169,7 +171,7 @@ export function SemesterTable({ sem, setSemesters, semesters, coursesPool, setCo
                 }}>
                 Delete All Courses
             </Button>
-            {show && <CourseModal
+            {show && <CourseModal 
                 show={show}
                 setShow={setShow}
                 semester={semester}

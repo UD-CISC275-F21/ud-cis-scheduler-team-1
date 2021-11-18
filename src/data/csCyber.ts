@@ -103,6 +103,7 @@ export function updateCSCyber(semesters: Semester[]): CSCyber {
     if(totalCreds >= 124){
         total124 = true;
     }
+    //check specific course
     if(courseNames.includes("ENGL 110")){
         e110 = true;
         courseNames = courseNames.filter(key => key != "ENGL 110");
@@ -148,6 +149,7 @@ export function updateCSCyber(semesters: Semester[]): CSCyber {
         courseNames = courseNames.filter(key => key != "MATH 241");
     }
 
+    //capstone
     if(courseNames.includes("CISC 498") && courseNames.includes("CISC 499")){
         caps = true;
         majCaps = true;
@@ -160,6 +162,7 @@ export function updateCSCyber(semesters: Semester[]): CSCyber {
         courseNames = courseNames.filter(key => key != "UNIV 402");
     }
 
+    //lab science
     if(courseNames.includes("PHYS 207") && courseNames.includes("PHYS 227") && courseNames.includes("PHYS 208") && courseNames.includes("PHYS 228")){
         science = true;
         courseNames = courseNames.filter(key => key != "PHYS 207");
@@ -187,6 +190,7 @@ export function updateCSCyber(semesters: Semester[]): CSCyber {
         courseNames = courseNames.filter(key => key != "GEOL 110");
     }
 
+    //writing req
     if(courseNames.includes("CISC 355")){
         c355 = true;
     }
@@ -196,6 +200,7 @@ export function updateCSCyber(semesters: Semester[]): CSCyber {
         writing = true;
     }
 
+    //check specific courses
     if(courseNames.includes("CISC 361")){
         c361 = true;
         courseNames = courseNames.filter(key => key != "CISC 361");
@@ -221,6 +226,7 @@ export function updateCSCyber(semesters: Semester[]): CSCyber {
         courseNames = courseNames.filter(key => key != "CPEG 494");
     }  
 
+    //stats
     if(courseNames.includes("MATH 205")){
         stats = true;
         courseNames = courseNames.filter(key => key != "MATH 205");
@@ -229,6 +235,7 @@ export function updateCSCyber(semesters: Semester[]): CSCyber {
         courseNames = courseNames.filter(key => key != "MATH 350");
     }
 
+    //advanced cpeg
     const adv = findCommonCourses(courseNames, ["CPEG 472", "CPEG 473", "CPEG 475", "CPEG 476", "CPEG 495"]);
     if(adv.length >= 2){
         advanced = true;
@@ -236,6 +243,7 @@ export function updateCSCyber(semesters: Semester[]): CSCyber {
         courseNames = courseNames.filter(key => key != adv[1]);
     }
 
+    //extra tech
     const e6 = findCommonCourses(courseNames, restrict);
     if(e6.length >= 2){
         extra6 = true;
@@ -250,6 +258,7 @@ export function updateCSCyber(semesters: Semester[]): CSCyber {
         }
     }
     
+    //breadth
     const discov = findCommonCourses(courseNames, dle);
     if(discov.length > 0){
         dles = true;

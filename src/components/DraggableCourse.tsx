@@ -4,11 +4,14 @@ import React from "react";
 import { useDrag } from "react-dnd";
 import { CourseDisplay } from "../interfaces/course";
 
+//interface for things being passed into component, we anticipate more 
+// values will be needed later
 interface dragClass{
     course:CourseDisplay
 }
 
 export function DraggableCourse({course}: dragClass): JSX.Element {
+    //dragging hook from dnd package, exact copy
     const [{ isDragging }, dragRef] = useDrag({
         type: "course",
         item: course,
@@ -16,6 +19,8 @@ export function DraggableCourse({course}: dragClass): JSX.Element {
             isDragging: monitor.isDragging()
         })
     });
+
+    //makes card looking object that can be dragged
     return (
         <div className = "dragCourse" ref={dragRef}>
             {course.info.code} {course.info.name}
