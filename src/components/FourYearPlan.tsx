@@ -98,7 +98,7 @@ export function FourYearPlan({semesters,setSemesters, coursesPool, setCoursesPoo
                         onClick={() => {
                             setShow(true);
                         }}>
-                        + Add Semester
+                        Add Semester
                     </Button>
                     <Button
                         id="big-scope-button"
