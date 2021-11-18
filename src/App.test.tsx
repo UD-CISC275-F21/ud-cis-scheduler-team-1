@@ -1,7 +1,6 @@
 import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
 import App from "./App";
-import { updateCSBS } from "./data/csBS";
 
 test("renders UD CIS Scheduler text", () => {
     render(<App />);
