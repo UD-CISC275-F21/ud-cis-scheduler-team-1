@@ -1,14 +1,10 @@
 import React from "react";
 //import { fireEvent, render, screen } from "@testing-library/react";
-import { render, screen } from "@testing-library/react";
+import { fireEvent, getByText, render, screen } from "@testing-library/react";
 import App from "./App";
-
-test("renders UD CIS Scheduler text", () => {
-    render(<App />);
-    const linkElement = screen.getByText(/UD CIS Scheduler/i);
-    expect(linkElement).toBeInTheDocument();
-});
-
+import userEvent from "@testing-library/user-event";
+import { FourYearPlan } from "./components/FourYearPlan";
+import { Dropdown } from "react-bootstrap";
 
 describe("App", () => {
 
@@ -16,8 +12,10 @@ describe("App", () => {
         render(<App />);
     });
 
-    /*describe("CoursePool", () => {
-    });*/
+    it("renders UD CIS Scheduler text", () => {
+        const linkElement = screen.getByText(/UD CIS Scheduler/i);
+        expect(linkElement).toBeInTheDocument();
+    });
 
     describe("Concentrations", () => {
 
@@ -51,11 +49,16 @@ describe("App", () => {
         });*/
     });
 
-    /*
+    
     describe("FourYearPlan", () => {
-        console.log("yay");
+        console.log("FourYearPlan");
+        it("Simulates Add Semester click and checks if modal pops up", () => {
+            expect(screen.queryByText("Add Semester")).toBeInTheDocument();
+            fireEvent.click(screen.getByText(/Add Semester/i))
+            expect(screen.queryByText("Adding New Semester")).toBeInTheDocument();
+        });
     });
-
+/*
     describe("Requirements", () => {
         console.log("yay");
     });*/
