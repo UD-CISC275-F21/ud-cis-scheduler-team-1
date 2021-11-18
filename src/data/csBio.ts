@@ -107,6 +107,7 @@ export function updateCSBio(semesters: Semester[]): CSBio {
     if(totalCreds >= 124){
         total124 = true;
     }
+    //check specific courses
     if(courseNames.includes("ENGL 110")){
         e110 = true;
         courseNames = courseNames.filter(key => key != "ENGL 110");
@@ -152,6 +153,7 @@ export function updateCSBio(semesters: Semester[]): CSBio {
         courseNames = courseNames.filter(key => key != "MATH 241");
     }
 
+    //capstone
     if(courseNames.includes("CISC 498") && courseNames.includes("CISC 499")){
         caps = true;
         majCaps = true;
@@ -164,6 +166,7 @@ export function updateCSBio(semesters: Semester[]): CSBio {
         courseNames = courseNames.filter(key => key != "UNIV 402");
     }
 
+    //check specific courses
     if(courseNames.includes("CISC 355")){
         c355 = true;
     }
@@ -173,6 +176,7 @@ export function updateCSBio(semesters: Semester[]): CSBio {
         writing = true;
     }
 
+    //check specific courses
     if(courseNames.includes("BISC 207")){
         b207 = true;
         courseNames = courseNames.filter(key => key != "BISC 207");
@@ -218,6 +222,7 @@ export function updateCSBio(semesters: Semester[]): CSBio {
         courseNames = courseNames.filter(key => key != "MATH 349");
     } 
 
+    //stat
     if(courseNames.includes("MATH 205")){
         stats = true;
         courseNames = courseNames.filter(key => key != "MATH 205");
@@ -226,6 +231,7 @@ export function updateCSBio(semesters: Semester[]): CSBio {
         courseNames = courseNames.filter(key => key != "MATH 350");
     }
 
+    //chem reqs
     if(courseNames.includes("CHEM 213") && courseNames.includes("CHEM 215")){
         orgo = true;
         courseNames = courseNames.filter(key => key != "CHEM 213");
@@ -236,12 +242,14 @@ export function updateCSBio(semesters: Semester[]): CSBio {
         courseNames = courseNames.filter(key => key != "CHEM 325");
     }
 
+    //data req
     const dat = findCommonCourses(courseNames, ["CISC 483", "CISC 484"]);
     if(dat.length > 0){
         data = true;
         courseNames = courseNames.filter(key => key != dat[0]);
     }
 
+    //extra courses
     const e6 = findCommonCourses(courseNames, restrict);
     if(e6.length >= 2){
         extra6 = true;
@@ -249,6 +257,7 @@ export function updateCSBio(semesters: Semester[]): CSBio {
         courseNames = courseNames.filter(key => key != e6[1]);
     }
     
+    //breadth
     const discov = findCommonCourses(courseNames, dle);
     if(discov.length > 0){
         dles = true;

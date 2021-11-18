@@ -63,6 +63,7 @@ export function updateCSBA(semesters: Semester[]): CSBA {
     if(totalCreds >= 124){
         total124 = true;
     }
+    //check specific courses
     if(courseNames.includes("ENGL 110")){
         e110 = true;
         courseNames = courseNames.filter(key => key != "ENGL 110");
@@ -99,11 +100,13 @@ export function updateCSBA(semesters: Semester[]): CSBA {
         m241 = true;
         courseNames = courseNames.filter(key => key != "MATH 241");
     }
+    //language req
     const potLang = findCommonCourses(courseNames, languages);
     if(potLang.length > 0){
         lang = true;
         courseNames = courseNames.filter(key => key != potLang[0]);
     }
+    //15 more cisc courses
     let fifteen = 0;
     for(let i = 0; i < courseNames.length; i++){
         if(courseNames[i].substr(0, 4) === "CISC" && (+courseNames[i][4] >= 3) && !noTech.includes(courseNames[i])){
@@ -116,10 +119,12 @@ export function updateCSBA(semesters: Semester[]): CSBA {
             break;
         }
     }
+    //second writing req
     const second = findCommonCourses(courseNames, secondWrite);
     if(second.length > 0){
         secondWrites = true;
     }
+    //breadth
     const discov = findCommonCourses(courseNames, dle);
     if(discov.length > 0){
         dles = true;
