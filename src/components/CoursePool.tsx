@@ -55,6 +55,7 @@ export function CoursePool({coursesPool, setCoursesPool}: coursePl): JSX.Element
             Add Course  
             </Button>
         </Form>
+        <p>Drag and drop courses from course pool into a semester.</p>
         {coursesPool.map(course => 
             <div key = {course.info.code}>
                 <DraggableCourse course = {course}></DraggableCourse>
