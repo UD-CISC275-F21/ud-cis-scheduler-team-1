@@ -106,6 +106,7 @@ export function updateCSData(semesters: Semester[]): CSData {
     if(totalCreds >= 124){
         total124 = true;
     }
+    //check for specific courses
     if(courseNames.includes("ENGL 110")){
         e110 = true;
         courseNames = courseNames.filter(key => key != "ENGL 110");
@@ -150,7 +151,7 @@ export function updateCSData(semesters: Semester[]): CSData {
         m241 = true;
         courseNames = courseNames.filter(key => key != "MATH 241");
     }
-
+    //capstone
     if(courseNames.includes("CISC 498") && courseNames.includes("CISC 499")){
         caps = true;
         majCaps = true;
@@ -162,7 +163,7 @@ export function updateCSData(semesters: Semester[]): CSData {
         courseNames = courseNames.filter(key => key != "UNIV 401");
         courseNames = courseNames.filter(key => key != "UNIV 402");
     }
-
+    //lab science
     if(courseNames.includes("PHYS 207") && courseNames.includes("PHYS 227") && courseNames.includes("PHYS 208") && courseNames.includes("PHYS 228")){
         science = true;
         courseNames = courseNames.filter(key => key != "PHYS 207");
@@ -190,6 +191,7 @@ export function updateCSData(semesters: Semester[]): CSData {
         courseNames = courseNames.filter(key => key != "GEOL 110");
     }
 
+    //writing reqs
     if(courseNames.includes("CISC 355")){
         c355 = true;
     }
@@ -199,6 +201,7 @@ export function updateCSData(semesters: Semester[]): CSData {
         writing = true;
     }
 
+    //check for specific courses
     if(courseNames.includes("CISC 304")){
         c304 = true;
         courseNames = courseNames.filter(key => key != "CISC 304");
@@ -232,18 +235,21 @@ export function updateCSData(semesters: Semester[]): CSData {
         courseNames = courseNames.filter(key => key != "MATH 349");
     }
 
+    //checking if atleast one course in list
     const ds = findCommonCourses(courseNames, ["CISC 483", "CISC 484"]);
     if(ds.length > 0){
         advDS = true;
         courseNames = courseNames.filter(key => key != ds[0]);
     }
 
+    //checking if atleast one course in list
     const math = findCommonCourses(courseNames, ["MATH 302", "MATH 350", "MATH 426"]);
     if(math.length > 0){
         advMath = true;
         courseNames = courseNames.filter(key => key != math[0]);
     }
 
+    //extra cisc elective
     const e3 = findCommonCourses(courseNames, restrict);
     if(e3.length >= 1){
         extra3 = true;
@@ -257,6 +263,7 @@ export function updateCSData(semesters: Semester[]): CSData {
         }
     }
     
+    //breadths
     const discov = findCommonCourses(courseNames, dle);
     if(discov.length > 0){
         dles = true;
