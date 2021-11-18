@@ -1,5 +1,4 @@
 import React from "react";
-//import { fireEvent, render, screen } from "@testing-library/react";
 import { fireEvent, render, screen } from "@testing-library/react";
 import App from "./App";
 
@@ -48,12 +47,27 @@ describe("App", () => {
 
     
     describe("FourYearPlan", () => {
+
         it("Simulates Add Semester click and checks if modal pops up", () => {
-            expect(screen.queryByText("Add Semester")).toBeInTheDocument();
-            fireEvent.click(screen.getByText(/Add Semester/i));
+            fireEvent.click(screen.getByText(/\+ Add Semester/i));
             expect(screen.queryByText("Adding New Semester")).toBeInTheDocument();
         });
+
+        describe("AddSemesterModal", ()=> {
+            it("Closes Modal on cancel button", () => {
+                fireEvent.click(screen.getByText(/\+ Add Semester/i));
+                fireEvent.click(screen.getByText("Cancel"));         
+                expect(screen.queryByText("Adding New Semester")).not.toBeInTheDocument();
+            });
+            it("Checks cannot add same semester ", () => {
+                fireEvent.click(screen.getByText(/\+ Add Semester/i));
+                fireEvent.click(screen.getByText("Add Semester"));         
+                expect(screen.queryByText("Semester already in your plan!")).toBeInTheDocument();
+            });
+        });
+
     });
+
     /*
     describe("Requirements", () => {
         console.log("yay");
