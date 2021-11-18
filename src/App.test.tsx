@@ -1,15 +1,6 @@
 import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
 import App from "./App";
-import { Dropdown } from "react-bootstrap";
-import { act } from "react-dom/test-utils";
-import userEvent from "@testing-library/user-event";
-
-test("renders UD CIS Scheduler text", () => {
-    render(<App />);
-    const linkElement = screen.getByText(/UD CIS Scheduler/i);
-    expect(linkElement).toBeInTheDocument();
-});
 
 describe("App", () => {
 
@@ -17,8 +8,9 @@ describe("App", () => {
         render(<App />);
     });
 
-    describe("CoursePool", () => {
-        console.log("yay");
+    it("renders UD CIS Scheduler text", () => {
+        const linkElement = screen.getByText(/UD CIS Scheduler/i);
+        expect(linkElement).toBeInTheDocument();
     });
 
     describe("Concentrations", () => {
@@ -26,11 +18,11 @@ describe("App", () => {
         describe("Elements render correctly on app load", () => {
 
             it("has the degree type dropdown when the app loads", () => {
-                const element = screen.queryByTestId("degree-select");
+                const element = screen.queryByTestId("dropdown-basic");
                 expect(element).toBeInTheDocument();
             });
             it("has the concentration select visible when the app renders", () => {
-                expect(screen.getByTestId("concentration-row")).toBeInTheDocument();
+                expect(screen.getByTestId("concentration-dropdown")).toBeInTheDocument();
             });
             it("selects BS program with traditional program concentration upon load", () => {
                 expect(screen.queryByText("Major")).toBeInTheDocument();
@@ -40,7 +32,7 @@ describe("App", () => {
 
         });
 
-        describe("Major/Minor dropdown", () => {
+        /*describe("Major/Minor dropdown", () => {
 
             // https://jacobwicks.github.io/2020/05/16/testing-semantic-ui-react-dropdown.html
             it("enables and disables BA/BS and concentration correctly", () => {
@@ -50,15 +42,35 @@ describe("App", () => {
                 });
                 expect(screen.getByText("Minor")).toBeInTheDocument();
             });
-        });
+        });*/
     });
 
+    
     describe("FourYearPlan", () => {
-        console.log("yay");
+
+        it("Simulates Add Semester click and checks if modal pops up", () => {
+            fireEvent.click(screen.getByText(/\+ Add Semester/i));
+            expect(screen.queryByText("Adding New Semester")).toBeInTheDocument();
+        });
+
+        describe("AddSemesterModal", ()=> {
+            it("Closes Modal on cancel button", () => {
+                fireEvent.click(screen.getByText(/\+ Add Semester/i));
+                fireEvent.click(screen.getByText("Cancel"));         
+                expect(screen.queryByText("Adding New Semester")).not.toBeInTheDocument();
+            });
+            it("Checks cannot add same semester ", () => {
+                fireEvent.click(screen.getByText(/\+ Add Semester/i));
+                fireEvent.click(screen.getByText("Add Semester"));         
+                expect(screen.queryByText("Semester already in your plan!")).toBeInTheDocument();
+            });
+        });
+
     });
 
+    /*
     describe("Requirements", () => {
         console.log("yay");
-    });
+    });*/
 
 });

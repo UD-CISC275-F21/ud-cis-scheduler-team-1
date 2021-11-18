@@ -100,6 +100,7 @@ export function updateCSAIRobots(semesters: Semester[]): CSAIRobots {
     if(totalCreds >= 124){
         total124 = true;
     }
+    //check specific courses
     if(courseNames.includes("ENGL 110")){
         e110 = true;
         courseNames = courseNames.filter(key => key != "ENGL 110");
@@ -145,6 +146,7 @@ export function updateCSAIRobots(semesters: Semester[]): CSAIRobots {
         courseNames = courseNames.filter(key => key != "MATH 241");
     }
 
+    //capstone
     if(courseNames.includes("CISC 498") && courseNames.includes("CISC 499")){
         caps = true;
         majCaps = true;
@@ -157,6 +159,7 @@ export function updateCSAIRobots(semesters: Semester[]): CSAIRobots {
         courseNames = courseNames.filter(key => key != "UNIV 402");
     }
 
+    //lab science
     if(courseNames.includes("PHYS 207") && courseNames.includes("PHYS 227") && courseNames.includes("PHYS 208") && courseNames.includes("PHYS 228")){
         science = true;
         courseNames = courseNames.filter(key => key != "PHYS 207");
@@ -184,6 +187,7 @@ export function updateCSAIRobots(semesters: Semester[]): CSAIRobots {
         courseNames = courseNames.filter(key => key != "GEOL 110");
     }
 
+    //writing req
     if(courseNames.includes("CISC 355")){
         c355 = true;
     }
@@ -193,6 +197,7 @@ export function updateCSAIRobots(semesters: Semester[]): CSAIRobots {
         writing = true;
     }
 
+    //check specific courses
     if(courseNames.includes("CISC 304")){
         c304 = true;
         courseNames = courseNames.filter(key => key != "CISC 304");
@@ -214,6 +219,7 @@ export function updateCSAIRobots(semesters: Semester[]): CSAIRobots {
         courseNames = courseNames.filter(key => key != "CISC 484");
     }  
 
+    //stats
     if(courseNames.includes("MATH 205")){
         stats = true;
         courseNames = courseNames.filter(key => key != "MATH 205");
@@ -222,12 +228,14 @@ export function updateCSAIRobots(semesters: Semester[]): CSAIRobots {
         courseNames = courseNames.filter(key => key != "MATH 350");
     }
 
+    //systesms req
     const sys = findCommonCourses(courseNames, ["CISC 361", "CISC 372"]);
     if(sys.length > 0){
         systems = true;
         courseNames = courseNames.filter(key => key != sys[0]);
     }
 
+    //12 credits from restricted list
     const e12 = findCommonCourses(courseNames, restrict);
     if(e12.length >= 4){
         extra12 = true;
@@ -236,6 +244,7 @@ export function updateCSAIRobots(semesters: Semester[]): CSAIRobots {
         courseNames = courseNames.filter(key => key != e12[2]);
         courseNames = courseNames.filter(key => key != e12[3]);
     }
+    //extra cisc courses
     for(let i = 0; i < courseNames.length; i++){
         if(courseNames[i].substr(0, 4) === "CISC" && (+courseNames[i][4] >= 3) && !noTech.includes(courseNames[i])){
             extra34 = true;
@@ -244,6 +253,7 @@ export function updateCSAIRobots(semesters: Semester[]): CSAIRobots {
         }
     }
     
+    //breadth
     const discov = findCommonCourses(courseNames, dle);
     if(discov.length > 0){
         dles = true;

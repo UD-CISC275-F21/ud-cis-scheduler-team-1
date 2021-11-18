@@ -89,6 +89,7 @@ export function updateCSBS(semesters: Semester[]): CSBS {
     if(totalCreds >= 124){
         total124 = true;
     }
+    //check specific courses
     if(courseNames.includes("ENGL 110")){
         e110 = true;
         courseNames = courseNames.filter(key => key != "ENGL 110");
@@ -148,6 +149,7 @@ export function updateCSBS(semesters: Semester[]): CSBS {
     if(courseNames.includes("CISC 355")){
         c355 = true;
     }
+    //math req
     if(courseNames.includes("CISC 304")){
         m300 = true;
         courseNames = courseNames.filter(key => key != "CISC 304");
@@ -155,6 +157,7 @@ export function updateCSBS(semesters: Semester[]): CSBS {
         m300 = true;
         courseNames = courseNames.filter(key => key != "MATH 349");
     }
+    //stats
     if(courseNames.includes("MATH 205")){
         stats = true;
         courseNames = courseNames.filter(key => key != "MATH 205");
@@ -162,11 +165,13 @@ export function updateCSBS(semesters: Semester[]): CSBS {
         stats = true;
         courseNames = courseNames.filter(key => key != "MATH 350");
     }
+    //writing req
     if(courseNames.includes("ENGL 312")){
         writing = true;
     } else if(courseNames.includes("ENGL 410")){
         writing = true;
     }
+    //capstone
     if(courseNames.includes("CISC 498") && courseNames.includes("CISC 499")){
         caps = true;
         majCaps = true;
@@ -178,6 +183,7 @@ export function updateCSBS(semesters: Semester[]): CSBS {
         courseNames = courseNames.filter(key => key != "UNIV 401");
         courseNames = courseNames.filter(key => key != "UNIV 402");
     }
+    //lab science
     if(courseNames.includes("PHYS 207") && courseNames.includes("PHYS 227") && courseNames.includes("PHYS 208") && courseNames.includes("PHYS 228")){
         science = true;
         courseNames = courseNames.filter(key => key != "PHYS 207");
@@ -204,6 +210,7 @@ export function updateCSBS(semesters: Semester[]): CSBS {
         courseNames = courseNames.filter(key => key != "GEOL 107");
         courseNames = courseNames.filter(key => key != "GEOL 110");
     }
+    //extra 6 credits
     let six = 0;
     for(let i = 0; i < courseNames.length; i++){
         if(courseNames[i].substr(0, 4) === "CISC" && (+courseNames[i][4] >= 3) && !noTech.includes(courseNames[i])){
@@ -216,6 +223,7 @@ export function updateCSBS(semesters: Semester[]): CSBS {
             break;
         }
     }
+    //extra 12 credits
     let twelve = 0;
     for(let i = 0; i < courseNames.length; i++){
         if(courseNames[i].substr(0, 4) === "CISC" && (+courseNames[i][4] >= 3) && !noTech.includes(courseNames[i])){
@@ -228,6 +236,8 @@ export function updateCSBS(semesters: Semester[]): CSBS {
             break;
         }
     }
+
+    //breadth
     const discov = findCommonCourses(courseNames, dle);
     if(discov.length > 0){
         dles = true;

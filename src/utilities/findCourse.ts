@@ -1,12 +1,13 @@
 import { Course } from "../interfaces/course";
 import Catalog from "../data/catalog.json";
 
+//function that will return the course object
 export function findCourse(name:string): Course{
-    const code = name.substr(0, 4);
-    const CATALOG_DATA: Record<string, Record<string, Course>> = Catalog;
+    const code = name.substr(0, 4);  //gets department, Ex ACCT
+    const CATALOG_DATA: Record<string, Record<string, Course>> = Catalog;  //converting json to record type
     let course:Course;
     try{
-        course = CATALOG_DATA[code][name];
+        course = CATALOG_DATA[code][name]; //tries to get course in catalog, has default null course if not
     }catch{
         console.log("catch");
         course = {
@@ -20,6 +21,7 @@ export function findCourse(name:string): Course{
             typ: "",
         };
     }
+    //exception handling
     if(course === undefined){
         course = {
             code: "",
@@ -35,6 +37,7 @@ export function findCourse(name:string): Course{
     return course;
 }
 
+//returns list of all possible courses, for drop down option for course pool
 export function getAllCourses(): string[]{
     const departments: string[] = Object.keys(Catalog);
     const CATALOG_DATA: Record<string, Record<string, Course>> = Catalog;

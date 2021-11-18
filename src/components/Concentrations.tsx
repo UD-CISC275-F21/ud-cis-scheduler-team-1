@@ -14,9 +14,9 @@ export function Concentration({bsba,setBSBA,major,setMajor,conc,setConc}:iConc):
     return (
         <Container>
             <div id="major-minor-row" data-testid="degree-select">
-                <Dropdown data-testid="major-minor">
-                    <strong>Computer Science: </strong>
-                    <Dropdown.Toggle variant="outline-dark" id="dropdown-basic">
+                <Dropdown>
+                    <strong>Computer Science : </strong>
+                    <Dropdown.Toggle variant="outline-dark" data-testid = "dropdown-basic" id="dropdown-basic">
                         {major}
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
@@ -27,7 +27,7 @@ export function Concentration({bsba,setBSBA,major,setMajor,conc,setConc}:iConc):
                     </Dropdown.Menu>
                 </Dropdown>
                 {major === "Major" && <Dropdown data-testid="concentration-row">
-                    <Dropdown.Toggle variant="outline-dark" id="dropdown-basic">
+                    <Dropdown.Toggle variant="outline-dark" data-testid = "dropdown-bsba" id="dropdown-basic">
                         {bsba}
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
@@ -38,7 +38,7 @@ export function Concentration({bsba,setBSBA,major,setMajor,conc,setConc}:iConc):
                     </Dropdown.Menu>
                 </Dropdown>}
             </div>
-            {major === "Major" && bsba === "BS" && <div id="concentration-dropdown">
+            {major === "Major" && bsba === "BS" && <div data-testid = "concentration-dropdown" id="concentration-dropdown">
                 <strong>Concentration : </strong>
                 <Dropdown>
                     <Dropdown.Toggle variant="outline-dark" id="dropdown-basic">
