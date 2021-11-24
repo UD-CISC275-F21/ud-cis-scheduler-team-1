@@ -20,7 +20,6 @@ li {
 }
 
 #title{
-  margin-top: 1cm;
   margin-bottom: 1cm;
 }
 
@@ -87,7 +86,6 @@ li {
   resize: both;
   overflow-y: scroll;
 }
-
 #move-when-scroll{
     width: auto;
     top : 0;
@@ -96,4 +94,28 @@ li {
 
 .courseTableReq{
   color: orange;
+}
+
+.help-button{
+  margin-top: 1em;
+  display: flex;
+  justify-content: right;
+}
+.welcome-carousel{
+  height: 30em;
+  border: 3px solid black;
+}
+#welcome-item{
+  height: 28em;
+}
+#welcome-carousel-cap{
+  height: 26em;
+}
+#welcome-carousel-cap > h1{
+  color: blue;
+  font-size: 3.5em;
+}
+#welcome-carousel-cap > p{
+  font-size: 1.2em;
+  margin-top: 2em;
 }
