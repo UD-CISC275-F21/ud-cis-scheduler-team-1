@@ -26,7 +26,7 @@ export function Welcome({ show, setShow }: welc): JSX.Element {
                     <Carousel className="welcome-carousel" variant="dark" activeIndex={index} interval={null} onSelect={handleSelect}>
                         <Carousel.Item id="welcome-item">
                             <Carousel.Caption id="welcome-carousel-cap">
-                                <h1>Welcome to UD CIS Scheduler</h1>
+                                <h1>Welcome to UD CISC Scheduler</h1>
                                 <p>You can click button on the right to see step-by-step guiding of how to navigate this website and create an effective plan for your degree!</p>
                                 <p>This guide can also be accessed by the help button on the top right corner!</p>
                             </Carousel.Caption>
