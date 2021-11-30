@@ -1,16 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Col } from "react-bootstrap";
 import "../App.css";
-import { CSAIRobots, updateCSAIRobots } from "../data/csAIRobots";
-import { CSBS, updateCSBS } from "../data/csBS";
-import { CSBA, updateCSBA } from "../data/csBA";
-import { CSBio, updateCSBio } from "../data/csBio";
-import { CSCyber, updateCSCyber } from "../data/csCyber";
-import { CSData, updateCSData } from "../data/csData";
-import { CSHighPerf, updateCSHighPerf } from "../data/csHighPerf";
-import { CSSystems, updateCSSystems } from "../data/csSystems";
-import { CSTheory, updateCSTheory } from "../data/csTheory";
-import { CSMinor, CSMinorUpdate } from "../data/minor";
+import { updateCSBA } from "../data/csBA";
+import { CSMinorUpdate } from "../data/minor";
 import { Semester } from "../interfaces/semester";
 import { ReqCourseText } from "./ReqCourseText";
 import { findConcentration } from "../utilities/findConcentration";

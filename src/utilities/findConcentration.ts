@@ -1,5 +1,4 @@
 import { CSAIRobots, updateCSAIRobots } from "../data/csAIRobots";
-import { updateCSBA } from "../data/csBA";
 import { CSBio, updateCSBio } from "../data/csBio";
 import { CSBS, updateCSBS } from "../data/csBS";
 import { CSCyber, updateCSCyber } from "../data/csCyber";
@@ -8,11 +7,6 @@ import { CSHighPerf, updateCSHighPerf } from "../data/csHighPerf";
 import { CSSystems, updateCSSystems } from "../data/csSystems";
 import { CSTheory, updateCSTheory } from "../data/csTheory";
 import { Semester } from "../interfaces/semester";
-
-interface iFindConc {
-    conc: string;
-    semesters: Semester[];
-}
 
 export type Concentrations = | CSBS
     | CSAIRobots
