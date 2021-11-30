@@ -38,34 +38,34 @@ export function CourseModal({
     }: save) => {
         const newMod: CourseDisplay = mod;
         switch (name) {
-            case "name": {
-                newMod.info.name = value;
-                break;
-            }
-            case "descr": {
-                newMod.info.descr = value;
-                break;
-            }
-            case "credits": {
-                newMod.info.credits = value;
-                break;
-            }
-            case "preReq": {
-                newMod.info.preReq = value;
-                break;
-            }
-            case "restrict": {
-                newMod.info.restrict = value;
-                break;
-            }
-            case "breadth": {
-                newMod.info.breadth = value;
-                break;
-            }
-            case "typ": {
-                newMod.info.typ = value;
-                break;
-            }
+        case "name": {
+            newMod.info.name = value;
+            break;
+        }
+        case "descr": {
+            newMod.info.descr = value;
+            break;
+        }
+        case "credits": {
+            newMod.info.credits = value;
+            break;
+        }
+        case "preReq": {
+            newMod.info.preReq = value;
+            break;
+        }
+        case "restrict": {
+            newMod.info.restrict = value;
+            break;
+        }
+        case "breadth": {
+            newMod.info.breadth = value;
+            break;
+        }
+        case "typ": {
+            newMod.info.typ = value;
+            break;
+        }
         }
         setMod(newMod);
         console.log("Previous info: " + previousValue);
