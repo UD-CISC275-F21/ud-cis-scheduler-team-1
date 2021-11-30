@@ -9,13 +9,13 @@ import { Autocomplete, TextField } from "@mui/material";
 //Autocomplete came from https://mui.com/components/autocomplete/#useautocomplete
 
 //interface for things getting passed to component
-interface coursePl{
+interface iCoursePl{
     coursesPool: CourseDisplay[],  //array that has courses in poool
     setCoursesPool: (cs: CourseDisplay[]) => void;  //setter to update this array
 }
 
 // the left column of the app, holds the course select and drag and drop buttons
-export function CoursePool({coursesPool, setCoursesPool}: coursePl): JSX.Element {
+export function CoursePool({coursesPool, setCoursesPool}: iCoursePl): JSX.Element {
     const [inpu, setInpu] = useState<string>(""); //string value for input for class
 
     //check if course already in course pool, returns true if it is, false if not
@@ -58,7 +58,7 @@ export function CoursePool({coursesPool, setCoursesPool}: coursePl): JSX.Element
             Add Course  
             </Button>
         </Form>
-        <p>Drag and drop courses from course pool into a semester.</p>
+        {coursesPool.length===0 && <p>Drag and drop courses from course pool into a semester.</p>}
         {coursesPool.map(course => 
             <div key = {course.info.code}>
                 <DraggableCourse course = {course}></DraggableCourse>

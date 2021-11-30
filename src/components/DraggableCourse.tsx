@@ -6,11 +6,11 @@ import { CourseDisplay } from "../interfaces/course";
 
 //interface for things being passed into component, we anticipate more 
 // values will be needed later
-interface dragClass{
+interface iDragClass{
     course:CourseDisplay
 }
 
-export function DraggableCourse({course}: dragClass): JSX.Element {
+export function DraggableCourse({course}: iDragClass): JSX.Element {
     //dragging hook from dnd package, exact copy
     const [{ isDragging }, dragRef] = useDrag({
         type: "course",
