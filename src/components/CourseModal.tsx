@@ -1,13 +1,13 @@
 import React from "react";
-import {Button, Col, Row, Modal} from "react-bootstrap";
-import {EditText, EditTextarea} from "react-edit-text";
-import {CourseDisplay} from "../interfaces/course";
+import { Button, Col, Row, Modal } from "react-bootstrap";
+import { EditText, EditTextarea } from "react-edit-text";
+import { CourseDisplay } from "../interfaces/course";
 import "react-edit-text/dist/index.css";
 import { Semester } from "../interfaces/semester";
 import "../App.css";
 
 
-interface courseModal {
+interface iCourseModal {
     show: boolean;
     setShow: (s: boolean) => void;
     semester: Semester;
@@ -15,10 +15,10 @@ interface courseModal {
     mod: CourseDisplay;
     setMod: (setMod: CourseDisplay) => void;
 }
-interface save{
-    name : string;
-    value : string;
-    previousValue : string;
+interface save {
+    name: string;
+    value: string;
+    previousValue: string;
 }
 
 export function CourseModal({
@@ -28,7 +28,7 @@ export function CourseModal({
     setSemester,
     mod,
     setMod,
-}: courseModal): JSX.Element {
+}: iCourseModal): JSX.Element {
 
     //handle staging change info into mod but not update the actual semester yet
     const handleSave = ({
@@ -74,7 +74,7 @@ export function CourseModal({
 
     //actual semester updated with new course info after save button is clicked 
     function handleSaveChanges(): void {
-        const newSem : Semester = semester;
+        const newSem: Semester = semester;
         newSem.courses[semester.courses.findIndex(c => c.info.code == mod.info.code)] = mod;
         setSemester(newSem);
     }

@@ -17,13 +17,13 @@ interface iCSVdata {
     creditShown: string;
     gradeShown: string;
 }
-interface fyl{
+interface iFourYearPlan{
     semesters : Semester[];
     setSemesters : (s : Semester[])=>void;
     coursesPool: CourseDisplay[],
     setCoursesPool: (cs: CourseDisplay[]) => void;
 }
-export function FourYearPlan({semesters,setSemesters, coursesPool, setCoursesPool}:fyl): JSX.Element {
+export function FourYearPlan({semesters,setSemesters, coursesPool, setCoursesPool}:iFourYearPlan): JSX.Element {
     const [show, setShow] = useState(false);// Show the modal when adding new semester
 
     //Download JSON file 
