@@ -18,6 +18,8 @@ export type Concentrations = | CSBS
     | CSTheory
 
 export type updateFunction = (s: Semester[]) => Concentrations
+
+//mapping concentration name to corresponding update function
 export const dispatch : Record<string, updateFunction> = {
     "Traditional Program": updateCSBS,
     "Artificial Intelligence and Robotics": updateCSAIRobots,
@@ -29,6 +31,7 @@ export const dispatch : Record<string, updateFunction> = {
     "Theory and Computation": updateCSTheory,
 };
 
+//find concentration function
 export function findConcentration(conc: string,semesters: Semester[]): Concentrations {
     return dispatch[conc](semesters);
 }
