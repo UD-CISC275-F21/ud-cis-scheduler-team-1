@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {Carousel, Modal } from "react-bootstrap";
+import { Button, Carousel, Modal } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../App.css";
 
@@ -17,10 +17,10 @@ export function Welcome({ show, setShow }: welc): JSX.Element {
     return (
         <div>
             {show && <Modal size="lg" show={show} onHide={() => {
-                setShow(false); 
+                setShow(false);
                 setIndex(0);
             }}>
-                <Modal.Header closeButton>
+                <Modal.Header>
                     <Modal.Title>Usage Guide</Modal.Title>
                 </Modal.Header>
                 <Modal.Body className="welcome-container">
@@ -46,6 +46,12 @@ export function Welcome({ show, setShow }: welc): JSX.Element {
                         </Carousel.Item>
                     </Carousel>
                 </Modal.Body>
+                <Modal.Footer>
+                    <Button onClick={() => {
+                        setShow(false);
+                        setIndex(0);
+                    }}>Close Guide</Button>
+                </Modal.Footer>
             </Modal>}
         </div>
     );
