@@ -3,23 +3,30 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import App from "./App";
 
 describe("App", () => {
-
     beforeEach(() => {
         render(<App />);
     });
-
     it("renders UD CIS Scheduler text", () => {
-        const linkElement = screen.getByText(/UD CIS Scheduler/i);
-        expect(linkElement).toBeInTheDocument();
+        expect(screen.getByText(/UD CIS Scheduler/i)).toBeInTheDocument();
     });
-
+    describe("Welcome", () =>{
+        it("renders welcome modal and usage guide", () => {
+            expect(screen.queryByText("Usage Guide")).toBeInTheDocument();
+        });
+        it("closes welcome modal when click close button", () => {
+            fireEvent.click(screen.getByRole('button', { name: "Close Guide" }));
+            expect(screen.queryByText("Usage Guide")).not.toBeInTheDocument();
+        });
+        it("renders welcome modal when click 'Help' button", () => {
+            fireEvent.click(screen.getByRole('button', { name: "Close Guide" }));
+            fireEvent.click(screen.getByRole('button', { name: "Help" }));
+            expect(screen.queryByText("Usage Guide")).toBeInTheDocument();
+        });
+    });
     describe("Concentrations", () => {
-
         describe("Elements render correctly on app load", () => {
-
             it("has the degree type dropdown when the app loads", () => {
-                const element = screen.queryByTestId("dropdown-basic");
-                expect(element).toBeInTheDocument();
+                expect(screen.queryByTestId("dropdown-basic")).toBeInTheDocument();
             });
             it("has the concentration select visible when the app renders", () => {
                 expect(screen.getByTestId("concentration-dropdown")).toBeInTheDocument();
@@ -44,15 +51,11 @@ describe("App", () => {
             });
         });*/
     });
-
-    
     describe("FourYearPlan", () => {
-
         it("Simulates Add Semester click and checks if modal pops up", () => {
             fireEvent.click(screen.getByText(/\+ Add Semester/i));
             expect(screen.queryByText("Adding New Semester")).toBeInTheDocument();
         });
-
         describe("AddSemesterModal", ()=> {
             it("Closes Modal on cancel button", () => {
                 fireEvent.click(screen.getByText(/\+ Add Semester/i));
@@ -65,12 +68,5 @@ describe("App", () => {
                 expect(screen.queryByText("Semester already in your plan!")).toBeInTheDocument();
             });
         });
-
     });
-
-    /*
-    describe("Requirements", () => {
-        console.log("yay");
-    });*/
-
 });
