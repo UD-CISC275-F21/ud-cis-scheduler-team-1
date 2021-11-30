@@ -13,6 +13,7 @@ import { CSTheory, updateCSTheory } from "../data/csTheory";
 import { CSMinor, CSMinorUpdate } from "../data/minor";
 import { Semester } from "../interfaces/semester";
 import { ReqCourseText } from "./ReqCourseText";
+import { findConcentration } from "../utilities/findConcentration";
 
 interface iReq {
     semesters: Semester[];
@@ -27,60 +28,12 @@ export function Requirements({ semesters, bsba, major, conc }: iReq): JSX.Elemen
 
     function getConc() {
         if (major === "Minor") {
-            const req: CSMinor = CSMinorUpdate(semesters);
-            return req;
+            return CSMinorUpdate(semesters);
         } else {
             if (bsba === "BA") {
-                const req: CSBA = updateCSBA(semesters);
-                return req;
+                return updateCSBA(semesters);
             } else {
-                switch (conc) {
-                case "Traditional Program":
-                {
-                    const req: CSBS = updateCSBS(semesters);
-                    return req;
-                }
-                case "Artificial Intelligence and Robotics":
-                {
-                    const req: CSAIRobots = updateCSAIRobots(semesters);
-                    return req;
-                }
-                case "Bioinformatics":
-                {
-                    const req: CSBio = updateCSBio(semesters);
-                    return req;
-                }
-                case "Cybersecurity":
-                {
-                    const req: CSCyber = updateCSCyber(semesters);
-                    return req;
-                }
-                case "Data Science":
-                {
-                    const req: CSData = updateCSData(semesters);
-                    return req;
-                }
-                case "High Performance Computing":
-                {
-                    const req: CSHighPerf = updateCSHighPerf(semesters);
-                    return req;
-                }
-                case "Systems and Networks":
-                {
-                    const req: CSSystems = updateCSSystems(semesters);
-                    return req;
-                }
-                case "Theory and Computation":
-                {
-                    const req: CSTheory = updateCSTheory(semesters);
-                    return req;
-                }
-                default : 
-                {
-                    const req: CSBA = updateCSBA(semesters);
-                    return req;
-                }
-                }
+                return findConcentration(conc,semesters);
             }
         }
     }
