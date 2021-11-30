@@ -9,17 +9,17 @@ describe("App", () => {
     it("renders UD CIS Scheduler text", () => {
         expect(screen.getByText(/UD CIS Scheduler/i)).toBeInTheDocument();
     });
-    describe("Welcome", () =>{
+    describe("Welcome", () => {
         it("renders welcome modal and usage guide", () => {
             expect(screen.queryByText("Usage Guide")).toBeInTheDocument();
         });
         it("closes welcome modal when click close button", () => {
-            fireEvent.click(screen.getByRole('button', { name: "Close Guide" }));
+            fireEvent.click(screen.getByRole("button", { name: "Close Guide" }));
             expect(screen.queryByText("Usage Guide")).not.toBeInTheDocument();
         });
-        it("renders welcome modal when click 'Help' button", () => {
-            fireEvent.click(screen.getByRole('button', { name: "Close Guide" }));
-            fireEvent.click(screen.getByRole('button', { name: "Help" }));
+        it("renders welcome modal when click Help button", () => {
+            fireEvent.click(screen.getByRole("button", { name: "Close Guide" }));
+            fireEvent.click(screen.getByRole("button", { name: "Help" }));
             expect(screen.queryByText("Usage Guide")).toBeInTheDocument();
         });
     });
@@ -56,15 +56,15 @@ describe("App", () => {
             fireEvent.click(screen.getByText(/\+ Add Semester/i));
             expect(screen.queryByText("Adding New Semester")).toBeInTheDocument();
         });
-        describe("AddSemesterModal", ()=> {
+        describe("AddSemesterModal", () => {
             it("Closes Modal on cancel button", () => {
                 fireEvent.click(screen.getByText(/\+ Add Semester/i));
-                fireEvent.click(screen.getByText("Cancel"));         
+                fireEvent.click(screen.getByText("Cancel"));
                 expect(screen.queryByText("Adding New Semester")).not.toBeInTheDocument();
             });
             it("Checks cannot add same semester ", () => {
                 fireEvent.click(screen.getByText(/\+ Add Semester/i));
-                fireEvent.click(screen.getByText("Add Semester"));         
+                fireEvent.click(screen.getByText("Add Semester"));
                 expect(screen.queryByText("Semester already in your plan!")).toBeInTheDocument();
             });
         });
