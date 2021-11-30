@@ -17,7 +17,8 @@ export function Welcome({ show, setShow }: welc): JSX.Element {
     return (
         <div>
             {show && <Modal size="lg" show={show} onHide={() => {
-                setShow(false);
+                setShow(false); 
+                setIndex(0);
             }}>
                 <Modal.Header closeButton>
                     <Modal.Title>Usage Guide</Modal.Title>
