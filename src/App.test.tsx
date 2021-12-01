@@ -96,17 +96,17 @@ describe("App", () => {
             });
             it("deletes a semester", () => {
                 expect(screen.queryByText("Fall 2021")).toBeInTheDocument();
-                const row = screen.getByRole('row', {name: /fall 2021 x/i});
-                fireEvent.click(within(row).getByRole('button', {name: /x/i}));
+                const row = screen.getByRole("row", { name: /fall 2021 x/i });
+                fireEvent.click(within(row).getByRole("button", { name: /x/i }));
                 expect(screen.queryByText("Fall 2021")).not.toBeInTheDocument();
             });
         });
         describe("SemesterTable", () => {
             it("deletes a course from semester table", () => {
-                expect(screen.queryByText(/cisc 108 \- introduction to computer science i/i)).toBeInTheDocument();
-                const row = screen.getByRole('row', {name: /cisc 108 \- introduction to computer science i 3 \- x/i});
+                expect(screen.queryByText(/cisc 108 - introduction to computer science i/i)).toBeInTheDocument();
+                const row = screen.getByRole('row', { name: /cisc 108 - introduction to computer science i 3 \- x/i });
                 fireEvent.click(within(row).getByRole('button', { name: /x/i }));
-                expect(screen.queryByText(/cisc 108 \- introduction to computer science i/i)).not.toBeInTheDocument();
+                expect(screen.queryByText(/cisc 108 - introduction to computer science i/i)).not.toBeInTheDocument();
             });
         });
     });
