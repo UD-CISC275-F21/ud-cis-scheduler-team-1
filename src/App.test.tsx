@@ -1,6 +1,7 @@
 import React from "react";
-import { fireEvent, render, screen } from "@testing-library/react";
+import { act, fireEvent, render, screen, within } from "@testing-library/react";
 import App from "./App";
+import userEvent from "@testing-library/user-event";
 
 describe("App", () => {
     beforeEach(() => {
@@ -18,9 +19,35 @@ describe("App", () => {
             expect(screen.queryByText("Usage Guide")).not.toBeInTheDocument();
         });
         it("renders welcome modal when click Help button", () => {
-            fireEvent.click(screen.getByRole("button", { name: "Close Guide" }));
-            fireEvent.click(screen.getByRole("button", { name: "Help" }));
+            fireEvent.click(screen.getByRole("button", { name: "Close Guide" })); //close the modal first
+            expect(screen.queryByText("Usage Guide")).not.toBeInTheDocument();
+            fireEvent.click(screen.getByRole("button", { name: "Help" })); //then reopen modal with help button
             expect(screen.queryByText("Usage Guide")).toBeInTheDocument();
+        });
+    });
+    describe("CoursePool", () => {
+        it("adds a course to course pool", () => {
+            fireEvent.click(screen.getByRole("button", { name: "Close Guide" }));
+            expect(screen.getByText("Drag and drop courses from course pool into a semester.")).toBeInTheDocument();
+            fireEvent.click(screen.getByRole("textbox", { name: "Course Code" }));
+            fireEvent.change(screen.getByRole("textbox", { name: "Course Code" }), { target: { value: "CISC 108" } });
+            fireEvent.click(screen.getByRole("option", { name: "CISC 108" }));
+            fireEvent.click(screen.getByRole("button", { name: "Add Course" }));
+            expect(screen.queryByText("Drag and drop courses from course pool into a semester.")).not.toBeInTheDocument();
+            expect(screen.queryByText("CISC 108 Introduction to Computer Science I")).toBeInTheDocument();
+        });
+        it("drags and drops a course to semester table", () => {
+            fireEvent.click(screen.getByRole("textbox", { name: "Course Code" }));
+            fireEvent.change(screen.getByRole("textbox", { name: "Course Code" }), { target: { value: "CISC 108" } });
+            fireEvent.click(screen.getByRole("option", { name: "CISC 108" }));
+            fireEvent.click(screen.getByRole("button", { name: "Add Course" }));
+            fireEvent.dragStart(screen.getByRole("drag"));
+            fireEvent.dragEnter(screen.getByRole("columnheader", { name: /fall 2021/i }));
+            fireEvent.dragOver(screen.getByRole("columnheader", { name: /fall 2021/i }));
+            fireEvent.drop(screen.getByRole("columnheader", { name: /fall 2021/i }));
+            //when course is successfully dragged over to the semester. 
+            //coursepool list will be empty so the "Drag and drop courses from course pool into a semester." text will appear again
+            expect(screen.queryByText("Drag and drop courses from course pool into a semester.")).toBeInTheDocument();
         });
     });
     describe("Concentrations", () => {
@@ -38,18 +65,6 @@ describe("App", () => {
             });
 
         });
-
-        /*describe("Major/Minor dropdown", () => {
-
-            // https://jacobwicks.github.io/2020/05/16/testing-semantic-ui-react-dropdown.html
-            it("enables and disables BA/BS and concentration correctly", () => {
-                act(async () => {
-                    userEvent.click(screen.getByText("Major"));
-                    userEvent.click(screen.getByText("Minor"));
-                });
-                expect(screen.getByText("Minor")).toBeInTheDocument();
-            });
-        });*/
     });
     describe("FourYearPlan", () => {
         it("Simulates Add Semester click and checks if modal pops up", () => {
@@ -57,7 +72,19 @@ describe("App", () => {
             expect(screen.queryByText("Adding New Semester")).toBeInTheDocument();
         });
         describe("AddSemesterModal", () => {
-            it("Closes Modal on cancel button", () => {
+            it("adds a semester in plan", async () => {
+                expect(screen.queryByText(/fall 2022/i)).not.toBeInTheDocument();
+                userEvent.click(screen.getByText(/\+ Add Semester/i));
+                expect(screen.queryByText("Adding New Semester")).toBeInTheDocument();
+                await act(async () => {
+                    userEvent.click(screen.getByRole("button", { name: "2021" }));
+                });
+                await userEvent.click(screen.getByRole("button", { name: "2022" }));
+                await userEvent.click(screen.getByRole("button", { name: "Add Semester" }));
+                expect(screen.queryByText("Adding New Semester")).not.toBeInTheDocument();
+                expect(screen.getByRole("columnheader", { name: /fall 2022/i })).toBeInTheDocument();
+            });
+            it("closes Modal on cancel button", () => {
                 fireEvent.click(screen.getByText(/\+ Add Semester/i));
                 fireEvent.click(screen.getByText("Cancel"));
                 expect(screen.queryByText("Adding New Semester")).not.toBeInTheDocument();
@@ -66,6 +93,20 @@ describe("App", () => {
                 fireEvent.click(screen.getByText(/\+ Add Semester/i));
                 fireEvent.click(screen.getByText("Add Semester"));
                 expect(screen.queryByText("Semester already in your plan!")).toBeInTheDocument();
+            });
+            it("deletes a semester", () => {
+                expect(screen.queryByText("Fall 2021")).toBeInTheDocument();
+                const row = screen.getByRole('row', {name: /fall 2021 x/i});
+                fireEvent.click(within(row).getByRole('button', {name: /x/i}));
+                expect(screen.queryByText("Fall 2021")).not.toBeInTheDocument();
+            });
+        });
+        describe("SemesterTable", () => {
+            it("deletes a course from semester table", () => {
+                expect(screen.queryByText(/cisc 108 \- introduction to computer science i/i)).toBeInTheDocument();
+                const row = screen.getByRole('row', {name: /cisc 108 \- introduction to computer science i 3 \- x/i});
+                fireEvent.click(within(row).getByRole('button', { name: /x/i }));
+                expect(screen.queryByText(/cisc 108 \- introduction to computer science i/i)).not.toBeInTheDocument();
             });
         });
     });
