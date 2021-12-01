@@ -104,8 +104,8 @@ describe("App", () => {
         describe("SemesterTable", () => {
             it("deletes a course from semester table", () => {
                 expect(screen.queryByText(/cisc 108 - introduction to computer science i/i)).toBeInTheDocument();
-                const row = screen.getByRole('row', { name: /cisc 108 - introduction to computer science i 3 \- x/i });
-                fireEvent.click(within(row).getByRole('button', { name: /x/i }));
+                const row = screen.getByRole("row", { name: /cisc 108 - introduction to computer science i 3 - x/i });
+                fireEvent.click(within(row).getByRole("button", { name: /x/i }));
                 expect(screen.queryByText(/cisc 108 - introduction to computer science i/i)).not.toBeInTheDocument();
             });
         });
