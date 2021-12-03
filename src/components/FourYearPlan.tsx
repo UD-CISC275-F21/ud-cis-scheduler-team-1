@@ -30,7 +30,7 @@ export function FourYearPlan({semesters,setSemesters, coursesPool, setCoursesPoo
     const downloadJSON = async () => {
         const downloadData: Semester[] = semesters;
         const fileName = "My-Schedule";
-        const json = JSON.stringify(downloadData); //Convert JSON Array to string.
+        const json = JSON.stringify(downloadData,null,2); //Convert JSON Array to string.
         const blob = new Blob([json]); //Convert JSON string to BLOB.
         const fileDownloadUrl = await URL.createObjectURL(blob);
         const link = document.createElement("a");
