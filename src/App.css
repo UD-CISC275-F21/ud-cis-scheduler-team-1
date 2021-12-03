@@ -119,3 +119,21 @@ li {
   font-size: 1.2em;
   margin-top: 2em;
 }
+
+.imp-export-subtile{
+  font-size:1.5em;
+  height: 2em;
+}
+.imp-export-btn-group{
+  text-align: center;
+  height: 3em;
+}
+.imp-export-btn{
+  width: 12em;
+  
+  background-color: red;
+}
+.imp-export-footer{
+  text-align: center;
+  margin: auto;
+}

@@ -18,13 +18,14 @@ interface iCSVdata {
 }
 export function ImportExport({ show, setShow, semesters, setSemesters }: iImportExport): JSX.Element {
     const [files, setFiles] = useState<string>("");
-
+    const [jsonFile, setJsonFile] = useState<boolean>(false);
+    const [csvFile, setCsvFile] = useState<boolean>(false);
     //handle read json file when uploading
     const onJSONFileChange = (e: ChangeEvent<HTMLInputElement>) => {
         const fileReader = new FileReader();
         if (e.target.files != null) {
             fileReader.readAsText(e.target.files[0]);
-            fileReader.addEventListener("load", e => {
+            fileReader.addEventListener("load", () => {
                 setFiles(fileReader.result as string);
             });
             fileReader.addEventListener("error", error => {
@@ -110,12 +111,13 @@ export function ImportExport({ show, setShow, semesters, setSemesters }: iImport
             <Modal.Title><strong>Import / Export</strong></Modal.Title>
         </Modal.Header>
         <Modal.Body>
-            <strong>Export your plan:</strong>
-            <Row>
-                <Col><Button onClick={downloadJSON}>Export as .JSON</Button></Col>
+            <Row><strong className="imp-export-subtile">Export your plan:</strong></Row>
+            <Row className="imp-export-btn-group">
+                <Col><Button className="imp-export-btn" onClick={downloadJSON}>Export as .JSON</Button></Col>
                 <Col>
-                    <Button>
+                    <Button className="imp-export-btn">
                         <CSVLink
+                            style={{color:"#FFFFFF"}}
                             id="csvlink"
                             data={CSVdata}
                             headers={CSVheaders}
@@ -125,19 +127,34 @@ export function ImportExport({ show, setShow, semesters, setSemesters }: iImport
                     </Button>
                 </Col>
             </Row>
-            <strong>Import your plan:</strong>
-            <Row>
+            <Row><strong className="imp-export-subtile">Import your own file:</strong></Row>
+            <Row className="imp-export-btn-group">
 
-                <Col><Button>Import as .JSON</Button></Col>
-                <Col><Button>Import as .CSV</Button></Col>
-            </Row>
-            <Row>
-                <input type="file" onChange={onJSONFileChange} onError={() => {
-                    setShow(false);
-                    alert("Time out. Please try again!");
-                }}></input>
-                <button onClick={onJSONFileSave}>Load</button>
+                <Col><Button className="imp-export-btn" onClick={() => {
+                    setJsonFile(true);
+                    setCsvFile(false);
+                }}>Import as .JSON</Button></Col>
+                <Col><Button className="imp-export-btn" onClick={() => {
+                    setCsvFile(true);
+                    setJsonFile(false);
+                }}>Import as .CSV</Button></Col>
             </Row>
         </Modal.Body>
+        <Modal.Footer className="imp-export-footer">
+            {jsonFile && <Row className="imp-export-input-group">
+                <Col style={{width:"20em"}}><input type="file" accept="application/JSON" onChange={onJSONFileChange} onError={() => {
+                    setShow(false);
+                    alert("Time out. Please try again!");
+                }}></input></Col>
+                <Col><Button style={{width:"7em"}} onClick={onJSONFileSave}>Load JSON</Button></Col>
+            </Row>}
+            {csvFile && <Row className="imp-export-input-group">
+                <Col style={{width:"20em"}}><input type="file" accept=".csv" onChange={onJSONFileChange} onError={() => {
+                    setShow(false);
+                    alert("Time out. Please try again!");
+                }}></input></Col>
+                <Col><Button style={{width:"7em"}} onClick={onJSONFileSave}>Load CSV</Button></Col>
+            </Row>}
+        </Modal.Footer>
     </Modal>;
 }
