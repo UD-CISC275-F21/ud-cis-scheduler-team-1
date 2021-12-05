@@ -71,7 +71,6 @@ export function ImportExport({ show, setShow, semesters, setSemesters }: iImport
         for (let i = 1; i < csv.length; i++) {
             if (seasonList.includes(csv[i][0])) {
                 const sem : Semester = {season : seasonMap[csv[i][0]] , year : Number(csv[i][1]), courses : []};
-                //await newSems.push({season : seasonMap[csv[i][0]] , year : Number(csv[i][1]), courses : []});
                 let j = i + 2;
                 for (; j < csv.length && csv[j][0].length !== 0; j++) {
                     const course : Course = findCourse(csv[j][0]);
@@ -85,7 +84,6 @@ export function ImportExport({ show, setShow, semesters, setSemesters }: iImport
         await setSemesters(newSems);
         setShow(false);
     };
-
 
     //Download JSON file 
     const downloadJSON = async () => {
