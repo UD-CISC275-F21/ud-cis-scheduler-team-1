@@ -2,8 +2,11 @@ import React, { ChangeEvent, useState } from "react";
 import { Button, Col, Modal, Row } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../App.css";
-import { Semester } from "../interfaces/semester";
+import { season, Semester } from "../interfaces/semester";
+import {Course} from "../interfaces/course";
 import { CSVLink } from "react-csv";
+import Papa from "papaparse";
+import { findCourse } from "../utilities/findCourse";
 
 interface iImportExport {
     show: boolean,
@@ -18,8 +21,10 @@ interface iCSVdata {
 }
 export function ImportExport({ show, setShow, semesters, setSemesters }: iImportExport): JSX.Element {
     const [files, setFiles] = useState<string>("");
+    const [csv, setCSV] = useState<string[][]>([[]]);
     const [jsonFile, setJsonFile] = useState<boolean>(false);
     const [csvFile, setCsvFile] = useState<boolean>(false);
+
     //handle read json file when uploading
     const onJSONFileChange = (e: ChangeEvent<HTMLInputElement>) => {
         const fileReader = new FileReader();
@@ -35,7 +40,8 @@ export function ImportExport({ show, setShow, semesters, setSemesters }: iImport
             });
         }
     };
-    //handle show info on semester table after upload
+
+    //handle show info on semester table after JSON file upload
     const onJSONFileSave = async () => {
         const newSems: Semester[] = [];
         setSemesters(newSems);
@@ -46,6 +52,35 @@ export function ImportExport({ show, setShow, semesters, setSemesters }: iImport
                 await sem.courses.push(newCourses);
             }
             await newSems.push(sem);
+        }
+        await setSemesters(newSems);
+        setShow(false);
+    };
+
+    //handle show info on semester table after CSV file upload 
+    const onCSVFileChange = async () => {//unknown list from package
+        const seasonList: string[] = ["Fall", "Spring", "Winter", "Summer"];
+        const seasonMap : Record<string, season> = {
+            "Fall": season.fall,
+            "Spring":season.spring,
+            "Winter":season.winter,
+            "Summer":season.summer,
+        };
+        const newSems: Semester[] = [];
+        setSemesters(newSems);
+        for (let i = 1; i < csv.length; i++) {
+            if (seasonList.includes(csv[i][0])) {
+                const sem : Semester = {season : seasonMap[csv[i][0]] , year : Number(csv[i][1]), courses : []};
+                //await newSems.push({season : seasonMap[csv[i][0]] , year : Number(csv[i][1]), courses : []});
+                let j = i + 2;
+                for (; j < csv.length && csv[j][0].length !== 0; j++) {
+                    const course : Course = findCourse(csv[j][0]);
+                    await sem.courses.push({info : course, grade : csv[j][2]});
+                    console.log(course);
+                }
+                await newSems.push(sem);
+                i = j;
+            }
         }
         await setSemesters(newSems);
         setShow(false);
@@ -117,7 +152,7 @@ export function ImportExport({ show, setShow, semesters, setSemesters }: iImport
                 <Col>
                     <Button className="imp-export-btn">
                         <CSVLink
-                            style={{color:"#FFFFFF"}}
+                            style={{ color: "#FFFFFF" }}
                             id="csvlink"
                             data={CSVdata}
                             headers={CSVheaders}
@@ -142,18 +177,38 @@ export function ImportExport({ show, setShow, semesters, setSemesters }: iImport
         </Modal.Body>
         <Modal.Footer className="imp-export-footer">
             {jsonFile && <Row className="imp-export-input-group">
-                <Col style={{width:"20em"}}><input type="file" accept="application/JSON" onChange={onJSONFileChange} onError={() => {
+                <Col style={{ width: "20em" }}><input type="file" accept="application/JSON" onChange={onJSONFileChange} onError={() => {
                     setShow(false);
                     alert("Time out. Please try again!");
                 }}></input></Col>
-                <Col><Button style={{width:"7em"}} onClick={onJSONFileSave}>Load JSON</Button></Col>
+                <Col><Button style={{ width: "7em" }} onClick={onJSONFileSave}>Load JSON</Button></Col>
             </Row>}
             {csvFile && <Row className="imp-export-input-group">
-                <Col style={{width:"20em"}}><input type="file" accept=".csv" onChange={onJSONFileChange} onError={() => {
-                    setShow(false);
-                    alert("Time out. Please try again!");
-                }}></input></Col>
-                <Col><Button style={{width:"7em"}} onClick={onJSONFileSave}>Load CSV</Button></Col>
+                <Col style={{ width: "20em" }}>
+                    <input
+                        type="file"
+                        accept=".csv"
+                        onChange={(event) => {
+                            const cvsFiles = event.target.files;
+                            console.log("files", cvsFiles);
+                            if (cvsFiles) {
+                                console.log(cvsFiles[0]);
+                                Papa.parse(cvsFiles[0], {
+                                    complete: function (results) {
+                                        const listCSV: string[][] = JSON.parse(JSON.stringify(results.data));
+                                        setCSV(listCSV);
+                                    }
+                                });
+
+                            }
+                        }}
+                        onError={() => {
+                            setShow(false);
+                            alert("Time out. Please try again!");
+                        }}
+                    />
+                </Col>
+                <Col><Button style={{ width: "7em" }} onClick={onCSVFileChange}>Load CSV</Button></Col>
             </Row>}
         </Modal.Footer>
     </Modal>;
