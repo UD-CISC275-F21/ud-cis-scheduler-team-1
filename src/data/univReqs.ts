@@ -1,5 +1,6 @@
 import { Semester } from "../interfaces/semester";
 
+//courses satisfying multicultural
 export const multiCult = ["AFRA 110", "AFRA 193", "AFRA 205", "AFRA 206", "AFRA 220", "AFRA 221", "AFRA 222", "AFRA 223", "AFRA 225", 
     "AFRA 250", "AFRA 251", "AFRA 304", "AFRA 305", "AFRA 306", "AFRA 314", "AFRA 315", "AFRA 318", "AFRA 320", "AFRA 321", "AFRA 325", 
     "AFRA 329", "AFRA 334", "AFRA 362", "AFRA 370", "AFRA 371", "AFRA 372", "AFRA 373", "AFRA 381", "AFRA 398", "AFRA 434", "AFRA 440", 
@@ -27,9 +28,11 @@ export const multiCult = ["AFRA 110", "AFRA 193", "AFRA 205", "AFRA 206", "AFRA 
     "UAPP 449", "WOMS 200", "WOMS 201", "WOMS 202", "WOMS 209", "WOMS 210", "WOMS 212", "WOMS 214", "WOMS 216", "WOMS 240", "WOMS 284", 
     "WOMS 304", "WOMS 306", "WOMS 314", "WOMS 332", "WOMS 336", "WOMS 341", "WOMS 356"];
 
+//courses satisfying first year experience
 export const firstYearExp = ["ARSC 116", "BHAN 135", "BMEG 101", "BUAD 110", "EDUC 100", "EGGG 101", 
     "ENSC 101", "KAAP 105", "KAAP 155", "LLCU 111", "MAST 100", "NURS 100", "UNIV 101"];
 
+//courses satisfying discovery learning experience
 export const dle = ["ACCT 363", "ACCT 364", "AFRA 446", "AFRA 464", "AFRA 468", "AFSC 310", "ANFS 404", "ANFS 411", 
     "ANFS 417", "ANFS 418", "ANFS 421", "ANFS 422", "ANFS 426", "ANFS 464", "ANTH 218", "ANTH 232", "ANTH 334", "ANTH 338", 
     "ANTH 341", "ANTH 350", "ANTH 375", "ANTH 404", "ANTH 424", "ANTH 463", "ANTH 486", "ANTH 489", "APEC 409", "APEC 412", 
@@ -63,6 +66,7 @@ export const dle = ["ACCT 363", "ACCT 364", "AFRA 446", "AFRA 464", "AFRA 468", 
     "UNIV 364", "UNIV 365", "UNIV 368", "UNIV 370", "UNIV 371", "UNIV 372", "UNIV 373", "UNIV 401", "UNIV 402", "UNIV 440", 
     "UNIV 460", "UNIV 462", "UNIV 468", "WOMS 498"];
 
+//courses satisfying arts and sciences group A requirement
 export const groupA = ["AFRA 206", "AFRA 250", "AFRA 295", "AFRA 305", "AFRA 314", "AFRA 315", "AFRA 318", "AFRA 325", "AFRA 370", 
     "AFRA 372", "AFRA 442", "AFRA 447", "ANTH 201", "ANTH 205", "ANTH 216", "ANTH 227", "ANTH 239", "ANTH 251", "ANTH 338", "ANTH 344", 
     "ANTH 381", "ANTH 457", "ART 129 ", "ART 133 ", "ART 180 ", "ART 200 ", "ART 204 ", "ART 230 ", "ART 231 ", "ART 233 ", "ART 243 ", 
@@ -89,6 +93,7 @@ export const groupA = ["AFRA 206", "AFRA 250", "AFRA 295", "AFRA 305", "AFRA 314
     "THEA 227", "THEA 240", "THEA 242", "THEA 300", "THEA 301", "THEA 302", "THEA 304", "THEA 305", "THEA 308", "THEA 309", "THEA 311", 
     "THEA 314", "THEA 340", "THEA 360", "THEA 361", "WOMS 205", "WOMS 216", "WOMS 332", "WOMS 336"]; 
 
+//courses satisying arts and sciences group B requirement
 export const groupB = ["AFRA 110", "AFRA 193", "AFRA 220", "AFRA 304", "AFRA 306", "AFRA 320", "AFRA 329", "AFRA 334", "AFRA 362", "AFRA 363", 
     "AFRA 364", "AFRA 369", "AFRA 371", "AFRA 393", "AFRA 398", "AFRA 434", "AFRA 440", "AFRA 445", "AFRA 446", "AFRA 484", "ANTH 101", 
     "ANTH 105", "ANTH 209", "ANTH 210", "ANTH 211", "ANTH 212", "ANTH 225", "ANTH 228", "ANTH 233", "ANTH 265", "ANTH 269", "ANTH 275", 
@@ -120,6 +125,7 @@ export const groupB = ["AFRA 110", "AFRA 193", "AFRA 220", "AFRA 304", "AFRA 306
     "THEA 341", "UAPP 220", "WOMS 200", "WOMS 202", "WOMS 210", "WOMS 260", "WOMS 284", "WOMS 291", "WOMS 313", "WOMS 314", "WOMS 324", 
     "WOMS 356"];
 
+//courses satisfying group c arts and sciences requirement
 export const groupC = ["AFRA 205", "AFRA 223", "AFRA 225", "AFRA 251", "AFRA 321", "AFRA 350", "AFRA 373", "AFRA 381", "ANFS 100", "ANTH 103",
     "ANTH 218", "ANTH 222", "ANTH 223", "ANTH 229", "ANTH 230", "ANTH 232", "ANTH 234", "ANTH 235", "ANTH 236", "ANTH 245", "ANTH 255",
     "ANTH 302", "ANTH 303", "ANTH 304", "ANTH 310", "ANTH 311", "ANTH 316", "ANTH 318", "ANTH 320", "ANTH 321", "ANTH 324", "ANTH 329", 
@@ -142,6 +148,7 @@ export const groupC = ["AFRA 205", "AFRA 223", "AFRA 225", "AFRA 251", "AFRA 321
     "SPTM 330", "SPPA 414", "UAPP 102", "UAPP 110", "UAPP 225", "UAPP 403", "WOMS 201", "WOMS 206", "WOMS 212", "WOMS 240", "WOMS 301", 
     "WOMS 304", "WOMS 306", "WOMS 355", "WOMS 363", "WOMS 389"];
 
+//courses satisfying arts and sciences group d requirement
 export const groupD = ["AGRI 100", "ANFS 101", "ANFS 102", "ANFS 230", "ANFS 241", "ANFS 261", "ANFS 305", "ANTH 102", "ANTH 104", "ANTH 106", 
     "ANTH 202", "ANTH 204", "ANTH 300", "ANTH 301", "ANTH 305", "ANTH 306", "ANTH 307", "ANTH 404", "ANTH 405", "ANTH 424", "ARTC 210", 
     "ARTH 205", "BISC 103", "BISC 104", "BISC 105", "BISC 106", "BISC 107", "BISC 110", "BISC 113", "BISC 115", "BISC 116", "BISC 117", 
@@ -157,6 +164,7 @@ export const groupD = ["AGRI 100", "ANFS 101", "ANFS 102", "ANFS 230", "ANFS 241
     "PHYS 404", "PLSC 101", "PLSC 140", "PLSC 170", "PLSC 204", "PLSC 212", "PLSC 214", "PLSC 218", "PLSC 302", "PSYC 314", "SCEN 101", 
     "SCEN 102", "SCEN 105", "SCEN 107", "SCEN 109", "SCEN 111", "SCEN 115", "SCEN 117", "SCEN 119", "STAT 200", "WOMS 422"];
 
+//courses satisfying capstone requirement
 export const capstone = ["ACCT 425", "AFRA 480", "AFRA 490", "AGRI 400", "ANFS 404", "ANFS 411", "ANFS 417", "ANFS 418", "ANFS 421", "ANFS 422", 
     "ANFS 426", "ANTH 486", "ANTH 487", "ANTH 488", "ANTH 489", "APEC 409", "APEC 450", "ART 403 ", "ART 419 ", "ARTC 495", "ARTH 402", 
     "ARTH 405", "ARTH 406", "ARTH 413", "ARTH 414", "ARTH 415", "ARTH 417", "ARTH 419", "ARTH 421", "ARTH 422", "ARTH 423", "ARTH 424", 
@@ -179,6 +187,7 @@ export const capstone = ["ACCT 425", "AFRA 480", "AFRA 490", "AGRI 400", "ANFS 4
     "SOCI 413", "SOCI 415", "SOCI 416", "SOCI 418", "SOCI 420", "SOCI 425", "SOCI 428", "SOCI 430", "SOCI 433", "SOCI 444", "SOCI 449", 
     "SOCI 450", "SOCI 470", "SOCI 471", "SPAN 491", "SPTM 464", "STAT 468", "UAPP 440", "UNIV 402", "UNIV 468", "WOMS 403", "WOMS 410"];
 
+//courses satisfying second writing requirement for Arts and Sciences
 export const secondWrite = ["AFRA 250", "AFRA 304", "AFRA 305", "AFRA 306", "AFRA 314", "AFRA 325", "AFRA 329", "AFRA 362", "AFRA 363", 
     "AFRA 370", "AFRA 398", "AFRA 434", "AFRA 440", "AFRA 442", "AFRA 443", "AFRA 445", "AFRA 484", "ANTH 326", "ANTH 486", "ANTH 487", 
     "ANTH 488", "ANTH 489", "ART 315 ", "ART 324 ", "ARTH 301", "ARTH 302", "ARTH 303", "ARTH 310", "ARTH 311", "ARTH 314", "ARTH 323", 
@@ -206,6 +215,7 @@ export const secondWrite = ["AFRA 250", "AFRA 304", "AFRA 305", "AFRA 306", "AFR
     "SOCI 450", "SOCI 470", "THEA 340", "ENEP 425", "UAPP 230", "UAPP 401", "UNIV 402", "UNIV 490", "UNIV 491", "UNIV 495", "WOMS 308", 
     "WOMS 313"];
 
+//interface that has all the university requirements
 export interface univReqs{
     "ENGL 110": boolean,  //E 110 req 3 cr
     "FYS": boolean,       //First year experience 0-4 cr
@@ -218,6 +228,7 @@ export interface univReqs{
     "capstone": boolean,  //Capstone
 }
 
+//list of engineering breadth courses
 export const engineerBreadth = ["AFRA 305", "AFRA 308", "AFRA 330", "AFRA 443", "ANTH 354", "APEC 324", "ARAB 105", "ARAB 106", "ARAB 107", 
     "ARAB 200", "ARAB 201", "ARAB 205", "ARAB 208", "ART 406 ", "ARTH 198", "ARTH 199", "ARTH 249", "CHIN 105", "CHIN 106", "CHIN 107", 
     "CHIN 200", "CHIN 201", "CHIN 205", "CHIN 206", "CHIN 208", "CHIN 451", "CHIN 452", "CHIN 455", "CRJU 340", "CRJU 355", "CRJU 369", 
@@ -242,14 +253,17 @@ export const engineerBreadth = ["AFRA 305", "AFRA 308", "AFRA 330", "AFRA 443", 
     "SOCI 450", "SPAN 105", "SPAN 106", "SPAN 107", "SPAN 200", "SPAN 205", "SPAN 206", "SPAN 300", "SPAN 301", "SPAN 302", "SPAN 303", 
     "SPAN 304", "SPAN 305", "SPAN 306", "SPTM 320", "UAPP 406"];
 
+//courses satisfying engineering professional development
 export const engineerProfess = ["ACCT 352", "AFSC 310", "AFSC 311", "BUAD 100", "BUAD 306", "BUAD 429", "CHEG 410", "ECON 251", "ENGL 392", 
     "EDUC 413", "EDUC 414", "EDUC 419", "EDUC 420", "SCEN 491", "ENEP 117", "ENEP 402", "ENEP 470", "ENTR 150", "ENTR 155", "ENTR 156", 
     "ENTR 157", "ENTR 351", "ENTR 353", "ENTR 356", "ENTR 364", "ENTR 420", "ENTR 450", "ENTR 451", "ENTR 455", "ENTR 456", "ENTR 457", 
     "ENTR 458", "FINC 459", "ENTR 460", "ENTR 464", "FINC 200", "LEAD 110", "LEAD 341", "LEAD 400", "LEAD 404", "LEAD 411", "UAPP 325", 
     "UAPP 406", "UAPP 411", "UAPP 421"];
 
+//cisc courses not satisfying tech elective
 export const noTech = ["CISC 355", "CISC 356", "CISC 357", "CISC 366", "CISC 465", "CISC 466"];
 
+//returns map object that has course code with a boolean.  boolean is for if course has been used to satisfy a req
 export function accumulateCourses(semesters: Semester[]):Map<string, boolean>{
     let cours = new Map<string, boolean>();
     for (let i = 0; i < semesters.length; i++){
@@ -260,6 +274,7 @@ export function accumulateCourses(semesters: Semester[]):Map<string, boolean>{
     return cours;
 }
 
+//gets courses that are in both subCourse and potentialCourses arrays
 export function findCommonCourses(subCourse: string[], potentialCourses: string[]): string[]{
     let courses: string[] = [];
     for (let i = 0; i < subCourse.length; i++){

@@ -126,6 +126,7 @@ export function updateCSHighPerf(semesters: Semester[]): CSHighPerf {
     if(totalCreds >= 124){
         total124 = true;
     }
+    //check for specific courses
     if(courseNames.includes("ENGL 110")){
         e110 = true;
         courseNames = courseNames.filter(key => key != "ENGL 110");
@@ -171,6 +172,7 @@ export function updateCSHighPerf(semesters: Semester[]): CSHighPerf {
         courseNames = courseNames.filter(key => key != "MATH 241");
     }
 
+    //capstone
     if(courseNames.includes("CISC 498") && courseNames.includes("CISC 499")){
         caps = true;
         majCaps = true;
@@ -183,6 +185,7 @@ export function updateCSHighPerf(semesters: Semester[]): CSHighPerf {
         courseNames = courseNames.filter(key => key != "UNIV 402");
     }
 
+    //lab science
     if(courseNames.includes("PHYS 207") && courseNames.includes("PHYS 227") && courseNames.includes("PHYS 208") && courseNames.includes("PHYS 228")){
         science = true;
         courseNames = courseNames.filter(key => key != "PHYS 207");
@@ -210,6 +213,7 @@ export function updateCSHighPerf(semesters: Semester[]): CSHighPerf {
         courseNames = courseNames.filter(key => key != "GEOL 110");
     }
 
+    //writing req
     if(courseNames.includes("CISC 355")){
         c355 = true;
     }
@@ -219,6 +223,7 @@ export function updateCSHighPerf(semesters: Semester[]): CSHighPerf {
         writing = true;
     }
 
+    //specific courses
     if(courseNames.includes("CISC 360")){
         c360 = true;
         courseNames = courseNames.filter(key => key != "CISC 360");
@@ -248,6 +253,7 @@ export function updateCSHighPerf(semesters: Semester[]): CSHighPerf {
         courseNames = courseNames.filter(key => key != "MATH 243");
     }  
 
+    //stats
     if(courseNames.includes("MATH 205")){
         stats = true;
         courseNames = courseNames.filter(key => key != "MATH 205");
@@ -255,6 +261,7 @@ export function updateCSHighPerf(semesters: Semester[]): CSHighPerf {
         stats = true;
         courseNames = courseNames.filter(key => key != "MATH 350");
     }
+    //specific courses
     if(courseNames.includes("MATH 351")){
         m351 = true;
     }
@@ -277,6 +284,7 @@ export function updateCSHighPerf(semesters: Semester[]): CSHighPerf {
         ml = true;
     }
 
+    //checking for different tracks
     let total = 0;
     for(let i = 0; i < courseNames.length; i++){
         if(courseNames[i].substr(0, 4) === "CISC" && (+courseNames[i][4] >= 3) && !noTech.includes(courseNames[i])){
@@ -311,6 +319,7 @@ export function updateCSHighPerf(semesters: Semester[]): CSHighPerf {
         "elec": datElec
     };
     
+    //breadths
     const discov = findCommonCourses(courseNames, dle);
     if(discov.length > 0){
         dles = true;

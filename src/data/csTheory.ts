@@ -112,9 +112,10 @@ export function updateCSTheory(semesters: Semester[]): CSTheory {
     
     let total124 = false;
 
-    if(totalCreds >= 124){
+    if(totalCreds >= 124){ //check for total credits
         total124 = true;
     }
+    //the below check to see if specific course is in plan
     if(courseNames.includes("ENGL 110")){
         e110 = true;
         courseNames = courseNames.filter(key => key != "ENGL 110");
@@ -160,6 +161,7 @@ export function updateCSTheory(semesters: Semester[]): CSTheory {
         courseNames = courseNames.filter(key => key != "MATH 241");
     }
 
+    //checks for capstone
     if(courseNames.includes("CISC 498") && courseNames.includes("CISC 499")){
         caps = true;
         majCaps = true;
@@ -172,6 +174,7 @@ export function updateCSTheory(semesters: Semester[]): CSTheory {
         courseNames = courseNames.filter(key => key != "UNIV 402");
     }
 
+    //checks lab requirement
     if(courseNames.includes("PHYS 207") && courseNames.includes("PHYS 227") && courseNames.includes("PHYS 208") && courseNames.includes("PHYS 228")){
         science = true;
         courseNames = courseNames.filter(key => key != "PHYS 207");
@@ -199,6 +202,7 @@ export function updateCSTheory(semesters: Semester[]): CSTheory {
         courseNames = courseNames.filter(key => key != "GEOL 110");
     }
 
+    //checks writing reqs
     if(courseNames.includes("CISC 355")){
         c355 = true;
     }
@@ -208,6 +212,7 @@ export function updateCSTheory(semesters: Semester[]): CSTheory {
         writing = true;
     }
 
+    //checks for specific courses
     if(courseNames.includes("CISC 304")){
         c304 = true;
         courseNames = courseNames.filter(key => key != "CISC 304");
@@ -225,6 +230,7 @@ export function updateCSTheory(semesters: Semester[]): CSTheory {
         courseNames = courseNames.filter(key => key != "MATH 349");
     }  
 
+    //checks for stats
     if(courseNames.includes("MATH 205")){
         stats = true;
         courseNames = courseNames.filter(key => key != "MATH 205");
@@ -242,6 +248,7 @@ export function updateCSTheory(semesters: Semester[]): CSTheory {
     let m535 = false;
     let m426 = false;
 
+    //checks for specific courses
     if(courseNames.includes("CISC 404")){
         c404 = true;
     }
@@ -302,6 +309,7 @@ export function updateCSTheory(semesters: Semester[]): CSTheory {
         }
     }
     
+    //the below check for breadths
     const discov = findCommonCourses(courseNames, dle);
     if(discov.length > 0){
         dles = true;
@@ -351,6 +359,7 @@ export function updateCSTheory(semesters: Semester[]): CSTheory {
         "capstone": caps,
     };
 
+    //returning new object
     return {
         "univ": univ,
         "9 extra": extra9,
