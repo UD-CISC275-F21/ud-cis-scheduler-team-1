@@ -18,7 +18,7 @@ interface iFourYearPlan {
     coursesPool: CourseDisplay[],
     setCoursesPool: (cs: CourseDisplay[]) => void;
 }
-export function FourYearPlan({ semesters, setSemesters, coursesPool, setCoursesPool }: iFourYearPlan): JSX.Element {
+export function FourYearPlan({ semesters, setSemesters, coursesPool, setCoursesPool}: iFourYearPlan): JSX.Element {
     const [show, setShow] = useState<boolean>(false);// Show the modal when adding new semester
     const [showImportExport, setShowImportExport] = useState<boolean>(false); // show modal for import and export
     return (
@@ -48,6 +48,7 @@ export function FourYearPlan({ semesters, setSemesters, coursesPool, setCoursesP
                         variant="secondary"
                         onClick={() => {
                             window.location.reload();
+                            // write thingy to reset course table and pool
                         }}>
                         Reset Plan
                     </Button>

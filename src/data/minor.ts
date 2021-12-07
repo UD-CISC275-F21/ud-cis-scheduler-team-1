@@ -41,9 +41,13 @@ export function CSMinorUpdate(semesters:Semester[]):CSMinor{
     }
     let total = 0;
     for(let i = 0; i < courseNames.length; i++){  //checks if the extra electives are present, is still buggy
+        console.log(i);
+        console.log(courseNames[i]);
         if(courseNames[i].substr(0, 4) === "CISC" && !["CISC 355", "CISC 356"].includes(courseNames[i])){
+            //console.log(courseNames[i]);
             total = total + 3;
             courseNames = courseNames.filter(key => key != courseNames[i]);
+            i = i - 1;
         }
     }
     if(total >= 6){
