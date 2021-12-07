@@ -35,7 +35,7 @@ function App(): JSX.Element {
                         <Col><CoursePool coursesPool={coursesPool} setCoursesPool={setCoursesPool}></CoursePool></Col>
                         <Col md={8}>
                             <Row><Concentration bsba={bsba} setBSBA={setBSBA} major={major} setMajor={setMajor} conc={conc} setConc={setConc} ></Concentration></Row>
-                            <Row><FourYearPlan semesters={semesters} setSemesters={setSemesters} coursesPool={coursesPool} setCoursesPool={setCoursesPool}></FourYearPlan></Row>
+                            <Row><FourYearPlan semesters={semesters} setSemesters={setSemesters} coursesPool={coursesPool} setCoursesPool={setCoursesPool} ></FourYearPlan></Row>
                         </Col>
                         <Col><Requirements semesters={semesters} bsba={bsba} major={major} conc={conc} ></Requirements></Col>
                     </Row>

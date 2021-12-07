@@ -18,7 +18,7 @@ export function DraggableCourse({course}: iDragClass): JSX.Element {
         collect: (monitor) => ({
             isDragging: monitor.isDragging()
         })
-    });
+    }, [course]);
 
     //makes card looking object that can be dragged
     return (

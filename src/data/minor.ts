@@ -40,12 +40,15 @@ export function CSMinorUpdate(semesters:Semester[]):CSMinor{
         courseNames = courseNames.filter(key => key != "CISC 108");
     }
     let total = 0;
+    const match300:string[] = [];
     for(let i = 0; i < courseNames.length; i++){  //checks if the extra electives are present, is still buggy
         if(courseNames[i].substr(0, 4) === "CISC" && !["CISC 355", "CISC 356"].includes(courseNames[i])){
             total = total + 3;
-            courseNames = courseNames.filter(key => key != courseNames[i]);
+            match300.push(courseNames[i]);
+            //courseNames = courseNames.filter(key => key != courseNames[i]);
         }
     }
+    courseNames = courseNames.filter(key => !match300.includes(key));
     if(total >= 6){
         extra6 = true;
     }
