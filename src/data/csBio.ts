@@ -4,7 +4,7 @@ import { univReqs, accumulateCourses, findCommonCourses, dle, engineerBreadth, e
 const restrict = ["ANFS 300", "ANFS 310", "ANFS 470", "BISC 403", "BISC 484", "BISC 492", "CHEM 214", "CHEM 216", "CHEM 322", 
     "CHEM 326", "MATH 243"];
 
-export interface CSBio {
+/*export interface CSBio {
     "univ": univReqs,
     "9 extra": boolean, //can be from Group A, B, C or engineer breadth (No math/science/tech)
     //6 must be at 300 level, or foreign lang at 107 or higher
@@ -45,7 +45,7 @@ export interface CSBio {
     "6Restrict": boolean, //6 from list called restrict, or CISC course at 300 level or above
     
     "124": boolean          //124 Credits needed to graduate
-}
+}*/ //Old interface, kept to see reqs
 
 export function updateCSBio(semesters: Semester[]): requirementList {
     let totalCreds = 0;
