@@ -1,4 +1,16 @@
 {
+    "discreteTrack": {
+      "title": "Discrete Track OR"
+    },
+    "contTrack": {
+      "title": "Continuous Track"
+    },
+    "apMathTrack": {
+      "title": "Applied Math Track OR"
+    },
+    "dataTrack": {
+      "title": "Data Science Track"
+    },
     "108": {
       "title": "CISC 108"
     },

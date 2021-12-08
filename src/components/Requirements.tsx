@@ -35,12 +35,11 @@ export function Requirements({ semesters, bsba, major, conc }: iReq): JSX.Elemen
         const newFulCourses : string[] = [];
         //console.log(getConc());
         const requirements = getConc()["requirements"];
-        console.log(requirements);
 
         // Loops through all elements in the updated degree plan to split all
         // requirements into a fulfilled list and a remaining list
         for (const require of requirements) {
-            if (require.requirement === "univ") {
+            /*if (require.requirement === "univ") {
                 for (const [univKey, univValue] of Object.entries(require.satisfied)) { 
                     univValue && newFulCourses.push(univKey);
                     !univValue && newRemCourses.push(univKey);
@@ -59,13 +58,13 @@ export function Requirements({ semesters, bsba, major, conc }: iReq): JSX.Elemen
                 }
                 trackCount == 2 && trackComplete && newFulCourses.push("complete");
                 trackCount == 2 && !trackComplete && newRemCourses.push("complete");
+            } else {*/
+            if (require.satisfied) {
+                newFulCourses.push(require.requirement);
             } else {
-                if (require.satisfied) {
-                    newFulCourses.push(require.requirement);
-                } else {
-                    newRemCourses.push(require.requirement);
-                }
+                newRemCourses.push(require.requirement);
             }
+            //}
         }
         setFulfilledCourses(newFulCourses);
         setRemainingCourses(newRemCourses);
