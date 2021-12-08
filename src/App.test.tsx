@@ -53,7 +53,9 @@ describe("App", () => {
     describe("Requirements", ()=> {
         describe("Requirements render correctly on load", () =>{
             it("has ENGL110 when the app loads", () =>{
-                expect(screen.queryByText("ENGL 110")).toBeInTheDocument();
+                const e110 = screen.getAllByText(/ENGL 110/i);
+                const [expectedNode] = e110.filter(element => element.tagName === "li");
+                expect(expectedNode);
             });
         });
         describe("Requirement is crossed out when course put in plan", () =>{
@@ -66,6 +68,9 @@ describe("App", () => {
                 fireEvent.dragEnter(screen.getByRole("columnheader", { name: /fall 2021/i }));
                 fireEvent.dragOver(screen.getByRole("columnheader", { name: /fall 2021/i }));
                 fireEvent.drop(screen.getByRole("columnheader", { name: /fall 2021/i }));
+                const e110 = screen.getAllByText(/ENGL 110/i);
+                const [expectedNode] = e110.filter(element => element.tagName === "del");
+                expect(expectedNode);
             });
         });
         
