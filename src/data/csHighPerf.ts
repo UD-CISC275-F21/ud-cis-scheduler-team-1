@@ -1,5 +1,5 @@
 import { Semester } from "../interfaces/semester";
-import { univReqs, noTech, accumulateCourses, findCommonCourses, dle, engineerBreadth, engineerProfess, firstYearExp, groupA, groupB, groupC, groupD, multiCult, requirementList } from "./univReqs";
+import {noTech, accumulateCourses, findCommonCourses, dle, engineerBreadth, engineerProfess, firstYearExp, groupA, groupB, groupC, groupD, multiCult, requirementList } from "./univReqs";
 
 /*export interface CSHighPerf {
     "univ": univReqs,
@@ -43,7 +43,7 @@ import { univReqs, noTech, accumulateCourses, findCommonCourses, dle, engineerBr
     "124": boolean          //124 Credits needed to graduate
 }*/ //old interface, kept to see requirements
 
-interface apMath{
+/*interface apMath{
     "apMathComplete": boolean, //true if all sub categories in this are true
     "MATH 351": boolean,
     "MATH 428": boolean,
@@ -58,7 +58,7 @@ interface data{
     "MATH 450": boolean,
     "ml": boolean, //CISC 483 OR CISC 484
     "elec": boolean // 5 credits from CISC 300 level +, MATH 302, MATH 349, MATH 351, MATH 535
-}
+}*/
 
 export function updateCSHighPerf(semesters: Semester[]): requirementList {
     let totalCreds = 0;
@@ -302,7 +302,7 @@ export function updateCSHighPerf(semesters: Semester[]): requirementList {
 
     const track = apComp && datComp;
 
-    const apMath = {
+    /*const apMath = {
         "apMathComplete": apComp,
         "MATH 351": m351,
         "MATH 428": m428,
@@ -317,7 +317,7 @@ export function updateCSHighPerf(semesters: Semester[]): requirementList {
         "MATH 450": m450,
         "ml": ml,
         "elec": datElec
-    };
+    };*/
     
     //breadths
     const discov = findCommonCourses(courseNames, dle);

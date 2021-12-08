@@ -1,5 +1,5 @@
 import { Semester } from "../interfaces/semester";
-import { univReqs, accumulateCourses, findCommonCourses, dle, engineerBreadth, engineerProfess, firstYearExp, groupA, groupB, groupC, groupD, multiCult, requirementList } from "./univReqs";
+import {accumulateCourses, findCommonCourses, dle, engineerBreadth, engineerProfess, firstYearExp, groupA, groupB, groupC, groupD, multiCult, requirementList } from "./univReqs";
 
 const restrict = ["ANFS 300", "ANFS 310", "ANFS 470", "BISC 403", "BISC 484", "BISC 492", "CHEM 214", "CHEM 216", "CHEM 322", 
     "CHEM 326", "MATH 243"];

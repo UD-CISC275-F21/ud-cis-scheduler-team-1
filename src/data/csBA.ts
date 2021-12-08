@@ -1,8 +1,8 @@
 import { Semester } from "../interfaces/semester";
 import { findCourse } from "../utilities/findCourse";
-import { univReqs, noTech, accumulateCourses, findCommonCourses, secondWrite, dle, firstYearExp, capstone, multiCult, groupA, groupB, groupC, groupD, requirementList } from "./univReqs";
+import {noTech, accumulateCourses, findCommonCourses, secondWrite, dle, firstYearExp, capstone, multiCult, groupA, groupB, groupC, groupD, requirementList } from "./univReqs";
 
-export interface CSBA {
+/*export interface CSBA {
     "univ": univReqs,
     //Course work for the four groups cannot be all of same prefix
     "aExtra": boolean, //same as Group A for univ, cannot overlap 6 cr
@@ -22,7 +22,7 @@ export interface CSBA {
     "MATH 210": boolean,
     "MATH 241": boolean,
     "124": boolean          //124 Credits needed to graduate
-}
+}*/ //Old interface, kept to see reqs
 
 const languages = ["GREK 202", "CHIN 107", "FREN 107", "GRMN 107", "ITAL 107", "JAPN 107", "JAPN 202", "LATN 202", "RUSS 107", "SPAN 107"];
 

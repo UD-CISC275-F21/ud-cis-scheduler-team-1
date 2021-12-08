@@ -1,11 +1,11 @@
 import { Semester } from "../interfaces/semester";
-import { univReqs, noTech, accumulateCourses, findCommonCourses, dle, engineerBreadth, engineerProfess, firstYearExp, groupA, groupB, groupC, groupD, multiCult, requirementList } from "./univReqs";
+import { noTech, accumulateCourses, findCommonCourses, dle, engineerBreadth, engineerProfess, firstYearExp, groupA, groupB, groupC, groupD, multiCult, requirementList } from "./univReqs";
 
 const restrict = ["MATH 242", "MATH 349", "MATH 549", "CISC 304", "CISC 436", "CISC 437", "CISC 440", "CISC 442", "CISC 449", 
     "CISC 453", "CISC 459", "CISC 481", "CISC 483", "CISC 484", "CISC 474", "CPEG 470", "CPEG 471", "CPEG 472", "CPEG 473", 
     "CPEG 475", "CPEG 476", "CPEG 494", "CPEG 495", "ELEG 387", "ELEG 487"];
 
-export interface CSCyber {
+/*export interface CSCyber {
     "univ": univReqs,
     "9 extra": boolean, //can be from Group A, B, C or engineer breadth (No math/science/tech)
     //6 must be at 300 level, or foreign lang at 107 or higher
@@ -44,7 +44,7 @@ export interface CSCyber {
     "6Restrict": boolean, //6 from list called restrict
     "cisc3-4Elect": boolean, //3-4 credits of CISC AT 300 level or higher
     "124": boolean          //124 Credits needed to graduate
-}
+}*/ //Old interface, kept to see requirements
 
 export function updateCSCyber(semesters: Semester[]): requirementList {
     let totalCreds = 0;

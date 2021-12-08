@@ -1,5 +1,5 @@
 import { Semester } from "../interfaces/semester";
-import { univReqs, noTech, accumulateCourses, findCommonCourses, dle, engineerBreadth, engineerProfess, firstYearExp, groupA, groupB, groupC, groupD, multiCult, requirementList } from "./univReqs";
+import {noTech, accumulateCourses, findCommonCourses, dle, engineerBreadth, engineerProfess, firstYearExp, groupA, groupB, groupC, groupD, multiCult, requirementList } from "./univReqs";
 
 const restrict = ["CISC 372", "CISC 404", "CISC 410", "CISC 414", "CISC 471", "CISC 481", "ELEG 387", "ELEG 487", "MATH 243", "MATH 245", 
     "MATH 302", "MATH 315", "MATH 350", "MATH 428", "MATH 450", "MATH 451"];
@@ -47,7 +47,7 @@ const restrict = ["CISC 372", "CISC 404", "CISC 410", "CISC 414", "CISC 471", "C
     "124": boolean          //124 Credits needed to graduate
 }*/ //Old interface, kept to see reqs
 
-interface discrete{
+/*interface discrete{
     "disComplete": boolean, //true if all sub categories in this are true
     "404": boolean,
     "MATH 245": boolean,
@@ -61,7 +61,7 @@ interface continuous{
     "MATH 302": boolean,
     "MATH 535": boolean,
     "MATH 426": boolean
-}
+}*/
 
 export function updateCSTheory(semesters: Semester[]): requirementList {
     let totalCreds = 0;
@@ -277,7 +277,7 @@ export function updateCSTheory(semesters: Semester[]): requirementList {
     const disComp = c404 && m245 && m315 && m451;
     const conComp = m243 && m302 && m535 && m426;
 
-    const discrete = {
+    /*const discrete = {
         "disComplete": disComp, //true if all sub categories in this are true
         "404": c404,
         "MATH 245": m245,
@@ -291,7 +291,7 @@ export function updateCSTheory(semesters: Semester[]): requirementList {
         "MATH 302": m302,
         "MATH 535": m535,
         "MATH 426": m426
-    };
+    };*/
 
     const track = disComp && conComp;
 

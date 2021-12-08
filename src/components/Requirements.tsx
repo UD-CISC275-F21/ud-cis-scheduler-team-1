@@ -19,7 +19,7 @@ export function Requirements({ semesters, bsba, major, conc }: iReq): JSX.Elemen
     const [fulfilledCourses, setFulfilledCourses] = useState<string[]>([]);
 
     function getConc() {
-        /*if (major === "Minor") {
+        if (major === "Minor") {
             return CSMinorUpdate(semesters);
         } else {
             if (bsba === "BA") {
@@ -27,7 +27,7 @@ export function Requirements({ semesters, bsba, major, conc }: iReq): JSX.Elemen
             } else {
                 return findConcentration(conc,semesters);
             }
-        }*/
+        }
         return CSMinorUpdate(semesters);
     }
     useEffect(() => {

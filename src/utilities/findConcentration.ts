@@ -1,23 +1,16 @@
-import { CSAIRobots, updateCSAIRobots } from "../data/csAIRobots";
-import { CSBio, updateCSBio } from "../data/csBio";
-import { CSBS, updateCSBS } from "../data/csBS";
-import { CSCyber, updateCSCyber } from "../data/csCyber";
-import { CSData, updateCSData } from "../data/csData";
-import { CSHighPerf, updateCSHighPerf } from "../data/csHighPerf";
-import { CSSystems, updateCSSystems } from "../data/csSystems";
-import { CSTheory, updateCSTheory } from "../data/csTheory";
+import { updateCSAIRobots } from "../data/csAIRobots";
+import { updateCSBio } from "../data/csBio";
+import { updateCSBS } from "../data/csBS";
+import { updateCSCyber } from "../data/csCyber";
+import { updateCSData } from "../data/csData";
+import { updateCSHighPerf } from "../data/csHighPerf";
+import { updateCSSystems } from "../data/csSystems";
+import { updateCSTheory } from "../data/csTheory";
+import { requirementList } from "../data/univReqs";
 import { Semester } from "../interfaces/semester";
 
-export type Concentrations = | CSBS
-    | CSAIRobots
-    | CSBio
-    | CSCyber
-    | CSData
-    | CSHighPerf
-    | CSSystems
-    | CSTheory
 
-export type updateFunction = (s: Semester[]) => Concentrations
+export type updateFunction = (s: Semester[]) => requirementList
 
 //mapping concentration name to corresponding update function
 export const dispatch : Record<string, updateFunction> = {
@@ -32,6 +25,6 @@ export const dispatch : Record<string, updateFunction> = {
 };
 
 //find concentration function
-export function findConcentration(conc: string,semesters: Semester[]): Concentrations {
+export function findConcentration(conc: string,semesters: Semester[]): requirementList {
     return dispatch[conc](semesters);
 }

@@ -1,6 +1,6 @@
 import { Semester } from "../interfaces/semester";
 import { findCourse } from "../utilities/findCourse";
-import { univReqs, noTech, accumulateCourses, dle, firstYearExp, multiCult, groupA, groupB, groupC, groupD, findCommonCourses, engineerBreadth, engineerProfess, requirementList } from "./univReqs";
+import {noTech, accumulateCourses, dle, firstYearExp, multiCult, groupA, groupB, groupC, groupD, findCommonCourses, engineerBreadth, engineerProfess, requirementList } from "./univReqs";
 
 /*export interface CSBS {
     "univ": univReqs,
