@@ -294,17 +294,3 @@ export interface reqSatisfied{ //individual requirement and if satisfed
 export interface requirementList{ //List of many requirements
     "requirements": reqSatisfied[]
 }
-
-export interface checkCourse{
-    "remainingCourses": string[],
-    "reqSatisfied": boolean
-}
-
-export function checkIndividualCourse(courseNames: string[], course: string): checkCourse{
-    let satisfied = false;
-    if(courseNames.includes(course)){ //checks for 220
-        satisfied = true;
-        courseNames = courseNames.filter(key => key != course);
-    }
-    return {"remainingCourses": courseNames, "reqSatisfied": satisfied};
-}

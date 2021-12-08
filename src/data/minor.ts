@@ -1,5 +1,5 @@
 import { Semester } from "../interfaces/semester";
-import { accumulateCourses, checkIndividualCourse, requirementList } from "./univReqs";
+import { accumulateCourses, requirementList } from "./univReqs";
 
 /*export interface CSMinor{
     "intro": boolean, //CISC 106 or CISC 108
@@ -19,16 +19,19 @@ export function CSMinorUpdate(semesters:Semester[]):requirementList{
 
     const cours = accumulateCourses(semesters);
     let courseNames = Array.from(cours.keys());
-
-    [courseNames, c181] = [checkIndividualCourse(courseNames, "CISC 181").remainingCourses, 
-        checkIndividualCourse(courseNames, "CISC 181").reqSatisfied];
-
-    [courseNames, c210] = [checkIndividualCourse(courseNames, "CISC 210").remainingCourses, 
-        checkIndividualCourse(courseNames, "CISC 210").reqSatisfied];
-
-    [courseNames, c220] = [checkIndividualCourse(courseNames, "CISC 220").remainingCourses, 
-        checkIndividualCourse(courseNames, "CISC 220").reqSatisfied];
-
+    
+    if(courseNames.includes("CISC 181")){ //checks for 181
+        c181 = true;
+        courseNames = courseNames.filter(key => key != "CISC 181");
+    }
+    if(courseNames.includes("CISC 210")){ //checks for 210
+        c210 = true;
+        courseNames = courseNames.filter(key => key != "CISC 210");
+    }
+    if(courseNames.includes("CISC 220")){ //checks for 220
+        c220 = true;
+        courseNames = courseNames.filter(key => key != "CISC 220");
+    }
     if(courseNames.includes("CISC 106")){ //checks for 106 or 108
         intro = true;
         courseNames = courseNames.filter(key => key != "CISC 106");
@@ -42,6 +45,7 @@ export function CSMinorUpdate(semesters:Semester[]):requirementList{
         if(courseNames[i].substr(0, 4) === "CISC" && !["CISC 355", "CISC 356"].includes(courseNames[i])){
             total = total + 3;
             match300.push(courseNames[i]);
+            //courseNames = courseNames.filter(key => key != courseNames[i]);
         }
     }
     courseNames = courseNames.filter(key => !match300.includes(key));
