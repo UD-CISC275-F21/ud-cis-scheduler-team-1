@@ -5,7 +5,7 @@ const restrict = ["CISC 304", "CISC 436", "CISC 437", "CISC 440", "CISC 442", "C
     "CISC 475", "CISC 479", "CISC 481", "CISC 483", "CISC 484", "CISC 489", "CPEG 202", "CPEG 222", "CPEG 323", "CPEG 422", 
     "CPEG 460", "CPEG 465", "CPEG 470", "CPEG 475", "CPEG 476", "CPEG 494", "CPEG 497", "ELEG 387", "ELEG 487", "MATH 242", "MATH 349"];
 
-export interface CSSystems {
+/*export interface CSSystems {
     "univ": univReqs,
     "9 extra": boolean, //can be from Group A, B, C or engineer breadth (No math/science/tech)
     //6 must be at 300 level, or foreign lang at 107 or higher
@@ -44,7 +44,7 @@ export interface CSSystems {
     "6Restrict": boolean, //6 from list called restrict
     "cisc3-4Elect": boolean, //3-4 credits of CISC AT 300 level or higher
     "124": boolean          //124 Credits needed to graduate
-}
+}*/ //Old interface, kept to see reqs
 
 export function updateCSSystems(semesters: Semester[]): requirementList {
     let totalCreds = 0;
