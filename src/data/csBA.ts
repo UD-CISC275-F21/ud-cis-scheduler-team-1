@@ -1,6 +1,6 @@
 import { Semester } from "../interfaces/semester";
 import { findCourse } from "../utilities/findCourse";
-import { univReqs, noTech, accumulateCourses, findCommonCourses, secondWrite, dle, firstYearExp, capstone, multiCult, groupA, groupB, groupC, groupD } from "./univReqs";
+import { univReqs, noTech, accumulateCourses, findCommonCourses, secondWrite, dle, firstYearExp, capstone, multiCult, groupA, groupB, groupC, groupD, requirementList } from "./univReqs";
 
 export interface CSBA {
     "univ": univReqs,
@@ -26,7 +26,7 @@ export interface CSBA {
 
 const languages = ["GREK 202", "CHIN 107", "FREN 107", "GRMN 107", "ITAL 107", "JAPN 107", "JAPN 202", "LATN 202", "RUSS 107", "SPAN 107"];
 
-export function updateCSBA(semesters: Semester[]): CSBA {
+export function updateCSBA(semesters: Semester[]): requirementList {
     let totalCreds = 0;
     for (let i = 0; i < semesters.length; i++){
         for (let j = 0; j < semesters[i].courses.length; j++){
@@ -182,8 +182,31 @@ export function updateCSBA(semesters: Semester[]): CSBA {
         "capstone": caps,
     };
 
-    return {"univ": univ, "aExtra": aExtra, "bExtra": bExtra, "cExtra": cExtra, "dExtra": dExtra, 
-        "lang": lang, "secondWrite": secondWrites, "108": c108, "181": c181, 
-        "210": c210, "220": c220, "260": c260, "275": c275, "fifteenAt301": fifteenat301, 
-        "MATH 210": m210, "MATH 241": m241, "124": total124};
+    return {"requirements":
+    [{"requirement": "ENGL 110", "satisfied":e110},  
+        {"requirement": "FYS", "satisfied": fys},       
+        {"requirement":"DLE",  "satisfied":dles},       
+        {"requirement":"Multi", "satisfied":multi},     
+        {"requirement":"groupA", "satisfied":groupa},    
+        {"requirement":"groupB", "satisfied":groupb},    
+        {"requirement":"groupC", "satisfied":groupc},    
+        {"requirement":"groupD", "satisfied":groupd},    
+        {"requirement":"capstone", "satisfied":caps},
+        {"requirement":"aExtra", "satisfied":aExtra},
+        {"requirement":"bExtra", "satisfied":bExtra},
+        {"requirement":"cExtra", "satisfied":cExtra},
+        {"requirement":"dExtra", "satisfied":dExtra},
+        {"requirement":"lang", "satisfied":lang},
+        {"requirement":"secondWrite", "satisfied":secondWrites},
+        {"requirement":"108","satisfied":c108}, 
+        {"requirement":"181", "satisfied":c181},
+        {"requirement":"210", "satisfied":c210},
+        {"requirement":"220", "satisfied":c220},
+        {"requirement":"260", "satisfied":c260},
+        {"requirement":"275", "satisfied":c275},
+        {"requirement":"fifteenAt301", "satisfied":fifteenat301},
+        {"requirement":"MATH 210", "satisfied":m210}, 
+        {"requirement":"MATH 241", "satisfied":m241},
+        {"requirement":"124", "satisfied":total124}]
+    };
 }

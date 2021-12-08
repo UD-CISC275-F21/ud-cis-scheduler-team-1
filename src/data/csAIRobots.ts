@@ -5,7 +5,7 @@ const restrict = ["CISC 436", "CISC 437", "CISC 489", "CISC 889", "EDUC 462", "E
     "LING 202", "LING 404", "LING 418", "LING 444", "LING 451", "LING 455", "MAST 632", "MATH 242", "MATH 349", "MEEG 671", 
     "PSYC 310", "PSYC 340", "PSYC 344"];
 
-export interface CSAIRobots {
+/*export interface CSAIRobots {
     "univ": univReqs,
     "9 extra": boolean, //can be from Group A, B, C or engineer breadth (No math/science/tech)
     //6 must be at 300 level, or foreign lang at 107 or higher
@@ -43,7 +43,7 @@ export interface CSAIRobots {
     "12Restrict": boolean, //12 from list called restrict
     "cisc3-4Elect": boolean, //3-4 credits of CISC AT 300 level or higher
     "124": boolean          //124 Credits needed to graduate
-}
+}*/  //Old interface used, kept to specify requirements
 
 export function updateCSAIRobots(semesters: Semester[]): requirementList {
     let totalCreds = 0;
