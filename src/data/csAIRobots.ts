@@ -290,51 +290,7 @@ export function updateCSAIRobots(semesters: Semester[]): requirementList {
     if(extraBreadth.length >= 3){
         extra9 = true;
     }
-
-    /*const univ:univReqs =  {
-        {"requirement": "ENGL 110", "satisfied":e110},  
-        "FYS": fys,       
-        "DLE": dles,       
-        "Multi": multi,     
-        "groupA": groupa,    
-        "groupB": groupb,    
-        "groupC": groupc,    
-        "groupD": groupd,    
-        "capstone": caps,
-    };
-
-    return {
-        "univ": univ,
-        "9 extra": extra9,
-
-        "108": c108,
-        "181": c181,
-        "210": c210,
-        "220": c220,
-        "260": c260,
-        "275": c275,
-        "303": c303,
-        "320": c320,
-        "MATH 210": m210,
-        "MATH 241": m241,
-        "caps": majCaps, 
-        "science": science,
-
-        "writing": writing,
-        "355": c355, 
-        
-        
-        "304": c304,
-        "442": c442,
-        "481": c481,
-        "483": c483,
-        "484": c484,
-        "Prob/Stat": stats, 
-        "systems": systems,
-        "12Restrict": extra12, 
-        "cisc3-4Elect": extra34, 
-        "124": total124,         
-    };*/
+    
     return{"requirements":
     [
         {"requirement": "ENGL 110", "satisfied":e110},  

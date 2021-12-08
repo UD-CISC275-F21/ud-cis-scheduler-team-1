@@ -1,5 +1,5 @@
 import { Semester } from "../interfaces/semester";
-import { univReqs, accumulateCourses, findCommonCourses, dle, engineerBreadth, engineerProfess, firstYearExp, groupA, groupB, groupC, groupD, multiCult } from "./univReqs";
+import { univReqs, accumulateCourses, findCommonCourses, dle, engineerBreadth, engineerProfess, firstYearExp, groupA, groupB, groupC, groupD, multiCult, requirementList } from "./univReqs";
 
 const restrict = ["ANFS 300", "ANFS 310", "ANFS 470", "BISC 403", "BISC 484", "BISC 492", "CHEM 214", "CHEM 216", "CHEM 322", 
     "CHEM 326", "MATH 243"];
@@ -47,7 +47,7 @@ export interface CSBio {
     "124": boolean          //124 Credits needed to graduate
 }
 
-export function updateCSBio(semesters: Semester[]): CSBio {
+export function updateCSBio(semesters: Semester[]): requirementList {
     let totalCreds = 0;
     for (let i = 0; i < semesters.length; i++){
         for (let j = 0; j < semesters[i].courses.length; j++){
@@ -295,55 +295,47 @@ export function updateCSBio(semesters: Semester[]): CSBio {
         extra9 = true;
     }
 
-    const univ:univReqs =  {
-        "ENGL 110": e110,  
-        "FYS": fys,       
-        "DLE": dles,       
-        "Multi": multi,     
-        "groupA": groupa,    
-        "groupB": groupb,    
-        "groupC": groupc,    
-        "groupD": groupd,    
-        "capstone": caps,
-    };
-
-    return {
-        "univ": univ,
-        "9 extra": extra9, 
-
-        "108": c108,
-        "181": c181,
-        "210": c210,
-        "220": c220,
-        "260": c260,
-        "275": c275,
-        "303": c303,
-        "320": c320,
-        "MATH 210": m210,
-        "MATH 241": m241,
-        "caps": majCaps, 
-
-        "writing": writing,
-        "355": c355,  
-        
-        "BISC 207": b207,
-        "BISC 208": b208,
-        "BISC 401": b401,
-        "CHEM 103": ch103,
-        "CHEM 133": ch133,
-        "CHEM 104": ch104,
-        "CHEM 134": ch134,
-        "372": c372,
-        "436": c436,
-        "MATH 242": m242,
-        "MATH 349": m349,
-    
-        "orgo": orgo, 
-        "Prob/Stat": stats,
-        "data": data, 
-    
-        "6Restrict": extra6, 
-        
-        "124": total124          
+    return {"requirements":
+        [
+            {"requirement": "ENGL 110", "satisfied":e110},  
+            {"requirement": "FYS", "satisfied": fys},       
+            {"requirement":"DLE",  "satisfied":dles},       
+            {"requirement":"Multi", "satisfied":multi},     
+            {"requirement":"groupA", "satisfied":groupa},    
+            {"requirement":"groupB", "satisfied":groupb},    
+            {"requirement":"groupC", "satisfied":groupc},    
+            {"requirement":"groupD", "satisfied":groupd},    
+            {"requirement":"capstone", "satisfied":caps},
+            {"requirement": "9 extra", "satisfied":extra9},
+            {"requirement": "108", "satisfied":c108},
+            {"requirement":"181", "satisfied":c181},
+            {"requirement":"210", "satisfied":c210},
+            {"requirement":"220", "satisfied":c220},
+            {"requirement":"260", "satisfied":c260},
+            {"requirement":"275", "satisfied":c275},
+            {"requirement":"303", "satisfied":c303},
+            {"requirement":"320", "satisfied":c320},
+            {"requirement":"MATH 210", "satisfied":m210},
+            {"requirement":"MATH 241", "satisfied":m241},
+            {"requirement":"caps", "satisfied":majCaps},
+            {"requirement":"writing", "satisfied":writing},
+            {"requirement":"355", "satisfied":c355},
+            {"requirement":"BISC 207", "satisfied":b207},
+            {"requirement":"BISC 208", "satisfied":b208},
+            {"requirement":"BISC 401", "satisfied":b401},
+            {"requirement":"CHEM 103", "satisfied":ch103},
+            {"requirement":"CHEM 133", "satisfied":ch133},
+            {"requirement":"CHEM 104", "satisfied":ch104},
+            {"requirement":"CHEM 134", "satisfied":ch134},
+            {"requirement":"372", "satisfied":c372},
+            {"requirement":"436", "satisfied":c436},
+            {"requirement":"MATH 242", "satisfied":m242},
+            {"requirement":"MATH 349", "satisfied":m349},
+            {"requirement":"orgo", "satisfied":orgo}, 
+            {"requirement":"Prob/Stat", "satisfied":stats},
+            {"requirement":"data", "satisfied":data}, 
+            {"requirement":"6Restrict", "satisfied":extra6}, 
+            {"requirement":"124", "satisfied":total124} 
+        ]          
     };
 }
