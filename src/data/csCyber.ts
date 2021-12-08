@@ -296,17 +296,6 @@ export function updateCSCyber(semesters: Semester[]): requirementList {
         extra9 = true;
     }
 
-    const univ:univReqs =  {
-        "ENGL 110": e110,  
-        "FYS": fys,       
-        "DLE": dles,       
-        "Multi": multi,     
-        "groupA": groupa,    
-        "groupB": groupb,    
-        "groupC": groupc,    
-        "groupD": groupd,    
-        "capstone": caps,
-    };
 
     return {"requirements":
         [

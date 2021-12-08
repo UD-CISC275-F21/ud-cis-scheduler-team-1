@@ -170,17 +170,6 @@ export function updateCSBA(semesters: Semester[]): requirementList {
         dExtra = true;
     }
 
-    const univ:univReqs =  {
-        "ENGL 110": e110,  
-        "FYS": fys,       
-        "DLE": dles,       
-        "Multi": multi,     
-        "groupA": groupa,    
-        "groupB": groupb,    
-        "groupC": groupc,    
-        "groupD": groupd,    
-        "capstone": caps,
-    };
 
     return {"requirements":
     [{"requirement": "ENGL 110", "satisfied":e110},  
