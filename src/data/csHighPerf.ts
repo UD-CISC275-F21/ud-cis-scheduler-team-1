@@ -1,7 +1,7 @@
 import { Semester } from "../interfaces/semester";
-import { univReqs, noTech, accumulateCourses, findCommonCourses, dle, engineerBreadth, engineerProfess, firstYearExp, groupA, groupB, groupC, groupD, multiCult } from "./univReqs";
+import { univReqs, noTech, accumulateCourses, findCommonCourses, dle, engineerBreadth, engineerProfess, firstYearExp, groupA, groupB, groupC, groupD, multiCult, requirementList } from "./univReqs";
 
-export interface CSHighPerf {
+/*export interface CSHighPerf {
     "univ": univReqs,
     "9 extra": boolean, //can be from Group A, B, C or engineer breadth (No math/science/tech)
     //6 must be at 300 level, or foreign lang at 107 or higher
@@ -41,10 +41,10 @@ export interface CSHighPerf {
     "track": boolean, //true if one of apMathTrack or Data Track is complete
 
     "124": boolean          //124 Credits needed to graduate
-}
+}*/ //old interface, kept to see requirements
 
 interface apMath{
-    "complete": boolean, //true if all sub categories in this are true
+    "apMathComplete": boolean, //true if all sub categories in this are true
     "MATH 351": boolean,
     "MATH 428": boolean,
     "Prob/Stat": boolean, //MATH 205 or MATH 350
@@ -52,7 +52,7 @@ interface apMath{
 }
 
 interface data{
-    "complete": boolean, //true if all sub categories in this are true
+    "dataComplete": boolean, //true if all sub categories in this are true
     "437": boolean,
     "MATH 350": boolean,
     "MATH 450": boolean,
@@ -60,7 +60,7 @@ interface data{
     "elec": boolean // 5 credits from CISC 300 level +, MATH 302, MATH 349, MATH 351, MATH 535
 }
 
-export function updateCSHighPerf(semesters: Semester[]): CSHighPerf {
+export function updateCSHighPerf(semesters: Semester[]): requirementList {
     let totalCreds = 0;
     for (let i = 0; i < semesters.length; i++){
         for (let j = 0; j < semesters[i].courses.length; j++){
@@ -303,7 +303,7 @@ export function updateCSHighPerf(semesters: Semester[]): CSHighPerf {
     const track = apComp && datComp;
 
     const apMath = {
-        "complete": apComp,
+        "apMathComplete": apComp,
         "MATH 351": m351,
         "MATH 428": m428,
         "Prob/Stat": stats,
@@ -311,7 +311,7 @@ export function updateCSHighPerf(semesters: Semester[]): CSHighPerf {
     };
     
     const data = {
-        "complete": datComp, 
+        "dataComplete": datComp, 
         "437": c437,
         "MATH 350": m350,
         "MATH 450": m450,
@@ -357,49 +357,43 @@ export function updateCSHighPerf(semesters: Semester[]): CSHighPerf {
         extra9 = true;
     }
 
-    const univ:univReqs =  {
-        "ENGL 110": e110,  
-        "FYS": fys,       
-        "DLE": dles,       
-        "Multi": multi,     
-        "groupA": groupa,    
-        "groupB": groupb,    
-        "groupC": groupc,    
-        "groupD": groupd,    
-        "capstone": caps,
-    };
-
-    return {
-        "univ": univ,
-        "9 extra": extra9,
-
-        "108": c108,
-        "181": c181,
-        "210": c210,
-        "220": c220,
-        "260": c260,
-        "275": c275,
-        "303": c303,
-        "320": c320,
-        "MATH 210": m210,
-        "MATH 241": m241,
-        "caps": majCaps, 
-        "science": science,
-
-        "writing": writing,
-        "355": c355, 
-        
-        "360": c360,
-        "361": c361,
-        "372": c372,
-        "450": c450,
-        "471": c471,
-        "MATH 242": m242,
-        "MATH 243": m243,
-        "apMathTrack": apMath,
-        "dataTrack": data, 
-        "track": track, //true if one of apMathTrack or Data Track is complete
-
-        "124": total124      
+    return {"requirements":
+        [
+            {"requirement": "ENGL 110", "satisfied":e110},  
+            {"requirement": "FYS", "satisfied": fys},       
+            {"requirement":"DLE",  "satisfied":dles},       
+            {"requirement":"Multi", "satisfied":multi},     
+            {"requirement":"groupA", "satisfied":groupa},    
+            {"requirement":"groupB", "satisfied":groupb},    
+            {"requirement":"groupC", "satisfied":groupc},    
+            {"requirement":"groupD", "satisfied":groupd},    
+            {"requirement":"capstone", "satisfied":caps},
+            {"requirement": "9 extra", "satisfied":extra9},
+            {"requirement": "108", "satisfied":c108},
+            {"requirement":"181", "satisfied":c181},
+            {"requirement":"210", "satisfied":c210},
+            {"requirement":"220", "satisfied":c220},
+            {"requirement":"260", "satisfied":c260},
+            {"requirement":"275", "satisfied":c275},
+            {"requirement":"303", "satisfied":c303},
+            {"requirement":"320", "satisfied":c320},
+            {"requirement":"MATH 210", "satisfied":m210},
+            {"requirement":"MATH 241", "satisfied":m241},
+            {"requirement":"caps", "satisfied":majCaps},
+            {"requirement":"science", "satisfied":science},
+            {"requirement":"writing", "satisfied":writing}, //ENGL 312 OR ENGL 410
+            {"requirement":"355", "satisfied":c355}, //ETHICS
+            {"requirement":"360", "satisfied":c360},
+            {"requirement":"361", "satisfied":c361},
+            {"requirement":"372", "satisfied":c372},
+            {"requirement":"450", "satisfied":c450},
+            {"requirement":"471", "satisfied":c471},
+            {"requirement":"MATH 242", "satisfied":m242},
+            {"requirement":"MATH 243", "satisfied":m243},
+            {"requirement":"apMathTrack", "satisfied": apComp},
+            {"requirement":"dataTrack", "satisfied": datComp}, 
+            {"requirement":"track", "satisfied": track}, //true if one of apMathTrack or Data Track is complete
+            {"requirement":"124", "satisfied":total124}
+        ]      
     };
 }
