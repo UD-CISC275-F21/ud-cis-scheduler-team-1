@@ -50,6 +50,26 @@ describe("App", () => {
             expect(screen.queryByText("Drag and drop courses from course pool into a semester.")).toBeInTheDocument();
         });
     });
+    describe("Requirements", ()=> {
+        describe("Requirements render correctly on load", () =>{
+            it("has ENGL110 when the app loads", () =>{
+                expect(screen.queryByText("ENGL 110")).toBeInTheDocument();
+            });
+        });
+        describe("Requirement is crossed out when course put in plan", () =>{
+            it("ENGL 110 is crossed out after drag and drop", () =>{
+                fireEvent.click(screen.getByRole("textbox", { name: "Course Code" }));
+                fireEvent.change(screen.getByRole("textbox", { name: "Course Code" }), { target: { value: "ENGL 110" } });
+                fireEvent.click(screen.getByRole("option", { name: "ENGL 110" }));
+                fireEvent.click(screen.getByRole("button", { name: "Add Course" }));
+                fireEvent.dragStart(screen.getByRole("drag"));
+                fireEvent.dragEnter(screen.getByRole("columnheader", { name: /fall 2021/i }));
+                fireEvent.dragOver(screen.getByRole("columnheader", { name: /fall 2021/i }));
+                fireEvent.drop(screen.getByRole("columnheader", { name: /fall 2021/i }));
+            });
+        });
+        
+    });
     describe("Concentrations", () => {
         describe("Elements render correctly on app load", () => {
             it("has the degree type dropdown when the app loads", () => {
