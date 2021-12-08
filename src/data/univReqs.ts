@@ -284,3 +284,13 @@ export function findCommonCourses(subCourse: string[], potentialCourses: string[
     }
     return courses;
 }
+
+//Below two functions are used for handling returns for checking requirements 
+export interface reqSatisfied{ //individual requirement and if satisfed
+    "requirement": string,
+    "satisfied": boolean
+}
+
+export interface requirementList{ //List of many requirements
+    "requirements": reqSatisfied[]
+}

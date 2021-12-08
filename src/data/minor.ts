@@ -1,16 +1,16 @@
 import { Semester } from "../interfaces/semester";
-import { accumulateCourses } from "./univReqs";
+import { accumulateCourses, requirementList } from "./univReqs";
 
-
-export interface CSMinor{
+/*export interface CSMinor{
     "intro": boolean, //CISC 106 or CISC 108
     "181": boolean,
     "210": boolean,
     "220": boolean,
     "6 Extra": boolean
-}
+}*/ //Old interface that was used, was left in to specify requirements of minor
 
-export function CSMinorUpdate(semesters:Semester[]):CSMinor{
+
+export function CSMinorUpdate(semesters:Semester[]):requirementList{
     let intro = false;
     let c181 = false;
     let c210 = false;
@@ -54,11 +54,10 @@ export function CSMinorUpdate(semesters:Semester[]):CSMinor{
     }
 
     //returns updated object 
-    return {
-        "intro": intro, //CISC 106 or CISC 108
-        "181": c181,
-        "210": c210,
-        "220": c220,
-        "6 Extra": extra6
-    };
+    return {"requirements": 
+    [{"requirement": "intro", "satisfied": intro}, 
+        {"requirement":"181", "satisfied": c181}, 
+        {"requirement":"210", "satisfied": c210}, 
+        {"requirement":"220", "satisfied": c220}, 
+        {"requirement":"6 Extra", "satisfied": extra6}],};
 }

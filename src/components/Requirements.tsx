@@ -19,7 +19,7 @@ export function Requirements({ semesters, bsba, major, conc }: iReq): JSX.Elemen
     const [fulfilledCourses, setFulfilledCourses] = useState<string[]>([]);
 
     function getConc() {
-        if (major === "Minor") {
+        /*if (major === "Minor") {
             return CSMinorUpdate(semesters);
         } else {
             if (bsba === "BA") {
@@ -27,25 +27,28 @@ export function Requirements({ semesters, bsba, major, conc }: iReq): JSX.Elemen
             } else {
                 return findConcentration(conc,semesters);
             }
-        }
+        }*/
+        return CSMinorUpdate(semesters);
     }
     useEffect(() => {
         const newRemCourses : string[] = [];
         const newFulCourses : string[] = [];
-        const requirements = Object.entries(getConc());
+        //console.log(getConc());
+        const requirements = getConc()["requirements"];
+        console.log(requirements);
 
         // Loops through all elements in the updated degree plan to split all
         // requirements into a fulfilled list and a remaining list
-        for (const [key, value] of requirements) {
-            if (key === "univ") {
-                for (const [univKey, univValue] of Object.entries(value)) { 
+        for (const require of requirements) {
+            if (require.requirement === "univ") {
+                for (const [univKey, univValue] of Object.entries(require.satisfied)) { 
                     univValue && newFulCourses.push(univKey);
                     !univValue && newRemCourses.push(univKey);
                 }
-            } else if (["apMathTrack", "dataTrack", "discreteTrack", "contTrack"].includes(key)) {
+            } else if (["apMathTrack", "dataTrack", "discreteTrack", "contTrack"].includes(require.requirement)) {
                 let trackComplete = false;
                 let trackCount = 0;
-                for (const [univKey, univValue] of Object.entries(value)) { 
+                for (const [univKey, univValue] of Object.entries(require.satisfied)) { 
                     if (univKey === "complete") {
                         trackComplete = trackComplete || univValue as boolean;
                         trackCount++;
@@ -57,10 +60,10 @@ export function Requirements({ semesters, bsba, major, conc }: iReq): JSX.Elemen
                 trackCount == 2 && trackComplete && newFulCourses.push("complete");
                 trackCount == 2 && !trackComplete && newRemCourses.push("complete");
             } else {
-                if (value) {
-                    newFulCourses.push(key);
+                if (require.satisfied) {
+                    newFulCourses.push(require.requirement);
                 } else {
-                    newRemCourses.push(key);
+                    newRemCourses.push(require.requirement);
                 }
             }
         }
