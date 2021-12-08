@@ -1,11 +1,11 @@
 import { Semester } from "../interfaces/semester";
-import { univReqs, noTech, accumulateCourses, findCommonCourses, dle, engineerBreadth, engineerProfess, firstYearExp, groupA, groupB, groupC, groupD, multiCult } from "./univReqs";
+import {noTech, accumulateCourses, findCommonCourses, dle, engineerBreadth, engineerProfess, firstYearExp, groupA, groupB, groupC, groupD, multiCult, requirementList } from "./univReqs";
 
 const restrict = ["CISC 304", "CISC 436", "CISC 437", "CISC 440", "CISC 442", "CISC 449", "CISC 453", "CISC 459", "CISC 464", "CISC 474", 
     "CISC 475", "CISC 479", "CISC 481", "CISC 483", "CISC 484", "CISC 489", "CPEG 202", "CPEG 222", "CPEG 323", "CPEG 422", 
     "CPEG 460", "CPEG 465", "CPEG 470", "CPEG 475", "CPEG 476", "CPEG 494", "CPEG 497", "ELEG 387", "ELEG 487", "MATH 242", "MATH 349"];
 
-export interface CSSystems {
+/*export interface CSSystems {
     "univ": univReqs,
     "9 extra": boolean, //can be from Group A, B, C or engineer breadth (No math/science/tech)
     //6 must be at 300 level, or foreign lang at 107 or higher
@@ -44,9 +44,9 @@ export interface CSSystems {
     "6Restrict": boolean, //6 from list called restrict
     "cisc3-4Elect": boolean, //3-4 credits of CISC AT 300 level or higher
     "124": boolean          //124 Credits needed to graduate
-}
+}*/ //Old interface, kept to see reqs
 
-export function updateCSSystems(semesters: Semester[]): CSSystems {
+export function updateCSSystems(semesters: Semester[]): requirementList {
     let totalCreds = 0;
     for (let i = 0; i < semesters.length; i++){
         for (let j = 0; j < semesters[i].courses.length; j++){
@@ -297,49 +297,43 @@ export function updateCSSystems(semesters: Semester[]): CSSystems {
         extra9 = true;
     }
 
-    const univ:univReqs =  {
-        "ENGL 110": e110,  
-        "FYS": fys,       
-        "DLE": dles,       
-        "Multi": multi,     
-        "groupA": groupa,    
-        "groupB": groupb,    
-        "groupC": groupc,    
-        "groupD": groupd,    
-        "capstone": caps,
-    };
-
-    return {
-        "univ": univ,
-        "9 extra": extra9,
-
-        "108": c108,
-        "181": c181,
-        "210": c210,
-        "220": c220,
-        "260": c260,
-        "275": c275,
-        "303": c303,
-        "320": c320,
-        "MATH 210": m210,
-        "MATH 241": m241,
-        "caps": majCaps, 
-        "science": science,
-
-        "writing": writing,
-        "355": c355, 
-        
-        
-        "360": c360,
-        "361": c361,
-        "372": c372,
-        "450": c450,
-        "471": c471,
-        "Prob/Stat": stats, 
-        "security": security, 
-        "advSys": advSys,
-        "6Restrict": extra6,
-        "cisc3-4Elect": extra34,
-        "124": total124         
+    return {"requirements":
+    [
+        {"requirement": "ENGL 110", "satisfied":e110},  
+        {"requirement": "FYS", "satisfied": fys},       
+        {"requirement":"DLE",  "satisfied":dles},       
+        {"requirement":"Multi", "satisfied":multi},     
+        {"requirement":"groupA", "satisfied":groupa},    
+        {"requirement":"groupB", "satisfied":groupb},    
+        {"requirement":"groupC", "satisfied":groupc},    
+        {"requirement":"groupD", "satisfied":groupd},    
+        {"requirement":"capstone", "satisfied":caps},
+        {"requirement": "9 extra", "satisfied":extra9},
+        {"requirement": "108", "satisfied":c108},
+        {"requirement":"181", "satisfied":c181},
+        {"requirement":"210", "satisfied":c210},
+        {"requirement":"220", "satisfied":c220},
+        {"requirement":"260", "satisfied":c260},
+        {"requirement":"275", "satisfied":c275},
+        {"requirement":"303", "satisfied":c303},
+        {"requirement":"320", "satisfied":c320},
+        {"requirement":"MATH 210", "satisfied":m210},
+        {"requirement":"MATH 241", "satisfied":m241},
+        {"requirement":"caps", "satisfied":majCaps},
+        {"requirement":"science", "satisfied":science},
+        {"requirement":"writing", "satisfied":writing}, //ENGL 312 OR ENGL 410
+        {"requirement":"355", "satisfied":c355}, //ETHICS
+        {"requirement":"360", "satisfied":c360},
+        {"requirement":"361", "satisfied":c361},
+        {"requirement":"372", "satisfied":c372},
+        {"requirement":"450", "satisfied":c450},
+        {"requirement":"471", "satisfied":c471},
+        {"requirement":"Prob/Stat", "satisfied":stats}, 
+        {"requirement":"security", "satisfied": security}, 
+        {"requirement":"advSys", "satisfied": advSys},
+        {"requirement":"6Restrict", "satisfied":extra6}, 
+        {"requirement":"cisc3-4Elect", "satisfied":extra34}, 
+        {"requirement":"124", "satisfied":total124}  
+    ]      
     };
 }

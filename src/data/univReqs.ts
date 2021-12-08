@@ -215,19 +215,6 @@ export const secondWrite = ["AFRA 250", "AFRA 304", "AFRA 305", "AFRA 306", "AFR
     "SOCI 450", "SOCI 470", "THEA 340", "ENEP 425", "UAPP 230", "UAPP 401", "UNIV 402", "UNIV 490", "UNIV 491", "UNIV 495", "WOMS 308", 
     "WOMS 313"];
 
-//interface that has all the university requirements
-export interface univReqs{
-    "ENGL 110": boolean,  //E 110 req 3 cr
-    "FYS": boolean,       //First year experience 0-4 cr
-    "DLE": boolean,       //Discovery Learning Experience 3 cr
-    "Multi": boolean,     //Multicultural 3 cr  ***Can count also towards groups A-D***
-    "groupA": boolean,    //Creative Arts and Humanities 3 cr
-    "groupB": boolean,    //History and Cultural change 3 cr
-    "groupC": boolean,    // Social and Behavioral Sciences 3cr
-    "groupD": boolean,    // Math, Natural Science, Tech 3 cr
-    "capstone": boolean,  //Capstone
-}
-
 //list of engineering breadth courses
 export const engineerBreadth = ["AFRA 305", "AFRA 308", "AFRA 330", "AFRA 443", "ANTH 354", "APEC 324", "ARAB 105", "ARAB 106", "ARAB 107", 
     "ARAB 200", "ARAB 201", "ARAB 205", "ARAB 208", "ART 406 ", "ARTH 198", "ARTH 199", "ARTH 249", "CHIN 105", "CHIN 106", "CHIN 107", 
@@ -283,4 +270,14 @@ export function findCommonCourses(subCourse: string[], potentialCourses: string[
         }
     }
     return courses;
+}
+
+//Below two functions are used for handling returns for checking requirements 
+export interface reqSatisfied{ //individual requirement and if satisfed
+    "requirement": string,
+    "satisfied": boolean
+}
+
+export interface requirementList{ //List of many requirements
+    "requirements": reqSatisfied[]
 }

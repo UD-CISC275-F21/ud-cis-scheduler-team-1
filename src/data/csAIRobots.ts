@@ -1,11 +1,11 @@
 import { Semester } from "../interfaces/semester";
-import { univReqs, noTech, accumulateCourses, dle, groupA, groupB, groupC, groupD, engineerBreadth, engineerProfess, findCommonCourses, firstYearExp, multiCult } from "./univReqs";
+import {noTech, accumulateCourses, dle, groupA, groupB, groupC, groupD, engineerBreadth, engineerProfess, findCommonCourses, firstYearExp, multiCult, requirementList } from "./univReqs";
 
 const restrict = ["CISC 436", "CISC 437", "CISC 489", "CISC 889", "EDUC 462", "ELEG 404", "ELEG 418", "ELEG 387", "ELEG 487", 
     "LING 202", "LING 404", "LING 418", "LING 444", "LING 451", "LING 455", "MAST 632", "MATH 242", "MATH 349", "MEEG 671", 
     "PSYC 310", "PSYC 340", "PSYC 344"];
 
-export interface CSAIRobots {
+/*export interface CSAIRobots {
     "univ": univReqs,
     "9 extra": boolean, //can be from Group A, B, C or engineer breadth (No math/science/tech)
     //6 must be at 300 level, or foreign lang at 107 or higher
@@ -43,9 +43,9 @@ export interface CSAIRobots {
     "12Restrict": boolean, //12 from list called restrict
     "cisc3-4Elect": boolean, //3-4 credits of CISC AT 300 level or higher
     "124": boolean          //124 Credits needed to graduate
-}
+}*/  //Old interface used, kept to specify requirements
 
-export function updateCSAIRobots(semesters: Semester[]): CSAIRobots {
+export function updateCSAIRobots(semesters: Semester[]): requirementList {
     let totalCreds = 0;
     for (let i = 0; i < semesters.length; i++){
         for (let j = 0; j < semesters[i].courses.length; j++){
@@ -290,49 +290,44 @@ export function updateCSAIRobots(semesters: Semester[]): CSAIRobots {
     if(extraBreadth.length >= 3){
         extra9 = true;
     }
-
-    const univ:univReqs =  {
-        "ENGL 110": e110,  
-        "FYS": fys,       
-        "DLE": dles,       
-        "Multi": multi,     
-        "groupA": groupa,    
-        "groupB": groupb,    
-        "groupC": groupc,    
-        "groupD": groupd,    
-        "capstone": caps,
+    
+    return{"requirements":
+    [
+        {"requirement": "ENGL 110", "satisfied":e110},  
+        {"requirement": "FYS", "satisfied": fys},       
+        {"requirement":"DLE",  "satisfied":dles},       
+        {"requirement":"Multi", "satisfied":multi},     
+        {"requirement":"groupA", "satisfied":groupa},    
+        {"requirement":"groupB", "satisfied":groupb},    
+        {"requirement":"groupC", "satisfied":groupc},    
+        {"requirement":"groupD", "satisfied":groupd},    
+        {"requirement":"capstone", "satisfied":caps},
+        {"requirement": "9 extra", "satisfied":extra9},
+        {"requirement": "108", "satisfied":c108},
+        {"requirement":"181", "satisfied":c181},
+        {"requirement":"210", "satisfied":c210},
+        {"requirement":"220", "satisfied":c220},
+        {"requirement":"260", "satisfied":c260},
+        {"requirement":"275", "satisfied":c275},
+        {"requirement":"303", "satisfied":c303},
+        {"requirement":"320", "satisfied":c320},
+        {"requirement":"MATH 210", "satisfied":m210},
+        {"requirement":"MATH 241", "satisfied":m241},
+        {"requirement":"caps", "satisfied":majCaps},
+        {"requirement":"science", "satisfied":science},
+        {"requirement":"writing", "satisfied":writing},
+        {"requirement":"355", "satisfied":c355}, 
+        {"requirement":"304", "satisfied":c304},
+        {"requirement":"442", "satisfied":c442},
+        {"requirement":"481", "satisfied":c481},
+        {"requirement":"483", "satisfied":c483},
+        {"requirement":"484", "satisfied":c484},
+        {"requirement":"Prob/Stat", "satisfied":stats},
+        {"requirement":"systems", "satisfied":systems},
+        {"requirement":"12Restrict", "satisfied":extra12}, 
+        {"requirement":"cisc3-4Elect", "satisfied":extra34}, 
+        {"requirement":"124", "satisfied":total124}
+    ]
     };
 
-    return {
-        "univ": univ,
-        "9 extra": extra9,
-
-        "108": c108,
-        "181": c181,
-        "210": c210,
-        "220": c220,
-        "260": c260,
-        "275": c275,
-        "303": c303,
-        "320": c320,
-        "MATH 210": m210,
-        "MATH 241": m241,
-        "caps": majCaps, 
-        "science": science,
-
-        "writing": writing,
-        "355": c355, 
-        
-        
-        "304": c304,
-        "442": c442,
-        "481": c481,
-        "483": c483,
-        "484": c484,
-        "Prob/Stat": stats, 
-        "systems": systems,
-        "12Restrict": extra12, 
-        "cisc3-4Elect": extra34, 
-        "124": total124,         
-    };
 }

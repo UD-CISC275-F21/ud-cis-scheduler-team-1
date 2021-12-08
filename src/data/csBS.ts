@@ -1,8 +1,8 @@
 import { Semester } from "../interfaces/semester";
 import { findCourse } from "../utilities/findCourse";
-import { univReqs, noTech, accumulateCourses, dle, firstYearExp, multiCult, groupA, groupB, groupC, groupD, findCommonCourses, engineerBreadth, engineerProfess } from "./univReqs";
+import {noTech, accumulateCourses, dle, firstYearExp, multiCult, groupA, groupB, groupC, groupD, findCommonCourses, engineerBreadth, engineerProfess, requirementList } from "./univReqs";
 
-export interface CSBS {
+/*export interface CSBS {
     "univ": univReqs,
     "9 extra": boolean, //can be from Group A, B, C or engineer breadth (No math/science/tech)
     //6 must be at 300 level, or foreign lang at 107 or higher
@@ -39,9 +39,9 @@ export interface CSBS {
     // ENGL 312, ENGL 410 AND CISC 355 count for Engineer Breadth
     
     "124": boolean          //124 Credits needed to graduate
-}
+}*/ //Old interface, kept for purposes of seeing reqs
 
-export function updateCSBS(semesters: Semester[]): CSBS {
+export function updateCSBS(semesters: Semester[]): requirementList {
     let totalCreds = 0;
     for (let i = 0; i < semesters.length; i++){
         for (let j = 0; j < semesters[i].courses.length; j++){
@@ -275,46 +275,46 @@ export function updateCSBS(semesters: Semester[]): CSBS {
         extra9 = true;
     }
 
-    const univ:univReqs =  {
-        "ENGL 110": e110,  
-        "FYS": fys,       
-        "DLE": dles,       
-        "Multi": multi,     
-        "groupA": groupa,    
-        "groupB": groupb,    
-        "groupC": groupc,    
-        "groupD": groupd,    
-        "capstone": caps,
-    };
-
-    return {
-        "univ": univ,
-        "9 extra": extra9,
-        "108": c108,
-        "181": c181,
-        "210": c210,
-        "220": c220,
-        "260": c260,
-        "275": c275,
-        "303": c303,
-        "320": c320,
-        "361": c361,
-        "372": c372,
-        "6Extra301": sixat300, 
-        "12Extra": extra12,
-        "Prob/Stat": stats, 
-        "MATH 210": m210,
-        "MATH 241": m241,
-        "MATH 242": m242,
-        "caps": majCaps,
-        "science": science,
-    
-        "math300": m300, //usually CISC 304 OR MATH 349, or another 300 math course approved
-        "writing": writing, //ENGL 312 OR ENGL 410
-        "355": c355, //ETHICS
-        // ENGL 312, ENGL 410 AND CISC 355 count for Engineer Breadth
+    return {"requirements":
+        [
+            {"requirement": "ENGL 110", "satisfied":e110},  
+            {"requirement": "FYS", "satisfied": fys},       
+            {"requirement":"DLE",  "satisfied":dles},       
+            {"requirement":"Multi", "satisfied":multi},     
+            {"requirement":"groupA", "satisfied":groupa},    
+            {"requirement":"groupB", "satisfied":groupb},    
+            {"requirement":"groupC", "satisfied":groupc},    
+            {"requirement":"groupD", "satisfied":groupd},    
+            {"requirement":"capstone", "satisfied":caps},
+            {"requirement": "9 extra", "satisfied":extra9},
+            {"requirement": "108", "satisfied":c108},
+            {"requirement":"181", "satisfied":c181},
+            {"requirement":"210", "satisfied":c210},
+            {"requirement":"220", "satisfied":c220},
+            {"requirement":"260", "satisfied":c260},
+            {"requirement":"275", "satisfied":c275},
+            {"requirement":"303", "satisfied":c303},
+            {"requirement":"320", "satisfied":c320},
+            {"requirement":"361", "satisfied":c361},
+            {"requirement":"372", "satisfied":c372},
+            {"requirement":"6Extra301", "satisfied": sixat300}, 
+            {"requirement":"12Extra", "satisfied": extra12},
+            {"requirement":"Prob/Stat", "satisfied":stats}, 
+            {"requirement":"MATH 210", "satisfied":m210},
+            {"requirement":"MATH 241", "satisfied":m241},
+            {"requirement":"MATH 242", "satisfied":m242},
+            {"requirement":"caps", "satisfied":majCaps},
+            {"requirement":"science", "satisfied":science},
         
-        "124": total124          //124 Credits needed to graduate
+            {"requirement": "math300", "satisfied": m300}, //usually CISC 304 OR MATH 349, or another 300 math course approved
+            {"requirement":"writing", "satisfied":writing}, //ENGL 312 OR ENGL 410
+            {"requirement":"355", "satisfied":c355}, //ETHICS
+            // ENGL 312, ENGL 410 AND CISC 355 count for Engineer Breadth
+            
+            {"requirement":"124", "satisfied":total124}         //124 Credits needed to graduate
+
+        ]
+        
     };
 }
 

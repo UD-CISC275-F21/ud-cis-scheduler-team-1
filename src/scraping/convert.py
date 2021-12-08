@@ -10,6 +10,7 @@ if __name__ == '__main__':
         result[did] = {}
         for course_wrapper in values:
             for course_id, course in course_wrapper.items():
+                course["typicallyOffered"] = course.pop("typ")
                 result[did][course_id] = course
     with open('catalog3.json', 'w') as f:
         json.dump(result, f, indent = 4)
