@@ -1,4 +1,7 @@
 {
+    "breadths300":{
+      "title": "6 Breadth Credits at 300 Level or Above"
+    },
     "discreteTrack": {
       "title": "Discrete Track OR"
     },
@@ -90,7 +93,7 @@
       "title": "CISC 484"
     },
     "12Extra": {
-      "title": "Additional CISC Electives (12 cr.)"
+      "title": "Additional CISC Electives (12 cr. and Approved by Advisor)"
     },
     "12Restrict": {
       "title": "Additional Restricted Electives (12 cr.)*"

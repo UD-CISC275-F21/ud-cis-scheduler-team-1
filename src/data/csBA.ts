@@ -100,11 +100,10 @@ export function updateCSBA(semesters: Semester[]): requirementList {
         lang = true;
         courseNames = courseNames.filter(key => key != potLang[0]);
     }
-    //15 more cisc courses
+    //15 more credits of cisc courses
     let fifteen = 0;
     const match15:string[] = [];
     for(let i = 0; i < courseNames.length; i++){
-        console.log(+courseNames[i][5]);
         if(courseNames[i].substr(0, 4) === "CISC" && (+courseNames[i][5] >= 3) && !noTech.includes(courseNames[i])){
             let credits:number = +findCourse(courseNames[i]).credits;
             if(!credits){

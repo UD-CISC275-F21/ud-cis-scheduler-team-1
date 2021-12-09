@@ -298,6 +298,7 @@ export interface requirementList{ //List of many requirements
     "requirements": reqSatisfied[]
 }
 
+//returns total credits in plan
 export function totalCredits(sems:Semester[]): number{
     let totalCreds = 0;
     for (let i = 0; i < sems.length; i++){

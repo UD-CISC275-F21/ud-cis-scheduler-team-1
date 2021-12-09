@@ -208,30 +208,40 @@ export function updateCSBS(semesters: Semester[]): requirementList {
     }
     //extra 6 credits
     let six = 0;
+    const match6:string[] = [];
     for(let i = 0; i < courseNames.length; i++){
-        if(courseNames[i].substr(0, 4) === "CISC" && (+courseNames[i][4] >= 3) && !noTech.includes(courseNames[i])){
-            six = six + +findCourse(courseNames[i]).credits;
-            courseNames = courseNames.filter(key => key != courseNames[i]); 
-            i = i - 1;
+        if(courseNames[i].substr(0, 4) === "CISC" && (+courseNames[i][5] >= 3) && !noTech.includes(courseNames[i])){
+            let credits:number = +findCourse(courseNames[i]).credits;
+            if(!credits){
+                credits = +findCourse(courseNames[i]).credits.substr(0, 2);
+            }
+            six = six + credits;
+            match6.push(courseNames[i]);
         }
         if(six >= 6){
             sixat300 = true;
             break;
         }
     }
+    courseNames = courseNames.filter(key => !match6.includes(key));
     //extra 12 credits
     let twelve = 0;
+    const match12:string[] = [];
     for(let i = 0; i < courseNames.length; i++){
-        if(courseNames[i].substr(0, 4) === "CISC" && (+courseNames[i][4] >= 3) && !noTech.includes(courseNames[i])){
-            twelve = twelve + +findCourse(courseNames[i]).credits;
-            courseNames = courseNames.filter(key => key != courseNames[i]); 
-            i = i - 1;
+        if(courseNames[i].substr(0, 4) === "CISC" && (+courseNames[i][5] >= 3) && !noTech.includes(courseNames[i])){
+            let credits:number = +findCourse(courseNames[i]).credits;
+            if(!credits){
+                credits = +findCourse(courseNames[i]).credits.substr(0, 2);
+            }
+            twelve = twelve + credits;
+            match12.push(courseNames[i]);
         }
-        if(six >= 6){
+        if(twelve >= 12){
             extra12 = true;
             break;
         }
     }
+    courseNames = courseNames.filter(key => !match12.includes(key));
 
     //breadth
     const discov = findCommonCourses(courseNames, dle);
@@ -246,17 +256,24 @@ export function updateCSBS(semesters: Semester[]): requirementList {
     if(cultural.length > 0){
         multi = true;
     }
+
+    
+    let breadths300 = false;
+    let breadthsAt300: string[] = []; //will get all breadths, then test if two have 300 level or above
     const a = findCommonCourses(courseNames, groupA);
+    breadthsAt300 = breadthsAt300.concat(a);
     if(a.length >= 1){
         groupa = true;
         courseNames = courseNames.filter(key => key != a[0]); 
     }
     const b = findCommonCourses(courseNames, groupB);
+    breadthsAt300 = breadthsAt300.concat(b);
     if(b.length >= 1){
         groupb = true;
         courseNames = courseNames.filter(key => key != b[0]); 
     }
     const c = findCommonCourses(courseNames, groupC);
+    breadthsAt300 = breadthsAt300.concat(c);
     if(c.length >= 1){
         groupc = true;
         courseNames = courseNames.filter(key => key != c[0]); 
@@ -267,8 +284,19 @@ export function updateCSBS(semesters: Semester[]): requirementList {
         courseNames = courseNames.filter(key => key != d[0]); 
     }
     const extraBreadth = findCommonCourses(courseNames, groupA.concat(groupB).concat(groupC).concat(engineerBreadth).concat(engineerProfess));
+    breadthsAt300 = breadthsAt300.concat(c);
     if(extraBreadth.length >= 3){
         extra9 = true;
+    }
+
+    let count = 0; //to count courses at 300 level or above
+    for(let i = 0; i < breadthsAt300.length; i++){
+        if(+breadthsAt300[i][5] >= 3){
+            count = count + 1;
+        }
+    }
+    if(count >= 2){
+        breadths300 = true;
     }
 
     return {"requirements":
@@ -283,6 +311,7 @@ export function updateCSBS(semesters: Semester[]): requirementList {
             {"requirement":"groupD", "satisfied":groupd},    
             {"requirement":"capstone", "satisfied":caps},
             {"requirement": "9 extra", "satisfied":extra9},
+            {"requirement": "breadths300", "satisfied": breadths300},
             {"requirement": "108", "satisfied":c108},
             {"requirement":"181", "satisfied":c181},
             {"requirement":"210", "satisfied":c210},
