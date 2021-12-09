@@ -2,7 +2,6 @@ import React from "react";
 import { act, fireEvent, render, screen, within } from "@testing-library/react";
 import App from "./App";
 import userEvent from "@testing-library/user-event";
-import { findCourse } from "./utilities/findCourse";
 import { groupA } from "./data/univReqs";
 
 function performDragandDrop(courseCode:string): void{
