@@ -74,7 +74,7 @@ export function SemesterTable({ sem, setSemesters, semesters, coursesPool, setCo
                 coursesPool = newCP;
                 setCoursesPool(newCP);  //updating courses pool, so card is gone after dropped
             } else {
-                alert("Course is Already in Semester");
+                //alert("Course is Already in Semester");
             }
         },
         collect: (monitor) => ({

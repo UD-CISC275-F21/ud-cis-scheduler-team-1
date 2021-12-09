@@ -37,22 +37,21 @@ export function FourYearPlan({ semesters, setSemesters, coursesPool, setCoursesP
             <Row>
                 <ButtonGroup id="buttonGroup">
                     <Button
-                        id="big-scope-button"
+                        className="big-scope-button"
                         onClick={() => {
                             setShow(true);
                         }}>
                         + Add Semester
                     </Button>
                     <Button
-                        id="big-scope-button"
+                        className="big-scope-button"
                         onClick={() => {
                             setShowImportExport(true);
                         }}>
                         Import/Export
                     </Button>
                     <Button
-                        id="big-scope-button"
-                        variant="outline-danger"
+                        className="big-scope-button"
                         onClick={() => {
                             window.location.reload();
                         }}>

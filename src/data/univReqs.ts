@@ -280,7 +280,7 @@ export function findCommonCredits(subCourse: string[], potentialCourses: string[
         if(potentialCourses.includes(subCourse[i])){
             let cred:number = +findCourse(subCourse[i]).credits;
             if(!cred){
-                cred =  +findCourse(subCourse[i]).credits.substr(0, 2);
+                cred =  +findCourse(subCourse[i]).credits.substring(0, 2);
             } 
             credits = credits + cred;
         }
@@ -305,7 +305,7 @@ export function totalCredits(sems:Semester[]): number{
         for (let j = 0; j < sems[i].courses.length; j++){
             let cred:number = +sems[i].courses[j].info.credits;
             if(!cred){
-                cred = +sems[i].courses[j].info.credits.substr(0, 2);
+                cred = +sems[i].courses[j].info.credits.substring(0, 2);
             }
             totalCreds = totalCreds + cred;
         }

@@ -210,10 +210,10 @@ export function updateCSBS(semesters: Semester[]): requirementList {
     let six = 0;
     const match6:string[] = [];
     for(let i = 0; i < courseNames.length; i++){
-        if(courseNames[i].substr(0, 4) === "CISC" && (+courseNames[i][5] >= 3) && !noTech.includes(courseNames[i])){
+        if(courseNames[i].substring(0, 4) === "CISC" && (+courseNames[i][5] >= 3) && !noTech.includes(courseNames[i])){
             let credits:number = +findCourse(courseNames[i]).credits;
             if(!credits){
-                credits = +findCourse(courseNames[i]).credits.substr(0, 2);
+                credits = +findCourse(courseNames[i]).credits.substring(0, 2);
             }
             six = six + credits;
             match6.push(courseNames[i]);
@@ -228,10 +228,10 @@ export function updateCSBS(semesters: Semester[]): requirementList {
     let twelve = 0;
     const match12:string[] = [];
     for(let i = 0; i < courseNames.length; i++){
-        if(courseNames[i].substr(0, 4) === "CISC" && (+courseNames[i][5] >= 3) && !noTech.includes(courseNames[i])){
+        if(courseNames[i].substring(0, 4) === "CISC" && (+courseNames[i][5] >= 3) && !noTech.includes(courseNames[i])){
             let credits:number = +findCourse(courseNames[i]).credits;
             if(!credits){
-                credits = +findCourse(courseNames[i]).credits.substr(0, 2);
+                credits = +findCourse(courseNames[i]).credits.substring(0, 2);
             }
             twelve = twelve + credits;
             match12.push(courseNames[i]);

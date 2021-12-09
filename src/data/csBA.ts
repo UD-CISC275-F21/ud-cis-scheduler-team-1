@@ -104,10 +104,10 @@ export function updateCSBA(semesters: Semester[]): requirementList {
     let fifteen = 0;
     const match15:string[] = [];
     for(let i = 0; i < courseNames.length; i++){
-        if(courseNames[i].substr(0, 4) === "CISC" && (+courseNames[i][5] >= 3) && !noTech.includes(courseNames[i])){
+        if(courseNames[i].substring(0, 4) === "CISC" && (+courseNames[i][5] >= 3) && !noTech.includes(courseNames[i])){
             let credits:number = +findCourse(courseNames[i]).credits;
             if(!credits){
-                credits = +findCourse(courseNames[i]).credits.substr(0, 2);
+                credits = +findCourse(courseNames[i]).credits.substring(0, 2);
             }
             fifteen = fifteen + credits;
             match15.push(courseNames[i]);

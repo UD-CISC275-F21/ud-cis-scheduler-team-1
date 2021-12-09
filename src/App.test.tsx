@@ -2,6 +2,7 @@ import React from "react";
 import { act, fireEvent, render, screen, within } from "@testing-library/react";
 import App from "./App";
 import userEvent from "@testing-library/user-event";
+import { groupA } from "./data/univReqs";
 
 function performDragandDrop(courseCode:string): void{
     fireEvent.click(screen.getByRole("textbox", { name: "Course Code" }));
@@ -12,6 +13,24 @@ function performDragandDrop(courseCode:string): void{
     fireEvent.dragEnter(screen.getByRole("columnheader", { name: /fall 2021/i }));
     fireEvent.dragOver(screen.getByRole("columnheader", { name: /fall 2021/i }));
     fireEvent.drop(screen.getByRole("columnheader", { name: /fall 2021/i }));
+}
+
+function testIndividualCourse(courseCode:string, requirement:string):void{
+    describe(courseCode + " requirements renders correctly on load", () =>{
+        it("has " + courseCode + "when the app loads", () =>{
+            const course = screen.queryAllByText(requirement);
+            const [expectedNode] = course.filter(element => element.tagName === "li");
+            expect(expectedNode);
+        });
+    });
+    describe(courseCode + " requirement is crossed out when course put in plan", () =>{
+        it(courseCode + " is crossed out after drag and drop", () =>{
+            performDragandDrop(courseCode);
+            const course = screen.queryAllByText(requirement);
+            const [expectedNode] = course.filter(element => element.tagName === "del");
+            expect(expectedNode);
+        });
+    });
 }
 
 describe("App", () => {
@@ -55,22 +74,29 @@ describe("App", () => {
         });
     });
     describe("Requirements", ()=> {
-        describe("Requirements render correctly on load", () =>{
-            it("has ENGL110 when the app loads", () =>{
-                const e110 = screen.getAllByText(/ENGL 110/i);
-                const [expectedNode] = e110.filter(element => element.tagName === "li");
+        describe("Individual Courses Satisfy Reqs", () =>{
+            const indCourses:string[] = ["ENGL 110", "CISC 108", "CISC 181", "CISC 210", "CISC 220", "CISC 260", 
+                "CISC 275", "CISC 303", "CISC 320", "CISC 361", "CISC 372", "MATH 210", "MATH 241", "MATH 242", "CISC 355"];
+            for(const courseCode of indCourses){
+                testIndividualCourse(courseCode, courseCode);
+            }
+        });
+        describe("EGG 101 satisfied fys", () =>{
+            it("has  fys when the app loads", () =>{
+                const course = screen.queryAllByText("First Year Seminar*");
+                const [expectedNode] = course.filter(element => element.tagName === "li");
+                expect(expectedNode);
+            });
+            it("EGGG 101 satisfies requirement", () =>{
+                performDragandDrop("EGGG 101");
+                const course = screen.queryAllByText("First Year Seminar*");
+                const [expectedNode] = course.filter(element => element.tagName === "del");
                 expect(expectedNode);
             });
         });
-        describe("Requirement is crossed out when course put in plan", () =>{
-            it("ENGL 110 is crossed out after drag and drop", () =>{
-                performDragandDrop("ENGL 110");
-                const e110 = screen.getAllByText(/ENGL 110/i);
-                const [expectedNode] = e110.filter(element => element.tagName === "del");
-                expect(expectedNode);
-            });
+        describe("Satisfying Breadths", () =>{
+            testIndividualCourse(groupA[0], "Group A Breadth (3 cr.)*");
         });
-        
     });
     describe("Concentrations", () => {
         describe("Elements render correctly on app load", () => {
