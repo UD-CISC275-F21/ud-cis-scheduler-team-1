@@ -25,25 +25,34 @@ export function Welcome({ show, setShow }: welc): JSX.Element {
                 </Modal.Header>
                 <Modal.Body className="welcome-container">
                     <Carousel className="welcome-carousel" variant="dark" activeIndex={index} interval={null} onSelect={handleSelect}>
-                        <Carousel.Item id="welcome-item">
-                            <Carousel.Caption id="welcome-carousel-cap">
-                                <h1>Welcome to UD CISC Scheduler</h1>
-                                <p>You can click button on the right to see step-by-step guiding of how to navigate this website and create an effective plan for your degree!</p>
-                                <p>This guide can also be accessed by the help button on the top right corner!</p>
-                            </Carousel.Caption>
+                        <Carousel.Item id="welcome-item-front">
+                            <h1>Welcome to UD CISC Scheduler</h1>
+                            <h3>Use buttons on the side to navigate the usage guide</h3>
                         </Carousel.Item>
                         <Carousel.Item id="welcome-item">
-                            <Carousel.Caption>
-                                <h3>Second slide label</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </Carousel.Caption>
+                            <h3>Choose Your Degree Type</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                         </Carousel.Item >
                         <Carousel.Item id="welcome-item">
-                            <Carousel.Caption>
-                                <h3>Third slide label</h3>
-                                <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-                            </Carousel.Caption>
-                        </Carousel.Item>
+                            <h3>See Your Degree Requirement</h3>
+                            <p>dfasfsad</p>
+                        </Carousel.Item >
+                        <Carousel.Item id="welcome-item">
+                            <h3>Find Courses and Add to Plan</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </Carousel.Item >
+                        <Carousel.Item id="welcome-item">
+                            <h3>Modify Plan</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </Carousel.Item >
+                        <Carousel.Item id="welcome-item">
+                            <h3>Save / Load Your Plan</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </Carousel.Item >
+                        <Carousel.Item id="welcome-item">
+                            <h3>Access Guide</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </Carousel.Item >
                     </Carousel>
                 </Modal.Body>
                 <Modal.Footer>
