@@ -276,7 +276,7 @@ export function updateCSHighPerf(semesters: Semester[]): requirementList {
 
     let totalAp = 0;
     for(let i = 0; i < courseNames.length; i++){
-        if((courseNames[i] === "MATH 205") || (courseNames[i] === "MATH 350") || (courseNames[i].substr(0, 4) === "CISC" && (+courseNames[i][5] >= 3) && !noTech.includes(courseNames[i]))){
+        if((courseNames[i] === "MATH 205") || (courseNames[i] === "MATH 350") || (courseNames[i].substring(0, 4) === "CISC" && (+courseNames[i][5] >= 3) && !noTech.includes(courseNames[i]))){
             totalAp = totalAp + 3;
             usedCourses.push(courseNames[i]);
         }
@@ -323,7 +323,7 @@ export function updateCSHighPerf(semesters: Semester[]): requirementList {
 
     let totalDat = 0;
     for(let i = 0; i < courseNames.length; i++){
-        if(courseNames[i] === "MATH 302" || courseNames[i] === "MATH 349" || courseNames[i] === "MATH 351" || courseNames[i] === "MATH 535" || (courseNames[i].substr(0, 4) === "CISC" && (+courseNames[i][5] >= 3) && !noTech.includes(courseNames[i]))){
+        if(courseNames[i] === "MATH 302" || courseNames[i] === "MATH 349" || courseNames[i] === "MATH 351" || courseNames[i] === "MATH 535" || (courseNames[i].substring(0, 4) === "CISC" && (+courseNames[i][5] >= 3) && !noTech.includes(courseNames[i]))){
             totalDat = totalDat + 3;
             usedCourses2.push(courseNames[i]);
         }

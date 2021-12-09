@@ -41,7 +41,7 @@ export function CSMinorUpdate(semesters:Semester[]):requirementList{
     let total = 0;
     const match200:string[] = [];
     for(let i = 0; i < courseNames.length; i++){  //checks if the extra electives are present
-        if(courseNames[i].substr(0, 4) === "CISC" && !["CISC 355", "CISC 356"].includes(courseNames[i])){
+        if(courseNames[i].substring(0, 4) === "CISC" && !["CISC 355", "CISC 356"].includes(courseNames[i])){
             total = total + 3;
             match200.push(courseNames[i]);
         }
