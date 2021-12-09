@@ -2,6 +2,13 @@ import React, { useState } from "react";
 import { Button, Carousel, Modal } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../App.css";
+import degreetype from "../assets/imgs/degreetype.png";
+import addcourse from "../assets/imgs/addcourse.png";
+import modifycourse from "../assets/imgs/modifycourse.png";
+import saveload from "../assets/imgs/saveload.png";
+import guide from "../assets/imgs/guide.png";
+
+
 
 interface welc {
     show: boolean;
@@ -31,27 +38,23 @@ export function Welcome({ show, setShow }: welc): JSX.Element {
                         </Carousel.Item>
                         <Carousel.Item id="welcome-item">
                             <h3>Choose Your Degree Type</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </Carousel.Item >
-                        <Carousel.Item id="welcome-item">
-                            <h3>See Your Degree Requirement</h3>
-                            <p>dfasfsad</p>
+                            <img src={degreetype} />
                         </Carousel.Item >
                         <Carousel.Item id="welcome-item">
                             <h3>Find Courses and Add to Plan</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            <img src={addcourse} />
                         </Carousel.Item >
                         <Carousel.Item id="welcome-item">
-                            <h3>Modify Plan</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            <h3>Modify Course and Semester</h3>
+                            <img src={modifycourse} />
                         </Carousel.Item >
                         <Carousel.Item id="welcome-item">
-                            <h3>Save / Load Your Plan</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            <h3>Check Requirements | Save/Load Plan</h3>
+                            <img src={saveload} />
                         </Carousel.Item >
                         <Carousel.Item id="welcome-item">
                             <h3>Access Guide</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            <img src={guide} />
                         </Carousel.Item >
                     </Carousel>
                 </Modal.Body>
