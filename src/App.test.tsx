@@ -74,6 +74,21 @@ describe("App", () => {
         });
     });
     describe("Requirements", ()=> {
+        describe("124 credits are satisfied", () =>{
+            it("124 is crossed out", () =>{
+                const coursesTo124:string[] = ["ENGL 110", "EGGG 101", "CISC 498","MATH 512","AFRA 206","AFRA 250",
+                    "AFRA 442","CISC 601","CISC 604", "CISC 605","CISC 606","SPAN 107", "ACCT 200","ACCT 207","ACCT 208",
+                    "ACCT 302","ACCT 305","ACCT 313","ACCT 315","ACCT 316","ACCT 320","ACCT 327","ACCT 350","ACCT 351",
+                    "ACCT 352","ACCT 395","ACCT 402","ACCT 405","ACCT 410","ACCT 413","ACCT 414","ACCT 415","ACCT 416",
+                    "ACCT 417","ACCT 418","ACCT 420","ACCT 425","ACCT 433","ACCT 450","ACCT 457","MATH 210"];
+                for (const courseCode of coursesTo124){
+                    performDragandDrop(courseCode);
+                }
+                const course = screen.queryAllByText("124+ Credits Total");
+                const [expectedNode] = course.filter(element => element.tagName === "del");
+                expect(expectedNode);
+            });
+        });
         describe("Individual Courses Satisfy Reqs", () =>{
             const indCourses:string[] = ["ENGL 110", "CISC 108", "CISC 181", "CISC 210", "CISC 220", "CISC 260", 
                 "CISC 275", "CISC 303", "CISC 320", "CISC 361", "CISC 372", "MATH 210", "MATH 241", "MATH 242", "CISC 355"];

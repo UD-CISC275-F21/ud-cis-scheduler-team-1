@@ -19,6 +19,10 @@ li {
   font-size: 1.15em;
 }
 
+#bodyBackground {
+  background-color: #B0CDF5;
+}
+
 #title{
   margin-bottom: 1cm;
 }
