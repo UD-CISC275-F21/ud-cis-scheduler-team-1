@@ -153,11 +153,13 @@ export function updateCSCyber(semesters: Semester[]): requirementList {
     if(courseNames.includes("CISC 498") && courseNames.includes("CISC 499")){
         caps = true;
         majCaps = true;
+        dles = true;
         courseNames = courseNames.filter(key => key != "CISC 498");
         courseNames = courseNames.filter(key => key != "CISC 499");
     } else if(courseNames.includes("UNIV 401") && courseNames.includes("UNIV 402")){
         caps = true;
         majCaps = true;
+        dles = true;
         courseNames = courseNames.filter(key => key != "UNIV 401");
         courseNames = courseNames.filter(key => key != "UNIV 402");
     }
