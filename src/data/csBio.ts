@@ -54,8 +54,7 @@ export function updateCSBio(semesters: Semester[]): requirementList {
             totalCreds = totalCreds + +semesters[i].courses[j].info.credits;
         }
     }
-    const cours = accumulateCourses(semesters);
-    let courseNames = Array.from(cours.keys());
+    let courseNames = accumulateCourses(semesters);
 
     let e110 = false;
     let fys = false;

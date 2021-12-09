@@ -251,11 +251,11 @@ export const engineerProfess = ["ACCT 352", "AFSC 310", "AFSC 311", "BUAD 100", 
 export const noTech = ["CISC 355", "CISC 356", "CISC 357", "CISC 366", "CISC 465", "CISC 466"];
 
 //returns map object that has course code with a boolean.  boolean is for if course has been used to satisfy a req
-export function accumulateCourses(semesters: Semester[]):Map<string, boolean>{
-    let cours = new Map<string, boolean>();
+export function accumulateCourses(semesters: Semester[]):string[]{
+    const cours:string[] = []; 
     for (let i = 0; i < semesters.length; i++){
         for (let j = 0; j < semesters[i].courses.length; j++){
-            cours = cours.set(semesters[i].courses[j].info.code, false);
+            cours.push(semesters[i].courses[j].info.code);
         }
     }
     return cours;

@@ -17,8 +17,7 @@ export function CSMinorUpdate(semesters:Semester[]):requirementList{
     let c220 = false;
     let extra6 = false;
 
-    const cours = accumulateCourses(semesters);
-    let courseNames = Array.from(cours.keys());
+    let courseNames = accumulateCourses(semesters);
     
     if(courseNames.includes("CISC 181")){ //checks for 181
         c181 = true;
