@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { FourYearPlan } from "./components/FourYearPlan";
 import { Requirements } from "./components/Requirements";
@@ -30,7 +30,6 @@ function App(): JSX.Element {
                 <Container fluid className="App">
                     <div className="help-button"><Button variant="outline-dark" onClick={()=>setShow(true)}>Help</Button></div>
                     <h1 id="title">UD CIS Scheduler</h1>
-                    <p>Click on the course name in a semester to view additional information and to edit.</p>
                     <Row>
                         <Col><CoursePool coursesPool={coursesPool} setCoursesPool={setCoursesPool}></CoursePool></Col>
                         <Col md={8}>

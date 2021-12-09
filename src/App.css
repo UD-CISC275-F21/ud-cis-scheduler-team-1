@@ -3,8 +3,8 @@
 
 .App {
   text-align: center;
-  margin-bottom: 1cm;
   font-family: 'Azeret Mono', monospace;
+  background-color: #B0CDF5;
 }
 
 td {
@@ -42,7 +42,7 @@ li {
   width: 75%;
   margin-left: auto;
   margin-right: auto;
-  background-color: lightskyblue;
+  background-color: rgb(224, 224, 224);
   outline: 2px solid black;
   border-radius: 8px;
   padding: 10px;
@@ -93,11 +93,11 @@ li {
 }
 
 .courseTableReq{
-  color: orange;
+  color: #FFEFB0;
 }
 
 .help-button{
-  margin-top: 1em;
+  padding-top: 1em;
   display: flex;
   justify-content: right;
 }
@@ -112,7 +112,7 @@ li {
   height: 26em;
 }
 #welcome-carousel-cap > h1{
-  color: blue;
+  color: #FFEFB0;
   font-size: 3.5em;
 }
 #welcome-carousel-cap > p{
@@ -136,4 +136,20 @@ li {
 .imp-export-footer{
   text-align: center;
   margin: auto;
+}
+
+.sidecolumns {
+  border: 5px solid #FFEFB0;
+  padding: 5px;
+}
+
+
+.btn-primary {
+  background-color: #FFEFB0 !important;
+  border-color: #FFEFB0 !important;
+  color: black !important;
+}
+
+.btn-primary:hover {
+  background-color: #ffefb09a !important;
 }
