@@ -38,7 +38,7 @@ describe("App", () => {
         render(<App />);
     });
     it("renders UD CIS Scheduler text", () => {
-        expect(screen.getByText(/UD CIS Scheduler/i)).toBeInTheDocument();
+        expect(screen.getByText("UD CIS Scheduler")).toBeInTheDocument();
     });
     describe("Welcome", () => {
         it("renders welcome modal and usage guide", () => {
@@ -55,7 +55,6 @@ describe("App", () => {
             expect(screen.queryByText("Usage Guide")).toBeInTheDocument();
         });
     });
-    /*
     describe("CoursePool", () => {
         it("adds a course to course pool", () => {
             fireEvent.click(screen.getByRole("button", { name: "Close Guide" }));
@@ -114,7 +113,6 @@ describe("App", () => {
             testIndividualCourse(groupA[0], "Group A Breadth (3 cr.)*");
         });
     });
-    */
     describe("Concentrations", () => {
         describe("Elements render correctly on app load", () => {
             it("has the degree type dropdown when the app loads", () => {
@@ -128,7 +126,83 @@ describe("App", () => {
                 expect(screen.queryByText("BS")).toBeInTheDocument();
                 expect(screen.queryByText("Traditional Program")).toBeInTheDocument();
             });
-
+        });
+        describe("Dropdowns show or do not show based on other dropdowns", () => {
+            it("Hides concentration dropdown when BA is selected", async () => {
+                await act(async () => {
+                    userEvent.click(screen.getByRole("button", { name: "BS" }));
+                });
+                await userEvent.click(screen.getByRole("button", { name: "BA" }));
+                expect(screen.queryByText("Traditional Program")).not.toBeInTheDocument();
+            });
+            it("Hides degree type (BS/BA) dropdown when Minor is selected (and brings them back when back to major)", async() => {
+                await act(async () => {
+                    userEvent.click(screen.getByRole("button", { name: "Major" }));
+                });
+                await userEvent.click(screen.getByRole("button", { name: "Minor" }));
+                expect(screen.queryByText("Traditional Program")).not.toBeInTheDocument();
+                expect(screen.queryByText("BS")).not.toBeInTheDocument();
+                expect(screen.queryByText("BA")).not.toBeInTheDocument();
+                await userEvent.click(screen.getByRole("button", { name: "Major" }));
+                expect(screen.queryByText("Traditional Program")).toBeInTheDocument();
+                expect(screen.queryByText("BS")).toBeInTheDocument();
+            });
+            
+        });
+        describe("Dropdown selections update catalog link in requirements column", () => {
+            it("Changes the link to the correct entry in the UD Catalog - Concentration Changes", async () => {
+                expect(screen.getByRole("link", { name: "UD Catalog"})).toHaveAttribute("href", "https://catalog.udel.edu/preview_program.php?catoid=47&poid=34727&returnto=8860");
+                await act(async () => {
+                    userEvent.click(screen.getByRole("button", { name: "Traditional Program" }));
+                });
+                await userEvent.click(screen.getByRole("button", { name: "Artificial Intelligence and Robotics" }));
+                expect(screen.getByRole("link", { name: "UD Catalog"})).toHaveAttribute("href", "https://catalog.udel.edu/preview_program.php?catoid=47&poid=34982&returnto=8860");
+            });
+            it("Changes the link to the correct entry in the UD Catalog - BA vs. BS changes", async () => {
+                expect(screen.getByRole("link", { name: "UD Catalog"})).toHaveAttribute("href", "https://catalog.udel.edu/preview_program.php?catoid=47&poid=34727&returnto=8860");
+                await act(async () => {
+                    userEvent.click(screen.getByRole("button", { name: "BS" }));
+                });
+                await userEvent.click(screen.getByRole("button", { name: "BA" }));
+                expect(screen.getByRole("link", { name: "UD Catalog"})).toHaveAttribute("href", "https://catalog.udel.edu/preview_program.php?catoid=47&poid=34726&returnto=8860");
+            });
+            it("Changes the link to the correct entry in the UD Catalog - Major or minor changes", async () => {
+                expect(screen.getByRole("link", { name: "UD Catalog"})).toHaveAttribute("href", "https://catalog.udel.edu/preview_program.php?catoid=47&poid=34727&returnto=8860");
+                await act(async () => {
+                    userEvent.click(screen.getByRole("button", { name: "Major" }));
+                });
+                await userEvent.click(screen.getByRole("button", { name: "Minor" }));
+                expect(screen.getByRole("link", { name: "UD Catalog"})).toHaveAttribute("href", "https://catalog.udel.edu/preview_program.php?catoid=47&poid=34733&returnto=8860");
+            });
+        });
+        describe("Updates requirements list text based on dropdown selections", () => {
+            it("Updates the requirements list - Concentration Changes", async () => {
+                const before = screen.getByRole("list").textContent;
+                await act(async () => {
+                    userEvent.click(screen.getByRole("button", { name: "Traditional Program" }));
+                });
+                await userEvent.click(screen.getByRole("button", { name: "Artificial Intelligence and Robotics" }));
+                const after = screen.getByRole("list").textContent;
+                expect(after).not.toEqual(before);
+            });
+            it("Updates the requirements list - Degree Type changes", async () => {
+                const before = screen.getByRole("list").textContent;
+                await act(async () => {
+                    userEvent.click(screen.getByRole("button", { name: "BS" }));
+                });
+                await userEvent.click(screen.getByRole("button", { name: "BA" }));
+                const after = screen.getByRole("list").textContent;
+                expect(after).not.toEqual(before);
+            });
+            it("Updates the requirements list - Major/Minor changes", async () => {
+                const before = screen.getByRole("list").textContent;
+                await act(async () => {
+                    userEvent.click(screen.getByRole("button", { name: "Major" }));
+                });
+                await userEvent.click(screen.getByRole("button", { name: "Minor" }));
+                const after = screen.getByRole("list").textContent;
+                expect(after).not.toEqual(before);
+            });
         });
     });
     describe("FourYearPlan", () => {
