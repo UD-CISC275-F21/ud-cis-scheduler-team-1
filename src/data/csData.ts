@@ -252,7 +252,7 @@ export function updateCSData(semesters: Semester[]): requirementList {
         courseNames = courseNames.filter(key => key != e3[0]);
     }
     for(let i = 0; i < courseNames.length; i++){
-        if(courseNames[i].substr(0, 4) === "CISC" && (+courseNames[i][4] >= 3) && !noTech.includes(courseNames[i])){
+        if(courseNames[i].substr(0, 4) === "CISC" && (+courseNames[i][5] >= 3) && !noTech.includes(courseNames[i])){
             extra34 = true;
             courseNames = courseNames.filter(key => key != courseNames[i]);
             break;

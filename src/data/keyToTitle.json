@@ -3,16 +3,16 @@
       "title": "6 Breadth Credits at 300 Level or Above"
     },
     "discreteTrack": {
-      "title": "Discrete Track OR"
+      "title": "Discrete Track* OR"
     },
     "contTrack": {
-      "title": "Continuous Track"
+      "title": "Continuous Track*"
     },
     "apMathTrack": {
-      "title": "Applied Math Track OR"
+      "title": "Applied Math Track* OR"
     },
     "dataTrack": {
-      "title": "Data Science Track"
+      "title": "Data Science Track*"
     },
     "108": {
       "title": "CISC 108"

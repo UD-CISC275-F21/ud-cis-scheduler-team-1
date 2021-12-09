@@ -242,34 +242,56 @@ export function updateCSTheory(semesters: Semester[]): requirementList {
     let m535 = false;
     let m426 = false;
 
-    //checks for specific courses
+
+    //checks for specific courses for tracks
+    //discrete track
+    const usedCourses: string[] = [];
     if(courseNames.includes("CISC 404")){
         c404 = true;
+        usedCourses.push("CISC 404");
     }
     if(courseNames.includes("MATH 245")){
         m245 = true;
+        usedCourses.push("MATH 245");
     }
     if(courseNames.includes("MATH 315")){
         m315 = true;
+        usedCourses.push("MATH 315");
     } 
     if(courseNames.includes("MATH 451")){
         m451 = true;
+        usedCourses.push("MATH 451");
     }
+
+    //continuous track
+    const usedCourses2: string[] = [];
     if(courseNames.includes("MATH 243")){
         m243 = true;
+        usedCourses2.push("MATH 243");
     }  
     if(courseNames.includes("MATH 302")){
         m302 = true;
+        usedCourses2.push("MATH 302");
     } 
     if(courseNames.includes("MATH 535")){
         m535 = true;
+        usedCourses2.push("MATH 535");
     }
     if(courseNames.includes("MATH 426")){
         m426 = true;
+        usedCourses2.push("MATH 426");
     } 
     
     const disComp = c404 && m245 && m315 && m451;
     const conComp = m243 && m302 && m535 && m426;
+    
+    if(conComp){
+        courseNames = courseNames.filter(key => !usedCourses2.includes(key));  // get rid of used courses if that track is complete
+    }else{
+        courseNames = courseNames.filter(key => !usedCourses.includes(key));  // get rid of these otherwise
+    }
+
+    const track = disComp || conComp;
 
     /*const discrete = {
         "disComplete": disComp, //true if all sub categories in this are true
@@ -287,7 +309,6 @@ export function updateCSTheory(semesters: Semester[]): requirementList {
         "MATH 426": m426
     };*/
 
-    const track = disComp && conComp;
 
     const e6 = findCommonCourses(courseNames, restrict);
     if(e6.length >= 2){
@@ -296,7 +317,7 @@ export function updateCSTheory(semesters: Semester[]): requirementList {
         courseNames = courseNames.filter(key => key != e6[1]);
     }
     for(let i = 0; i < courseNames.length; i++){
-        if(courseNames[i].substr(0, 4) === "CISC" && (+courseNames[i][4] >= 3) && !noTech.includes(courseNames[i])){
+        if(courseNames[i].substr(0, 4) === "CISC" && (+courseNames[i][5] >= 3) && !noTech.includes(courseNames[i])){
             extra34 = true;
             courseNames = courseNames.filter(key => key != courseNames[i]);
             break;

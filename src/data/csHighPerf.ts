@@ -249,54 +249,98 @@ export function updateCSHighPerf(semesters: Semester[]): requirementList {
         courseNames = courseNames.filter(key => key != "MATH 243");
     }  
 
+    //Track checking- Applied Math First
+    const usedCourses: string[] = [];
+
     //stats
     if(courseNames.includes("MATH 205")){
         stats = true;
         courseNames = courseNames.filter(key => key != "MATH 205");
+        usedCourses.push("MATH 205");
     } else if(courseNames.includes("MATH 350")){
         stats = true;
         courseNames = courseNames.filter(key => key != "MATH 350");
+        usedCourses.push("MATH 350");
     }
     //specific courses
     if(courseNames.includes("MATH 351")){
         m351 = true;
+        courseNames = courseNames.filter(key => key != "MATH 351");
+        usedCourses.push("MATH 351");
     }
     if(courseNames.includes("MATH 428")){
         m428 = true;
-    }
-    if(courseNames.includes("CISC 437")){
-        c437 = true;
-    }
-    if(courseNames.includes("MATH 350")){
-        m350 = true;
-    }
-    if(courseNames.includes("MATH 450")){
-        m450 = true;
-    }
-    if(courseNames.includes("MATH 450")){
-        m450 = true;
-    }
-    if(courseNames.includes("CISC 483") || courseNames.includes("CISC 484")){
-        ml = true;
+        courseNames = courseNames.filter(key => key != "MATH 428");
+        usedCourses.push("MATH 428");
     }
 
-    //checking for different tracks
-    let total = 0;
+    let totalAp = 0;
     for(let i = 0; i < courseNames.length; i++){
-        if(courseNames[i].substr(0, 4) === "CISC" && (+courseNames[i][4] >= 3) && !noTech.includes(courseNames[i])){
-            total = total + 3;
+        if((courseNames[i] === "MATH 205") || (courseNames[i] === "MATH 350") || (courseNames[i].substr(0, 4) === "CISC" && (+courseNames[i][5] >= 3) && !noTech.includes(courseNames[i]))){
+            totalAp = totalAp + 3;
+            usedCourses.push(courseNames[i]);
+        }
+        if(totalAp >= 5){
+            apElec = true;
             break;
         }
     }
-    if(total >= 5){
-        apElec = true;
-        datElec = true;
-    }
 
     apComp = m351 && m428 && stats && apElec;
+
+    //resetting course pool to what it was previous to checking applied Math
+    courseNames = courseNames.concat(usedCourses);
+
+
+    //Checking Data Track
+    const usedCourses2: string[] = [];
+
+
+    if(courseNames.includes("CISC 437")){
+        c437 = true;
+        courseNames = courseNames.filter(key => key != "MATH 437");
+        usedCourses2.push("MATH 437");
+    }
+    if(courseNames.includes("MATH 350")){
+        m350 = true;
+        courseNames = courseNames.filter(key => key != "MATH 350");
+        usedCourses2.push("MATH 350");
+    }
+    if(courseNames.includes("MATH 450")){
+        m450 = true;
+        courseNames = courseNames.filter(key => key != "MATH 450");
+        usedCourses2.push("MATH 450");
+    }
+    if(courseNames.includes("CISC 483")){
+        ml = true;
+        courseNames = courseNames.filter(key => key != "CISC 483");
+        usedCourses2.push("MATH 483");
+    }else if(courseNames.includes("CISC 484")){
+        ml = true;
+        courseNames = courseNames.filter(key => key != "CISC 484");
+        usedCourses2.push("MATH 484");
+    }
+
+    let totalDat = 0;
+    for(let i = 0; i < courseNames.length; i++){
+        if(courseNames[i] === "MATH 302" || courseNames[i] === "MATH 349" || courseNames[i] === "MATH 351" || courseNames[i] === "MATH 535" || (courseNames[i].substr(0, 4) === "CISC" && (+courseNames[i][5] >= 3) && !noTech.includes(courseNames[i]))){
+            totalDat = totalDat + 3;
+            usedCourses2.push(courseNames[i]);
+        }
+        if(totalDat >= 5){
+            datElec = true;
+            break;
+        }
+    }
     datComp = c437 && m350 && m450 && ml && datElec;
 
-    const track = apComp && datComp;
+    if(datComp){
+        courseNames = courseNames.filter(key => !usedCourses2.includes(key));  // get rid of used courses if that track is complete
+    }else{
+        courseNames = courseNames.filter(key => !usedCourses.includes(key));  // get rid of these otherwise
+    }
+
+    const track = apComp || datComp;
 
     /*const apMath = {
         "apMathComplete": apComp,
