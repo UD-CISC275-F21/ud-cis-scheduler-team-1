@@ -100,25 +100,27 @@ li {
   display: flex;
   justify-content: right;
 }
+
 .welcome-carousel{
   height: 30em;
+  text-align: center;
   border: 3px solid black;
 }
-#welcome-item{
-  height: 28em;
-}
-#welcome-carousel-cap{
-  height: 26em;
-}
-#welcome-carousel-cap > h1{
-  color: #e0cd7f;
+#welcome-item-front > h1{
+  color: blue;
   font-size: 3.5em;
+  padding: 1.2em;
 }
-#welcome-carousel-cap > p{
-  font-size: 1.2em;
-  margin-top: 2em;
+#welcome-item > h3 {
+  text-align: center;
+  font-size: 2em;
+  padding: 0.5em;
+  background-color: #B0CDF5;
 }
-
+#welcome-item > img {
+  height: 23em;
+  width: 38em; 
+}
 .imp-export-subtile{
   font-size:1.5em;
   height: 2em;
