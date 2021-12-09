@@ -173,14 +173,7 @@ describe("App", () => {
             });
             describe("CourseModal", () => {
                 it("loads course modal when click in a course", () => {
-                    fireEvent.click(screen.getByRole("textbox", { name: "Course Code" }));
-                    fireEvent.change(screen.getByRole("textbox", { name: "Course Code" }), { target: { value: "CISC 108" } });
-                    fireEvent.click(screen.getByRole("option", { name: "CISC 108" }));
-                    fireEvent.click(screen.getByRole("button", { name: "Add Course" }));
-                    fireEvent.dragStart(screen.getByRole("drag"));
-                    fireEvent.dragEnter(screen.getByRole("columnheader", { name: /fall 2021/i }));
-                    fireEvent.dragOver(screen.getByRole("columnheader", { name: /fall 2021/i }));
-                    fireEvent.drop(screen.getByRole("columnheader", { name: /fall 2021/i }));
+                    performDragandDrop("CISC 108");
                     expect(screen.queryByText(/cisc 108 - introduction to computer science i/i)).toBeInTheDocument();
                     fireEvent.click(screen.getByText(/cisc 108 - introduction to computer science i/i));
                     expect(screen.getByText(/university: mathematics, natural sciences and technology; a&s: group d: a&s math, nat sci & technology/i)).toBeInTheDocument();
