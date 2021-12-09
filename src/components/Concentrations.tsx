@@ -16,7 +16,7 @@ export function Concentration({ bsba, setBSBA, major, setMajor, conc, setConc }:
             <h4>Degree Plan:
                 <ButtonGroup>
                     <Dropdown>
-                        <Dropdown.Toggle variant="outline-dark" data-testid="dropdown-basic" id="dropdown-basic">
+                        <Dropdown.Toggle data-testid="dropdown-basic" className="dropdown-basic">
                             {major}
                         </Dropdown.Toggle>
                         <Dropdown.Menu>
@@ -28,7 +28,7 @@ export function Concentration({ bsba, setBSBA, major, setMajor, conc, setConc }:
                         </Dropdown.Menu>
                     </Dropdown>
                     {major === "Major" && <Dropdown data-testid="concentration-row">
-                        <Dropdown.Toggle variant="outline-dark" data-testid="dropdown-bsba" id="dropdown-basic">
+                        <Dropdown.Toggle data-testid="dropdown-bsba" className="dropdown-basic">
                             {bsba}
                         </Dropdown.Toggle>
                         <Dropdown.Menu>
@@ -39,8 +39,8 @@ export function Concentration({ bsba, setBSBA, major, setMajor, conc, setConc }:
                             }}>BA</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>}
-                    {major === "Major" && bsba === "BS" && <Dropdown data-testid="concentration-dropdown" id="concentration-dropdown">
-                        <Dropdown.Toggle variant="outline-dark" id="dropdown-basic">
+                    {major === "Major" && bsba === "BS" && <Dropdown data-testid="concentration-dropdown" className="dropdown-basic">
+                        <Dropdown.Toggle id="dropdown-basic">
                             {conc}
                         </Dropdown.Toggle>
                         <Dropdown.Menu>
