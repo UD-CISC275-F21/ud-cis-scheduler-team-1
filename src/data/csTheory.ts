@@ -1,5 +1,5 @@
 import { Semester } from "../interfaces/semester";
-import {noTech, accumulateCourses, findCommonCourses, dle, engineerBreadth, engineerProfess, firstYearExp, groupA, groupB, groupC, groupD, multiCult, requirementList } from "./univReqs";
+import {noTech, accumulateCourses, findCommonCourses, dle, engineerBreadth, engineerProfess, firstYearExp, groupA, groupB, groupC, groupD, multiCult, requirementList, totalCredits } from "./univReqs";
 
 const restrict = ["CISC 372", "CISC 404", "CISC 410", "CISC 414", "CISC 471", "CISC 481", "ELEG 387", "ELEG 487", "MATH 243", "MATH 245", 
     "MATH 302", "MATH 315", "MATH 350", "MATH 428", "MATH 450", "MATH 451"];
@@ -64,12 +64,7 @@ interface continuous{
 }*/
 
 export function updateCSTheory(semesters: Semester[]): requirementList {
-    let totalCreds = 0;
-    for (let i = 0; i < semesters.length; i++){
-        for (let j = 0; j < semesters[i].courses.length; j++){
-            totalCreds = totalCreds + +semesters[i].courses[j].info.credits;
-        }
-    }
+    const totalCreds = totalCredits(semesters);
     let courseNames = accumulateCourses(semesters);
 
     let e110 = false;

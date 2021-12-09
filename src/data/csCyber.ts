@@ -1,5 +1,5 @@
 import { Semester } from "../interfaces/semester";
-import { noTech, accumulateCourses, findCommonCourses, dle, engineerBreadth, engineerProfess, firstYearExp, groupA, groupB, groupC, groupD, multiCult, requirementList } from "./univReqs";
+import { noTech, accumulateCourses, findCommonCourses, dle, engineerBreadth, engineerProfess, firstYearExp, groupA, groupB, groupC, groupD, multiCult, requirementList, totalCredits } from "./univReqs";
 
 const restrict = ["MATH 242", "MATH 349", "MATH 549", "CISC 304", "CISC 436", "CISC 437", "CISC 440", "CISC 442", "CISC 449", 
     "CISC 453", "CISC 459", "CISC 481", "CISC 483", "CISC 484", "CISC 474", "CPEG 470", "CPEG 471", "CPEG 472", "CPEG 473", 
@@ -47,12 +47,7 @@ const restrict = ["MATH 242", "MATH 349", "MATH 549", "CISC 304", "CISC 436", "C
 }*/ //Old interface, kept to see requirements
 
 export function updateCSCyber(semesters: Semester[]): requirementList {
-    let totalCreds = 0;
-    for (let i = 0; i < semesters.length; i++){
-        for (let j = 0; j < semesters[i].courses.length; j++){
-            totalCreds = totalCreds + +semesters[i].courses[j].info.credits;
-        }
-    }
+    const totalCreds = totalCredits(semesters);
     let courseNames = accumulateCourses(semesters);
 
     let e110 = false;

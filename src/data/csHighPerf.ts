@@ -1,5 +1,5 @@
 import { Semester } from "../interfaces/semester";
-import {noTech, accumulateCourses, findCommonCourses, dle, engineerBreadth, engineerProfess, firstYearExp, groupA, groupB, groupC, groupD, multiCult, requirementList } from "./univReqs";
+import {noTech, accumulateCourses, findCommonCourses, dle, engineerBreadth, engineerProfess, firstYearExp, groupA, groupB, groupC, groupD, multiCult, requirementList, totalCredits } from "./univReqs";
 
 /*export interface CSHighPerf {
     "univ": univReqs,
@@ -61,12 +61,7 @@ interface data{
 }*/
 
 export function updateCSHighPerf(semesters: Semester[]): requirementList {
-    let totalCreds = 0;
-    for (let i = 0; i < semesters.length; i++){
-        for (let j = 0; j < semesters[i].courses.length; j++){
-            totalCreds = totalCreds + +semesters[i].courses[j].info.credits;
-        }
-    }
+    const totalCreds = totalCredits(semesters);
     let courseNames = accumulateCourses(semesters);
 
     let e110 = false;

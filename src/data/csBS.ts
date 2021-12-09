@@ -1,6 +1,6 @@
 import { Semester } from "../interfaces/semester";
 import { findCourse } from "../utilities/findCourse";
-import {noTech, accumulateCourses, dle, firstYearExp, multiCult, groupA, groupB, groupC, groupD, findCommonCourses, engineerBreadth, engineerProfess, requirementList } from "./univReqs";
+import {noTech, accumulateCourses, dle, firstYearExp, multiCult, groupA, groupB, groupC, groupD, findCommonCourses, engineerBreadth, engineerProfess, requirementList, totalCredits } from "./univReqs";
 
 /*export interface CSBS {
     "univ": univReqs,
@@ -42,12 +42,7 @@ import {noTech, accumulateCourses, dle, firstYearExp, multiCult, groupA, groupB,
 }*/ //Old interface, kept for purposes of seeing reqs
 
 export function updateCSBS(semesters: Semester[]): requirementList {
-    let totalCreds = 0;
-    for (let i = 0; i < semesters.length; i++){
-        for (let j = 0; j < semesters[i].courses.length; j++){
-            totalCreds = totalCreds + +semesters[i].courses[j].info.credits;
-        }
-    }
+    const totalCreds = totalCredits(semesters);
     let courseNames = accumulateCourses(semesters);
 
     let e110 = false;

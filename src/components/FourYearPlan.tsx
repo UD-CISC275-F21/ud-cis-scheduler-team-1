@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, Row, ButtonGroup } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../App.css";
-import { season, Semester } from "../interfaces/semester";
+import { Semester } from "../interfaces/semester";
 import { SemesterTable } from "./SemesterTable";
 import { AddSemesterModal } from "./AddSemesterModal";
 import { CourseDisplay } from "../interfaces/course";

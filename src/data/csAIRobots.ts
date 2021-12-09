@@ -1,5 +1,5 @@
 import { Semester } from "../interfaces/semester";
-import {noTech, accumulateCourses, dle, groupA, groupB, groupC, groupD, engineerBreadth, engineerProfess, findCommonCourses, firstYearExp, multiCult, requirementList } from "./univReqs";
+import {noTech, accumulateCourses, dle, groupA, groupB, groupC, groupD, engineerBreadth, engineerProfess, findCommonCourses, firstYearExp, multiCult, requirementList, totalCredits } from "./univReqs";
 
 const restrict = ["CISC 436", "CISC 437", "CISC 489", "CISC 889", "EDUC 462", "ELEG 404", "ELEG 418", "ELEG 387", "ELEG 487", 
     "LING 202", "LING 404", "LING 418", "LING 444", "LING 451", "LING 455", "MAST 632", "MATH 242", "MATH 349", "MEEG 671", 
@@ -46,12 +46,7 @@ const restrict = ["CISC 436", "CISC 437", "CISC 489", "CISC 889", "EDUC 462", "E
 }*/  //Old interface used, kept to specify requirements
 
 export function updateCSAIRobots(semesters: Semester[]): requirementList {
-    let totalCreds = 0;
-    for (let i = 0; i < semesters.length; i++){
-        for (let j = 0; j < semesters[i].courses.length; j++){
-            totalCreds = totalCreds + +semesters[i].courses[j].info.credits;
-        }
-    }
+    const totalCreds = totalCredits(semesters);
     let courseNames = accumulateCourses(semesters);
 
     let e110 = false;

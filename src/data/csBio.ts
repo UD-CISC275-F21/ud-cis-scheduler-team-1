@@ -1,5 +1,5 @@
 import { Semester } from "../interfaces/semester";
-import {accumulateCourses, findCommonCourses, dle, engineerBreadth, engineerProfess, firstYearExp, groupA, groupB, groupC, groupD, multiCult, requirementList } from "./univReqs";
+import {accumulateCourses, findCommonCourses, dle, engineerBreadth, engineerProfess, firstYearExp, groupA, groupB, groupC, groupD, multiCult, requirementList, totalCredits } from "./univReqs";
 
 const restrict = ["ANFS 300", "ANFS 310", "ANFS 470", "BISC 403", "BISC 484", "BISC 492", "CHEM 214", "CHEM 216", "CHEM 322", 
     "CHEM 326", "MATH 243"];
@@ -48,12 +48,7 @@ const restrict = ["ANFS 300", "ANFS 310", "ANFS 470", "BISC 403", "BISC 484", "B
 }*/ //Old interface, kept to see reqs
 
 export function updateCSBio(semesters: Semester[]): requirementList {
-    let totalCreds = 0;
-    for (let i = 0; i < semesters.length; i++){
-        for (let j = 0; j < semesters[i].courses.length; j++){
-            totalCreds = totalCreds + +semesters[i].courses[j].info.credits;
-        }
-    }
+    const totalCreds = totalCredits(semesters);
     let courseNames = accumulateCourses(semesters);
 
     let e110 = false;

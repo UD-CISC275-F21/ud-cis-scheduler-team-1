@@ -1,4 +1,5 @@
 import { Semester } from "../interfaces/semester";
+import { findCourse } from "../utilities/findCourse";
 
 //courses satisfying multicultural
 export const multiCult = ["AFRA 110", "AFRA 193", "AFRA 205", "AFRA 206", "AFRA 220", "AFRA 221", "AFRA 222", "AFRA 223", "AFRA 225", 
@@ -272,6 +273,21 @@ export function findCommonCourses(subCourse: string[], potentialCourses: string[
     return courses;
 }
 
+//gets courses that are in both subCourse and potentialCourses arrays, returns credits in common
+export function findCommonCredits(subCourse: string[], potentialCourses: string[]): number{
+    let credits = 0;
+    for (let i = 0; i < subCourse.length; i++){
+        if(potentialCourses.includes(subCourse[i])){
+            let cred:number = +findCourse(subCourse[i]).credits;
+            if(!cred){
+                cred =  +findCourse(subCourse[i]).credits.substr(0, 2);
+            } 
+            credits = credits + cred;
+        }
+    }
+    return credits;
+}
+
 //Below two functions are used for handling returns for checking requirements 
 export interface reqSatisfied{ //individual requirement and if satisfed
     "requirement": string,
@@ -280,4 +296,18 @@ export interface reqSatisfied{ //individual requirement and if satisfed
 
 export interface requirementList{ //List of many requirements
     "requirements": reqSatisfied[]
+}
+
+export function totalCredits(sems:Semester[]): number{
+    let totalCreds = 0;
+    for (let i = 0; i < sems.length; i++){
+        for (let j = 0; j < sems[i].courses.length; j++){
+            let cred:number = +sems[i].courses[j].info.credits;
+            if(!cred){
+                cred = +sems[i].courses[j].info.credits.substr(0, 2);
+            }
+            totalCreds = totalCreds + cred;
+        }
+    }
+    return totalCreds;
 }
