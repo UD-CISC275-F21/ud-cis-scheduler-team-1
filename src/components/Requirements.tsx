@@ -78,8 +78,7 @@ export function Requirements({ semesters, bsba, major, conc }: iReq): JSX.Elemen
     }, [semesters,bsba,major,conc] );
     return <Col className="sidecolumns" id="move-when-scroll">
         <h2 className="subtitle">Degree Requirements</h2>
-        <p>To see more details about degree/minor requirements, click <a href = {url} target="_blank" rel="noopener noreferrer">here</a>.</p>
-        <p>*Consult UD catalog for details.</p>
+        <p className="reqdesc">*See the <a href = {url} target="_blank" rel="noopener noreferrer">UD Catalog</a> for full requirement descriptions.</p>
         <ul>
             <ReqCourseText courseKeys={remainingCourses} fulfilled={false}></ReqCourseText>
             <ReqCourseText courseKeys={fulfilledCourses} fulfilled={true}></ReqCourseText>

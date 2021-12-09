@@ -33,8 +33,8 @@ export function Welcome({ show, setShow }: welc): JSX.Element {
                 <Modal.Body className="welcome-container">
                     <Carousel className="welcome-carousel" variant="dark" activeIndex={index} interval={null} onSelect={handleSelect}>
                         <Carousel.Item id="welcome-item-front">
-                            <h1>Welcome to UD CISC Scheduler</h1>
-                            <h3>Use buttons on the side to navigate the usage guide</h3>
+                            <h1>Welcome to the UD CIS Scheduler</h1>
+                            <h3>Use buttons on the side to navigate the usage guide.</h3>
                         </Carousel.Item>
                         <Carousel.Item id="welcome-item">
                             <h3>Choose Your Degree Type</h3>

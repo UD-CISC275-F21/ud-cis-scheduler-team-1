@@ -96,7 +96,9 @@ li {
 }
 
 .courseTableReq{
-  color: #ceb03a;
+  color: #5691e2;
+  font-size: .88em;
+  font-family: 'Azeret Mono', monospace;
 }
 
 .help-button{
@@ -107,15 +109,19 @@ li {
 
 .welcome-carousel{
   height: 30em;
+  font-family: 'Fira Sans Condensed', sans-serif;
   text-align: center;
   border: 3px solid black;
 }
 #welcome-item-front > h1{
-  color: blue;
-  font-size: 3.5em;
+  color: #5691e2;
+  font-family: 'Azeret Mono', monospace;
+  font-size: 3.7em;
   padding: 1.2em;
 }
+
 #welcome-item > h3 {
+  font-family: 'Fira Sans Condensed', sans-serif;
   text-align: center;
   font-size: 2em;
   padding: 0.5em;
@@ -159,4 +165,8 @@ li {
 
 .semester {
   background-color: #ffffffbd;
+}
+
+.reqdesc {
+  font-size: .9em;
 }

@@ -55,6 +55,7 @@ describe("App", () => {
             expect(screen.queryByText("Usage Guide")).toBeInTheDocument();
         });
     });
+    /*
     describe("CoursePool", () => {
         it("adds a course to course pool", () => {
             fireEvent.click(screen.getByRole("button", { name: "Close Guide" }));
@@ -113,6 +114,7 @@ describe("App", () => {
             testIndividualCourse(groupA[0], "Group A Breadth (3 cr.)*");
         });
     });
+    */
     describe("Concentrations", () => {
         describe("Elements render correctly on app load", () => {
             it("has the degree type dropdown when the app loads", () => {
