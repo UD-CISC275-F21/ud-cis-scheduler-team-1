@@ -9,7 +9,7 @@ interface welc {
 }
 
 export function Welcome({ show, setShow }: welc): JSX.Element {
-    const [index, setIndex] = useState(0);
+    const [index, setIndex] = useState<number>(0);
     const handleSelect = (selectedIndex: number, e: Record<string, unknown> | null) => { //type of e is from react bootstrap
         setIndex(selectedIndex);
         console.log(e);
