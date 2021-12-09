@@ -72,7 +72,6 @@ li {
   display: flex;
   justify-content: center;
   font-size: 1.5em;
-  margin-bottom: 1em;
 }
 
 #add-sems-dropdown{
@@ -93,7 +92,7 @@ li {
 }
 
 .courseTableReq{
-  color: #FFEFB0;
+  color: #ceb03a;
 }
 
 .help-button{
@@ -112,7 +111,7 @@ li {
   height: 26em;
 }
 #welcome-carousel-cap > h1{
-  color: #FFEFB0;
+  color: #e0cd7f;
   font-size: 3.5em;
 }
 #welcome-carousel-cap > p{
@@ -152,4 +151,8 @@ li {
 
 .btn-primary:hover {
   background-color: #ffefb09a !important;
+}
+
+.semester {
+  background-color: #ffffffbd;
 }
