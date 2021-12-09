@@ -68,7 +68,7 @@ export function Requirements({ semesters, bsba, major, conc }: iReq): JSX.Elemen
         setRemainingCourses(newRemCourses);
 
     }, [semesters,bsba,major,conc] );
-    return <Col id="move-when-scroll">
+    return <Col className="sidecolumns" id="move-when-scroll">
         <h2 className="subtitle">Degree Requirements</h2>
         <ul>
             <ReqCourseText courseKeys={remainingCourses} fulfilled={false}></ReqCourseText>

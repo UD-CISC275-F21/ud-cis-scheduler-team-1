@@ -40,7 +40,7 @@ export function CoursePool({ coursesPool, setCoursesPool }: iCoursePl): JSX.Elem
     }
 
     //form came from react bootstrap
-    return <Col id="move-when-scroll" >
+    return <Col className="sidecolumns" id="move-when-scroll" >
         <h2 className="subtitle">Course Pool</h2>
         <Form id="searchBar" onSubmit={() => {
             addCourse(inpu);
@@ -54,7 +54,7 @@ export function CoursePool({ coursesPool, setCoursesPool }: iCoursePl): JSX.Elem
                     setInpu(value as string); event.preventDefault();
                 }} disablePortal id="combo-box-demo" options={getAllCourses()} renderInput={(params) => <TextField {...params} label="Course Code" />} />
             </Form.Group>
-            <Button data-testid="add-Course-button" onClick={() => {
+            <Button className="prettybutton" data-testid="add-Course-button" onClick={() => {
                 addCourse(inpu);
             }}>
                 Add Course
