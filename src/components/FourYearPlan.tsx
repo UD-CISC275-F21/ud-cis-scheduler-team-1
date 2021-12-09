@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, Row, ButtonGroup } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../App.css";
-import { Semester } from "../interfaces/semester";
+import { season, Semester } from "../interfaces/semester";
 import { SemesterTable } from "./SemesterTable";
 import { AddSemesterModal } from "./AddSemesterModal";
 import { CourseDisplay } from "../interfaces/course";
@@ -48,7 +48,6 @@ export function FourYearPlan({ semesters, setSemesters, coursesPool, setCoursesP
                         variant="secondary"
                         onClick={() => {
                             window.location.reload();
-                            // write thingy to reset course table and pool
                         }}>
                         Reset Plan
                     </Button>
