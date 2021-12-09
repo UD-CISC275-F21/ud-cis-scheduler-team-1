@@ -68,7 +68,6 @@ export function SemesterTable({ sem, setSemesters, semesters, coursesPool, setCo
                 const newSem: Semester = semester;
                 newSem.courses = [...semester.courses, item];
                 setSemester(newSem); //updating semester
-                console.log(semester);
                 updateSemesters(); //updating list of semesters
                 const newCP = coursesPool.filter(course => course.info.code !== item.info.code);
                 coursesPool = newCP;
