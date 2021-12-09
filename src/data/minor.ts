@@ -17,8 +17,7 @@ export function CSMinorUpdate(semesters:Semester[]):requirementList{
     let c220 = false;
     let extra6 = false;
 
-    const cours = accumulateCourses(semesters);
-    let courseNames = Array.from(cours.keys());
+    let courseNames = accumulateCourses(semesters);
     
     if(courseNames.includes("CISC 181")){ //checks for 181
         c181 = true;
@@ -40,15 +39,14 @@ export function CSMinorUpdate(semesters:Semester[]):requirementList{
         courseNames = courseNames.filter(key => key != "CISC 108");
     }
     let total = 0;
-    const match300:string[] = [];
-    for(let i = 0; i < courseNames.length; i++){  //checks if the extra electives are present, is still buggy
-        if(courseNames[i].substr(0, 4) === "CISC" && !["CISC 355", "CISC 356"].includes(courseNames[i])){
+    const match200:string[] = [];
+    for(let i = 0; i < courseNames.length; i++){  //checks if the extra electives are present
+        if(courseNames[i].substring(0, 4) === "CISC" && !["CISC 355", "CISC 356"].includes(courseNames[i])){
             total = total + 3;
-            match300.push(courseNames[i]);
-            //courseNames = courseNames.filter(key => key != courseNames[i]);
+            match200.push(courseNames[i]);
         }
     }
-    courseNames = courseNames.filter(key => !match300.includes(key));
+    courseNames = courseNames.filter(key => !match200.includes(key));
     if(total >= 6){
         extra6 = true;
     }

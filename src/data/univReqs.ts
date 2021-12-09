@@ -1,4 +1,5 @@
 import { Semester } from "../interfaces/semester";
+import { findCourse } from "../utilities/findCourse";
 
 //courses satisfying multicultural
 export const multiCult = ["AFRA 110", "AFRA 193", "AFRA 205", "AFRA 206", "AFRA 220", "AFRA 221", "AFRA 222", "AFRA 223", "AFRA 225", 
@@ -251,11 +252,11 @@ export const engineerProfess = ["ACCT 352", "AFSC 310", "AFSC 311", "BUAD 100", 
 export const noTech = ["CISC 355", "CISC 356", "CISC 357", "CISC 366", "CISC 465", "CISC 466"];
 
 //returns map object that has course code with a boolean.  boolean is for if course has been used to satisfy a req
-export function accumulateCourses(semesters: Semester[]):Map<string, boolean>{
-    let cours = new Map<string, boolean>();
+export function accumulateCourses(semesters: Semester[]):string[]{
+    const cours:string[] = []; 
     for (let i = 0; i < semesters.length; i++){
         for (let j = 0; j < semesters[i].courses.length; j++){
-            cours = cours.set(semesters[i].courses[j].info.code, false);
+            cours.push(semesters[i].courses[j].info.code);
         }
     }
     return cours;
@@ -272,6 +273,21 @@ export function findCommonCourses(subCourse: string[], potentialCourses: string[
     return courses;
 }
 
+//gets courses that are in both subCourse and potentialCourses arrays, returns credits in common
+export function findCommonCredits(subCourse: string[], potentialCourses: string[]): number{
+    let credits = 0;
+    for (let i = 0; i < subCourse.length; i++){
+        if(potentialCourses.includes(subCourse[i])){
+            let cred:number = +findCourse(subCourse[i]).credits;
+            if(!cred){
+                cred =  +findCourse(subCourse[i]).credits.substring(0, 2);
+            } 
+            credits = credits + cred;
+        }
+    }
+    return credits;
+}
+
 //Below two functions are used for handling returns for checking requirements 
 export interface reqSatisfied{ //individual requirement and if satisfed
     "requirement": string,
@@ -280,4 +296,19 @@ export interface reqSatisfied{ //individual requirement and if satisfed
 
 export interface requirementList{ //List of many requirements
     "requirements": reqSatisfied[]
+}
+
+//returns total credits in plan
+export function totalCredits(sems:Semester[]): number{
+    let totalCreds = 0;
+    for (let i = 0; i < sems.length; i++){
+        for (let j = 0; j < sems[i].courses.length; j++){
+            let cred:number = +sems[i].courses[j].info.credits;
+            if(!cred){
+                cred = +sems[i].courses[j].info.credits.substring(0, 2);
+            }
+            totalCreds = totalCreds + cred;
+        }
+    }
+    return totalCreds;
 }

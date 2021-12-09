@@ -1,6 +1,6 @@
 import { Semester } from "../interfaces/semester";
 import { findCourse } from "../utilities/findCourse";
-import {noTech, accumulateCourses, findCommonCourses, secondWrite, dle, firstYearExp, capstone, multiCult, groupA, groupB, groupC, groupD, requirementList } from "./univReqs";
+import {noTech, accumulateCourses, findCommonCourses, secondWrite, dle, firstYearExp, capstone, multiCult, groupA, groupB, groupC, groupD, requirementList, totalCredits } from "./univReqs";
 
 /*export interface CSBA {
     "univ": univReqs,
@@ -27,14 +27,8 @@ import {noTech, accumulateCourses, findCommonCourses, secondWrite, dle, firstYea
 const languages = ["GREK 202", "CHIN 107", "FREN 107", "GRMN 107", "ITAL 107", "JAPN 107", "JAPN 202", "LATN 202", "RUSS 107", "SPAN 107"];
 
 export function updateCSBA(semesters: Semester[]): requirementList {
-    let totalCreds = 0;
-    for (let i = 0; i < semesters.length; i++){
-        for (let j = 0; j < semesters[i].courses.length; j++){
-            totalCreds = totalCreds + +semesters[i].courses[j].info.credits;
-        }
-    }
-    const cours = accumulateCourses(semesters);
-    let courseNames = Array.from(cours.keys());
+    const totalCreds = totalCredits(semesters);
+    let courseNames = accumulateCourses(semesters);
     let e110 = false;
     let fys = false;
     let dles = false;
@@ -106,19 +100,24 @@ export function updateCSBA(semesters: Semester[]): requirementList {
         lang = true;
         courseNames = courseNames.filter(key => key != potLang[0]);
     }
-    //15 more cisc courses
+    //15 more credits of cisc courses
     let fifteen = 0;
+    const match15:string[] = [];
     for(let i = 0; i < courseNames.length; i++){
-        if(courseNames[i].substr(0, 4) === "CISC" && (+courseNames[i][4] >= 3) && !noTech.includes(courseNames[i])){
-            fifteen = fifteen + +findCourse(courseNames[i]).credits;
-            courseNames = courseNames.filter(key => key != courseNames[i]); 
-            i = i - 1;
+        if(courseNames[i].substring(0, 4) === "CISC" && (+courseNames[i][5] >= 3) && !noTech.includes(courseNames[i])){
+            let credits:number = +findCourse(courseNames[i]).credits;
+            if(!credits){
+                credits = +findCourse(courseNames[i]).credits.substring(0, 2);
+            }
+            fifteen = fifteen + credits;
+            match15.push(courseNames[i]);
         }
         if(fifteen >= 15){
             fifteenat301 = true;
             break;
         }
     }
+    courseNames = courseNames.filter(key => !match15.includes(key));
     //second writing req
     const second = findCommonCourses(courseNames, secondWrite);
     if(second.length > 0){

@@ -3,8 +3,8 @@
 
 .App {
   text-align: center;
-  margin-bottom: 1cm;
   font-family: 'Azeret Mono', monospace;
+  background-color: #B0CDF5;
 }
 
 td {
@@ -27,7 +27,7 @@ li {
   margin-top: 0.5cm;
 }
 
-#big-scope-button{
+.big-scope-button{
   margin: 0.2em;
 }
 #csvlink{
@@ -42,7 +42,7 @@ li {
   width: 75%;
   margin-left: auto;
   margin-right: auto;
-  background-color: lightskyblue;
+  background-color: rgb(224, 224, 224);
   outline: 2px solid black;
   border-radius: 8px;
   padding: 10px;
@@ -72,7 +72,6 @@ li {
   display: flex;
   justify-content: center;
   font-size: 1.5em;
-  margin-bottom: 1em;
 }
 
 #add-sems-dropdown{
@@ -93,11 +92,11 @@ li {
 }
 
 .courseTableReq{
-  color: orange;
+  color: #ceb03a;
 }
 
 .help-button{
-  margin-top: 1em;
+  padding-top: 1em;
   display: flex;
   justify-content: right;
 }
@@ -137,4 +136,24 @@ li {
 .imp-export-footer{
   text-align: center;
   margin: auto;
+}
+
+.sidecolumns {
+  border: 5px solid #FFEFB0;
+  padding: 5px;
+}
+
+
+.btn-primary {
+  background-color: #FFEFB0 !important;
+  border-color: #FFEFB0 !important;
+  color: black !important;
+}
+
+.btn-primary:hover {
+  background-color: #ffefb09a !important;
+}
+
+.semester {
+  background-color: #ffffffbd;
 }

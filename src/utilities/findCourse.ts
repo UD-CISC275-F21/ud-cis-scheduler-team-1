@@ -3,7 +3,7 @@ import Catalog from "../data/catalog.json";
 
 //function that will return the course object
 export function findCourse(name:string): Course{
-    const code = name.substr(0, 4);  //gets department, Ex ACCT
+    const code = name.substring(0, 4);  //gets department, Ex ACCT
     const CATALOG_DATA: Record<string, Record<string, Course>> = Catalog;  //converting json to record type
     let course:Course;
     try{

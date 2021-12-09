@@ -1,5 +1,5 @@
 import { Semester } from "../interfaces/semester";
-import { noTech, accumulateCourses, findCommonCourses, dle, engineerBreadth, engineerProfess, firstYearExp, groupA, groupB, groupC, groupD, multiCult, requirementList } from "./univReqs";
+import { noTech, accumulateCourses, findCommonCourses, dle, engineerBreadth, engineerProfess, firstYearExp, groupA, groupB, groupC, groupD, multiCult, requirementList, totalCredits } from "./univReqs";
 
 const restrict = ["MATH 242", "MATH 349", "MATH 549", "CISC 304", "CISC 436", "CISC 437", "CISC 440", "CISC 442", "CISC 449", 
     "CISC 453", "CISC 459", "CISC 481", "CISC 483", "CISC 484", "CISC 474", "CPEG 470", "CPEG 471", "CPEG 472", "CPEG 473", 
@@ -47,14 +47,8 @@ const restrict = ["MATH 242", "MATH 349", "MATH 549", "CISC 304", "CISC 436", "C
 }*/ //Old interface, kept to see requirements
 
 export function updateCSCyber(semesters: Semester[]): requirementList {
-    let totalCreds = 0;
-    for (let i = 0; i < semesters.length; i++){
-        for (let j = 0; j < semesters[i].courses.length; j++){
-            totalCreds = totalCreds + +semesters[i].courses[j].info.credits;
-        }
-    }
-    const cours = accumulateCourses(semesters);
-    let courseNames = Array.from(cours.keys());
+    const totalCreds = totalCredits(semesters);
+    let courseNames = accumulateCourses(semesters);
 
     let e110 = false;
     let fys = false;
@@ -153,11 +147,13 @@ export function updateCSCyber(semesters: Semester[]): requirementList {
     if(courseNames.includes("CISC 498") && courseNames.includes("CISC 499")){
         caps = true;
         majCaps = true;
+        dles = true;
         courseNames = courseNames.filter(key => key != "CISC 498");
         courseNames = courseNames.filter(key => key != "CISC 499");
     } else if(courseNames.includes("UNIV 401") && courseNames.includes("UNIV 402")){
         caps = true;
         majCaps = true;
+        dles = true;
         courseNames = courseNames.filter(key => key != "UNIV 401");
         courseNames = courseNames.filter(key => key != "UNIV 402");
     }
@@ -251,7 +247,7 @@ export function updateCSCyber(semesters: Semester[]): requirementList {
         courseNames = courseNames.filter(key => key != e6[1]);
     }
     for(let i = 0; i < courseNames.length; i++){
-        if(courseNames[i].substr(0, 4) === "CISC" && (+courseNames[i][4] >= 3) && !noTech.includes(courseNames[i])){
+        if(courseNames[i].substring(0, 4) === "CISC" && (+courseNames[i][5] >= 3) && !noTech.includes(courseNames[i])){
             extra34 = true;
             courseNames = courseNames.filter(key => key != courseNames[i]);
             break;
@@ -271,17 +267,23 @@ export function updateCSCyber(semesters: Semester[]): requirementList {
     if(cultural.length > 0){
         multi = true;
     }
+    
+    let breadths300 = false;
+    let breadthsAt300: string[] = []; //will get all breadths, then test if two have 300 level or above
     const a = findCommonCourses(courseNames, groupA);
+    breadthsAt300 = breadthsAt300.concat(a);
     if(a.length >= 1){
         groupa = true;
         courseNames = courseNames.filter(key => key != a[0]); 
     }
     const b = findCommonCourses(courseNames, groupB);
+    breadthsAt300 = breadthsAt300.concat(b);
     if(b.length >= 1){
         groupb = true;
         courseNames = courseNames.filter(key => key != b[0]); 
     }
     const c = findCommonCourses(courseNames, groupC);
+    breadthsAt300 = breadthsAt300.concat(c);
     if(c.length >= 1){
         groupc = true;
         courseNames = courseNames.filter(key => key != c[0]); 
@@ -292,10 +294,20 @@ export function updateCSCyber(semesters: Semester[]): requirementList {
         courseNames = courseNames.filter(key => key != d[0]); 
     }
     const extraBreadth = findCommonCourses(courseNames, groupA.concat(groupB).concat(groupC).concat(engineerBreadth).concat(engineerProfess));
+    breadthsAt300 = breadthsAt300.concat(c);
     if(extraBreadth.length >= 3){
         extra9 = true;
     }
 
+    let count = 0; //to count courses at 300 level or above
+    for(let i = 0; i < breadthsAt300.length; i++){
+        if(+breadthsAt300[i][5] >= 3){
+            count = count + 1;
+        }
+    }
+    if(count >= 2){
+        breadths300 = true;
+    }
 
     return {"requirements":
         [
@@ -309,6 +321,7 @@ export function updateCSCyber(semesters: Semester[]): requirementList {
             {"requirement":"groupD", "satisfied":groupd},    
             {"requirement":"capstone", "satisfied":caps},
             {"requirement": "9 extra", "satisfied":extra9},
+            {"requirement": "breadths300", "satisfied": breadths300},
             {"requirement": "108", "satisfied":c108},
             {"requirement":"181", "satisfied":c181},
             {"requirement":"210", "satisfied":c210},

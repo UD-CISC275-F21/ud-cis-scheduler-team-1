@@ -23,10 +23,10 @@ export function SemesterTable({ sem, setSemesters, semesters, coursesPool, setCo
     const [show, setShow] = useState<boolean>(false); //To show Modal when Course is clicked
     const [mod, setMod] = useState<CourseDisplay>(semester.courses[0]); // staging the changed info before save
 
-    // Removes a course from a semester based on its name
-    function removeCourse(name: string): void {
+    // Removes a course from a semester based on its code
+    function removeCourse(code: string): void {
         const newSem: Semester = semester;
-        newSem.courses = [...semester.courses.filter(course => course.info.name !== name)];
+        newSem.courses = [...semester.courses.filter(course => course.info.code !== code)];
         setSemester(newSem);
         updateSemesters();
     }
@@ -74,7 +74,7 @@ export function SemesterTable({ sem, setSemesters, semesters, coursesPool, setCo
                 coursesPool = newCP;
                 setCoursesPool(newCP);  //updating courses pool, so card is gone after dropped
             } else {
-                alert("Course is Already in Semester");
+                //alert("Course is Already in Semester");
             }
         },
         collect: (monitor) => ({
@@ -116,7 +116,7 @@ export function SemesterTable({ sem, setSemesters, semesters, coursesPool, setCo
                 </thead>
                 <tbody>
                     {semester.courses.map(course =>
-                        <tr key={course.info.name}>
+                        <tr key={course.info.code}>
                             <OverlayTrigger placement="right"  delay={{ show: 1000, hide: 0 }} overlay={<Tooltip id="tooltip-disabled">Click to edit information!</Tooltip>}>
                                 <td>
                                     <a
@@ -156,7 +156,7 @@ export function SemesterTable({ sem, setSemesters, semesters, coursesPool, setCo
                                 </Form.Select>
                             </Form></td>
                             <td>
-                                <Button size="sm" variant="outline-danger" onClick={() => removeCourse(course.info.name)}>
+                                <Button size="sm" variant="outline-danger" onClick={() => removeCourse(course.info.code)}>
                                     X
                                 </Button>
                             </td>

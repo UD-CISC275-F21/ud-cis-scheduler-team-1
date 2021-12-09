@@ -65,26 +65,6 @@ export function Requirements({ semesters, bsba, major, conc }: iReq): JSX.Elemen
         // Loops through all elements in the updated degree plan to split all
         // requirements into a fulfilled list and a remaining list
         for (const require of requirements) {
-            /*if (require.requirement === "univ") {
-                for (const [univKey, univValue] of Object.entries(require.satisfied)) { 
-                    univValue && newFulCourses.push(univKey);
-                    !univValue && newRemCourses.push(univKey);
-                }
-            } else if (["apMathTrack", "dataTrack", "discreteTrack", "contTrack"].includes(require.requirement)) {
-                let trackComplete = false;
-                let trackCount = 0;
-                for (const [univKey, univValue] of Object.entries(require.satisfied)) { 
-                    if (univKey === "complete") {
-                        trackComplete = trackComplete || univValue as boolean;
-                        trackCount++;
-                    } else {
-                        univValue && !newFulCourses.includes(univKey) && newFulCourses.push(univKey);
-                        !univValue && !newRemCourses.includes(univKey) && newRemCourses.push(univKey);
-                    }
-                }
-                trackCount == 2 && trackComplete && newFulCourses.push("complete");
-                trackCount == 2 && !trackComplete && newRemCourses.push("complete");
-            } else {*/
             if (require.satisfied) {
                 newFulCourses.push(require.requirement);
             } else {
@@ -96,9 +76,10 @@ export function Requirements({ semesters, bsba, major, conc }: iReq): JSX.Elemen
         setRemainingCourses(newRemCourses);
 
     }, [semesters,bsba,major,conc] );
-    return <Col id="move-when-scroll">
+    return <Col className="sidecolumns" id="move-when-scroll">
         <h2 className="subtitle">Degree Requirements</h2>
         <p>To see more details about degree/minor requirements, click <a href = {url} target="_blank" rel="noopener noreferrer">here</a>.</p>
+        <p>*Consult UD catlog for details.</p>
         <ul>
             <ReqCourseText courseKeys={remainingCourses} fulfilled={false}></ReqCourseText>
             <ReqCourseText courseKeys={fulfilledCourses} fulfilled={true}></ReqCourseText>
