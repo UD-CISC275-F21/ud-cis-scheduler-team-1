@@ -63,7 +63,7 @@ export function CourseModal({
             break;
         }
         case "typ": {
-            newMod.info.typ = value;
+            newMod.info.typicallyOffered = value;
             break;
         }
         }
@@ -161,7 +161,7 @@ export function CourseModal({
                     <Col>
                         <EditText
                             name="typ"
-                            defaultValue={mod?.info.typ}
+                            defaultValue={mod?.info.typicallyOffered}
                             onSave={handleSave}></EditText>
                     </Col>
                 </Row>
