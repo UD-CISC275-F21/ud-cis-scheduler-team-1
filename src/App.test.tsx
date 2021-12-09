@@ -3,6 +3,17 @@ import { act, fireEvent, render, screen, within } from "@testing-library/react";
 import App from "./App";
 import userEvent from "@testing-library/user-event";
 
+function performDragandDrop(courseCode:string): void{
+    fireEvent.click(screen.getByRole("textbox", { name: "Course Code" }));
+    fireEvent.change(screen.getByRole("textbox", { name: "Course Code" }), { target: { value: courseCode } });
+    fireEvent.click(screen.getByRole("option", { name: courseCode }));
+    fireEvent.click(screen.getByRole("button", { name: "Add Course" }));
+    fireEvent.dragStart(screen.getByRole("drag"));
+    fireEvent.dragEnter(screen.getByRole("columnheader", { name: /fall 2021/i }));
+    fireEvent.dragOver(screen.getByRole("columnheader", { name: /fall 2021/i }));
+    fireEvent.drop(screen.getByRole("columnheader", { name: /fall 2021/i }));
+}
+
 describe("App", () => {
     beforeEach(() => {
         render(<App />);
@@ -37,18 +48,29 @@ describe("App", () => {
             expect(screen.queryByText("CISC 108 Introduction to Computer Science I")).toBeInTheDocument();
         });
         it("drags and drops a course to semester table", () => {
-            fireEvent.click(screen.getByRole("textbox", { name: "Course Code" }));
-            fireEvent.change(screen.getByRole("textbox", { name: "Course Code" }), { target: { value: "CISC 108" } });
-            fireEvent.click(screen.getByRole("option", { name: "CISC 108" }));
-            fireEvent.click(screen.getByRole("button", { name: "Add Course" }));
-            fireEvent.dragStart(screen.getByRole("drag"));
-            fireEvent.dragEnter(screen.getByRole("columnheader", { name: /fall 2021/i }));
-            fireEvent.dragOver(screen.getByRole("columnheader", { name: /fall 2021/i }));
-            fireEvent.drop(screen.getByRole("columnheader", { name: /fall 2021/i }));
+            performDragandDrop("CISC 108");
             //when course is successfully dragged over to the semester. 
             //coursepool list will be empty so the "Drag and drop courses from course pool into a semester." text will appear again
             expect(screen.queryByText("Drag and drop courses from course pool into a semester.")).toBeInTheDocument();
         });
+    });
+    describe("Requirements", ()=> {
+        describe("Requirements render correctly on load", () =>{
+            it("has ENGL110 when the app loads", () =>{
+                const e110 = screen.getAllByText(/ENGL 110/i);
+                const [expectedNode] = e110.filter(element => element.tagName === "li");
+                expect(expectedNode);
+            });
+        });
+        describe("Requirement is crossed out when course put in plan", () =>{
+            it("ENGL 110 is crossed out after drag and drop", () =>{
+                performDragandDrop("ENGL 110");
+                const e110 = screen.getAllByText(/ENGL 110/i);
+                const [expectedNode] = e110.filter(element => element.tagName === "del");
+                expect(expectedNode);
+            });
+        });
+        
     });
     describe("Concentrations", () => {
         describe("Elements render correctly on app load", () => {

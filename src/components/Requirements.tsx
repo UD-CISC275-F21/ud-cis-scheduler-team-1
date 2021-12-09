@@ -99,6 +99,7 @@ export function Requirements({ semesters, bsba, major, conc }: iReq): JSX.Elemen
     return <Col id="move-when-scroll">
         <h2 className="subtitle">Degree Requirements</h2>
         <p>To see more details about degree/minor requirements, click <a href = {url} target="_blank" rel="noopener noreferrer">here</a>.</p>
+        <p>*Consult UD catlog for details.</p>
         <ul>
             <ReqCourseText courseKeys={remainingCourses} fulfilled={false}></ReqCourseText>
             <ReqCourseText courseKeys={fulfilledCourses} fulfilled={true}></ReqCourseText>

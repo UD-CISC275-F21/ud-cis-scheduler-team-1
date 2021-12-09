@@ -1,5 +1,5 @@
 import { Semester } from "../interfaces/semester";
-import {noTech, accumulateCourses, findCommonCourses, dle, engineerBreadth, engineerProfess, firstYearExp, groupA, groupB, groupC, groupD, multiCult, requirementList } from "./univReqs";
+import {noTech, accumulateCourses, findCommonCourses, dle, engineerBreadth, engineerProfess, firstYearExp, groupA, groupB, groupC, groupD, multiCult, requirementList, totalCredits } from "./univReqs";
 
 const restrict = ["CISC 372", "CISC 404", "CISC 410", "CISC 414", "CISC 471", "CISC 481", "ELEG 387", "ELEG 487", "MATH 243", "MATH 245", 
     "MATH 302", "MATH 315", "MATH 350", "MATH 428", "MATH 450", "MATH 451"];
@@ -64,14 +64,8 @@ interface continuous{
 }*/
 
 export function updateCSTheory(semesters: Semester[]): requirementList {
-    let totalCreds = 0;
-    for (let i = 0; i < semesters.length; i++){
-        for (let j = 0; j < semesters[i].courses.length; j++){
-            totalCreds = totalCreds + +semesters[i].courses[j].info.credits;
-        }
-    }
-    const cours = accumulateCourses(semesters);
-    let courseNames = Array.from(cours.keys());
+    const totalCreds = totalCredits(semesters);
+    let courseNames = accumulateCourses(semesters);
 
     let e110 = false;
     let fys = false;
@@ -248,34 +242,56 @@ export function updateCSTheory(semesters: Semester[]): requirementList {
     let m535 = false;
     let m426 = false;
 
-    //checks for specific courses
+
+    //checks for specific courses for tracks
+    //discrete track
+    const usedCourses: string[] = [];
     if(courseNames.includes("CISC 404")){
         c404 = true;
+        usedCourses.push("CISC 404");
     }
     if(courseNames.includes("MATH 245")){
         m245 = true;
+        usedCourses.push("MATH 245");
     }
     if(courseNames.includes("MATH 315")){
         m315 = true;
+        usedCourses.push("MATH 315");
     } 
     if(courseNames.includes("MATH 451")){
         m451 = true;
+        usedCourses.push("MATH 451");
     }
+
+    //continuous track
+    const usedCourses2: string[] = [];
     if(courseNames.includes("MATH 243")){
         m243 = true;
+        usedCourses2.push("MATH 243");
     }  
     if(courseNames.includes("MATH 302")){
         m302 = true;
+        usedCourses2.push("MATH 302");
     } 
     if(courseNames.includes("MATH 535")){
         m535 = true;
+        usedCourses2.push("MATH 535");
     }
     if(courseNames.includes("MATH 426")){
         m426 = true;
+        usedCourses2.push("MATH 426");
     } 
     
     const disComp = c404 && m245 && m315 && m451;
     const conComp = m243 && m302 && m535 && m426;
+    
+    if(conComp){
+        courseNames = courseNames.filter(key => !usedCourses2.includes(key));  // get rid of used courses if that track is complete
+    }else{
+        courseNames = courseNames.filter(key => !usedCourses.includes(key));  // get rid of these otherwise
+    }
+
+    const track = disComp || conComp;
 
     /*const discrete = {
         "disComplete": disComp, //true if all sub categories in this are true
@@ -293,7 +309,6 @@ export function updateCSTheory(semesters: Semester[]): requirementList {
         "MATH 426": m426
     };*/
 
-    const track = disComp && conComp;
 
     const e6 = findCommonCourses(courseNames, restrict);
     if(e6.length >= 2){
@@ -302,7 +317,7 @@ export function updateCSTheory(semesters: Semester[]): requirementList {
         courseNames = courseNames.filter(key => key != e6[1]);
     }
     for(let i = 0; i < courseNames.length; i++){
-        if(courseNames[i].substr(0, 4) === "CISC" && (+courseNames[i][4] >= 3) && !noTech.includes(courseNames[i])){
+        if(courseNames[i].substr(0, 4) === "CISC" && (+courseNames[i][5] >= 3) && !noTech.includes(courseNames[i])){
             extra34 = true;
             courseNames = courseNames.filter(key => key != courseNames[i]);
             break;
@@ -322,17 +337,23 @@ export function updateCSTheory(semesters: Semester[]): requirementList {
     if(cultural.length > 0){
         multi = true;
     }
+
+    let breadths300 = false;
+    let breadthsAt300: string[] = []; //will get all breadths, then test if two have 300 level or above
     const a = findCommonCourses(courseNames, groupA);
+    breadthsAt300 = breadthsAt300.concat(a);
     if(a.length >= 1){
         groupa = true;
         courseNames = courseNames.filter(key => key != a[0]); 
     }
     const b = findCommonCourses(courseNames, groupB);
+    breadthsAt300 = breadthsAt300.concat(b);
     if(b.length >= 1){
         groupb = true;
         courseNames = courseNames.filter(key => key != b[0]); 
     }
     const c = findCommonCourses(courseNames, groupC);
+    breadthsAt300 = breadthsAt300.concat(c);
     if(c.length >= 1){
         groupc = true;
         courseNames = courseNames.filter(key => key != c[0]); 
@@ -343,8 +364,19 @@ export function updateCSTheory(semesters: Semester[]): requirementList {
         courseNames = courseNames.filter(key => key != d[0]); 
     }
     const extraBreadth = findCommonCourses(courseNames, groupA.concat(groupB).concat(groupC).concat(engineerBreadth).concat(engineerProfess));
+    breadthsAt300 = breadthsAt300.concat(c);
     if(extraBreadth.length >= 3){
         extra9 = true;
+    }
+
+    let count = 0; //to count courses at 300 level or above
+    for(let i = 0; i < breadthsAt300.length; i++){
+        if(+breadthsAt300[i][5] >= 3){
+            count = count + 1;
+        }
+    }
+    if(count >= 2){
+        breadths300 = true;
     }
 
     //returning new object
@@ -360,6 +392,7 @@ export function updateCSTheory(semesters: Semester[]): requirementList {
             {"requirement":"groupD", "satisfied":groupd},    
             {"requirement":"capstone", "satisfied":caps},
             {"requirement": "9 extra", "satisfied":extra9},
+            {"requirement": "breadths300", "satisfied": breadths300},
             {"requirement": "108", "satisfied":c108},
             {"requirement":"181", "satisfied":c181},
             {"requirement":"210", "satisfied":c210},

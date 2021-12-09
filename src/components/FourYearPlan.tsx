@@ -48,7 +48,6 @@ export function FourYearPlan({ semesters, setSemesters, coursesPool, setCoursesP
                         variant="secondary"
                         onClick={() => {
                             window.location.reload();
-                            // write thingy to reset course table and pool
                         }}>
                         Reset Plan
                     </Button>

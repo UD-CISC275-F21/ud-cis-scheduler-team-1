@@ -1,5 +1,5 @@
 import { Semester } from "../interfaces/semester";
-import {noTech, accumulateCourses, findCommonCourses, dle, engineerBreadth, engineerProfess, firstYearExp, groupA, groupB, groupC, groupD, multiCult, requirementList } from "./univReqs";
+import {noTech, accumulateCourses, findCommonCourses, dle, engineerBreadth, engineerProfess, firstYearExp, groupA, groupB, groupC, groupD, multiCult, requirementList, totalCredits } from "./univReqs";
 
 /*export interface CSHighPerf {
     "univ": univReqs,
@@ -61,14 +61,8 @@ interface data{
 }*/
 
 export function updateCSHighPerf(semesters: Semester[]): requirementList {
-    let totalCreds = 0;
-    for (let i = 0; i < semesters.length; i++){
-        for (let j = 0; j < semesters[i].courses.length; j++){
-            totalCreds = totalCreds + +semesters[i].courses[j].info.credits;
-        }
-    }
-    const cours = accumulateCourses(semesters);
-    let courseNames = Array.from(cours.keys());
+    const totalCreds = totalCredits(semesters);
+    let courseNames = accumulateCourses(semesters);
 
     let e110 = false;
     let fys = false;
@@ -176,11 +170,13 @@ export function updateCSHighPerf(semesters: Semester[]): requirementList {
     if(courseNames.includes("CISC 498") && courseNames.includes("CISC 499")){
         caps = true;
         majCaps = true;
+        dles = true;
         courseNames = courseNames.filter(key => key != "CISC 498");
         courseNames = courseNames.filter(key => key != "CISC 499");
     } else if(courseNames.includes("UNIV 401") && courseNames.includes("UNIV 402")){
         caps = true;
         majCaps = true;
+        dles = true;
         courseNames = courseNames.filter(key => key != "UNIV 401");
         courseNames = courseNames.filter(key => key != "UNIV 402");
     }
@@ -253,54 +249,98 @@ export function updateCSHighPerf(semesters: Semester[]): requirementList {
         courseNames = courseNames.filter(key => key != "MATH 243");
     }  
 
+    //Track checking- Applied Math First
+    const usedCourses: string[] = [];
+
     //stats
     if(courseNames.includes("MATH 205")){
         stats = true;
         courseNames = courseNames.filter(key => key != "MATH 205");
+        usedCourses.push("MATH 205");
     } else if(courseNames.includes("MATH 350")){
         stats = true;
         courseNames = courseNames.filter(key => key != "MATH 350");
+        usedCourses.push("MATH 350");
     }
     //specific courses
     if(courseNames.includes("MATH 351")){
         m351 = true;
+        courseNames = courseNames.filter(key => key != "MATH 351");
+        usedCourses.push("MATH 351");
     }
     if(courseNames.includes("MATH 428")){
         m428 = true;
-    }
-    if(courseNames.includes("CISC 437")){
-        c437 = true;
-    }
-    if(courseNames.includes("MATH 350")){
-        m350 = true;
-    }
-    if(courseNames.includes("MATH 450")){
-        m450 = true;
-    }
-    if(courseNames.includes("MATH 450")){
-        m450 = true;
-    }
-    if(courseNames.includes("CISC 483") || courseNames.includes("CISC 484")){
-        ml = true;
+        courseNames = courseNames.filter(key => key != "MATH 428");
+        usedCourses.push("MATH 428");
     }
 
-    //checking for different tracks
-    let total = 0;
+    let totalAp = 0;
     for(let i = 0; i < courseNames.length; i++){
-        if(courseNames[i].substr(0, 4) === "CISC" && (+courseNames[i][4] >= 3) && !noTech.includes(courseNames[i])){
-            total = total + 3;
+        if((courseNames[i] === "MATH 205") || (courseNames[i] === "MATH 350") || (courseNames[i].substr(0, 4) === "CISC" && (+courseNames[i][5] >= 3) && !noTech.includes(courseNames[i]))){
+            totalAp = totalAp + 3;
+            usedCourses.push(courseNames[i]);
+        }
+        if(totalAp >= 5){
+            apElec = true;
             break;
         }
     }
-    if(total >= 5){
-        apElec = true;
-        datElec = true;
-    }
 
     apComp = m351 && m428 && stats && apElec;
+
+    //resetting course pool to what it was previous to checking applied Math
+    courseNames = courseNames.concat(usedCourses);
+
+
+    //Checking Data Track
+    const usedCourses2: string[] = [];
+
+
+    if(courseNames.includes("CISC 437")){
+        c437 = true;
+        courseNames = courseNames.filter(key => key != "MATH 437");
+        usedCourses2.push("MATH 437");
+    }
+    if(courseNames.includes("MATH 350")){
+        m350 = true;
+        courseNames = courseNames.filter(key => key != "MATH 350");
+        usedCourses2.push("MATH 350");
+    }
+    if(courseNames.includes("MATH 450")){
+        m450 = true;
+        courseNames = courseNames.filter(key => key != "MATH 450");
+        usedCourses2.push("MATH 450");
+    }
+    if(courseNames.includes("CISC 483")){
+        ml = true;
+        courseNames = courseNames.filter(key => key != "CISC 483");
+        usedCourses2.push("MATH 483");
+    }else if(courseNames.includes("CISC 484")){
+        ml = true;
+        courseNames = courseNames.filter(key => key != "CISC 484");
+        usedCourses2.push("MATH 484");
+    }
+
+    let totalDat = 0;
+    for(let i = 0; i < courseNames.length; i++){
+        if(courseNames[i] === "MATH 302" || courseNames[i] === "MATH 349" || courseNames[i] === "MATH 351" || courseNames[i] === "MATH 535" || (courseNames[i].substr(0, 4) === "CISC" && (+courseNames[i][5] >= 3) && !noTech.includes(courseNames[i]))){
+            totalDat = totalDat + 3;
+            usedCourses2.push(courseNames[i]);
+        }
+        if(totalDat >= 5){
+            datElec = true;
+            break;
+        }
+    }
     datComp = c437 && m350 && m450 && ml && datElec;
 
-    const track = apComp && datComp;
+    if(datComp){
+        courseNames = courseNames.filter(key => !usedCourses2.includes(key));  // get rid of used courses if that track is complete
+    }else{
+        courseNames = courseNames.filter(key => !usedCourses.includes(key));  // get rid of these otherwise
+    }
+
+    const track = apComp || datComp;
 
     /*const apMath = {
         "apMathComplete": apComp,
@@ -332,17 +372,23 @@ export function updateCSHighPerf(semesters: Semester[]): requirementList {
     if(cultural.length > 0){
         multi = true;
     }
+    
+    let breadths300 = false;
+    let breadthsAt300: string[] = []; //will get all breadths, then test if two have 300 level or above
     const a = findCommonCourses(courseNames, groupA);
+    breadthsAt300 = breadthsAt300.concat(a);
     if(a.length >= 1){
         groupa = true;
         courseNames = courseNames.filter(key => key != a[0]); 
     }
     const b = findCommonCourses(courseNames, groupB);
+    breadthsAt300 = breadthsAt300.concat(b);
     if(b.length >= 1){
         groupb = true;
         courseNames = courseNames.filter(key => key != b[0]); 
     }
     const c = findCommonCourses(courseNames, groupC);
+    breadthsAt300 = breadthsAt300.concat(c);
     if(c.length >= 1){
         groupc = true;
         courseNames = courseNames.filter(key => key != c[0]); 
@@ -353,8 +399,19 @@ export function updateCSHighPerf(semesters: Semester[]): requirementList {
         courseNames = courseNames.filter(key => key != d[0]); 
     }
     const extraBreadth = findCommonCourses(courseNames, groupA.concat(groupB).concat(groupC).concat(engineerBreadth).concat(engineerProfess));
+    breadthsAt300 = breadthsAt300.concat(c);
     if(extraBreadth.length >= 3){
         extra9 = true;
+    }
+
+    let count = 0; //to count courses at 300 level or above
+    for(let i = 0; i < breadthsAt300.length; i++){
+        if(+breadthsAt300[i][5] >= 3){
+            count = count + 1;
+        }
+    }
+    if(count >= 2){
+        breadths300 = true;
     }
 
     return {"requirements":
@@ -369,6 +426,7 @@ export function updateCSHighPerf(semesters: Semester[]): requirementList {
             {"requirement":"groupD", "satisfied":groupd},    
             {"requirement":"capstone", "satisfied":caps},
             {"requirement": "9 extra", "satisfied":extra9},
+            {"requirement": "breadths300", "satisfied": breadths300},
             {"requirement": "108", "satisfied":c108},
             {"requirement":"181", "satisfied":c181},
             {"requirement":"210", "satisfied":c210},
