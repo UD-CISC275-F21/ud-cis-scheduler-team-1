@@ -8,7 +8,7 @@ export interface Course{
     preReq: string,     //sentence from course catalog that lists the pre requisites from UD catalog
     restrict: string,   //sentence that has any of the restrictions listed from UD catalog
     breadth: string,    // What university/College of A&S breadth that is satisfied
-    typ: string,        //What semester the course is typically offered
+    typicallyOffered: string,        //What semester the course is typically offered
 }
 
 //interface for displaying in table

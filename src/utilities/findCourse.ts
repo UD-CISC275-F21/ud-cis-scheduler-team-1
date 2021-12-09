@@ -1,5 +1,5 @@
 import { Course } from "../interfaces/course";
-import Catalog from "../data/catalog.json";
+import Catalog from "../scraping/catalog3.json";
 
 //function that will return the course object
 export function findCourse(name:string): Course{
@@ -18,7 +18,7 @@ export function findCourse(name:string): Course{
             preReq: "",
             restrict: "",
             breadth: "",
-            typ: "",
+            typicallyOffered: "",
         };
     }
     //exception handling
@@ -31,7 +31,7 @@ export function findCourse(name:string): Course{
             preReq: "",
             restrict: "",
             breadth: "",
-            typ: "",
+            typicallyOffered: "",
         };
     }
     return course;
