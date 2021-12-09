@@ -150,7 +150,7 @@ export function ImportExport({ show, setShow, semesters, setSemesters }: iImport
                 <Col>
                     <Button className="imp-export-btn">
                         <CSVLink
-                            style={{ color: "#FFFFFF" }}
+                            style={{ color: "#000000" }}
                             id="csvlink"
                             data={CSVdata}
                             headers={CSVheaders}
