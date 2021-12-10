@@ -1,38 +1,172 @@
+@import url("https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed&display=swap");
+
 .App {
   text-align: center;
+  font-family: 'Azeret Mono', monospace;
+  background-color: #B0CDF5;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+td {
+  word-break: break-word;
+  vertical-align: middle;
+  font-family: 'Fira Sans Condensed', sans-serif;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+li {
+  text-align: left;
+  font-family: 'Fira Sans Condensed', sans-serif;
+  font-size: 1.15em;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+#bodyBackground {
+  background-color: #B0CDF5;
+}
+
+#title{
+  margin-bottom: 1cm;
+}
+
+#buttonGroup{
+  margin-top: 0.5cm;
+}
+
+.big-scope-button{
+  margin: 0.2em;
+}
+#csvlink{
+  color: black;
+  text-decoration: none;
+}
+.subtitle{
+  margin-bottom: 1cm;
+}
+
+.dragCourse{
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: rgb(224, 224, 224);
+  outline: 2px solid black;
+  border-radius: 8px;
+  padding: 10px;
+  cursor: grabbing;
+  margin-bottom: 0.5cm;
+}
+
+#searchBar{
+  margin-bottom: 1cm;
+}
+
+#alert{
+  margin-top: 1em;
+  text-align: center;
+  color:red;
+  font-style: italic;
+}
+
+#major-minor-row{
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  font-size: 2em;
+  margin-bottom: 0.5em;
 }
 
-.App-link {
-  color: #61dafb;
+#concentration-dropdown{
+  display: flex;
+  justify-content: center;
+  font-size: 1.5em;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#add-sems-dropdown{
+  font-size: 1.2em;
+}
+#add-sems-col{
+  text-align: center;
+}
+#scrolling {
+  height: 1000%;
+  resize: both;
+  overflow-y: scroll;
+}
+#move-when-scroll{
+    width: auto;
+    top : 0;
+    position: sticky;
+}
+
+.courseTableReq{
+  color: #5691e2;
+  font-size: .88em;
+  font-family: 'Azeret Mono', monospace;
+}
+
+.help-button{
+  padding-top: 1em;
+  display: flex;
+  justify-content: right;
+}
+
+.welcome-carousel{
+  height: 30em;
+  font-family: 'Fira Sans Condensed', sans-serif;
+  text-align: center;
+  border: 3px solid black;
+}
+#welcome-item-front > h1{
+  color: #5691e2;
+  font-family: 'Azeret Mono', monospace;
+  font-size: 3.7em;
+  padding: 1.2em;
+}
+
+#welcome-item > h3 {
+  font-family: 'Fira Sans Condensed', sans-serif;
+  text-align: center;
+  font-size: 2em;
+  padding: 0.5em;
+  background-color: #B0CDF5;
+}
+#welcome-item > img {
+  height: 23em;
+  width: 38em; 
+}
+.imp-export-subtile{
+  font-size:1.5em;
+  height: 2em;
+}
+.imp-export-btn-group{
+  text-align: center;
+  height: 3em;
+}
+.imp-export-btn{
+  width: 12em;
+}
+.imp-export-footer{
+  text-align: center;
+  margin: auto;
+}
+
+.sidecolumns {
+  border: 5px solid #FFEFB0;
+  padding: 5px;
+}
+
+
+.btn-primary {
+  background-color: #FFEFB0 !important;
+  border-color: #FFEFB0 !important;
+  color: black !important;
+}
+
+.btn-primary:hover {
+  background-color: #ffefb09a !important;
+}
+
+.semester {
+  background-color: #ffffffbd;
+}
+
+.reqdesc {
+  font-size: .9em;
 }
